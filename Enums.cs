@@ -8,9 +8,15 @@ namespace GenshinConfigurator
 {
     internal class Enums
     {
-        public enum Settings
+        public enum ResolutionData
         {
-            None,
+            Width,
+            Height,
+            Fullscreen
+        }
+        public enum SettingsType
+        {
+            OverallQuality,
             VSync,
             RenderResolution,
             ShadowQuality,
@@ -28,6 +34,15 @@ namespace GenshinConfigurator
             SubsurfaceScattering,
             TeammateEffects,
             AnisotropicFiltering
+        }
+
+        public enum OverallQuality
+        {
+            Lowest    = 1,
+            Low       = 2,
+            Medium    = 3,
+            High      = 4,
+            Custom    = -1
         }
 
         public enum VSync
@@ -150,9 +165,9 @@ namespace GenshinConfigurator
         public enum TeammateEffects
         {
             None,
-            Off,
+            On,
             Partially,
-            On
+            Off
         }
 
         public enum AnisotropicFiltering

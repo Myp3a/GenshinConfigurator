@@ -10,14 +10,14 @@ namespace GenshinConfigurator
     {
         public class GraphicsSetting
         {
-            public int key {  get; set; }
-            public int value {  get; set; }
+            public int key { get; set; }
+            public int value { get; set; }
         }
         public class GraphicsData
         {
             public int currentVolatielGrade { get; set; }
             public IList<GraphicsSetting> customVolatileGrades { get; set; }
-            public string volatileVersion {  get; set; }
+            public string volatileVersion { get; set; }
         }
         public class MainJSON
         {
@@ -65,6 +65,18 @@ namespace GenshinConfigurator
             public int mtrAbortTimeOutCount { get; set; }
             public int mtrAutoTraceInterval { get; set; }
             public int mtrTraceCDEachReason { get; set; }
+        }
+
+        public class ResolutionConfig
+        {
+            public int Width { get; set; }
+            public int Height {  get; set; }
+            public bool Fullscreen { get; set; }
+        }
+
+        public class ConfigFile { 
+            public ResolutionConfig Resolution { get; set; }
+            public GraphicsData Graphics { get; set; }
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWin));
             this.FPS_Label = new System.Windows.Forms.Label();
             this.FPS_Box = new System.Windows.Forms.ComboBox();
             this.VSync_Box = new System.Windows.Forms.ComboBox();
@@ -62,6 +63,16 @@
             this.AnisotropicFiltering_Label = new System.Windows.Forms.Label();
             this.Reset_Button = new System.Windows.Forms.Button();
             this.Apply_Button = new System.Windows.Forms.Button();
+            this.Width_Text = new System.Windows.Forms.TextBox();
+            this.Height_Text = new System.Windows.Forms.TextBox();
+            this.Fullscreen_Check = new System.Windows.Forms.CheckBox();
+            this.Preset_Box = new System.Windows.Forms.ComboBox();
+            this.Preset_Label = new System.Windows.Forms.Label();
+            this.TopBar = new System.Windows.Forms.ToolStrip();
+            this.FileMenu = new System.Windows.Forms.ToolStripDropDownButton();
+            this.SaveButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.LoadButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.TopBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // FPS_Label
@@ -75,19 +86,23 @@
             // 
             // FPS_Box
             // 
+            this.FPS_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FPS_Box.FormattingEnabled = true;
             this.FPS_Box.Location = new System.Drawing.Point(121, 47);
             this.FPS_Box.Name = "FPS_Box";
             this.FPS_Box.Size = new System.Drawing.Size(121, 21);
             this.FPS_Box.TabIndex = 1;
+            this.FPS_Box.SelectedIndexChanged += new System.EventHandler(this.FPS_Box_SelectedIndexChanged);
             // 
             // VSync_Box
             // 
+            this.VSync_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.VSync_Box.FormattingEnabled = true;
             this.VSync_Box.Location = new System.Drawing.Point(121, 74);
             this.VSync_Box.Name = "VSync_Box";
             this.VSync_Box.Size = new System.Drawing.Size(121, 21);
             this.VSync_Box.TabIndex = 3;
+            this.VSync_Box.SelectedIndexChanged += new System.EventHandler(this.VSync_Box_SelectedIndexChanged);
             // 
             // VSync_Label
             // 
@@ -100,11 +115,13 @@
             // 
             // RenderResolution_Box
             // 
+            this.RenderResolution_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.RenderResolution_Box.FormattingEnabled = true;
             this.RenderResolution_Box.Location = new System.Drawing.Point(121, 101);
             this.RenderResolution_Box.Name = "RenderResolution_Box";
             this.RenderResolution_Box.Size = new System.Drawing.Size(121, 21);
             this.RenderResolution_Box.TabIndex = 5;
+            this.RenderResolution_Box.SelectedIndexChanged += new System.EventHandler(this.RenderResolution_Box_SelectedIndexChanged);
             // 
             // RenderResolution_Label
             // 
@@ -117,11 +134,13 @@
             // 
             // ShadowQuality_Box
             // 
+            this.ShadowQuality_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ShadowQuality_Box.FormattingEnabled = true;
             this.ShadowQuality_Box.Location = new System.Drawing.Point(121, 128);
             this.ShadowQuality_Box.Name = "ShadowQuality_Box";
             this.ShadowQuality_Box.Size = new System.Drawing.Size(121, 21);
             this.ShadowQuality_Box.TabIndex = 7;
+            this.ShadowQuality_Box.SelectedIndexChanged += new System.EventHandler(this.ShadowQuality_Box_SelectedIndexChanged);
             // 
             // ShadowQuality_Label
             // 
@@ -134,11 +153,13 @@
             // 
             // VisualEffects_Box
             // 
+            this.VisualEffects_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.VisualEffects_Box.FormattingEnabled = true;
             this.VisualEffects_Box.Location = new System.Drawing.Point(121, 155);
             this.VisualEffects_Box.Name = "VisualEffects_Box";
             this.VisualEffects_Box.Size = new System.Drawing.Size(121, 21);
             this.VisualEffects_Box.TabIndex = 9;
+            this.VisualEffects_Box.SelectedIndexChanged += new System.EventHandler(this.VisualEffects_Box_SelectedIndexChanged);
             // 
             // VisualEffects_Label
             // 
@@ -151,11 +172,13 @@
             // 
             // SFXQuality_Box
             // 
+            this.SFXQuality_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SFXQuality_Box.FormattingEnabled = true;
             this.SFXQuality_Box.Location = new System.Drawing.Point(121, 182);
             this.SFXQuality_Box.Name = "SFXQuality_Box";
             this.SFXQuality_Box.Size = new System.Drawing.Size(121, 21);
             this.SFXQuality_Box.TabIndex = 11;
+            this.SFXQuality_Box.SelectedIndexChanged += new System.EventHandler(this.SFXQuality_Box_SelectedIndexChanged);
             // 
             // SFXQuality_Label
             // 
@@ -168,11 +191,13 @@
             // 
             // EnvironmentDetail_Box
             // 
+            this.EnvironmentDetail_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EnvironmentDetail_Box.FormattingEnabled = true;
             this.EnvironmentDetail_Box.Location = new System.Drawing.Point(121, 209);
             this.EnvironmentDetail_Box.Name = "EnvironmentDetail_Box";
             this.EnvironmentDetail_Box.Size = new System.Drawing.Size(121, 21);
             this.EnvironmentDetail_Box.TabIndex = 13;
+            this.EnvironmentDetail_Box.SelectedIndexChanged += new System.EventHandler(this.EnvironmentDetail_Box_SelectedIndexChanged);
             // 
             // EnvironmentDetail_Label
             // 
@@ -185,11 +210,13 @@
             // 
             // Antialiasing_Box
             // 
+            this.Antialiasing_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Antialiasing_Box.FormattingEnabled = true;
             this.Antialiasing_Box.Location = new System.Drawing.Point(121, 236);
             this.Antialiasing_Box.Name = "Antialiasing_Box";
             this.Antialiasing_Box.Size = new System.Drawing.Size(121, 21);
             this.Antialiasing_Box.TabIndex = 15;
+            this.Antialiasing_Box.SelectedIndexChanged += new System.EventHandler(this.Antialiasing_Box_SelectedIndexChanged);
             // 
             // Antialiasing_Label
             // 
@@ -202,11 +229,13 @@
             // 
             // VolumetricFog_Box
             // 
+            this.VolumetricFog_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.VolumetricFog_Box.FormattingEnabled = true;
             this.VolumetricFog_Box.Location = new System.Drawing.Point(406, 47);
             this.VolumetricFog_Box.Name = "VolumetricFog_Box";
             this.VolumetricFog_Box.Size = new System.Drawing.Size(121, 21);
             this.VolumetricFog_Box.TabIndex = 17;
+            this.VolumetricFog_Box.SelectedIndexChanged += new System.EventHandler(this.VolumetricFog_Box_SelectedIndexChanged);
             // 
             // VolumetricFog_Label
             // 
@@ -219,11 +248,13 @@
             // 
             // Reflections_Box
             // 
+            this.Reflections_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Reflections_Box.FormattingEnabled = true;
             this.Reflections_Box.Location = new System.Drawing.Point(406, 74);
             this.Reflections_Box.Name = "Reflections_Box";
             this.Reflections_Box.Size = new System.Drawing.Size(121, 21);
             this.Reflections_Box.TabIndex = 19;
+            this.Reflections_Box.SelectedIndexChanged += new System.EventHandler(this.Reflections_Box_SelectedIndexChanged);
             // 
             // Reflections_Label
             // 
@@ -236,11 +267,13 @@
             // 
             // MotionBlur_Box
             // 
+            this.MotionBlur_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MotionBlur_Box.FormattingEnabled = true;
             this.MotionBlur_Box.Location = new System.Drawing.Point(406, 101);
             this.MotionBlur_Box.Name = "MotionBlur_Box";
             this.MotionBlur_Box.Size = new System.Drawing.Size(121, 21);
             this.MotionBlur_Box.TabIndex = 21;
+            this.MotionBlur_Box.SelectedIndexChanged += new System.EventHandler(this.MotionBlur_Box_SelectedIndexChanged);
             // 
             // MotionBlur_Label
             // 
@@ -253,11 +286,13 @@
             // 
             // Bloom_Box
             // 
+            this.Bloom_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Bloom_Box.FormattingEnabled = true;
             this.Bloom_Box.Location = new System.Drawing.Point(406, 128);
             this.Bloom_Box.Name = "Bloom_Box";
             this.Bloom_Box.Size = new System.Drawing.Size(121, 21);
             this.Bloom_Box.TabIndex = 23;
+            this.Bloom_Box.SelectedIndexChanged += new System.EventHandler(this.Bloom_Box_SelectedIndexChanged);
             // 
             // Bloom_Label
             // 
@@ -270,11 +305,13 @@
             // 
             // CrowdDensity_Box
             // 
+            this.CrowdDensity_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CrowdDensity_Box.FormattingEnabled = true;
             this.CrowdDensity_Box.Location = new System.Drawing.Point(406, 155);
             this.CrowdDensity_Box.Name = "CrowdDensity_Box";
             this.CrowdDensity_Box.Size = new System.Drawing.Size(121, 21);
             this.CrowdDensity_Box.TabIndex = 25;
+            this.CrowdDensity_Box.SelectedIndexChanged += new System.EventHandler(this.CrowdDensity_Box_SelectedIndexChanged);
             // 
             // CrowdDensity_Label
             // 
@@ -287,11 +324,13 @@
             // 
             // SubsurfaceScattering_Box
             // 
+            this.SubsurfaceScattering_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SubsurfaceScattering_Box.FormattingEnabled = true;
             this.SubsurfaceScattering_Box.Location = new System.Drawing.Point(406, 182);
             this.SubsurfaceScattering_Box.Name = "SubsurfaceScattering_Box";
             this.SubsurfaceScattering_Box.Size = new System.Drawing.Size(121, 21);
             this.SubsurfaceScattering_Box.TabIndex = 27;
+            this.SubsurfaceScattering_Box.SelectedIndexChanged += new System.EventHandler(this.SubsurfaceScattering_Box_SelectedIndexChanged);
             // 
             // SubsurfaceScattering_Label
             // 
@@ -304,11 +343,13 @@
             // 
             // TeammateEffects_Box
             // 
+            this.TeammateEffects_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TeammateEffects_Box.FormattingEnabled = true;
             this.TeammateEffects_Box.Location = new System.Drawing.Point(406, 209);
             this.TeammateEffects_Box.Name = "TeammateEffects_Box";
             this.TeammateEffects_Box.Size = new System.Drawing.Size(121, 21);
             this.TeammateEffects_Box.TabIndex = 29;
+            this.TeammateEffects_Box.SelectedIndexChanged += new System.EventHandler(this.TeammateEffects_Box_SelectedIndexChanged);
             // 
             // TeammateEffects_Label
             // 
@@ -321,11 +362,13 @@
             // 
             // AnisotropicFiltering_Box
             // 
+            this.AnisotropicFiltering_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AnisotropicFiltering_Box.FormattingEnabled = true;
             this.AnisotropicFiltering_Box.Location = new System.Drawing.Point(406, 236);
             this.AnisotropicFiltering_Box.Name = "AnisotropicFiltering_Box";
             this.AnisotropicFiltering_Box.Size = new System.Drawing.Size(121, 21);
             this.AnisotropicFiltering_Box.TabIndex = 31;
+            this.AnisotropicFiltering_Box.SelectedIndexChanged += new System.EventHandler(this.AnisotropicFiltering_Box_SelectedIndexChanged);
             // 
             // AnisotropicFiltering_Label
             // 
@@ -356,11 +399,98 @@
             this.Apply_Button.UseVisualStyleBackColor = true;
             this.Apply_Button.Click += new System.EventHandler(this.Apply_Button_Click);
             // 
+            // Width_Text
+            // 
+            this.Width_Text.Location = new System.Drawing.Point(16, 281);
+            this.Width_Text.Name = "Width_Text";
+            this.Width_Text.Size = new System.Drawing.Size(100, 20);
+            this.Width_Text.TabIndex = 34;
+            // 
+            // Height_Text
+            // 
+            this.Height_Text.Location = new System.Drawing.Point(142, 281);
+            this.Height_Text.Name = "Height_Text";
+            this.Height_Text.Size = new System.Drawing.Size(100, 20);
+            this.Height_Text.TabIndex = 35;
+            // 
+            // Fullscreen_Check
+            // 
+            this.Fullscreen_Check.AutoSize = true;
+            this.Fullscreen_Check.Location = new System.Drawing.Point(248, 283);
+            this.Fullscreen_Check.Name = "Fullscreen_Check";
+            this.Fullscreen_Check.Size = new System.Drawing.Size(74, 17);
+            this.Fullscreen_Check.TabIndex = 36;
+            this.Fullscreen_Check.Text = "Fullscreen";
+            this.Fullscreen_Check.UseVisualStyleBackColor = true;
+            // 
+            // Preset_Box
+            // 
+            this.Preset_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Preset_Box.FormattingEnabled = true;
+            this.Preset_Box.Location = new System.Drawing.Point(121, 20);
+            this.Preset_Box.Name = "Preset_Box";
+            this.Preset_Box.Size = new System.Drawing.Size(121, 21);
+            this.Preset_Box.TabIndex = 37;
+            this.Preset_Box.SelectedIndexChanged += new System.EventHandler(this.Preset_Box_SelectedIndexChanged);
+            // 
+            // Preset_Label
+            // 
+            this.Preset_Label.AutoSize = true;
+            this.Preset_Label.Location = new System.Drawing.Point(13, 23);
+            this.Preset_Label.Name = "Preset_Label";
+            this.Preset_Label.Size = new System.Drawing.Size(37, 13);
+            this.Preset_Label.TabIndex = 38;
+            this.Preset_Label.Text = "Preset";
+            // 
+            // TopBar
+            // 
+            this.TopBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.TopBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileMenu});
+            this.TopBar.Location = new System.Drawing.Point(0, 0);
+            this.TopBar.Name = "TopBar";
+            this.TopBar.Size = new System.Drawing.Size(552, 25);
+            this.TopBar.TabIndex = 39;
+            this.TopBar.Text = "toolStrip1";
+            // 
+            // FileMenu
+            // 
+            this.FileMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.FileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveButton,
+            this.LoadButton});
+            this.FileMenu.Image = ((System.Drawing.Image)(resources.GetObject("FileMenu.Image")));
+            this.FileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FileMenu.Name = "FileMenu";
+            this.FileMenu.ShowDropDownArrow = false;
+            this.FileMenu.Size = new System.Drawing.Size(29, 22);
+            this.FileMenu.Text = "File";
+            // 
+            // SaveButton
+            // 
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(180, 22);
+            this.SaveButton.Text = "Save";
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // LoadButton
+            // 
+            this.LoadButton.Name = "LoadButton";
+            this.LoadButton.Size = new System.Drawing.Size(180, 22);
+            this.LoadButton.Text = "Load";
+            this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
+            // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(552, 330);
+            this.Controls.Add(this.TopBar);
+            this.Controls.Add(this.Preset_Label);
+            this.Controls.Add(this.Preset_Box);
+            this.Controls.Add(this.Fullscreen_Check);
+            this.Controls.Add(this.Height_Text);
+            this.Controls.Add(this.Width_Text);
             this.Controls.Add(this.Apply_Button);
             this.Controls.Add(this.Reset_Button);
             this.Controls.Add(this.AnisotropicFiltering_Box);
@@ -398,6 +528,8 @@
             this.Name = "MainWin";
             this.Text = "Genshin Impact Configurator";
             this.Load += new System.EventHandler(this.MainWin_Load);
+            this.TopBar.ResumeLayout(false);
+            this.TopBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,6 +571,15 @@
         private System.Windows.Forms.Label AnisotropicFiltering_Label;
         private System.Windows.Forms.Button Reset_Button;
         private System.Windows.Forms.Button Apply_Button;
+        private System.Windows.Forms.TextBox Width_Text;
+        private System.Windows.Forms.TextBox Height_Text;
+        private System.Windows.Forms.CheckBox Fullscreen_Check;
+        private System.Windows.Forms.ComboBox Preset_Box;
+        private System.Windows.Forms.Label Preset_Label;
+        private System.Windows.Forms.ToolStrip TopBar;
+        private System.Windows.Forms.ToolStripDropDownButton FileMenu;
+        private System.Windows.Forms.ToolStripMenuItem SaveButton;
+        private System.Windows.Forms.ToolStripMenuItem LoadButton;
     }
 }
 
