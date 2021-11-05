@@ -119,6 +119,85 @@ namespace GenshinConfigurator
             }
         }
 
+        private void Lowest_Settings()
+        {
+            FPS_Box.SelectedIndex = 0;
+            VSync_Box.SelectedIndex = 1;
+            RenderResolution_Box.SelectedIndex = 1;
+            ShadowQuality_Box.SelectedIndex = 0;
+            VisualEffects_Box.SelectedIndex = 0;
+            SFXQuality_Box.SelectedIndex = 0;
+            EnvironmentDetail_Box.SelectedIndex = 0;
+            Antialiasing_Box.SelectedIndex = 0;
+            VolumetricFog_Box.SelectedIndex = 0;
+            Reflections_Box.SelectedIndex = 0;
+            MotionBlur_Box.SelectedIndex = 0;
+            Bloom_Box.SelectedIndex = 1;
+            CrowdDensity_Box.SelectedIndex = 1;
+            SubsurfaceScattering_Box.SelectedIndex = 0;
+            TeammateEffects_Box.SelectedIndex = 0;
+            AnisotropicFiltering_Box.SelectedIndex = 0;
+        }
+
+        private void Low_Settings()
+        {
+            FPS_Box.SelectedIndex = 0;
+            VSync_Box.SelectedIndex = 1;
+            RenderResolution_Box.SelectedIndex = 2;
+            ShadowQuality_Box.SelectedIndex = 1;
+            VisualEffects_Box.SelectedIndex = 1;
+            SFXQuality_Box.SelectedIndex = 1;
+            EnvironmentDetail_Box.SelectedIndex = 1;
+            Antialiasing_Box.SelectedIndex = 2;
+            VolumetricFog_Box.SelectedIndex = 0;
+            Reflections_Box.SelectedIndex = 0;
+            MotionBlur_Box.SelectedIndex = 0;
+            Bloom_Box.SelectedIndex = 1;
+            CrowdDensity_Box.SelectedIndex = 1;
+            SubsurfaceScattering_Box.SelectedIndex = 1;
+            TeammateEffects_Box.SelectedIndex = 0;
+            AnisotropicFiltering_Box.SelectedIndex = 0;
+        }
+
+        private void Medium_Settings()
+        {
+            FPS_Box.SelectedIndex = 1;
+            VSync_Box.SelectedIndex = 1;
+            RenderResolution_Box.SelectedIndex = 2;
+            ShadowQuality_Box.SelectedIndex = 2;
+            VisualEffects_Box.SelectedIndex = 2;
+            SFXQuality_Box.SelectedIndex = 2;
+            EnvironmentDetail_Box.SelectedIndex = 2;
+            Antialiasing_Box.SelectedIndex = 2;
+            VolumetricFog_Box.SelectedIndex = 1;
+            Reflections_Box.SelectedIndex = 0;
+            MotionBlur_Box.SelectedIndex = 2;
+            Bloom_Box.SelectedIndex = 1;
+            CrowdDensity_Box.SelectedIndex = 1;
+            SubsurfaceScattering_Box.SelectedIndex = 1;
+            TeammateEffects_Box.SelectedIndex = 0;
+            AnisotropicFiltering_Box.SelectedIndex = 0;
+        }
+
+        private void High_Settings()
+        {
+            FPS_Box.SelectedIndex = 1;
+            VSync_Box.SelectedIndex = 1;
+            RenderResolution_Box.SelectedIndex = 3;
+            ShadowQuality_Box.SelectedIndex = 3;
+            VisualEffects_Box.SelectedIndex = 3;
+            SFXQuality_Box.SelectedIndex = 3;
+            EnvironmentDetail_Box.SelectedIndex = 3;
+            Antialiasing_Box.SelectedIndex = 2;
+            VolumetricFog_Box.SelectedIndex = 1;
+            Reflections_Box.SelectedIndex = 1;
+            MotionBlur_Box.SelectedIndex = 3;
+            Bloom_Box.SelectedIndex = 1;
+            CrowdDensity_Box.SelectedIndex = 1;
+            SubsurfaceScattering_Box.SelectedIndex = 2;
+            TeammateEffects_Box.SelectedIndex = 0;
+            AnisotropicFiltering_Box.SelectedIndex = 0;
+        }
         private void Apply_Button_Click(object sender, EventArgs e)
         {
             Graphics.currentPreset = Preset_Box.SelectedIndex;
@@ -156,6 +235,23 @@ namespace GenshinConfigurator
 
         private void Preset_Box_SelectedIndexChanged(object sender, EventArgs e)
         {
+            switch (Preset_Box.SelectedIndex)
+            {
+                case 0:
+                    Lowest_Settings();
+                    break;
+                case 1:
+                    Low_Settings();
+                    break;
+                case 2:
+                    Medium_Settings();
+                    break;
+                case 3:
+                    High_Settings();
+                    break;
+                case 4:
+                    break;
+            }
             if (Preset_Box.SelectedIndex == 4)
             {
                 Unlock_Graphics(true);
