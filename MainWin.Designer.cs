@@ -142,6 +142,7 @@
             this.ShadowQuality_Box.Name = "ShadowQuality_Box";
             this.ShadowQuality_Box.Size = new System.Drawing.Size(121, 21);
             this.ShadowQuality_Box.TabIndex = 7;
+            this.ShadowQuality_Box.SelectedIndexChanged += new System.EventHandler(this.ShadowQuality_Box_SelectedIndexChanged);
             // 
             // ShadowQuality_Label
             // 

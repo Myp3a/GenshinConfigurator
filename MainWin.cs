@@ -70,6 +70,19 @@ namespace GenshinConfigurator
             AnisotropicFiltering_Box.Enabled = action;
         }
 
+        private void Unlock_VolumetricFog(bool enabled)
+        {
+            if (enabled)
+            {
+                VolumetricFog_Box.SelectedIndex = Graphics.Get((int)SettingsType.VolumetricFog) - 1;
+                VolumetricFog_Box.Enabled = true;
+            } else
+            {
+                VolumetricFog_Box.SelectedIndex = 0;
+                VolumetricFog_Box.Enabled = false;
+            }
+        }
+
         private void Reset_Button_Click(object sender, EventArgs e)
         {
             Preset_Box.SelectedIndex = Graphics.currentPreset;
@@ -189,6 +202,17 @@ namespace GenshinConfigurator
         {
             Status_Label.Text = "Ready.";
             Status_Reset_Timer.Enabled = false;
+        }
+
+        private void ShadowQuality_Box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ShadowQuality_Box.SelectedIndex > 1)
+            {
+                Unlock_VolumetricFog(true);
+            } else
+            {
+                Unlock_VolumetricFog(false);
+            }
         }
     }
 }
