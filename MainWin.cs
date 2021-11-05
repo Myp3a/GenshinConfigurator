@@ -45,6 +45,9 @@ namespace GenshinConfigurator
             AnisotropicFiltering_Box.Items.AddRange(Enum.GetNames(typeof(AnisotropicFiltering)).Skip(1).ToArray());
             Preset_Box.Items.AddRange(Enum.GetNames(typeof(OverallQuality)));
             Reset_Button_Click(null, null);
+            Status_Label.Text = "Loaded config from registry.";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
         }
 
         private void Unlock_Graphics(bool action)
@@ -95,7 +98,12 @@ namespace GenshinConfigurator
             {
                 Fullscreen_Check.Checked = false;
             }
-
+            if (sender != null)
+            {
+                Status_Label.Text = "Reloaded config from registry.";
+                Status_Reset_Timer.Enabled = false;
+                Status_Reset_Timer.Enabled = true;
+            }
         }
 
         private void Apply_Button_Click(object sender, EventArgs e)
@@ -128,6 +136,9 @@ namespace GenshinConfigurator
                 Resolution.Change((int)ResolutionData.Fullscreen, 0);
             }
             Resolution.Save();
+            Status_Label.Text = "Saved config to registry.";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
         }
 
         private void Preset_Box_SelectedIndexChanged(object sender, EventArgs e)
@@ -153,6 +164,9 @@ namespace GenshinConfigurator
             if (savedialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Save(Path.GetFullPath(savedialog.FileName));
+                Status_Label.Text = $"Saved config to {savedialog.FileName}.";
+                Status_Reset_Timer.Enabled = false;
+                Status_Reset_Timer.Enabled = true;
             }
         }
 
@@ -164,88 +178,17 @@ namespace GenshinConfigurator
             if (loaddialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Load(Path.GetFullPath(loaddialog.FileName));
+                Status_Label.Text = $"Loaded config from {loaddialog.FileName}.";
+                Status_Reset_Timer.Enabled = false;
+                Status_Reset_Timer.Enabled = true;
             }
             Reset_Button_Click(null, null);
         }
 
-        private void Antialiasing_Box_SelectedIndexChanged(object sender, EventArgs e)
+        private void Status_Reset_Timer_Tick(object sender, EventArgs e)
         {
-
-        }
-
-        private void EnvironmentDetail_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SFXQuality_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void VisualEffects_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ShadowQuality_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RenderResolution_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void VSync_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FPS_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AnisotropicFiltering_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TeammateEffects_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SubsurfaceScattering_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CrowdDensity_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Bloom_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MotionBlur_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Reflections_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void VolumetricFog_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            Status_Label.Text = "Ready.";
+            Status_Reset_Timer.Enabled = false;
         }
     }
 }
