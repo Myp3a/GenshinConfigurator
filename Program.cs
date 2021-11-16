@@ -8,15 +8,28 @@ namespace GenshinConfigurator
 {
     internal static class Program
     {
+        [System.Runtime.InteropServices.DllImport("kernel32.dll")]
+        static extern bool FreeConsole();
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWin());
+            if (args.Length == 0)
+            {
+                // hide console
+                FreeConsole();
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new MainWin());
+            }
+            else
+            {
+                Cli cli = new Cli();
+                cli.Run(args);
+            }
         }
     }
 }

@@ -125,7 +125,7 @@ namespace GenshinConfigurator
 
         private void Write()
         {
-            string raw_settings = JsonConvert.SerializeObject(settings_json);
+            string raw_settings = GetJSONFull();
             byte[] bytes_raw = Encoding.UTF8.GetBytes(raw_settings);
             byte[] bytes = new byte[bytes_raw.Length + 1];
             bytes_raw.CopyTo(bytes, 0);
@@ -138,6 +138,15 @@ namespace GenshinConfigurator
             settings_json.graphicsData = JsonConvert.SerializeObject(graphics_data);
         }
 
+        public string GetJSONFull()
+        {
+            return JsonConvert.SerializeObject(settings_json);
+        }
+
+        public string GetJSONGraphics()
+        {
+            return JsonConvert.SerializeObject(graphics_data);
+        }
 
     }
 
@@ -203,6 +212,7 @@ namespace GenshinConfigurator
                     fullscreen = value;
                     break;
             }
+            Save();
         }
 
         public void Save()
