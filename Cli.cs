@@ -61,8 +61,8 @@ namespace GenshinConfigurator
                         case "human":
                             string outtext = "";
                             const int offset = 25;
-                            outtext += "Overall Quality:" + new string(' ', offset-15) + Enum.GetName(typeof(Enums.OverallQuality), Graphics.GetObject().currentVolatielGrade) + '\n';
-                            foreach (JSONSchema.GraphicsSetting setting in Graphics.GetObject().customVolatileGrades)
+                            outtext += "Overall Quality:" + new string(' ', offset-15) + Enum.GetName(typeof(Enums.OverallQuality), Graphics.currentPreset) + '\n';
+                            foreach (JSONSchema.GraphicsSetting setting in Graphics.settings_json.graphicsData.customVolatileGrades)
                             {
                                 string name;
                                 string val;
@@ -148,8 +148,8 @@ namespace GenshinConfigurator
 
                         case "raw":
                             outtext = "";
-                            outtext += "0:" + Graphics.GetObject().currentVolatielGrade.ToString();
-                            foreach (JSONSchema.GraphicsSetting setting in Graphics.GetObject().customVolatileGrades)
+                            outtext += "0:" + Graphics.currentPreset.ToString();
+                            foreach (JSONSchema.GraphicsSetting setting in Graphics.settings_json.graphicsData.customVolatileGrades)
                             {
                                 outtext += $" {setting.key}:{setting.value}";
                             }

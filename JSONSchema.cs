@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using Newtonsoft.Json;
 
 namespace GenshinConfigurator
 {
@@ -21,6 +24,30 @@ namespace GenshinConfigurator
         }
         public class MainJSON
         {
+            [OnSerialized]
+            internal void loadNested(StreamingContext context)
+            {
+                _graphicsData = JsonConvert.SerializeObject(graphicsData);
+                __overrideControllerMapValueList = new List<string>();
+                foreach (XmlDocument xml_doc in _overrideControllerMapValueList)
+                {
+                    string xml_string = xml_doc.OuterXml;
+                    __overrideControllerMapValueList.Add(xml_string);
+                }
+            }
+
+            [OnDeserialized]
+            internal void saveNested(StreamingContext context)
+            {
+                graphicsData = JsonConvert.DeserializeObject<GraphicsData>(_graphicsData);
+                _overrideControllerMapValueList = new List<XmlDocument>();
+                foreach (string xml_string in __overrideControllerMapValueList)
+                {
+                    XmlDocument xml_doc = new XmlDocument();
+                    xml_doc.LoadXml(xml_string);
+                    _overrideControllerMapValueList.Add(xml_doc);
+                }
+            }
             public string deviceUUID { get; set; }
             public string userLocalDataVersionId { get; set; }
             public int deviceLanguageType { get; set; }
@@ -32,7 +59,12 @@ namespace GenshinConfigurator
             public string curAccountName { get; set; }
             public string uiSaveData { get; set; }
             public string inputData { get; set; }
-            public string graphicsData { get; set; }
+
+            [JsonProperty(PropertyName = "graphicsData")]
+            public string _graphicsData { get; set; }
+
+            [JsonIgnore]
+            public GraphicsData graphicsData { get; set; }
             public int miniMapConfig { get; set; }
             public bool enableCameraSlope { get; set; }
             public bool enableCameraCombatLock { get; set; }
@@ -56,8 +88,12 @@ namespace GenshinConfigurator
             public double maxLuminosity { get; set; }
             public double uiPaperWhite { get; set; }
             public double scenePaperWhite { get; set; }
-            public List<string> _overrideControllerMapKeyList { get; set; }
-            public List<string> _overrideControllerMapValueList { get; set; }
+
+            [JsonProperty(PropertyName = "_overrideControllerMapValueList")]
+            public List<string> __overrideControllerMapValueList { get; set; }
+
+            [JsonIgnore]
+            public List<XmlDocument> _overrideControllerMapValueList { get; set; }
             public int lastSeenPreDownloadTime { get; set; }
             public bool mtrCached { get; set; }
             public bool mtrIsOpen { get; set; }

@@ -22,7 +22,7 @@ namespace GenshinConfigurator
         public void Save(string path)
         {
             ConfigFile file = new ConfigFile();
-            file.Graphics = JsonConvert.DeserializeObject<GraphicsData>(JsonConvert.SerializeObject(Graphics.GetObject()));
+            file.Graphics = JsonConvert.DeserializeObject<MainJSON>(Graphics.GetJSON()).graphicsData;
             file.Resolution = new ResolutionConfig { Fullscreen = Convert.ToBoolean(Resolution.Get((int)ResolutionData.Fullscreen)), Width = Resolution.Get((int)ResolutionData.Width), Height = Resolution.Get((int)ResolutionData.Height) };
             string result = JsonConvert.SerializeObject(file);
             StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
@@ -50,21 +50,19 @@ namespace GenshinConfigurator
     {
         RegistryKey Gensh;
         string value_name;
-        MainJSON settings_json;
-        GraphicsData graphics_data;
+        public MainJSON settings_json;
         public int currentPreset
         {
             get
             {
-                if (graphics_data.currentVolatielGrade == -1) return 4;
-                else return graphics_data.currentVolatielGrade - 1;
+                if (settings_json.graphicsData.currentVolatielGrade == -1) return 4;
+                else return settings_json.graphicsData.currentVolatielGrade - 1;
             }
             set
             {
-                if (value == 4) graphics_data.currentVolatielGrade = -1;
-                else if (value == -1) graphics_data.currentVolatielGrade = value; 
-                else graphics_data.currentVolatielGrade = value + 1;
-                UpdateSettings();
+                if (value == 4) settings_json.graphicsData.currentVolatielGrade = -1;
+                else if (value == -1) settings_json.graphicsData.currentVolatielGrade = value; 
+                else settings_json.graphicsData.currentVolatielGrade = value + 1;
             }
         }
         public GraphicsSettings()
@@ -85,7 +83,7 @@ namespace GenshinConfigurator
 
         public void Change(int setting_num, int value_num)
         {
-            foreach (GraphicsSetting setting in graphics_data.customVolatileGrades)
+            foreach (GraphicsSetting setting in settings_json.graphicsData.customVolatileGrades)
             {
                 if (setting.key == setting_num)
                 {
@@ -93,12 +91,11 @@ namespace GenshinConfigurator
                     break;
                 }
             }
-            UpdateSettings();
         }
 
         public int Get(int setting_num)
         {
-                foreach (GraphicsSetting setting in graphics_data.customVolatileGrades)
+                foreach (GraphicsSetting setting in settings_json.graphicsData.customVolatileGrades)
             {
                 if (setting.key == setting_num)
                 {
@@ -108,46 +105,46 @@ namespace GenshinConfigurator
             return 0;
         }
 
-        public GraphicsData GetObject()
-        {
-            return graphics_data;
-        }
         public void Save()
         {
-            Write();
+            string raw_settings = GetJSON();
+            Write(raw_settings);
         }
         private void Read()
         {
             string raw_settings = Encoding.UTF8.GetString((byte[])Gensh.GetValue(value_name));
             settings_json = JsonConvert.DeserializeObject<MainJSON>(raw_settings);
-            graphics_data = JsonConvert.DeserializeObject<GraphicsData>(settings_json.graphicsData);
         }
 
-        private void Write()
+        public void Write(string configline)
         {
-            string raw_settings = GetJSONFull();
-            byte[] bytes_raw = Encoding.UTF8.GetBytes(raw_settings);
+            byte[] bytes_raw = Encoding.UTF8.GetBytes(configline);
             byte[] bytes = new byte[bytes_raw.Length + 1];
             bytes_raw.CopyTo(bytes, 0);
             bytes[bytes.Length - 1] = (byte)'\x00';
             Gensh.SetValue(value_name, bytes);
+            Read();
         }
 
-        private void UpdateSettings()
+        public string GetJSON(bool pretty = false)
         {
-            settings_json.graphicsData = JsonConvert.SerializeObject(graphics_data);
+            Formatting format = Formatting.None;
+            if (pretty)
+            {
+                format = Formatting.Indented;
+            }
+            return JsonConvert.SerializeObject(settings_json, format);
         }
 
-        public string GetJSONFull()
+        public string GetJSONGraphics(bool pretty = false)
         {
-            return JsonConvert.SerializeObject(settings_json);
+            Formatting format = Formatting.None;
+            if (pretty)
+            {
+                format = Formatting.Indented;
+            }
+            return JsonConvert.SerializeObject(settings_json.graphicsData, format);
         }
-
-        public string GetJSONGraphics()
-        {
-            return JsonConvert.SerializeObject(graphics_data);
-        }
-
     }
 
     internal class ResolutionSettings
