@@ -310,5 +310,21 @@ namespace GenshinConfigurator
                 Unlock_VolumetricFog(false);
             }
         }
+
+        private void Load_Button_Raw_Click(object sender, EventArgs e)
+        {
+            textBox_Config_Raw.Text = Graphics.GetJSON(true);
+            Status_Label.Text = $"Loaded raw config from registry.";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
+        }
+
+        private void Save_Button_Raw_Click(object sender, EventArgs e)
+        {
+            Graphics.Write(textBox_Config_Raw.Text);
+            Status_Label.Text = $"Saved raw config to registry.";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
+        }
     }
 }
