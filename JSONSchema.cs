@@ -48,6 +48,8 @@ namespace GenshinConfigurator
             public int volumeVoice { get; set; }
             public int audioAPI { get; set; }
             public bool _audioSuccessInit { get; set; }
+            public bool enableAudioChangeAndroidMinimumBufferCapacity { get; set; }
+            public int audioAndroidMiniumBufferCapacity { get; set; }
             public bool motionBlur { get; set; }
             public bool gyroAiming { get; set; }
             public bool firstHDRSetting { get; set; }
