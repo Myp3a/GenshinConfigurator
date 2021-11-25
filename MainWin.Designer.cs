@@ -39,7 +39,6 @@
             this.Status_Reset_Timer = new System.Windows.Forms.Timer(this.components);
             this.settingsTabs = new System.Windows.Forms.TabControl();
             this.tabGraphics = new System.Windows.Forms.TabPage();
-            this.tabRawConfig = new System.Windows.Forms.TabPage();
             this.Preset_Label = new System.Windows.Forms.Label();
             this.Preset_Box = new System.Windows.Forms.ComboBox();
             this.Fullscreen_Check = new System.Windows.Forms.CheckBox();
@@ -79,14 +78,19 @@
             this.VSync_Label = new System.Windows.Forms.Label();
             this.FPS_Box = new System.Windows.Forms.ComboBox();
             this.FPS_Label = new System.Windows.Forms.Label();
-            this.Save_Button_Raw = new System.Windows.Forms.Button();
-            this.Load_Button_Raw = new System.Windows.Forms.Button();
+            this.tabRawConfig = new System.Windows.Forms.TabPage();
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
+            this.Load_Button_Raw = new System.Windows.Forms.Button();
+            this.Save_Button_Raw = new System.Windows.Forms.Button();
+            this.tabLog = new System.Windows.Forms.TabPage();
+            this.Reload_Log_Button = new System.Windows.Forms.Button();
+            this.textBoxLog = new System.Windows.Forms.TextBox();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
             this.tabGraphics.SuspendLayout();
             this.tabRawConfig.SuspendLayout();
+            this.tabLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // TopBar
@@ -158,6 +162,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsTabs.Controls.Add(this.tabGraphics);
+            this.settingsTabs.Controls.Add(this.tabLog);
             this.settingsTabs.Controls.Add(this.tabRawConfig);
             this.settingsTabs.Location = new System.Drawing.Point(0, 25);
             this.settingsTabs.Margin = new System.Windows.Forms.Padding(0);
@@ -165,6 +170,7 @@
             this.settingsTabs.SelectedIndex = 0;
             this.settingsTabs.Size = new System.Drawing.Size(547, 326);
             this.settingsTabs.TabIndex = 41;
+            this.settingsTabs.SelectedIndexChanged += new System.EventHandler(this.settingsTabs_SelectedIndexChanged);
             // 
             // tabGraphics
             // 
@@ -215,19 +221,6 @@
             this.tabGraphics.Size = new System.Drawing.Size(539, 300);
             this.tabGraphics.TabIndex = 0;
             this.tabGraphics.Text = "Graphics";
-            // 
-            // tabRawConfig
-            // 
-            this.tabRawConfig.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabRawConfig.Controls.Add(this.textBox_Config_Raw);
-            this.tabRawConfig.Controls.Add(this.Load_Button_Raw);
-            this.tabRawConfig.Controls.Add(this.Save_Button_Raw);
-            this.tabRawConfig.Location = new System.Drawing.Point(4, 22);
-            this.tabRawConfig.Name = "tabRawConfig";
-            this.tabRawConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRawConfig.Size = new System.Drawing.Size(539, 300);
-            this.tabRawConfig.TabIndex = 1;
-            this.tabRawConfig.Text = "Raw Config";
             // 
             // Preset_Label
             // 
@@ -581,15 +574,28 @@
             this.FPS_Label.TabIndex = 39;
             this.FPS_Label.Text = "FPS";
             // 
-            // Save_Button_Raw
+            // tabRawConfig
             // 
-            this.Save_Button_Raw.Location = new System.Drawing.Point(456, 271);
-            this.Save_Button_Raw.Name = "Save_Button_Raw";
-            this.Save_Button_Raw.Size = new System.Drawing.Size(75, 23);
-            this.Save_Button_Raw.TabIndex = 0;
-            this.Save_Button_Raw.Text = "Save";
-            this.Save_Button_Raw.UseVisualStyleBackColor = true;
-            this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
+            this.tabRawConfig.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabRawConfig.Controls.Add(this.textBox_Config_Raw);
+            this.tabRawConfig.Controls.Add(this.Load_Button_Raw);
+            this.tabRawConfig.Controls.Add(this.Save_Button_Raw);
+            this.tabRawConfig.Location = new System.Drawing.Point(4, 22);
+            this.tabRawConfig.Name = "tabRawConfig";
+            this.tabRawConfig.Padding = new System.Windows.Forms.Padding(3);
+            this.tabRawConfig.Size = new System.Drawing.Size(539, 300);
+            this.tabRawConfig.TabIndex = 1;
+            this.tabRawConfig.Text = "Raw Config";
+            // 
+            // textBox_Config_Raw
+            // 
+            this.textBox_Config_Raw.Location = new System.Drawing.Point(9, 7);
+            this.textBox_Config_Raw.MaxLength = 3276700;
+            this.textBox_Config_Raw.Multiline = true;
+            this.textBox_Config_Raw.Name = "textBox_Config_Raw";
+            this.textBox_Config_Raw.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_Config_Raw.Size = new System.Drawing.Size(522, 258);
+            this.textBox_Config_Raw.TabIndex = 2;
             // 
             // Load_Button_Raw
             // 
@@ -601,15 +607,47 @@
             this.Load_Button_Raw.UseVisualStyleBackColor = true;
             this.Load_Button_Raw.Click += new System.EventHandler(this.Load_Button_Raw_Click);
             // 
-            // textBox_Config_Raw
+            // Save_Button_Raw
             // 
-            this.textBox_Config_Raw.Location = new System.Drawing.Point(9, 7);
-            this.textBox_Config_Raw.MaxLength = 3276700;
-            this.textBox_Config_Raw.Multiline = true;
-            this.textBox_Config_Raw.Name = "textBox_Config_Raw";
-            this.textBox_Config_Raw.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_Config_Raw.Size = new System.Drawing.Size(522, 258);
-            this.textBox_Config_Raw.TabIndex = 2;
+            this.Save_Button_Raw.Location = new System.Drawing.Point(456, 271);
+            this.Save_Button_Raw.Name = "Save_Button_Raw";
+            this.Save_Button_Raw.Size = new System.Drawing.Size(75, 23);
+            this.Save_Button_Raw.TabIndex = 0;
+            this.Save_Button_Raw.Text = "Save";
+            this.Save_Button_Raw.UseVisualStyleBackColor = true;
+            this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
+            // 
+            // tabLog
+            // 
+            this.tabLog.Controls.Add(this.Reload_Log_Button);
+            this.tabLog.Controls.Add(this.textBoxLog);
+            this.tabLog.Location = new System.Drawing.Point(4, 22);
+            this.tabLog.Name = "tabLog";
+            this.tabLog.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLog.Size = new System.Drawing.Size(539, 300);
+            this.tabLog.TabIndex = 2;
+            this.tabLog.Text = "Launch Log";
+            // 
+            // Reload_Log_Button
+            // 
+            this.Reload_Log_Button.Location = new System.Drawing.Point(456, 271);
+            this.Reload_Log_Button.Name = "Reload_Log_Button";
+            this.Reload_Log_Button.Size = new System.Drawing.Size(75, 23);
+            this.Reload_Log_Button.TabIndex = 1;
+            this.Reload_Log_Button.Text = "Reload";
+            this.Reload_Log_Button.UseVisualStyleBackColor = true;
+            this.Reload_Log_Button.Click += new System.EventHandler(this.Reload_Log_Button_Click);
+            // 
+            // textBoxLog
+            // 
+            this.textBoxLog.Location = new System.Drawing.Point(3, 3);
+            this.textBoxLog.MaxLength = 3276700;
+            this.textBoxLog.Multiline = true;
+            this.textBoxLog.Name = "textBoxLog";
+            this.textBoxLog.ReadOnly = true;
+            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxLog.Size = new System.Drawing.Size(533, 262);
+            this.textBoxLog.TabIndex = 0;
             // 
             // MainWin
             // 
@@ -631,6 +669,8 @@
             this.tabGraphics.PerformLayout();
             this.tabRawConfig.ResumeLayout(false);
             this.tabRawConfig.PerformLayout();
+            this.tabLog.ResumeLayout(false);
+            this.tabLog.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -689,6 +729,9 @@
         private System.Windows.Forms.TextBox textBox_Config_Raw;
         private System.Windows.Forms.Button Load_Button_Raw;
         private System.Windows.Forms.Button Save_Button_Raw;
+        private System.Windows.Forms.TabPage tabLog;
+        private System.Windows.Forms.Button Reload_Log_Button;
+        private System.Windows.Forms.TextBox textBoxLog;
     }
 }
 

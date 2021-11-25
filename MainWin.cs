@@ -326,5 +326,21 @@ namespace GenshinConfigurator
             Status_Reset_Timer.Enabled = false;
             Status_Reset_Timer.Enabled = true;
         }
+
+        private void Reload_Log_Button_Click(object sender, EventArgs e)
+        {
+            string log_path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName + @"\LocalLow\miHoYo\Genshin Impact\output_log.txt";
+            textBoxLog.Text = File.ReadAllText(log_path);
+        }
+
+        private void settingsTabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch ((sender as TabControl).SelectedIndex)
+            {
+                case 1:
+                    Reload_Log_Button_Click(null, null);
+                    break;
+            }
+        }
     }
 }
