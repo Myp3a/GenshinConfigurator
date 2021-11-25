@@ -331,6 +331,9 @@ namespace GenshinConfigurator
         {
             string log_path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName + @"\LocalLow\miHoYo\Genshin Impact\output_log.txt";
             textBoxLog.Text = File.ReadAllText(log_path);
+            Status_Label.Text = "Loaded log file.";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
         }
 
         private void settingsTabs_SelectedIndexChanged(object sender, EventArgs e)
