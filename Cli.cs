@@ -25,6 +25,9 @@ namespace GenshinConfigurator
         [Option('e', "exec", HelpText = "Executable to run after applying settings")]
         public string Executable { get; set; }
 
+        [Option('a', "execargs", HelpText = "Arguments to the executable")]
+        public string Args { get; set; }
+
         [Option('r', "resolution", SetName = "set", HelpText = "Preferred resoluion. Format: {Width}x{Height}x{Fullscreen (0|1)}")]
         public string Resolution { get; set; }
 
@@ -52,7 +55,7 @@ namespace GenshinConfigurator
 
         public void Run(string[] args)
         {
-            var parser = new Parser(config => { config.AllowMultiInstance = true; config.HelpWriter = Console.Out; });
+            var parser = new Parser(config => { config.AllowMultiInstance = true; config.HelpWriter = Console.Out; config.GetoptMode = true; });
             var result = parser.ParseArguments<Options, GetOptions, SetOptions>(args)
                 .WithParsed<GetOptions>(o =>
                 {
@@ -296,7 +299,13 @@ namespace GenshinConfigurator
 
                     if (o.Executable != null)
                     {
-                        Process.Start(o.Executable.ToString());
+                        if (o.Args != null)
+                        {
+                            Process.Start(o.Executable.ToString(), o.Args.ToString());
+                        } else
+                        {
+                            Process.Start(o.Executable.ToString());
+                        }
                     }
                 });
         }
