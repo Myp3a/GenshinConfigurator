@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 using static GenshinConfigurator.Enums;
 
 namespace GenshinConfigurator
@@ -27,6 +29,24 @@ namespace GenshinConfigurator
             Settings = new SettingsContainer();
             Graphics = Settings.Graphics;
             Resolution = Settings.Resolution;
+            if (Graphics.settings_json.__controlsLoaded == false || Graphics.settings_json.__graphicsLoaded == false)
+            {
+                DialogResult result = MessageBox.Show("Some part of your config is corrupted. Continuing may be dangerous.\nLaunch recovery mode?", "Config error", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    this.Shown += (s, args) => this.Hide();
+                    Recovery rec = new Recovery();
+                    rec.Closed += (s, args) => this.Close();
+                    rec.Show();
+                }
+            }
+            foreach (string controller_id in Graphics.settings_json._overrideControllerMapKeyList)
+            {
+                string[] parts = controller_id.Split(new[] { "__" }, StringSplitOptions.None);
+                devicesList.Items.Add(parts[1] + "__" + parts[2]);
+            }
+            devicesList.SelectedIndex = 0;
+            Task.Run(() => Populate_Controls());
             FPS_Box.Items.AddRange(Enum.GetNames(typeof(FPS)).Skip(1).ToArray());
             VSync_Box.Items.AddRange(Enum.GetNames(typeof(VSync)).Skip(1).ToArray());
             RenderResolution_Box.Items.AddRange(Enum.GetNames(typeof(RenderResolution)).Skip(1).ToArray());
@@ -330,20 +350,110 @@ namespace GenshinConfigurator
         private void Reload_Log_Button_Click(object sender, EventArgs e)
         {
             string log_path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName + @"\LocalLow\miHoYo\Genshin Impact\output_log.txt";
-            textBoxLog.Text = File.ReadAllText(log_path);
+            try
+            {
+                textBoxLog.Text = File.ReadAllText(log_path);
+            } catch (System.IO.IOException)
+            {
+                textBoxLog.Text = "Log file is currently used by Genshin.";
+            }
             Status_Label.Text = "Loaded log file.";
             Status_Reset_Timer.Enabled = false;
             Status_Reset_Timer.Enabled = true;
         }
 
+        
+        private void Populate_Controls()
+        {
+            List<Control> auto_controls =  splitContainerControls.Panel2.Controls.Cast<Control>().Where(c => c.Tag == "auto").ToList();
+            foreach (Control control in auto_controls)
+            {
+                splitContainerControls.Panel2.Controls.Remove(control);
+            }
+            XNamespace ns = "http://guavaman.com/rewired";
+            XElement remap_xml = Graphics.settings_json._overrideControllerMapValueList[devicesList.SelectedIndex];
+            if (remap_xml.Element(ns + "hardwareGuid").Value == "00000000-0000-0000-0000-000000000000")
+            {
+                if (remap_xml.Name == ns + "KeyboardMap")
+                {
+                    IEnumerable<XElement> keybindings =
+                        from el in remap_xml.Descendants()
+                        where el.Name == ns + "ActionElementMap"
+                        select el;
+                    int top = labelControlTemplate.Top;
+                    int height = 25;
+                    int mult = 0;
+                    foreach (XElement bindingNode in keybindings)
+                    {
+                        KeyboardKeybind bind = new KeyboardKeybind(bindingNode);
+
+                        Label newlabel = new Label();
+                        newlabel.Left = labelControlTemplate.Left;
+                        newlabel.Top = labelControlTemplate.Top + height * mult;
+                        newlabel.Text = Keycodes.actions.ContainsKey(bind.action_id) ? Keycodes.actions[bind.action_id] : "?";
+                        newlabel.Tag = "auto";
+                        newlabel.AutoSize = true;
+                        splitContainerControls.Panel2.Controls.Add(newlabel);
+
+                        Button newbutton = new Button();
+                        newbutton.Left = buttonKeyTemplate.Left;
+                        newbutton.Top = buttonKeyTemplate.Top + height * mult;
+                        newbutton.Width = buttonKeyTemplate.Width;
+                        newbutton.Text = Keycodes.keynames[bind.keyboard_keycode];
+                        newbutton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                        newbutton.Tag = "auto";
+                        splitContainerControls.Panel2.Controls.Add(newbutton);
+
+                        CheckBox newctrl = new CheckBox();
+                        newctrl.Checked = bind.ctrl;
+                        newctrl.Left = checkBoxCtrlTemplate.Left;
+                        newctrl.Top = checkBoxCtrlTemplate.Top + height * mult;
+                        newctrl.Text = "Ctrl";
+                        newctrl.Width = checkBoxCtrlTemplate.Width;
+                        newctrl.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                        newctrl.Tag = "auto";
+                        splitContainerControls.Panel2.Controls.Add(newctrl);
+
+                        CheckBox newshift = new CheckBox();
+                        newshift.Checked = bind.shift;
+                        newshift.Left = checkBoxShiftTemplate.Left;
+                        newshift.Top = checkBoxShiftTemplate.Top + height * mult;
+                        newshift.Text = "Shift";
+                        newshift.Width = checkBoxShiftTemplate.Width;
+                        newshift.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                        newshift.Tag = "auto";
+                        splitContainerControls.Panel2.Controls.Add(newshift);
+
+                        CheckBox newalt = new CheckBox();
+                        newalt.Checked = bind.alt;
+                        newalt.Left = checkBoxAltTemplate.Left;
+                        newalt.Top = checkBoxAltTemplate.Top + height * mult;
+                        newalt.Text = "Alt";
+                        newalt.Width = checkBoxAltTemplate.Width;
+                        newalt.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                        newalt.Tag = "auto";
+                        splitContainerControls.Panel2.Controls.Add(newalt);
+                        mult++;
+                    }
+                }
+            }
+        }
         private void settingsTabs_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch ((sender as TabControl).SelectedIndex)
             {
                 case 1:
+                    
+                    break;
+                case 2:
                     Reload_Log_Button_Click(null, null);
                     break;
             }
+        }
+
+        private void Reload_Controls(object sender, EventArgs e)
+        {
+            Populate_Controls();
         }
     }
 }

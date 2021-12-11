@@ -78,19 +78,34 @@
             this.VSync_Label = new System.Windows.Forms.Label();
             this.FPS_Box = new System.Windows.Forms.ComboBox();
             this.FPS_Label = new System.Windows.Forms.Label();
+            this.tabControls = new System.Windows.Forms.TabPage();
+            this.inputDeviceLabel = new System.Windows.Forms.Label();
+            this.devicesList = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBoxAltTemplate = new System.Windows.Forms.CheckBox();
+            this.checkBoxCtrlTemplate = new System.Windows.Forms.CheckBox();
+            this.checkBoxShiftTemplate = new System.Windows.Forms.CheckBox();
+            this.buttonKeyTemplate = new System.Windows.Forms.Button();
+            this.labelControlTemplate = new System.Windows.Forms.Label();
+            this.tabLog = new System.Windows.Forms.TabPage();
+            this.Reload_Log_Button = new System.Windows.Forms.Button();
+            this.textBoxLog = new System.Windows.Forms.TextBox();
             this.tabRawConfig = new System.Windows.Forms.TabPage();
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
             this.Load_Button_Raw = new System.Windows.Forms.Button();
             this.Save_Button_Raw = new System.Windows.Forms.Button();
-            this.tabLog = new System.Windows.Forms.TabPage();
-            this.Reload_Log_Button = new System.Windows.Forms.Button();
-            this.textBoxLog = new System.Windows.Forms.TextBox();
+            this.splitContainerControls = new System.Windows.Forms.SplitContainer();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
             this.tabGraphics.SuspendLayout();
-            this.tabRawConfig.SuspendLayout();
+            this.tabControls.SuspendLayout();
             this.tabLog.SuspendLayout();
+            this.tabRawConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControls)).BeginInit();
+            this.splitContainerControls.Panel1.SuspendLayout();
+            this.splitContainerControls.Panel2.SuspendLayout();
+            this.splitContainerControls.SuspendLayout();
             this.SuspendLayout();
             // 
             // TopBar
@@ -162,6 +177,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsTabs.Controls.Add(this.tabGraphics);
+            this.settingsTabs.Controls.Add(this.tabControls);
             this.settingsTabs.Controls.Add(this.tabLog);
             this.settingsTabs.Controls.Add(this.tabRawConfig);
             this.settingsTabs.Location = new System.Drawing.Point(0, 25);
@@ -574,6 +590,141 @@
             this.FPS_Label.TabIndex = 39;
             this.FPS_Label.Text = "FPS";
             // 
+            // tabControls
+            // 
+            this.tabControls.Controls.Add(this.splitContainerControls);
+            this.tabControls.Location = new System.Drawing.Point(4, 22);
+            this.tabControls.Name = "tabControls";
+            this.tabControls.Padding = new System.Windows.Forms.Padding(3);
+            this.tabControls.Size = new System.Drawing.Size(539, 300);
+            this.tabControls.TabIndex = 3;
+            this.tabControls.Text = "Controls";
+            // 
+            // inputDeviceLabel
+            // 
+            this.inputDeviceLabel.AutoSize = true;
+            this.inputDeviceLabel.Location = new System.Drawing.Point(7, 11);
+            this.inputDeviceLabel.Name = "inputDeviceLabel";
+            this.inputDeviceLabel.Size = new System.Drawing.Size(66, 13);
+            this.inputDeviceLabel.TabIndex = 7;
+            this.inputDeviceLabel.Text = "Input device";
+            // 
+            // devicesList
+            // 
+            this.devicesList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.devicesList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.devicesList.FormattingEnabled = true;
+            this.devicesList.Location = new System.Drawing.Point(240, 8);
+            this.devicesList.Name = "devicesList";
+            this.devicesList.Size = new System.Drawing.Size(286, 21);
+            this.devicesList.TabIndex = 6;
+            this.devicesList.SelectedIndexChanged += new System.EventHandler(this.Reload_Controls);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Enabled = false;
+            this.label1.Location = new System.Drawing.Point(407, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 26);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "It should be like that.\r\nFor some reason.";
+            this.label1.Visible = false;
+            // 
+            // checkBoxAltTemplate
+            // 
+            this.checkBoxAltTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxAltTemplate.AutoSize = true;
+            this.checkBoxAltTemplate.Location = new System.Drawing.Point(488, 3);
+            this.checkBoxAltTemplate.Name = "checkBoxAltTemplate";
+            this.checkBoxAltTemplate.Size = new System.Drawing.Size(38, 17);
+            this.checkBoxAltTemplate.TabIndex = 4;
+            this.checkBoxAltTemplate.Text = "Alt";
+            this.checkBoxAltTemplate.UseVisualStyleBackColor = true;
+            this.checkBoxAltTemplate.Visible = false;
+            // 
+            // checkBoxCtrlTemplate
+            // 
+            this.checkBoxCtrlTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxCtrlTemplate.AutoSize = true;
+            this.checkBoxCtrlTemplate.Location = new System.Drawing.Point(388, 3);
+            this.checkBoxCtrlTemplate.Name = "checkBoxCtrlTemplate";
+            this.checkBoxCtrlTemplate.Size = new System.Drawing.Size(41, 17);
+            this.checkBoxCtrlTemplate.TabIndex = 3;
+            this.checkBoxCtrlTemplate.Text = "Ctrl";
+            this.checkBoxCtrlTemplate.UseVisualStyleBackColor = true;
+            this.checkBoxCtrlTemplate.Visible = false;
+            // 
+            // checkBoxShiftTemplate
+            // 
+            this.checkBoxShiftTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxShiftTemplate.AutoSize = true;
+            this.checkBoxShiftTemplate.Location = new System.Drawing.Point(435, 3);
+            this.checkBoxShiftTemplate.Name = "checkBoxShiftTemplate";
+            this.checkBoxShiftTemplate.Size = new System.Drawing.Size(47, 17);
+            this.checkBoxShiftTemplate.TabIndex = 2;
+            this.checkBoxShiftTemplate.Text = "Shift";
+            this.checkBoxShiftTemplate.UseVisualStyleBackColor = true;
+            this.checkBoxShiftTemplate.Visible = false;
+            // 
+            // buttonKeyTemplate
+            // 
+            this.buttonKeyTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonKeyTemplate.Location = new System.Drawing.Point(264, 3);
+            this.buttonKeyTemplate.Name = "buttonKeyTemplate";
+            this.buttonKeyTemplate.Size = new System.Drawing.Size(118, 23);
+            this.buttonKeyTemplate.TabIndex = 1;
+            this.buttonKeyTemplate.Text = "Selected Key";
+            this.buttonKeyTemplate.UseVisualStyleBackColor = true;
+            this.buttonKeyTemplate.Visible = false;
+            // 
+            // labelControlTemplate
+            // 
+            this.labelControlTemplate.AutoSize = true;
+            this.labelControlTemplate.Location = new System.Drawing.Point(7, 9);
+            this.labelControlTemplate.Name = "labelControlTemplate";
+            this.labelControlTemplate.Size = new System.Drawing.Size(71, 13);
+            this.labelControlTemplate.TabIndex = 0;
+            this.labelControlTemplate.Text = "Control Name";
+            this.labelControlTemplate.Visible = false;
+            // 
+            // tabLog
+            // 
+            this.tabLog.Controls.Add(this.Reload_Log_Button);
+            this.tabLog.Controls.Add(this.textBoxLog);
+            this.tabLog.Location = new System.Drawing.Point(4, 22);
+            this.tabLog.Name = "tabLog";
+            this.tabLog.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLog.Size = new System.Drawing.Size(539, 300);
+            this.tabLog.TabIndex = 2;
+            this.tabLog.Text = "Launch Log";
+            // 
+            // Reload_Log_Button
+            // 
+            this.Reload_Log_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Reload_Log_Button.Location = new System.Drawing.Point(456, 271);
+            this.Reload_Log_Button.Name = "Reload_Log_Button";
+            this.Reload_Log_Button.Size = new System.Drawing.Size(75, 23);
+            this.Reload_Log_Button.TabIndex = 1;
+            this.Reload_Log_Button.Text = "Reload";
+            this.Reload_Log_Button.UseVisualStyleBackColor = true;
+            this.Reload_Log_Button.Click += new System.EventHandler(this.Reload_Log_Button_Click);
+            // 
+            // textBoxLog
+            // 
+            this.textBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxLog.Location = new System.Drawing.Point(3, 3);
+            this.textBoxLog.MaxLength = 3276700;
+            this.textBoxLog.Multiline = true;
+            this.textBoxLog.Name = "textBoxLog";
+            this.textBoxLog.ReadOnly = true;
+            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxLog.Size = new System.Drawing.Size(533, 262);
+            this.textBoxLog.TabIndex = 0;
+            // 
             // tabRawConfig
             // 
             this.tabRawConfig.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -589,6 +740,9 @@
             // 
             // textBox_Config_Raw
             // 
+            this.textBox_Config_Raw.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_Config_Raw.Location = new System.Drawing.Point(9, 7);
             this.textBox_Config_Raw.MaxLength = 3276700;
             this.textBox_Config_Raw.Multiline = true;
@@ -599,6 +753,7 @@
             // 
             // Load_Button_Raw
             // 
+            this.Load_Button_Raw.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Load_Button_Raw.Location = new System.Drawing.Point(375, 271);
             this.Load_Button_Raw.Name = "Load_Button_Raw";
             this.Load_Button_Raw.Size = new System.Drawing.Size(75, 23);
@@ -609,6 +764,7 @@
             // 
             // Save_Button_Raw
             // 
+            this.Save_Button_Raw.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Save_Button_Raw.Location = new System.Drawing.Point(456, 271);
             this.Save_Button_Raw.Name = "Save_Button_Raw";
             this.Save_Button_Raw.Size = new System.Drawing.Size(75, 23);
@@ -617,37 +773,32 @@
             this.Save_Button_Raw.UseVisualStyleBackColor = true;
             this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
             // 
-            // tabLog
+            // splitContainerControls
             // 
-            this.tabLog.Controls.Add(this.Reload_Log_Button);
-            this.tabLog.Controls.Add(this.textBoxLog);
-            this.tabLog.Location = new System.Drawing.Point(4, 22);
-            this.tabLog.Name = "tabLog";
-            this.tabLog.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLog.Size = new System.Drawing.Size(539, 300);
-            this.tabLog.TabIndex = 2;
-            this.tabLog.Text = "Launch Log";
+            this.splitContainerControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainerControls.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControls.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainerControls.Location = new System.Drawing.Point(3, 3);
+            this.splitContainerControls.Name = "splitContainerControls";
+            this.splitContainerControls.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // Reload_Log_Button
+            // splitContainerControls.Panel1
             // 
-            this.Reload_Log_Button.Location = new System.Drawing.Point(456, 271);
-            this.Reload_Log_Button.Name = "Reload_Log_Button";
-            this.Reload_Log_Button.Size = new System.Drawing.Size(75, 23);
-            this.Reload_Log_Button.TabIndex = 1;
-            this.Reload_Log_Button.Text = "Reload";
-            this.Reload_Log_Button.UseVisualStyleBackColor = true;
-            this.Reload_Log_Button.Click += new System.EventHandler(this.Reload_Log_Button_Click);
+            this.splitContainerControls.Panel1.Controls.Add(this.inputDeviceLabel);
+            this.splitContainerControls.Panel1.Controls.Add(this.devicesList);
             // 
-            // textBoxLog
+            // splitContainerControls.Panel2
             // 
-            this.textBoxLog.Location = new System.Drawing.Point(3, 3);
-            this.textBoxLog.MaxLength = 3276700;
-            this.textBoxLog.Multiline = true;
-            this.textBoxLog.Name = "textBoxLog";
-            this.textBoxLog.ReadOnly = true;
-            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxLog.Size = new System.Drawing.Size(533, 262);
-            this.textBoxLog.TabIndex = 0;
+            this.splitContainerControls.Panel2.AutoScroll = true;
+            this.splitContainerControls.Panel2.Controls.Add(this.labelControlTemplate);
+            this.splitContainerControls.Panel2.Controls.Add(this.label1);
+            this.splitContainerControls.Panel2.Controls.Add(this.buttonKeyTemplate);
+            this.splitContainerControls.Panel2.Controls.Add(this.checkBoxAltTemplate);
+            this.splitContainerControls.Panel2.Controls.Add(this.checkBoxShiftTemplate);
+            this.splitContainerControls.Panel2.Controls.Add(this.checkBoxCtrlTemplate);
+            this.splitContainerControls.Size = new System.Drawing.Size(533, 294);
+            this.splitContainerControls.SplitterDistance = 36;
+            this.splitContainerControls.TabIndex = 8;
             // 
             // MainWin
             // 
@@ -667,10 +818,17 @@
             this.settingsTabs.ResumeLayout(false);
             this.tabGraphics.ResumeLayout(false);
             this.tabGraphics.PerformLayout();
-            this.tabRawConfig.ResumeLayout(false);
-            this.tabRawConfig.PerformLayout();
+            this.tabControls.ResumeLayout(false);
             this.tabLog.ResumeLayout(false);
             this.tabLog.PerformLayout();
+            this.tabRawConfig.ResumeLayout(false);
+            this.tabRawConfig.PerformLayout();
+            this.splitContainerControls.Panel1.ResumeLayout(false);
+            this.splitContainerControls.Panel1.PerformLayout();
+            this.splitContainerControls.Panel2.ResumeLayout(false);
+            this.splitContainerControls.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControls)).EndInit();
+            this.splitContainerControls.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -732,6 +890,16 @@
         private System.Windows.Forms.TabPage tabLog;
         private System.Windows.Forms.Button Reload_Log_Button;
         private System.Windows.Forms.TextBox textBoxLog;
+        private System.Windows.Forms.TabPage tabControls;
+        private System.Windows.Forms.CheckBox checkBoxAltTemplate;
+        private System.Windows.Forms.CheckBox checkBoxCtrlTemplate;
+        private System.Windows.Forms.CheckBox checkBoxShiftTemplate;
+        private System.Windows.Forms.Button buttonKeyTemplate;
+        private System.Windows.Forms.Label labelControlTemplate;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label inputDeviceLabel;
+        private System.Windows.Forms.ComboBox devicesList;
+        private System.Windows.Forms.SplitContainer splitContainerControls;
     }
 }
 
