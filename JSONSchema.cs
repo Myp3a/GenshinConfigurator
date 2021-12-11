@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 using Newtonsoft.Json;
 
 namespace GenshinConfigurator
@@ -24,30 +25,51 @@ namespace GenshinConfigurator
         }
         public class MainJSON
         {
-            [OnSerialized]
-            internal void loadNested(StreamingContext context)
+            [OnSerializing]
+            internal void dumpJSON(StreamingContext context)
             {
-                _graphicsData = JsonConvert.SerializeObject(graphicsData);
-                __overrideControllerMapValueList = new List<string>();
-                foreach (XmlDocument xml_doc in _overrideControllerMapValueList)
+                if (__graphicsLoaded)
                 {
-                    string xml_string = xml_doc.OuterXml;
-                    __overrideControllerMapValueList.Add(xml_string);
+                    _graphicsData = JsonConvert.SerializeObject(graphicsData);
+                }
+                if (__controlsLoaded)
+                {
+                    __overrideControllerMapValueList = new List<string>();
+                    foreach (XElement xml_doc in _overrideControllerMapValueList)
+                    {
+                        string xml_string = xml_doc.ToString(SaveOptions.DisableFormatting);
+                        __overrideControllerMapValueList.Add(xml_string);
+                    }
                 }
             }
 
             [OnDeserialized]
-            internal void saveNested(StreamingContext context)
+            internal void loadJSON(StreamingContext context)
             {
-                graphicsData = JsonConvert.DeserializeObject<GraphicsData>(_graphicsData);
-                _overrideControllerMapValueList = new List<XmlDocument>();
-                foreach (string xml_string in __overrideControllerMapValueList)
+                try
                 {
-                    XmlDocument xml_doc = new XmlDocument();
-                    xml_doc.LoadXml(xml_string);
-                    _overrideControllerMapValueList.Add(xml_doc);
+                    graphicsData = JsonConvert.DeserializeObject<GraphicsData>(_graphicsData);
+                } catch (Exception ex)
+                {
+                    __graphicsLoaded = false;
+                }
+                _overrideControllerMapValueList = new List<XElement>();
+                try
+                {
+                    foreach (string xml_string in __overrideControllerMapValueList)
+                    {
+                        XElement xml_doc = XElement.Parse(xml_string);
+                        _overrideControllerMapValueList.Add(xml_doc);
+                    }
+                } catch (Exception ex)
+                {
+                    __controlsLoaded = false;
                 }
             }
+            [JsonIgnore]
+            public bool __controlsLoaded { get; set; } = true;
+            [JsonIgnore]
+            public bool __graphicsLoaded { get; set; } = true;
             public string deviceUUID { get; set; }
             public string userLocalDataVersionId { get; set; }
             public int deviceLanguageType { get; set; }
@@ -88,12 +110,13 @@ namespace GenshinConfigurator
             public double maxLuminosity { get; set; }
             public double uiPaperWhite { get; set; }
             public double scenePaperWhite { get; set; }
+            public List<string> _overrideControllerMapKeyList { get; set; }
 
             [JsonProperty(PropertyName = "_overrideControllerMapValueList")]
             public List<string> __overrideControllerMapValueList { get; set; }
 
             [JsonIgnore]
-            public List<XmlDocument> _overrideControllerMapValueList { get; set; }
+            public List<XElement> _overrideControllerMapValueList { get; set; }
             public int lastSeenPreDownloadTime { get; set; }
             public bool mtrCached { get; set; }
             public bool mtrIsOpen { get; set; }

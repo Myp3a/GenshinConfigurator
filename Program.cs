@@ -27,8 +27,17 @@ namespace GenshinConfigurator
             }
             else
             {
-                Cli cli = new Cli();
-                cli.Run(args);
+                if ( (args.Length == 1) && (args[0] == "recovery") )
+                {
+                    FreeConsole();
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new Recovery());
+                } else
+                {
+                    Cli cli = new Cli();
+                    cli.Run(args);
+                }
             }
         }
     }
