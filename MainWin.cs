@@ -371,6 +371,9 @@ namespace GenshinConfigurator
         
         private void Populate_Controls()
         {
+            splitContainerControls.Panel2.VerticalScroll.Value = 0;
+            splitContainerControls.Panel2.Enabled = false;
+            splitContainerControls.Panel2.SuspendLayout();
             List<Control> auto_controls = splitContainerControls.Panel2.Controls.Cast<Control>().Where(c => c.Visible).ToList();
             foreach (Control control in auto_controls)
             {
@@ -422,31 +425,34 @@ namespace GenshinConfigurator
                         CheckBox newctrl = new CheckBox();
                         newctrl.Checked = bind.ctrl;
                         newctrl.Left = checkBoxCtrlTemplate.Left;
-                        newctrl.Top = checkBoxCtrlTemplate.Top + height * mult;
+                        newctrl.Top = checkBoxCtrlTemplate.Top + height * mult - 3; // CheckBox size is different to inputBox size
                         newctrl.Text = "Ctrl";
                         newctrl.Width = checkBoxCtrlTemplate.Width;
                         newctrl.Anchor = AnchorStyles.Top | AnchorStyles.Right;
                         newctrl.Tag = bind;
+                        newctrl.BackColor = Color.Transparent;
                         splitContainerControls.Panel2.Controls.Add(newctrl);
 
                         CheckBox newshift = new CheckBox();
                         newshift.Checked = bind.shift;
                         newshift.Left = checkBoxShiftTemplate.Left;
-                        newshift.Top = checkBoxShiftTemplate.Top + height * mult;
+                        newshift.Top = checkBoxShiftTemplate.Top + height * mult - 3;
                         newshift.Text = "Shift";
                         newshift.Width = checkBoxShiftTemplate.Width;
                         newshift.Anchor = AnchorStyles.Top | AnchorStyles.Right;
                         newshift.Tag = bind;
+                        newshift.BackColor = Color.Transparent;
                         splitContainerControls.Panel2.Controls.Add(newshift);
 
                         CheckBox newalt = new CheckBox();
                         newalt.Checked = bind.alt;
                         newalt.Left = checkBoxAltTemplate.Left;
-                        newalt.Top = checkBoxAltTemplate.Top + height * mult;
+                        newalt.Top = checkBoxAltTemplate.Top + height * mult - 3;
                         newalt.Text = "Alt";
                         newalt.Width = checkBoxAltTemplate.Width;
                         newalt.Anchor = AnchorStyles.Top | AnchorStyles.Right;
                         newalt.Tag = bind;
+                        newalt.BackColor = Color.Transparent;
                         splitContainerControls.Panel2.Controls.Add(newalt);
                         mult++;
                     }
@@ -479,6 +485,8 @@ namespace GenshinConfigurator
                         newbutton.SelectedIndex = bind.elementIdentifierId - 4;
                         newbutton.Tag = bind;
                         newbutton.SelectedValueChanged += Edit_Gamepad_Key;
+                        newbutton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                        newbutton.DropDownStyle = ComboBoxStyle.DropDownList;
                         splitContainerControls.Panel2.Controls.Add(newbutton);
                         mult++;
                     }
@@ -505,6 +513,8 @@ namespace GenshinConfigurator
                             newbutton.SelectedIndex = bind.elementIdentifierId - 4;
                             newbutton.Tag = bind;
                             newbutton.SelectedValueChanged += Edit_Gamepad_Key;
+                            newbutton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                            newbutton.DropDownStyle = ComboBoxStyle.DropDownList;
                             splitContainerControls.Panel2.Controls.Add(newbutton);
                         } else
                         {
@@ -515,19 +525,41 @@ namespace GenshinConfigurator
                             newbutton.SelectedIndex = bind.elementIdentifierId;
                             newbutton.Tag = bind;
                             newbutton.SelectedValueChanged += Edit_Gamepad_Axis;
+                            newbutton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                            newbutton.DropDownStyle = ComboBoxStyle.DropDownList;
                             splitContainerControls.Panel2.Controls.Add(newbutton);
 
                             CheckBox newinvert = new CheckBox();
                             newinvert.Checked = bind.invert;
-                            newinvert.Top = gamepadAxisInvertTemplate.Top + height * mult;
+                            newinvert.Top = gamepadAxisInvertTemplate.Top + height * mult - 3;
                             newinvert.Left = gamepadAxisInvertTemplate.Left;
                             newinvert.Tag = bind;
+                            newinvert.Text = "Invert";
                             newinvert.CheckedChanged += Invert_Gamepad_Axis;
+                            newinvert.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                            newinvert.BackColor = Color.Transparent;
                             splitContainerControls.Panel2.Controls.Add(newinvert);
                         }
                         mult++;
                     }
                 }
+            }
+            splitContainerControls.Panel2.ResumeLayout();
+            splitContainerControls.Panel2.Enabled = true;
+            //Paint_BG(null,null);
+        }
+
+        private void Paint_BG(object sender, PaintEventArgs e)
+        {
+            int count = 0;
+            foreach (Control ctrl in splitContainerControls.Panel2.Controls)
+            {
+                if (ctrl is Label) count++;
+            }
+            e.Graphics.TranslateTransform(splitContainerControls.Panel2.AutoScrollPosition.X, splitContainerControls.Panel2.AutoScrollPosition.Y);
+            for (int i = 2; i < count*25; i += 25)
+            {
+                e.Graphics.DrawLine(Pens.Black, 0, i, splitContainerControls.Panel2.Width, i);
             }
         }
 

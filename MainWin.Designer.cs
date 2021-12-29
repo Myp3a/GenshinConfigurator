@@ -33,6 +33,10 @@
             this.FileMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.SaveButton = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.devModeToggle = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitButton = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.Status_Label = new System.Windows.Forms.ToolStripStatusLabel();
             this.Status_Reset_Timer = new System.Windows.Forms.Timer(this.components);
@@ -81,9 +85,10 @@
             this.splitContainerControls = new System.Windows.Forms.SplitContainer();
             this.inputDeviceLabel = new System.Windows.Forms.Label();
             this.devicesList = new System.Windows.Forms.ComboBox();
+            this.gamepadAxisInvertTemplate = new System.Windows.Forms.CheckBox();
+            this.gamepadAxisTemplate = new System.Windows.Forms.ComboBox();
             this.inputButtonTemplate = new System.Windows.Forms.TextBox();
             this.labelControlTemplate = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.buttonKeyTemplate = new System.Windows.Forms.Button();
             this.checkBoxAltTemplate = new System.Windows.Forms.CheckBox();
             this.checkBoxShiftTemplate = new System.Windows.Forms.CheckBox();
@@ -96,12 +101,7 @@
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
             this.Load_Button_Raw = new System.Windows.Forms.Button();
             this.Save_Button_Raw = new System.Windows.Forms.Button();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.devModeToggle = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.gamepadAxisTemplate = new System.Windows.Forms.ComboBox();
-            this.gamepadAxisInvertTemplate = new System.Windows.Forms.CheckBox();
+            this.applyControlsButton = new System.Windows.Forms.Button();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
@@ -144,16 +144,40 @@
             // SaveButton
             // 
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(180, 22);
+            this.SaveButton.Size = new System.Drawing.Size(128, 22);
             this.SaveButton.Text = "Save";
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // LoadButton
             // 
             this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(180, 22);
+            this.LoadButton.Size = new System.Drawing.Size(128, 22);
             this.LoadButton.Text = "Load";
             this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
+            // 
+            // devModeToggle
+            // 
+            this.devModeToggle.CheckOnClick = true;
+            this.devModeToggle.Name = "devModeToggle";
+            this.devModeToggle.Size = new System.Drawing.Size(128, 22);
+            this.devModeToggle.Text = "Dev Mode";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(125, 6);
+            // 
+            // exitButton
+            // 
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(128, 22);
+            this.exitButton.Text = "Exit";
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // statusStrip1
             // 
@@ -620,6 +644,7 @@
             // 
             // splitContainerControls.Panel1
             // 
+            this.splitContainerControls.Panel1.Controls.Add(this.applyControlsButton);
             this.splitContainerControls.Panel1.Controls.Add(this.inputDeviceLabel);
             this.splitContainerControls.Panel1.Controls.Add(this.devicesList);
             // 
@@ -630,12 +655,12 @@
             this.splitContainerControls.Panel2.Controls.Add(this.gamepadAxisTemplate);
             this.splitContainerControls.Panel2.Controls.Add(this.inputButtonTemplate);
             this.splitContainerControls.Panel2.Controls.Add(this.labelControlTemplate);
-            this.splitContainerControls.Panel2.Controls.Add(this.label1);
             this.splitContainerControls.Panel2.Controls.Add(this.buttonKeyTemplate);
             this.splitContainerControls.Panel2.Controls.Add(this.checkBoxAltTemplate);
             this.splitContainerControls.Panel2.Controls.Add(this.checkBoxShiftTemplate);
             this.splitContainerControls.Panel2.Controls.Add(this.checkBoxCtrlTemplate);
             this.splitContainerControls.Panel2.Controls.Add(this.gamepadButtonTemplate);
+            this.splitContainerControls.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.Paint_BG);
             this.splitContainerControls.Size = new System.Drawing.Size(533, 294);
             this.splitContainerControls.SplitterDistance = 36;
             this.splitContainerControls.TabIndex = 8;
@@ -643,7 +668,7 @@
             // inputDeviceLabel
             // 
             this.inputDeviceLabel.AutoSize = true;
-            this.inputDeviceLabel.Location = new System.Drawing.Point(7, 11);
+            this.inputDeviceLabel.Location = new System.Drawing.Point(7, 10);
             this.inputDeviceLabel.Name = "inputDeviceLabel";
             this.inputDeviceLabel.Size = new System.Drawing.Size(66, 13);
             this.inputDeviceLabel.TabIndex = 7;
@@ -654,14 +679,46 @@
             this.devicesList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devicesList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.devicesList.FormattingEnabled = true;
-            this.devicesList.Location = new System.Drawing.Point(240, 8);
+            this.devicesList.Location = new System.Drawing.Point(159, 6);
             this.devicesList.Name = "devicesList";
             this.devicesList.Size = new System.Drawing.Size(286, 21);
             this.devicesList.TabIndex = 6;
             this.devicesList.SelectedIndexChanged += new System.EventHandler(this.Reload_Controls);
             // 
+            // gamepadAxisInvertTemplate
+            // 
+            this.gamepadAxisInvertTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gamepadAxisInvertTemplate.AutoSize = true;
+            this.gamepadAxisInvertTemplate.Location = new System.Drawing.Point(346, 6);
+            this.gamepadAxisInvertTemplate.Name = "gamepadAxisInvertTemplate";
+            this.gamepadAxisInvertTemplate.Size = new System.Drawing.Size(53, 17);
+            this.gamepadAxisInvertTemplate.TabIndex = 9;
+            this.gamepadAxisInvertTemplate.Text = "Invert";
+            this.gamepadAxisInvertTemplate.UseVisualStyleBackColor = true;
+            this.gamepadAxisInvertTemplate.Visible = false;
+            // 
+            // gamepadAxisTemplate
+            // 
+            this.gamepadAxisTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gamepadAxisTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamepadAxisTemplate.Enabled = false;
+            this.gamepadAxisTemplate.FormattingEnabled = true;
+            this.gamepadAxisTemplate.Items.AddRange(new object[] {
+            "Left Stick X",
+            "Left Stick Y",
+            "Right Stick X",
+            "Right Stick Y",
+            "LT",
+            "RT"});
+            this.gamepadAxisTemplate.Location = new System.Drawing.Point(405, 5);
+            this.gamepadAxisTemplate.Name = "gamepadAxisTemplate";
+            this.gamepadAxisTemplate.Size = new System.Drawing.Size(121, 21);
+            this.gamepadAxisTemplate.TabIndex = 8;
+            this.gamepadAxisTemplate.Visible = false;
+            // 
             // inputButtonTemplate
             // 
+            this.inputButtonTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.inputButtonTemplate.Enabled = false;
             this.inputButtonTemplate.Location = new System.Drawing.Point(264, 5);
             this.inputButtonTemplate.Name = "inputButtonTemplate";
@@ -679,18 +736,6 @@
             this.labelControlTemplate.Text = "Control Name";
             this.labelControlTemplate.Visible = false;
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Enabled = false;
-            this.label1.Location = new System.Drawing.Point(407, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 26);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "It should be like that.\r\nFor some reason.";
-            this.label1.Visible = false;
-            // 
             // buttonKeyTemplate
             // 
             this.buttonKeyTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -706,7 +751,7 @@
             // 
             this.checkBoxAltTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxAltTemplate.AutoSize = true;
-            this.checkBoxAltTemplate.Location = new System.Drawing.Point(488, 3);
+            this.checkBoxAltTemplate.Location = new System.Drawing.Point(488, 6);
             this.checkBoxAltTemplate.Name = "checkBoxAltTemplate";
             this.checkBoxAltTemplate.Size = new System.Drawing.Size(38, 17);
             this.checkBoxAltTemplate.TabIndex = 4;
@@ -718,7 +763,7 @@
             // 
             this.checkBoxShiftTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxShiftTemplate.AutoSize = true;
-            this.checkBoxShiftTemplate.Location = new System.Drawing.Point(435, 3);
+            this.checkBoxShiftTemplate.Location = new System.Drawing.Point(435, 6);
             this.checkBoxShiftTemplate.Name = "checkBoxShiftTemplate";
             this.checkBoxShiftTemplate.Size = new System.Drawing.Size(47, 17);
             this.checkBoxShiftTemplate.TabIndex = 2;
@@ -730,7 +775,7 @@
             // 
             this.checkBoxCtrlTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxCtrlTemplate.AutoSize = true;
-            this.checkBoxCtrlTemplate.Location = new System.Drawing.Point(388, 3);
+            this.checkBoxCtrlTemplate.Location = new System.Drawing.Point(388, 6);
             this.checkBoxCtrlTemplate.Name = "checkBoxCtrlTemplate";
             this.checkBoxCtrlTemplate.Size = new System.Drawing.Size(41, 17);
             this.checkBoxCtrlTemplate.TabIndex = 3;
@@ -740,7 +785,9 @@
             // 
             // gamepadButtonTemplate
             // 
+            this.gamepadButtonTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.gamepadButtonTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamepadButtonTemplate.Enabled = false;
             this.gamepadButtonTemplate.FormattingEnabled = true;
             this.gamepadButtonTemplate.Items.AddRange(new object[] {
             "LT",
@@ -753,16 +800,16 @@
             "RB",
             "Back",
             "Start",
-            "Left Stick",
-            "Right Stick",
+            "Left Stick Button",
+            "Right Stick Button",
             "D-Pad Up",
             "D-Pad Right",
             "D-Pad Down",
             "D-Pad Left",
-            "LS?",
-            "RS?",
+            "Left Stick",
+            "Right Stick",
             "Guide"});
-            this.gamepadButtonTemplate.Location = new System.Drawing.Point(405, 4);
+            this.gamepadButtonTemplate.Location = new System.Drawing.Point(405, 5);
             this.gamepadButtonTemplate.Name = "gamepadButtonTemplate";
             this.gamepadButtonTemplate.Size = new System.Drawing.Size(121, 21);
             this.gamepadButtonTemplate.TabIndex = 7;
@@ -852,55 +899,15 @@
             this.Save_Button_Raw.UseVisualStyleBackColor = true;
             this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
             // 
-            // toolStripSeparator1
+            // applyControlsButton
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // devModeToggle
-            // 
-            this.devModeToggle.CheckOnClick = true;
-            this.devModeToggle.Name = "devModeToggle";
-            this.devModeToggle.Size = new System.Drawing.Size(180, 22);
-            this.devModeToggle.Text = "Dev Mode";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
-            // 
-            // exitButton
-            // 
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(180, 22);
-            this.exitButton.Text = "Exit";
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
-            // 
-            // gamepadAxisTemplate
-            // 
-            this.gamepadAxisTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.gamepadAxisTemplate.FormattingEnabled = true;
-            this.gamepadAxisTemplate.Items.AddRange(new object[] {
-            "Left Stick X",
-            "Left Stick Y",
-            "Right Stick X",
-            "Right Stick Y",
-            "LT",
-            "RT"});
-            this.gamepadAxisTemplate.Location = new System.Drawing.Point(218, 7);
-            this.gamepadAxisTemplate.Name = "gamepadAxisTemplate";
-            this.gamepadAxisTemplate.Size = new System.Drawing.Size(121, 21);
-            this.gamepadAxisTemplate.TabIndex = 8;
-            // 
-            // gamepadAxisInvertTemplate
-            // 
-            this.gamepadAxisInvertTemplate.AutoSize = true;
-            this.gamepadAxisInvertTemplate.Location = new System.Drawing.Point(159, 9);
-            this.gamepadAxisInvertTemplate.Name = "gamepadAxisInvertTemplate";
-            this.gamepadAxisInvertTemplate.Size = new System.Drawing.Size(53, 17);
-            this.gamepadAxisInvertTemplate.TabIndex = 9;
-            this.gamepadAxisInvertTemplate.Text = "Invert";
-            this.gamepadAxisInvertTemplate.UseVisualStyleBackColor = true;
+            this.applyControlsButton.Location = new System.Drawing.Point(451, 5);
+            this.applyControlsButton.Name = "applyControlsButton";
+            this.applyControlsButton.Size = new System.Drawing.Size(75, 23);
+            this.applyControlsButton.TabIndex = 8;
+            this.applyControlsButton.Text = "Apply";
+            this.applyControlsButton.UseVisualStyleBackColor = true;
+            this.applyControlsButton.Click += new System.EventHandler(this.Apply_Button_Click);
             // 
             // MainWin
             // 
@@ -995,23 +1002,23 @@
         private System.Windows.Forms.Button Reload_Log_Button;
         private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.TabPage tabControls;
-        private System.Windows.Forms.CheckBox checkBoxAltTemplate;
-        private System.Windows.Forms.CheckBox checkBoxCtrlTemplate;
-        private System.Windows.Forms.CheckBox checkBoxShiftTemplate;
-        private System.Windows.Forms.Button buttonKeyTemplate;
-        private System.Windows.Forms.Label labelControlTemplate;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label inputDeviceLabel;
         private System.Windows.Forms.ComboBox devicesList;
         private System.Windows.Forms.SplitContainer splitContainerControls;
-        private System.Windows.Forms.TextBox inputButtonTemplate;
-        private System.Windows.Forms.ComboBox gamepadButtonTemplate;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem devModeToggle;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem exitButton;
         private System.Windows.Forms.CheckBox gamepadAxisInvertTemplate;
         private System.Windows.Forms.ComboBox gamepadAxisTemplate;
+        private System.Windows.Forms.TextBox inputButtonTemplate;
+        private System.Windows.Forms.Label labelControlTemplate;
+        private System.Windows.Forms.Button buttonKeyTemplate;
+        private System.Windows.Forms.CheckBox checkBoxAltTemplate;
+        private System.Windows.Forms.CheckBox checkBoxShiftTemplate;
+        private System.Windows.Forms.CheckBox checkBoxCtrlTemplate;
+        private System.Windows.Forms.ComboBox gamepadButtonTemplate;
+        private System.Windows.Forms.Button applyControlsButton;
     }
 }
 
