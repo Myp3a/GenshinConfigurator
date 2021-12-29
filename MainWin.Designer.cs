@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWin));
             this.TopBar = new System.Windows.Forms.ToolStrip();
             this.FileMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.SaveButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,14 +78,17 @@
             this.FPS_Box = new System.Windows.Forms.ComboBox();
             this.FPS_Label = new System.Windows.Forms.Label();
             this.tabControls = new System.Windows.Forms.TabPage();
+            this.splitContainerControls = new System.Windows.Forms.SplitContainer();
             this.inputDeviceLabel = new System.Windows.Forms.Label();
             this.devicesList = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.checkBoxAltTemplate = new System.Windows.Forms.CheckBox();
-            this.checkBoxCtrlTemplate = new System.Windows.Forms.CheckBox();
-            this.checkBoxShiftTemplate = new System.Windows.Forms.CheckBox();
-            this.buttonKeyTemplate = new System.Windows.Forms.Button();
+            this.inputButtonTemplate = new System.Windows.Forms.TextBox();
             this.labelControlTemplate = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonKeyTemplate = new System.Windows.Forms.Button();
+            this.checkBoxAltTemplate = new System.Windows.Forms.CheckBox();
+            this.checkBoxShiftTemplate = new System.Windows.Forms.CheckBox();
+            this.checkBoxCtrlTemplate = new System.Windows.Forms.CheckBox();
+            this.gamepadButtonTemplate = new System.Windows.Forms.ComboBox();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.Reload_Log_Button = new System.Windows.Forms.Button();
             this.textBoxLog = new System.Windows.Forms.TextBox();
@@ -94,18 +96,23 @@
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
             this.Load_Button_Raw = new System.Windows.Forms.Button();
             this.Save_Button_Raw = new System.Windows.Forms.Button();
-            this.splitContainerControls = new System.Windows.Forms.SplitContainer();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.devModeToggle = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.gamepadAxisTemplate = new System.Windows.Forms.ComboBox();
+            this.gamepadAxisInvertTemplate = new System.Windows.Forms.CheckBox();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
             this.tabGraphics.SuspendLayout();
             this.tabControls.SuspendLayout();
-            this.tabLog.SuspendLayout();
-            this.tabRawConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControls)).BeginInit();
             this.splitContainerControls.Panel1.SuspendLayout();
             this.splitContainerControls.Panel2.SuspendLayout();
             this.splitContainerControls.SuspendLayout();
+            this.tabLog.SuspendLayout();
+            this.tabRawConfig.SuspendLayout();
             this.SuspendLayout();
             // 
             // TopBar
@@ -124,9 +131,11 @@
             this.FileMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.FileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SaveButton,
-            this.LoadButton});
-            this.FileMenu.Image = ((System.Drawing.Image)(resources.GetObject("FileMenu.Image")));
-            this.FileMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.LoadButton,
+            this.toolStripSeparator1,
+            this.devModeToggle,
+            this.toolStripSeparator2,
+            this.exitButton});
             this.FileMenu.Name = "FileMenu";
             this.FileMenu.ShowDropDownArrow = false;
             this.FileMenu.Size = new System.Drawing.Size(29, 22);
@@ -135,14 +144,14 @@
             // SaveButton
             // 
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(100, 22);
+            this.SaveButton.Size = new System.Drawing.Size(180, 22);
             this.SaveButton.Text = "Save";
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // LoadButton
             // 
             this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(100, 22);
+            this.LoadButton.Size = new System.Drawing.Size(180, 22);
             this.LoadButton.Text = "Load";
             this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
@@ -600,6 +609,37 @@
             this.tabControls.TabIndex = 3;
             this.tabControls.Text = "Controls";
             // 
+            // splitContainerControls
+            // 
+            this.splitContainerControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainerControls.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControls.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainerControls.Location = new System.Drawing.Point(3, 3);
+            this.splitContainerControls.Name = "splitContainerControls";
+            this.splitContainerControls.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainerControls.Panel1
+            // 
+            this.splitContainerControls.Panel1.Controls.Add(this.inputDeviceLabel);
+            this.splitContainerControls.Panel1.Controls.Add(this.devicesList);
+            // 
+            // splitContainerControls.Panel2
+            // 
+            this.splitContainerControls.Panel2.AutoScroll = true;
+            this.splitContainerControls.Panel2.Controls.Add(this.gamepadAxisInvertTemplate);
+            this.splitContainerControls.Panel2.Controls.Add(this.gamepadAxisTemplate);
+            this.splitContainerControls.Panel2.Controls.Add(this.inputButtonTemplate);
+            this.splitContainerControls.Panel2.Controls.Add(this.labelControlTemplate);
+            this.splitContainerControls.Panel2.Controls.Add(this.label1);
+            this.splitContainerControls.Panel2.Controls.Add(this.buttonKeyTemplate);
+            this.splitContainerControls.Panel2.Controls.Add(this.checkBoxAltTemplate);
+            this.splitContainerControls.Panel2.Controls.Add(this.checkBoxShiftTemplate);
+            this.splitContainerControls.Panel2.Controls.Add(this.checkBoxCtrlTemplate);
+            this.splitContainerControls.Panel2.Controls.Add(this.gamepadButtonTemplate);
+            this.splitContainerControls.Size = new System.Drawing.Size(533, 294);
+            this.splitContainerControls.SplitterDistance = 36;
+            this.splitContainerControls.TabIndex = 8;
+            // 
             // inputDeviceLabel
             // 
             this.inputDeviceLabel.AutoSize = true;
@@ -620,6 +660,25 @@
             this.devicesList.TabIndex = 6;
             this.devicesList.SelectedIndexChanged += new System.EventHandler(this.Reload_Controls);
             // 
+            // inputButtonTemplate
+            // 
+            this.inputButtonTemplate.Enabled = false;
+            this.inputButtonTemplate.Location = new System.Drawing.Point(264, 5);
+            this.inputButtonTemplate.Name = "inputButtonTemplate";
+            this.inputButtonTemplate.Size = new System.Drawing.Size(118, 20);
+            this.inputButtonTemplate.TabIndex = 6;
+            this.inputButtonTemplate.Visible = false;
+            // 
+            // labelControlTemplate
+            // 
+            this.labelControlTemplate.AutoSize = true;
+            this.labelControlTemplate.Location = new System.Drawing.Point(7, 9);
+            this.labelControlTemplate.Name = "labelControlTemplate";
+            this.labelControlTemplate.Size = new System.Drawing.Size(71, 13);
+            this.labelControlTemplate.TabIndex = 0;
+            this.labelControlTemplate.Text = "Control Name";
+            this.labelControlTemplate.Visible = false;
+            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -631,6 +690,17 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "It should be like that.\r\nFor some reason.";
             this.label1.Visible = false;
+            // 
+            // buttonKeyTemplate
+            // 
+            this.buttonKeyTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonKeyTemplate.Location = new System.Drawing.Point(264, 3);
+            this.buttonKeyTemplate.Name = "buttonKeyTemplate";
+            this.buttonKeyTemplate.Size = new System.Drawing.Size(118, 23);
+            this.buttonKeyTemplate.TabIndex = 1;
+            this.buttonKeyTemplate.Text = "Selected Key";
+            this.buttonKeyTemplate.UseVisualStyleBackColor = true;
+            this.buttonKeyTemplate.Visible = false;
             // 
             // checkBoxAltTemplate
             // 
@@ -644,18 +714,6 @@
             this.checkBoxAltTemplate.UseVisualStyleBackColor = true;
             this.checkBoxAltTemplate.Visible = false;
             // 
-            // checkBoxCtrlTemplate
-            // 
-            this.checkBoxCtrlTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxCtrlTemplate.AutoSize = true;
-            this.checkBoxCtrlTemplate.Location = new System.Drawing.Point(388, 3);
-            this.checkBoxCtrlTemplate.Name = "checkBoxCtrlTemplate";
-            this.checkBoxCtrlTemplate.Size = new System.Drawing.Size(41, 17);
-            this.checkBoxCtrlTemplate.TabIndex = 3;
-            this.checkBoxCtrlTemplate.Text = "Ctrl";
-            this.checkBoxCtrlTemplate.UseVisualStyleBackColor = true;
-            this.checkBoxCtrlTemplate.Visible = false;
-            // 
             // checkBoxShiftTemplate
             // 
             this.checkBoxShiftTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -668,26 +726,47 @@
             this.checkBoxShiftTemplate.UseVisualStyleBackColor = true;
             this.checkBoxShiftTemplate.Visible = false;
             // 
-            // buttonKeyTemplate
+            // checkBoxCtrlTemplate
             // 
-            this.buttonKeyTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonKeyTemplate.Location = new System.Drawing.Point(264, 3);
-            this.buttonKeyTemplate.Name = "buttonKeyTemplate";
-            this.buttonKeyTemplate.Size = new System.Drawing.Size(118, 23);
-            this.buttonKeyTemplate.TabIndex = 1;
-            this.buttonKeyTemplate.Text = "Selected Key";
-            this.buttonKeyTemplate.UseVisualStyleBackColor = true;
-            this.buttonKeyTemplate.Visible = false;
+            this.checkBoxCtrlTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxCtrlTemplate.AutoSize = true;
+            this.checkBoxCtrlTemplate.Location = new System.Drawing.Point(388, 3);
+            this.checkBoxCtrlTemplate.Name = "checkBoxCtrlTemplate";
+            this.checkBoxCtrlTemplate.Size = new System.Drawing.Size(41, 17);
+            this.checkBoxCtrlTemplate.TabIndex = 3;
+            this.checkBoxCtrlTemplate.Text = "Ctrl";
+            this.checkBoxCtrlTemplate.UseVisualStyleBackColor = true;
+            this.checkBoxCtrlTemplate.Visible = false;
             // 
-            // labelControlTemplate
+            // gamepadButtonTemplate
             // 
-            this.labelControlTemplate.AutoSize = true;
-            this.labelControlTemplate.Location = new System.Drawing.Point(7, 9);
-            this.labelControlTemplate.Name = "labelControlTemplate";
-            this.labelControlTemplate.Size = new System.Drawing.Size(71, 13);
-            this.labelControlTemplate.TabIndex = 0;
-            this.labelControlTemplate.Text = "Control Name";
-            this.labelControlTemplate.Visible = false;
+            this.gamepadButtonTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamepadButtonTemplate.FormattingEnabled = true;
+            this.gamepadButtonTemplate.Items.AddRange(new object[] {
+            "LT",
+            "RT",
+            "A",
+            "B",
+            "X",
+            "Y",
+            "LB",
+            "RB",
+            "Back",
+            "Start",
+            "Left Stick",
+            "Right Stick",
+            "D-Pad Up",
+            "D-Pad Right",
+            "D-Pad Down",
+            "D-Pad Left",
+            "LS?",
+            "RS?",
+            "Guide"});
+            this.gamepadButtonTemplate.Location = new System.Drawing.Point(405, 4);
+            this.gamepadButtonTemplate.Name = "gamepadButtonTemplate";
+            this.gamepadButtonTemplate.Size = new System.Drawing.Size(121, 21);
+            this.gamepadButtonTemplate.TabIndex = 7;
+            this.gamepadButtonTemplate.Visible = false;
             // 
             // tabLog
             // 
@@ -773,41 +852,66 @@
             this.Save_Button_Raw.UseVisualStyleBackColor = true;
             this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
             // 
-            // splitContainerControls
+            // toolStripSeparator1
             // 
-            this.splitContainerControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainerControls.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControls.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainerControls.Location = new System.Drawing.Point(3, 3);
-            this.splitContainerControls.Name = "splitContainerControls";
-            this.splitContainerControls.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
-            // splitContainerControls.Panel1
+            // devModeToggle
             // 
-            this.splitContainerControls.Panel1.Controls.Add(this.inputDeviceLabel);
-            this.splitContainerControls.Panel1.Controls.Add(this.devicesList);
+            this.devModeToggle.CheckOnClick = true;
+            this.devModeToggle.Name = "devModeToggle";
+            this.devModeToggle.Size = new System.Drawing.Size(180, 22);
+            this.devModeToggle.Text = "Dev Mode";
             // 
-            // splitContainerControls.Panel2
+            // toolStripSeparator2
             // 
-            this.splitContainerControls.Panel2.AutoScroll = true;
-            this.splitContainerControls.Panel2.Controls.Add(this.labelControlTemplate);
-            this.splitContainerControls.Panel2.Controls.Add(this.label1);
-            this.splitContainerControls.Panel2.Controls.Add(this.buttonKeyTemplate);
-            this.splitContainerControls.Panel2.Controls.Add(this.checkBoxAltTemplate);
-            this.splitContainerControls.Panel2.Controls.Add(this.checkBoxShiftTemplate);
-            this.splitContainerControls.Panel2.Controls.Add(this.checkBoxCtrlTemplate);
-            this.splitContainerControls.Size = new System.Drawing.Size(533, 294);
-            this.splitContainerControls.SplitterDistance = 36;
-            this.splitContainerControls.TabIndex = 8;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // exitButton
+            // 
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(180, 22);
+            this.exitButton.Text = "Exit";
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
+            // gamepadAxisTemplate
+            // 
+            this.gamepadAxisTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamepadAxisTemplate.FormattingEnabled = true;
+            this.gamepadAxisTemplate.Items.AddRange(new object[] {
+            "Left Stick X",
+            "Left Stick Y",
+            "Right Stick X",
+            "Right Stick Y",
+            "LT",
+            "RT"});
+            this.gamepadAxisTemplate.Location = new System.Drawing.Point(218, 7);
+            this.gamepadAxisTemplate.Name = "gamepadAxisTemplate";
+            this.gamepadAxisTemplate.Size = new System.Drawing.Size(121, 21);
+            this.gamepadAxisTemplate.TabIndex = 8;
+            // 
+            // gamepadAxisInvertTemplate
+            // 
+            this.gamepadAxisInvertTemplate.AutoSize = true;
+            this.gamepadAxisInvertTemplate.Location = new System.Drawing.Point(159, 9);
+            this.gamepadAxisInvertTemplate.Name = "gamepadAxisInvertTemplate";
+            this.gamepadAxisInvertTemplate.Size = new System.Drawing.Size(53, 17);
+            this.gamepadAxisInvertTemplate.TabIndex = 9;
+            this.gamepadAxisInvertTemplate.Text = "Invert";
+            this.gamepadAxisInvertTemplate.UseVisualStyleBackColor = true;
             // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(547, 376);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.TopBar);
             this.Controls.Add(this.settingsTabs);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "MainWin";
             this.Text = "Genshin Impact Configurator";
             this.Load += new System.EventHandler(this.MainWin_Load);
@@ -819,16 +923,16 @@
             this.tabGraphics.ResumeLayout(false);
             this.tabGraphics.PerformLayout();
             this.tabControls.ResumeLayout(false);
-            this.tabLog.ResumeLayout(false);
-            this.tabLog.PerformLayout();
-            this.tabRawConfig.ResumeLayout(false);
-            this.tabRawConfig.PerformLayout();
             this.splitContainerControls.Panel1.ResumeLayout(false);
             this.splitContainerControls.Panel1.PerformLayout();
             this.splitContainerControls.Panel2.ResumeLayout(false);
             this.splitContainerControls.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControls)).EndInit();
             this.splitContainerControls.ResumeLayout(false);
+            this.tabLog.ResumeLayout(false);
+            this.tabLog.PerformLayout();
+            this.tabRawConfig.ResumeLayout(false);
+            this.tabRawConfig.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -900,6 +1004,14 @@
         private System.Windows.Forms.Label inputDeviceLabel;
         private System.Windows.Forms.ComboBox devicesList;
         private System.Windows.Forms.SplitContainer splitContainerControls;
+        private System.Windows.Forms.TextBox inputButtonTemplate;
+        private System.Windows.Forms.ComboBox gamepadButtonTemplate;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem devModeToggle;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem exitButton;
+        private System.Windows.Forms.CheckBox gamepadAxisInvertTemplate;
+        private System.Windows.Forms.ComboBox gamepadAxisTemplate;
     }
 }
 

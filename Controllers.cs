@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,12 +9,127 @@ using System.Xml.Linq;
 
 namespace GenshinConfigurator
 {
-    internal class KeyboardKeybind
+    internal class Keybind
     {
-        public int action_id;
-        public int axis_contribution;
+        public Keybind()
+        {
+
+        }
+    }
+
+    internal class GamepadAxis : Keybind
+    {
+        public GamepadAxis(XElement xmldata)
+        {
+            LoadFromXml(xmldata);
+        }
+
+        public GamepadAxis(GamepadKeybind bind)
+        {
+            // Convert from button to axis, for LT / RT
+            this.axisContribution = 0;
+            this.elementIdentifierId = bind.elementIdentifierId;
+            this.actionId = bind.actionId;
+            this.axisRange = 0;
+            this.invert = bind.invert;
+        }
+
+        public int actionId;
+        // 1 for action 54, 0 otherwise - let's assume that it's 0 most of the time
+        public int axisContribution;
         public int elementIdentifierId;
-        public int keyboard_keycode;
+        // Becomes 0, 1 and 2 for different keys - only 0's are known actions. Assuming 0 as right value for now
+        public int axisRange;
+        public bool invert;
+
+        public void LoadFromXml(XElement xmldata)
+        {
+            XNamespace ns = "http://guavaman.com/rewired";
+            actionId = Convert.ToInt32(xmldata.Element(ns + "actionId").Value);
+            axisContribution = Convert.ToInt32(xmldata.Element(ns + "axisContribution").Value);
+            elementIdentifierId = Convert.ToInt32(xmldata.Element(ns + "elementIdentifierId").Value);
+            axisRange = Convert.ToInt32(xmldata.Element(ns + "axisRange").Value);
+            invert = Convert.ToBoolean(xmldata.Element(ns + "invert").Value);
+        }
+
+        public XElement DumpToXml()
+        {
+            XNamespace ns = "http://guavaman.com/rewired";
+            XElement xml = new XElement(ns + "ActionElementMap",
+                new XElement(ns + "actionCategoryId", 0),
+                new XElement(ns + "actionId", actionId),
+                new XElement(ns + "elementType", 0),
+                new XElement(ns + "elementIdentifierId", elementIdentifierId),
+                new XElement(ns + "axisRange", axisRange),
+                new XElement(ns + "invert", invert),
+                new XElement(ns + "axisContribution", axisContribution),
+                new XElement(ns + "keyboardKeyCode", 0),
+                new XElement(ns + "modifierKey1", 0),
+                new XElement(ns + "modifierKey2", 0),
+                new XElement(ns + "modifierKey3", 0),
+                new XElement(ns + "enabled", true));
+            return xml;
+        }
+    }
+
+    internal class GamepadKeybind : Keybind
+    {
+        public int actionId;
+        public int axisContribution;
+        public int elementIdentifierId;
+        public int axisRange;
+        public bool invert;
+        public GamepadKeybind(XElement xmldata)
+        {
+            LoadFromXml(xmldata);
+        }
+
+        public GamepadKeybind(GamepadAxis axis)
+        {
+            // Convert from axis to button, for LT / RT
+            this.axisContribution = 0;
+            this.elementIdentifierId = axis.elementIdentifierId;
+            this.actionId = axis.actionId;
+            this.axisRange = 0;
+            this.invert = axis.invert;
+        }
+
+        public void LoadFromXml(XElement xmldata)
+        {
+            XNamespace ns = "http://guavaman.com/rewired";
+            actionId = Convert.ToInt32(xmldata.Element(ns + "actionId").Value);
+            axisContribution = Convert.ToInt32(xmldata.Element(ns + "axisContribution").Value);
+            elementIdentifierId = Convert.ToInt32(xmldata.Element(ns + "elementIdentifierId").Value);
+            axisRange = Convert.ToInt32(xmldata.Element(ns + "axisRange").Value);
+            invert = Convert.ToBoolean(xmldata.Element(ns + "invert").Value);
+        }
+
+        public XElement DumpToXml()
+        {
+            XNamespace ns = "http://guavaman.com/rewired";
+            XElement xml = new XElement(ns + "ActionElementMap",
+                new XElement(ns + "actionCategoryId", 0),
+                new XElement(ns + "actionId", actionId),
+                new XElement(ns + "elementType", 1),
+                new XElement(ns + "elementIdentifierId", elementIdentifierId),
+                new XElement(ns + "axisRange", axisRange),
+                new XElement(ns + "invert", invert),
+                new XElement(ns + "axisContribution", axisContribution),
+                new XElement(ns + "keyboardKeyCode", 0),
+                new XElement(ns + "modifierKey1", 0),
+                new XElement(ns + "modifierKey2", 0),
+                new XElement(ns + "modifierKey3", 0),
+                new XElement(ns + "enabled", true));
+            return xml;
+        }
+    }
+
+    internal class KeyboardKeybind : Keybind
+    {
+        public int actionId;
+        public int axisContribution;
+        public int elementIdentifierId;
+        public int keyboardKeyCode;
         public bool shift = false, ctrl = false, alt = false;
         public KeyboardKeybind(XElement xmldata)
         {
@@ -23,10 +139,10 @@ namespace GenshinConfigurator
         public void LoadFromXml(XElement xmldata)
         {
             XNamespace ns = "http://guavaman.com/rewired";
-            action_id = Convert.ToInt32(xmldata.Element(ns + "actionId").Value);
-            axis_contribution = Convert.ToInt32(xmldata.Element(ns + "axisContribution").Value);
+            actionId = Convert.ToInt32(xmldata.Element(ns + "actionId").Value);
+            axisContribution = Convert.ToInt32(xmldata.Element(ns + "axisContribution").Value);
             elementIdentifierId = Convert.ToInt32(xmldata.Element(ns + "elementIdentifierId").Value);
-            keyboard_keycode = Convert.ToInt32(xmldata.Element(ns + "keyboardKeyCode").Value);
+            keyboardKeyCode = Convert.ToInt32(xmldata.Element(ns + "keyboardKeyCode").Value);
             int mod1 = Convert.ToInt32(xmldata.Element(ns + "modifierKey1").Value);
             int mod2 = Convert.ToInt32(xmldata.Element(ns + "modifierKey2").Value);
             int mod3 = Convert.ToInt32(xmldata.Element(ns + "modifierKey3").Value);
@@ -45,35 +161,6 @@ namespace GenshinConfigurator
                         break;
                 }
             }
-            /*foreach (XmlNode bindingValue in xmldata.ChildNodes)
-            {
-                if (bindingValue.Name == "keyboardKeyCode")
-                {
-                    keyboard_keycode = Convert.ToInt32(bindingValue.InnerText);
-                }
-                else if (bindingValue.Name == "actionId")
-                {
-                    action_id = Convert.ToInt32(bindingValue.InnerText);
-                }
-                else if ((bindingValue.Name == "modifierKey1") || (bindingValue.Name == "modifierKey2") || (bindingValue.Name == "modifierKey3"))
-                {
-                    int modval = Convert.ToInt32(bindingValue.InnerText);
-                    switch (modval)
-                    {
-                        case 1:
-                            ctrl = true;
-                            break;
-                        case 2:
-                            alt = true;
-                            break;
-                        case 3:
-                            shift = true;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }*/
         }
 
         public XElement DumpToXml()
@@ -91,25 +178,27 @@ namespace GenshinConfigurator
             {
                 if (mod1 != 0)
                 {
-                    if (mod2 != 0) { mod3 = 3; } else {  mod2 = 3; } 
-                } else
+                    if (mod2 != 0) { mod3 = 3; } else { mod2 = 3; }
+                }
+                else
                 {
                     mod1 = 3;
                 }
             }
-            XElement xml = new XElement("ActionElementMap",
-                new XElement("actionCategoryId", 0),
-                new XElement("actionId", action_id),
-                new XElement("elementType", 1),
-                new XElement("elementIdentifierId", elementIdentifierId),
-                new XElement("axisRange", 0),
-                new XElement("invert", false),
-                new XElement("axisContribution", axis_contribution),
-                new XElement("keyboardKeyCode", keyboard_keycode),
-                new XElement("modifierKey1", mod1),
-                new XElement("modifierKey2", mod2),
-                new XElement("modifierKey3", mod3),
-                new XElement("enabled", true));
+            XNamespace ns = "http://guavaman.com/rewired";
+            XElement xml = new XElement(ns + "ActionElementMap",
+                new XElement(ns + "actionCategoryId", 0),
+                new XElement(ns + "actionId", actionId),
+                new XElement(ns + "elementType", 1),
+                new XElement(ns + "elementIdentifierId", elementIdentifierId),
+                new XElement(ns + "axisRange", 0),
+                new XElement(ns + "invert", false),
+                new XElement(ns + "axisContribution", axisContribution),
+                new XElement(ns + "keyboardKeyCode", keyboardKeyCode),
+                new XElement(ns + "modifierKey1", mod1),
+                new XElement(ns + "modifierKey2", mod2),
+                new XElement(ns + "modifierKey3", mod3),
+                new XElement(ns + "enabled", true));
             return xml;
         }
     }
@@ -122,56 +211,168 @@ namespace GenshinConfigurator
         public string name;
         public string hardwareGuid;
         public bool enabled;
+        public abstract List<Keybind> keybinds { get; set; }
 
         public abstract void LoadFromString(string xmlstring);
         public abstract string DumpToString(bool format);
 
-        public abstract XElement BuildObject();
+        public abstract XDocument BuildObject();
 
     }
 
+    internal class XBoxController : Controller
+    {
+        public override List<Keybind> keybinds { get; set; }
+        public List<GamepadAxis> axes { get; set; }
+
+        public XBoxController()
+        {
+            keybinds = new List<Keybind>();
+            axes = new List<GamepadAxis>();
+        }
+        public override void LoadFromString(string xmlstring)
+        {
+            XNamespace ns = "http://guavaman.com/rewired";
+            XElement xml = XElement.Parse(xmlstring);
+            sourceMapId = (int)(from el in xml.Descendants() where el.Name == ns + "sourceMapId" select el).First();
+            categoryId = (int)(from el in xml.Descendants() where el.Name == ns + "categoryId" select el).First();
+            layoutId = (int)(from el in xml.Descendants() where el.Name == ns + "layoutId" select el).First();
+            name = (string)(from el in xml.Descendants() where el.Name == ns + "name" select el).First();
+            hardwareGuid = (string)(from el in xml.Descendants() where el.Name == ns + "hardwareGuid" select el).First();
+            enabled = (bool)(from el in xml.Descendants() where el.Name == ns + "enabled" select el).First();
+            IEnumerable<XElement> keybindings =
+                from el in xml.Descendants()
+                where el.Name == ns + "ActionElementMap"
+                select el;
+            foreach (XElement bindingNode in keybindings)
+            {
+                if (bindingNode.Element(ns + "elementType").Value == "1")
+                {
+                    GamepadKeybind bind = new GamepadKeybind(bindingNode);
+                    keybinds.Add(bind);
+                } else if (bindingNode.Element(ns + "elementType").Value == "0")
+                {
+                    GamepadAxis bind = new GamepadAxis(bindingNode);
+                    axes.Add(bind);
+                }
+            }
+        }
+
+        public override string DumpToString(bool format)
+        {
+            if (format)
+            {
+                return BuildObject().ToString();
+            }
+            else
+            {
+                string xml_string;
+                using (var strw = new StringWriter())
+                {
+                    BuildObject().Save(strw, SaveOptions.DisableFormatting);
+                    xml_string = strw.ToString();
+                    return xml_string;
+                }
+            }
+        }
+
+        public override XDocument BuildObject()
+        {
+            XNamespace ns = "http://guavaman.com/rewired";
+            XElement buttonMaps = new XElement(ns + "buttonMaps");
+            XElement axisMaps = new XElement(ns + "axisMaps");
+
+            foreach (GamepadKeybind bind in keybinds)
+            {
+                buttonMaps.Add(bind.DumpToXml());
+            }
+
+            foreach (GamepadAxis bind in axes)
+            {
+                axisMaps.Add(bind.DumpToXml());
+            }
+
+            XNamespace xsi = XNamespace.Get("http://www.w3.org/2001/XMLSchema-instance");
+            XDocument xml = new XDocument(new XDeclaration("1.0", "utf-16", null),
+                new XElement(ns + "JoystickMap",
+                    new XAttribute("dataVersion", 2),
+                    new XAttribute(XNamespace.Xmlns + "xsi", xsi),
+                    new XAttribute(xsi + "schemaLocation", "http://guavaman.com/rewired http://guavaman.com/schemas/rewired/1.1/KeyboardMap.xsd"),
+                    new XElement(ns + "sourceMapId", sourceMapId),
+                    new XElement(ns + "categoryId", categoryId),
+                    new XElement(ns + "layoutId", layoutId),
+                    new XElement(ns + "name", name),
+                    new XElement(ns + "hardwareGuid", hardwareGuid),
+                    new XElement(ns + "enabled", enabled),
+                    buttonMaps,
+                    axisMaps
+                )
+            );
+
+            return xml;
+        }
+    }
     internal class KeyboardController : Controller
     {
-        List<KeyboardKeybind> keybinds = new List<KeyboardKeybind>();
+        public override List<Keybind> keybinds { get; set; }
         public KeyboardController()
         {
-
+            keybinds = new List<Keybind>();
         }
 
         public override void LoadFromString(string xmlstring)
         {
+            XNamespace ns = "http://guavaman.com/rewired";
             XElement xml = XElement.Parse(xmlstring);
-            sourceMapId = (int)(from el in xml.Descendants("sourceMapId") select el).First();
-            categoryId = (int)(from el in xml.Descendants("categoryId") select el).First();
-            layoutId = (int)(from el in xml.Descendants("layoutId") select el).First();
-            name = (string)(from el in xml.Descendants("name") select el).First();
-            hardwareGuid = (string)(from el in xml.Descendants("hardwareGuid") select el).First();
-            enabled = (bool)(from el in xml.Descendants("enabled") select el).First();
-            foreach (XElement bind in (from el in xml.Descendants("buttonMaps") select el).First().Elements())
+            sourceMapId = (int)(from el in xml.Descendants() where el.Name == ns + "sourceMapId" select el).First();
+            categoryId = (int)(from el in xml.Descendants() where el.Name == ns + "categoryId" select el).First();
+            layoutId = (int)(from el in xml.Descendants() where el.Name == ns + "layoutId" select el).First();
+            name = (string)(from el in xml.Descendants() where el.Name == ns + "name" select el).First();
+            hardwareGuid = (string)(from el in xml.Descendants() where el.Name == ns + "hardwareGuid" select el).First();
+            enabled = (bool)(from el in xml.Descendants() where el.Name == ns + "enabled" select el).First();
+            IEnumerable<XElement> keybindings =
+                from el in xml.Descendants()
+                where el.Name == ns + "ActionElementMap"
+                select el;
+            foreach (XElement bindingNode in keybindings)
             {
-                keybinds.Add(new KeyboardKeybind(bind));
-            };
+                KeyboardKeybind bind = new KeyboardKeybind(bindingNode);
+                keybinds.Add(bind);
+            }
         }
 
-        public override XElement BuildObject()
+        public override XDocument BuildObject()
         {
-            XElement buttonMaps = new XElement("buttonMaps");
+            XNamespace ns = "http://guavaman.com/rewired";
+            XElement buttonMaps = new XElement(ns + "buttonMaps");
             foreach (KeyboardKeybind bind in keybinds)
             {
                 buttonMaps.Add(bind.DumpToXml());
             }
-            XElement xml = new XElement("KeyboardMap",
-                new XAttribute("dataVersion", 2),
-                new XAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"),
-                new XAttribute("xsi:schemaLocation", "http://guavaman.com/rewired http://guavaman.com/schemas/rewired/1.1/KeyboardMap.xsd"),
-                new XAttribute("xmlns", "http://guavaman.com/rewired"),
-                new XElement("sourceMapId", sourceMapId),
-                new XElement("categoryId", categoryId),
-                new XElement("layoutId", layoutId),
-                new XElement("name", name),
-                new XElement("hardwareGuid", hardwareGuid),
-                new XElement("enabled", enabled),
-                new XElement("buttonMaps", buttonMaps));
+
+            XNamespace xsi = XNamespace.Get("http://www.w3.org/2001/XMLSchema-instance");
+            XDocument xml = new XDocument(new XDeclaration("1.0", "utf-16", null),
+                new XElement(ns + "KeyboardMap",
+                    new XAttribute("dataVersion", 2),
+                    new XAttribute(XNamespace.Xmlns + "xsi", xsi),
+                    //new XAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance"),
+                    new XAttribute(xsi + "schemaLocation", "http://guavaman.com/rewired http://guavaman.com/schemas/rewired/1.1/KeyboardMap.xsd"),
+                    //new XAttribute("xsi:schemaLocation", "http://guavaman.com/rewired http://guavaman.com/schemas/rewired/1.1/KeyboardMap.xsd"),
+                    //new XAttribute("xmlns", "http://guavaman.com/rewired"),
+                    new XElement(ns + "sourceMapId", sourceMapId),
+                    new XElement(ns + "categoryId", categoryId),
+                    new XElement(ns + "layoutId", layoutId),
+                    new XElement(ns + "name", name),
+                    new XElement(ns + "hardwareGuid", hardwareGuid),
+                    new XElement(ns + "enabled", enabled),
+                    buttonMaps
+                )
+            );
+            /*foreach (var node in xml.Descendants())
+            {
+                if (!(node.Name.NamespaceName == "http://guavaman.com/rewired")) node.Name = node.Name.LocalName;
+            }*/
+
             return xml;
         }
         public override string DumpToString(bool format = false)
@@ -179,9 +380,16 @@ namespace GenshinConfigurator
             if (format)
             {
                 return BuildObject().ToString();
-            } else
+            }
+            else
             {
-                return BuildObject().ToString(SaveOptions.DisableFormatting);
+                string xml_string;
+                using (var strw = new StringWriter())
+                {
+                    BuildObject().Save(strw, SaveOptions.DisableFormatting);
+                    xml_string = strw.ToString();
+                    return xml_string;
+                }
             }
         }
     }

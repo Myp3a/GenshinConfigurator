@@ -35,9 +35,9 @@ namespace GenshinConfigurator
                 if (__controlsLoaded)
                 {
                     __overrideControllerMapValueList = new List<string>();
-                    foreach (XElement xml_doc in _overrideControllerMapValueList)
+                    foreach (Controller cntrl in _overrideControllerMapValueList)
                     {
-                        string xml_string = xml_doc.ToString(SaveOptions.DisableFormatting);
+                        string xml_string = cntrl.DumpToString(false);
                         __overrideControllerMapValueList.Add(xml_string);
                     }
                 }
@@ -53,13 +53,25 @@ namespace GenshinConfigurator
                 {
                     __graphicsLoaded = false;
                 }
-                _overrideControllerMapValueList = new List<XElement>();
+                _overrideControllerMapValueList = new List<Controller>();
                 try
                 {
                     foreach (string xml_string in __overrideControllerMapValueList)
                     {
-                        XElement xml_doc = XElement.Parse(xml_string);
-                        _overrideControllerMapValueList.Add(xml_doc);
+                        XDocument xml_doc = XDocument.Parse(xml_string);
+                        XNamespace ns = "http://guavaman.com/rewired";
+                        if (xml_doc.Descendants(ns + "hardwareGuid").First().Value == "00000000-0000-0000-0000-000000000000")
+                        {
+                            KeyboardController kbd = new KeyboardController();
+                            kbd.LoadFromString(xml_string);
+                            _overrideControllerMapValueList.Add(kbd);
+                        }
+                        else if(xml_doc.Descendants(ns + "hardwareGuid").First().Value == "d74a350e-fe8b-4e9e-bbcd-efff16d34115")
+                        {
+                            XBoxController xbc = new XBoxController();
+                            xbc.LoadFromString(xml_string);
+                            _overrideControllerMapValueList.Add(xbc);
+                        }
                     }
                 } catch (Exception ex)
                 {
@@ -116,7 +128,7 @@ namespace GenshinConfigurator
             public List<string> __overrideControllerMapValueList { get; set; }
 
             [JsonIgnore]
-            public List<XElement> _overrideControllerMapValueList { get; set; }
+            public List<Controller> _overrideControllerMapValueList { get; set; }
             public int lastSeenPreDownloadTime { get; set; }
             public bool mtrCached { get; set; }
             public bool mtrIsOpen { get; set; }
