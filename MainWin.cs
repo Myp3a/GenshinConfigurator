@@ -371,6 +371,9 @@ namespace GenshinConfigurator
         
         private void Populate_Controls()
         {
+            Status_Label.Text = "Loading controls...";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
             splitContainerControls.Panel2.VerticalScroll.Value = 0;
             splitContainerControls.Panel2.Enabled = false;
             splitContainerControls.Panel2.SuspendLayout();
@@ -546,7 +549,9 @@ namespace GenshinConfigurator
             }
             splitContainerControls.Panel2.ResumeLayout();
             splitContainerControls.Panel2.Enabled = true;
-            //Paint_BG(null,null);
+            Status_Label.Text = "Controls loaded.";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
         }
 
         private void Paint_BG(object sender, PaintEventArgs e)

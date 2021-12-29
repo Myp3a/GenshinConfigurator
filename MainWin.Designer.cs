@@ -83,6 +83,7 @@
             this.FPS_Label = new System.Windows.Forms.Label();
             this.tabControls = new System.Windows.Forms.TabPage();
             this.splitContainerControls = new System.Windows.Forms.SplitContainer();
+            this.applyControlsButton = new System.Windows.Forms.Button();
             this.inputDeviceLabel = new System.Windows.Forms.Label();
             this.devicesList = new System.Windows.Forms.ComboBox();
             this.gamepadAxisInvertTemplate = new System.Windows.Forms.CheckBox();
@@ -101,7 +102,8 @@
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
             this.Load_Button_Raw = new System.Windows.Forms.Button();
             this.Save_Button_Raw = new System.Windows.Forms.Button();
-            this.applyControlsButton = new System.Windows.Forms.Button();
+            this.Resolution_Label = new System.Windows.Forms.Label();
+            this.ResolutionX = new System.Windows.Forms.Label();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
@@ -144,38 +146,38 @@
             // SaveButton
             // 
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(128, 22);
+            this.SaveButton.Size = new System.Drawing.Size(180, 22);
             this.SaveButton.Text = "Save";
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // LoadButton
             // 
             this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(128, 22);
+            this.LoadButton.Size = new System.Drawing.Size(180, 22);
             this.LoadButton.Text = "Load";
             this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // devModeToggle
             // 
             this.devModeToggle.CheckOnClick = true;
             this.devModeToggle.Name = "devModeToggle";
-            this.devModeToggle.Size = new System.Drawing.Size(128, 22);
+            this.devModeToggle.Size = new System.Drawing.Size(180, 22);
             this.devModeToggle.Text = "Dev Mode";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(125, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // exitButton
             // 
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(128, 22);
+            this.exitButton.Size = new System.Drawing.Size(180, 22);
             this.exitButton.Text = "Exit";
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
@@ -225,6 +227,8 @@
             // 
             this.tabGraphics.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tabGraphics.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabGraphics.Controls.Add(this.ResolutionX);
+            this.tabGraphics.Controls.Add(this.Resolution_Label);
             this.tabGraphics.Controls.Add(this.Preset_Label);
             this.tabGraphics.Controls.Add(this.Preset_Box);
             this.tabGraphics.Controls.Add(this.Fullscreen_Check);
@@ -665,6 +669,16 @@
             this.splitContainerControls.SplitterDistance = 36;
             this.splitContainerControls.TabIndex = 8;
             // 
+            // applyControlsButton
+            // 
+            this.applyControlsButton.Location = new System.Drawing.Point(451, 5);
+            this.applyControlsButton.Name = "applyControlsButton";
+            this.applyControlsButton.Size = new System.Drawing.Size(75, 23);
+            this.applyControlsButton.TabIndex = 8;
+            this.applyControlsButton.Text = "Apply";
+            this.applyControlsButton.UseVisualStyleBackColor = true;
+            this.applyControlsButton.Click += new System.EventHandler(this.Apply_Button_Click);
+            // 
             // inputDeviceLabel
             // 
             this.inputDeviceLabel.AutoSize = true;
@@ -899,15 +913,23 @@
             this.Save_Button_Raw.UseVisualStyleBackColor = true;
             this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
             // 
-            // applyControlsButton
+            // Resolution_Label
             // 
-            this.applyControlsButton.Location = new System.Drawing.Point(451, 5);
-            this.applyControlsButton.Name = "applyControlsButton";
-            this.applyControlsButton.Size = new System.Drawing.Size(75, 23);
-            this.applyControlsButton.TabIndex = 8;
-            this.applyControlsButton.Text = "Apply";
-            this.applyControlsButton.UseVisualStyleBackColor = true;
-            this.applyControlsButton.Click += new System.EventHandler(this.Apply_Button_Click);
+            this.Resolution_Label.AutoSize = true;
+            this.Resolution_Label.Location = new System.Drawing.Point(13, 254);
+            this.Resolution_Label.Name = "Resolution_Label";
+            this.Resolution_Label.Size = new System.Drawing.Size(57, 13);
+            this.Resolution_Label.TabIndex = 78;
+            this.Resolution_Label.Text = "Resolution";
+            // 
+            // ResolutionX
+            // 
+            this.ResolutionX.AutoSize = true;
+            this.ResolutionX.Location = new System.Drawing.Point(124, 273);
+            this.ResolutionX.Name = "ResolutionX";
+            this.ResolutionX.Size = new System.Drawing.Size(12, 13);
+            this.ResolutionX.TabIndex = 79;
+            this.ResolutionX.Text = "x";
             // 
             // MainWin
             // 
@@ -1019,6 +1041,8 @@
         private System.Windows.Forms.CheckBox checkBoxCtrlTemplate;
         private System.Windows.Forms.ComboBox gamepadButtonTemplate;
         private System.Windows.Forms.Button applyControlsButton;
+        private System.Windows.Forms.Label ResolutionX;
+        private System.Windows.Forms.Label Resolution_Label;
     }
 }
 
