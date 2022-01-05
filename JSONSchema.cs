@@ -99,6 +99,7 @@ namespace GenshinConfigurator
 
             [JsonIgnore]
             public GraphicsData graphicsData { get; set; }
+            public string globalPerfData { get; set; }
             public int miniMapConfig { get; set; }
             public bool enableCameraSlope { get; set; }
             public bool enableCameraCombatLock { get; set; }
