@@ -690,6 +690,7 @@
             // 
             // applyControlsButton
             // 
+            this.applyControlsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.applyControlsButton.Location = new System.Drawing.Point(451, 5);
             this.applyControlsButton.Name = "applyControlsButton";
             this.applyControlsButton.Size = new System.Drawing.Size(75, 23);
