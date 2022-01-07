@@ -59,12 +59,18 @@ namespace GenshinConfigurator
             var result = parser.ParseArguments<Options, GetOptions, SetOptions>(args)
                 .WithParsed<GetOptions>(o =>
                 {
+                    int pres;
                     switch (o.Output)
                     {
                         case "human":
                             string outtext = "";
                             const int offset = 25;
-                            outtext += "Overall Quality:" + new string(' ', offset-15) + Enum.GetName(typeof(Enums.OverallQuality), Graphics.currentPreset) + '\n';
+                            pres = Graphics.currentPreset + 1; // Because graphics quality stored as 0-4, where 4 is -1
+                            if (pres == 5)
+                            {
+                                pres = -1;
+                            }
+                            outtext += "Overall Quality:" + new string(' ', offset-15) + Enum.GetName(typeof(Enums.OverallQuality), pres) + '\n';
                             foreach (JSONSchema.GraphicsSetting setting in Graphics.settings_json.graphicsData.customVolatileGrades)
                             {
                                 string name;
@@ -151,7 +157,12 @@ namespace GenshinConfigurator
 
                         case "raw":
                             outtext = "";
-                            outtext += "0:" + Graphics.currentPreset.ToString();
+                            pres = Graphics.currentPreset + 1; // Because graphics quality stored as 0-4, where 4 is -1
+                            if (pres == 5)
+                            {
+                                pres = -1;
+                            }
+                            outtext += "0:" + pres.ToString();
                             foreach (JSONSchema.GraphicsSetting setting in Graphics.settings_json.graphicsData.customVolatileGrades)
                             {
                                 outtext += $" {setting.key}:{setting.value}";
