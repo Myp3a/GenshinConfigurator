@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("GenshinConfigurator")]
-[assembly: AssemblyCopyright("Copyright (c) Myp3a 2021")]
+[assembly: AssemblyCopyright("Copyright (c) Myp3a 2021-2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

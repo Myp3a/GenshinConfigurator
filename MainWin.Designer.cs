@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWin));
             this.TopBar = new System.Windows.Forms.ToolStrip();
             this.FileMenu = new System.Windows.Forms.ToolStripDropDownButton();
             this.SaveButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +43,8 @@
             this.Status_Reset_Timer = new System.Windows.Forms.Timer(this.components);
             this.settingsTabs = new System.Windows.Forms.TabControl();
             this.tabGraphics = new System.Windows.Forms.TabPage();
+            this.ResolutionX = new System.Windows.Forms.Label();
+            this.Resolution_Label = new System.Windows.Forms.Label();
             this.Preset_Label = new System.Windows.Forms.Label();
             this.Preset_Box = new System.Windows.Forms.ComboBox();
             this.Fullscreen_Check = new System.Windows.Forms.CheckBox();
@@ -102,8 +105,6 @@
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
             this.Load_Button_Raw = new System.Windows.Forms.Button();
             this.Save_Button_Raw = new System.Windows.Forms.Button();
-            this.Resolution_Label = new System.Windows.Forms.Label();
-            this.ResolutionX = new System.Windows.Forms.Label();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
@@ -146,38 +147,38 @@
             // SaveButton
             // 
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(180, 22);
+            this.SaveButton.Size = new System.Drawing.Size(128, 22);
             this.SaveButton.Text = "Save";
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // LoadButton
             // 
             this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(180, 22);
+            this.LoadButton.Size = new System.Drawing.Size(128, 22);
             this.LoadButton.Text = "Load";
             this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
             // 
             // devModeToggle
             // 
             this.devModeToggle.CheckOnClick = true;
             this.devModeToggle.Name = "devModeToggle";
-            this.devModeToggle.Size = new System.Drawing.Size(180, 22);
+            this.devModeToggle.Size = new System.Drawing.Size(128, 22);
             this.devModeToggle.Text = "Dev Mode";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(125, 6);
             // 
             // exitButton
             // 
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(180, 22);
+            this.exitButton.Size = new System.Drawing.Size(128, 22);
             this.exitButton.Text = "Exit";
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
@@ -274,6 +275,24 @@
             this.tabGraphics.Size = new System.Drawing.Size(539, 300);
             this.tabGraphics.TabIndex = 0;
             this.tabGraphics.Text = "Graphics";
+            // 
+            // ResolutionX
+            // 
+            this.ResolutionX.AutoSize = true;
+            this.ResolutionX.Location = new System.Drawing.Point(124, 273);
+            this.ResolutionX.Name = "ResolutionX";
+            this.ResolutionX.Size = new System.Drawing.Size(12, 13);
+            this.ResolutionX.TabIndex = 79;
+            this.ResolutionX.Text = "x";
+            // 
+            // Resolution_Label
+            // 
+            this.Resolution_Label.AutoSize = true;
+            this.Resolution_Label.Location = new System.Drawing.Point(13, 254);
+            this.Resolution_Label.Name = "Resolution_Label";
+            this.Resolution_Label.Size = new System.Drawing.Size(57, 13);
+            this.Resolution_Label.TabIndex = 78;
+            this.Resolution_Label.Text = "Resolution";
             // 
             // Preset_Label
             // 
@@ -913,24 +932,6 @@
             this.Save_Button_Raw.UseVisualStyleBackColor = true;
             this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
             // 
-            // Resolution_Label
-            // 
-            this.Resolution_Label.AutoSize = true;
-            this.Resolution_Label.Location = new System.Drawing.Point(13, 254);
-            this.Resolution_Label.Name = "Resolution_Label";
-            this.Resolution_Label.Size = new System.Drawing.Size(57, 13);
-            this.Resolution_Label.TabIndex = 78;
-            this.Resolution_Label.Text = "Resolution";
-            // 
-            // ResolutionX
-            // 
-            this.ResolutionX.AutoSize = true;
-            this.ResolutionX.Location = new System.Drawing.Point(124, 273);
-            this.ResolutionX.Name = "ResolutionX";
-            this.ResolutionX.Size = new System.Drawing.Size(12, 13);
-            this.ResolutionX.TabIndex = 79;
-            this.ResolutionX.Text = "x";
-            // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -941,6 +942,7 @@
             this.Controls.Add(this.TopBar);
             this.Controls.Add(this.settingsTabs);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWin";
             this.Text = "Genshin Impact Configurator";
             this.Load += new System.EventHandler(this.MainWin_Load);
