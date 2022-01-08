@@ -105,6 +105,9 @@
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
             this.Load_Button_Raw = new System.Windows.Forms.Button();
             this.Save_Button_Raw = new System.Windows.Forms.Button();
+            this.buttonKeybindingAddTemplate = new System.Windows.Forms.Button();
+            this.buttonKeybindRemoveTemplate = new System.Windows.Forms.Button();
+            this.comboBoxKeybindListTemplate = new System.Windows.Forms.ComboBox();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
@@ -674,6 +677,9 @@
             // splitContainerControls.Panel2
             // 
             this.splitContainerControls.Panel2.AutoScroll = true;
+            this.splitContainerControls.Panel2.Controls.Add(this.comboBoxKeybindListTemplate);
+            this.splitContainerControls.Panel2.Controls.Add(this.buttonKeybindRemoveTemplate);
+            this.splitContainerControls.Panel2.Controls.Add(this.buttonKeybindingAddTemplate);
             this.splitContainerControls.Panel2.Controls.Add(this.gamepadAxisInvertTemplate);
             this.splitContainerControls.Panel2.Controls.Add(this.gamepadAxisTemplate);
             this.splitContainerControls.Panel2.Controls.Add(this.inputButtonTemplate);
@@ -933,6 +939,41 @@
             this.Save_Button_Raw.UseVisualStyleBackColor = true;
             this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
             // 
+            // buttonKeybindingAddTemplate
+            // 
+            this.buttonKeybindingAddTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonKeybindingAddTemplate.Enabled = false;
+            this.buttonKeybindingAddTemplate.Location = new System.Drawing.Point(451, 4);
+            this.buttonKeybindingAddTemplate.Name = "buttonKeybindingAddTemplate";
+            this.buttonKeybindingAddTemplate.Size = new System.Drawing.Size(75, 23);
+            this.buttonKeybindingAddTemplate.TabIndex = 10;
+            this.buttonKeybindingAddTemplate.Text = "Add";
+            this.buttonKeybindingAddTemplate.UseVisualStyleBackColor = true;
+            this.buttonKeybindingAddTemplate.Visible = false;
+            // 
+            // buttonKeybindRemoveTemplate
+            // 
+            this.buttonKeybindRemoveTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonKeybindRemoveTemplate.Enabled = false;
+            this.buttonKeybindRemoveTemplate.Location = new System.Drawing.Point(235, 4);
+            this.buttonKeybindRemoveTemplate.Name = "buttonKeybindRemoveTemplate";
+            this.buttonKeybindRemoveTemplate.Size = new System.Drawing.Size(23, 23);
+            this.buttonKeybindRemoveTemplate.TabIndex = 11;
+            this.buttonKeybindRemoveTemplate.Text = "X";
+            this.buttonKeybindRemoveTemplate.UseVisualStyleBackColor = true;
+            this.buttonKeybindRemoveTemplate.Visible = false;
+            // 
+            // comboBoxKeybindListTemplate
+            // 
+            this.comboBoxKeybindListTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxKeybindListTemplate.Enabled = false;
+            this.comboBoxKeybindListTemplate.FormattingEnabled = true;
+            this.comboBoxKeybindListTemplate.Location = new System.Drawing.Point(4, 5);
+            this.comboBoxKeybindListTemplate.Name = "comboBoxKeybindListTemplate";
+            this.comboBoxKeybindListTemplate.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxKeybindListTemplate.TabIndex = 12;
+            this.comboBoxKeybindListTemplate.Visible = false;
+            // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1046,6 +1087,9 @@
         private System.Windows.Forms.Button applyControlsButton;
         private System.Windows.Forms.Label ResolutionX;
         private System.Windows.Forms.Label Resolution_Label;
+        private System.Windows.Forms.Button buttonKeybindRemoveTemplate;
+        private System.Windows.Forms.Button buttonKeybindingAddTemplate;
+        private System.Windows.Forms.ComboBox comboBoxKeybindListTemplate;
     }
 }
 

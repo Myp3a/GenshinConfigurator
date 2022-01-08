@@ -11,6 +11,15 @@ namespace GenshinConfigurator
 {
     internal class Keybind
     {
+        public int actionId;
+        // 1 for action 54, 0 otherwise - let's assume that it's 0 most of the time
+        public int axisContribution;
+        public int elementIdentifierId;
+        // Becomes 0, 1 and 2 for different keys - only 0's are known actions. Assuming 0 as right value for now
+        public int axisRange;
+        public bool invert;
+        public int keyboardKeyCode;
+
         public Keybind()
         {
 
@@ -19,6 +28,20 @@ namespace GenshinConfigurator
 
     internal class GamepadAxis : Keybind
     {
+
+        // 1 for action 54, 0 otherwise - let's assume that it's 0 most of the time
+        // public int axisContribution;
+
+        // Becomes 0, 1 and 2 for different keys - only 0's are known actions. Assuming 0 as right value for now
+        // public int axisRange;
+
+        public GamepadAxis()
+        {
+            this.axisContribution = 0;
+            this.axisRange = 0;
+            this.invert = false;
+        }
+
         public GamepadAxis(XElement xmldata)
         {
             LoadFromXml(xmldata);
@@ -33,14 +56,6 @@ namespace GenshinConfigurator
             this.axisRange = 0;
             this.invert = bind.invert;
         }
-
-        public int actionId;
-        // 1 for action 54, 0 otherwise - let's assume that it's 0 most of the time
-        public int axisContribution;
-        public int elementIdentifierId;
-        // Becomes 0, 1 and 2 for different keys - only 0's are known actions. Assuming 0 as right value for now
-        public int axisRange;
-        public bool invert;
 
         public void LoadFromXml(XElement xmldata)
         {
@@ -74,11 +89,13 @@ namespace GenshinConfigurator
 
     internal class GamepadKeybind : Keybind
     {
-        public int actionId;
-        public int axisContribution;
-        public int elementIdentifierId;
-        public int axisRange;
-        public bool invert;
+        public GamepadKeybind()
+        {
+            this.axisContribution = 0;
+            this.axisRange = 0;
+            this.invert = false;
+        }
+
         public GamepadKeybind(XElement xmldata)
         {
             LoadFromXml(xmldata);
@@ -126,11 +143,14 @@ namespace GenshinConfigurator
 
     internal class KeyboardKeybind : Keybind
     {
-        public int actionId;
-        public int axisContribution;
-        public int elementIdentifierId;
-        public int keyboardKeyCode;
         public bool shift = false, ctrl = false, alt = false;
+
+        public KeyboardKeybind()
+        {
+            this.axisContribution = 0;
+            this.keyboardKeyCode = 0;
+        }
+
         public KeyboardKeybind(XElement xmldata)
         {
             LoadFromXml(xmldata);

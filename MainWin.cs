@@ -368,7 +368,79 @@ namespace GenshinConfigurator
             Status_Reset_Timer.Enabled = true;
         }
 
-        
+        private void Remove_Keybind(object sender, EventArgs e)
+        {
+            Controller cntrl = Controller_By_Bind((Keybind)((Button)sender).Tag);
+            // TODO: easier add/remove of binds
+            if (cntrl is KeyboardController)
+            {
+                ((KeyboardController)cntrl).keybinds.Remove((KeyboardKeybind)((Button)sender).Tag);
+            } 
+            else if (cntrl is XBoxController)
+            {
+                if (((Button)sender).Tag is GamepadKeybind)
+                {
+                    ((XBoxController)cntrl).keybinds.Remove((GamepadKeybind)((Button)sender).Tag);
+                } 
+                else if (((Button)sender).Tag is GamepadAxis) 
+                {
+                    ((XBoxController)cntrl).axes.Remove((GamepadAxis)((Button)sender).Tag);
+                }
+            }
+            Populate_Controls();
+        }
+
+        private void Add_Keybind(object sender, EventArgs e)
+        {
+            // Controller is selected by the first bind
+            Button add_button = (Button)sender;
+            ComboBox bind_selector = add_button.Tag as ComboBox;
+            Keybind first_bind = (Keybind)((Label)bind_selector.Tag).Tag;
+            Controller cntrl = Controller_By_Bind(first_bind);
+            if (cntrl is KeyboardController)
+            {
+                KeyboardKeybind newbind = new KeyboardKeybind();
+                newbind.elementIdentifierId = 0;
+                try
+                {
+                    newbind.actionId = Convert.ToInt32(bind_selector.Text);
+                }
+                catch
+                {
+                    newbind.actionId = Keycodes.actions.Where(c => c.Value == bind_selector.Text).First().Key;
+                }
+                ((KeyboardController)cntrl).keybinds.Add(newbind);
+            }
+            else if (cntrl is XBoxController) 
+            {
+                int actionId;
+                try
+                {
+                    actionId = Convert.ToInt32(bind_selector.Text);
+                }
+                catch
+                {
+                    actionId = Keycodes.actions.Where(c => c.Value == bind_selector.Text).First().Key;
+                }
+                List<int> axis_actions = new List<int> { 0, 1 }; // Forward and side movement. Axis keybinds are different, so let's leave it like that for now
+                if (axis_actions.Contains(actionId))
+                {
+                    GamepadAxis newbind = new GamepadAxis();
+                    newbind.elementIdentifierId = 22;
+                    newbind.actionId = actionId;
+                    ((XBoxController)cntrl).axes.Add(newbind);
+                } 
+                else
+                {
+                    GamepadKeybind newbind = new GamepadKeybind();
+                    newbind.elementIdentifierId = 22;
+                    newbind.actionId = actionId;
+                    ((XBoxController)cntrl).keybinds.Add(newbind);
+                }
+            }
+            Populate_Controls();
+        }
+
         private void Populate_Controls()
         {
             Status_Label.Text = "Loading controls...";
@@ -383,13 +455,13 @@ namespace GenshinConfigurator
                 splitContainerControls.Panel2.Controls.Remove(control);
             }
             Controller cntrl = Graphics.settings_json._overrideControllerMapValueList[devicesList.SelectedIndex];
+            int top = labelControlTemplate.Top;
+            int height = 25;
+            int mult = 0;
             if (cntrl.hardwareGuid == "00000000-0000-0000-0000-000000000000")
             {
                 // While keyboard is very flexible and have many actions, it still intersects with gamepad in some ways.
                 List<int> keyboardActionsBlacklist = new List<int> { 5 };
-                int top = labelControlTemplate.Top;
-                int height = 25;
-                int mult = 0;
                 foreach (KeyboardKeybind bind in cntrl.keybinds)
                 {
                     string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
@@ -401,6 +473,7 @@ namespace GenshinConfigurator
                         newlabel.Text = (Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?");
                         if (devModeToggle.Checked) newlabel.Text += " (" + bind.actionId.ToString() + ")";
                         newlabel.AutoSize = true;
+                        newlabel.Tag = bind;
                         splitContainerControls.Panel2.Controls.Add(newlabel);
 
                         TextBox newinput = new TextBox();
@@ -457,6 +530,19 @@ namespace GenshinConfigurator
                         newalt.Tag = bind;
                         newalt.BackColor = Color.Transparent;
                         splitContainerControls.Panel2.Controls.Add(newalt);
+
+                        if (devModeToggle.Checked)
+                        {
+                            Button delkeybind = new Button();
+                            delkeybind.Text = "X";
+                            delkeybind.Left = buttonKeybindRemoveTemplate.Left;
+                            delkeybind.Top = buttonKeybindRemoveTemplate.Top + height * mult;
+                            delkeybind.Width = buttonKeybindRemoveTemplate.Width;
+                            delkeybind.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                            delkeybind.Tag = bind;
+                            delkeybind.Click += Remove_Keybind;
+                            splitContainerControls.Panel2.Controls.Add(delkeybind);
+                        }
                         mult++;
                     }
                     
@@ -465,9 +551,6 @@ namespace GenshinConfigurator
             {
                 // These buttons have mappings for them, however, they do not appear doing something useful.
                 List<int> gamepadActionsBlacklist = new List<int> { 87, 88, 99 };
-                int top = labelControlTemplate.Top;
-                int height = 25;
-                int mult = 0;
                 foreach (GamepadKeybind bind in cntrl.keybinds)
                 {
                     string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
@@ -479,6 +562,7 @@ namespace GenshinConfigurator
                         newlabel.Text = (Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?");
                         if (devModeToggle.Checked) newlabel.Text += " (" + bind.actionId.ToString() + ")";
                         newlabel.AutoSize = true;
+                        newlabel.Tag = bind;
                         splitContainerControls.Panel2.Controls.Add(newlabel);
 
                         ComboBox newbutton = new ComboBox();
@@ -491,6 +575,20 @@ namespace GenshinConfigurator
                         newbutton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
                         newbutton.DropDownStyle = ComboBoxStyle.DropDownList;
                         splitContainerControls.Panel2.Controls.Add(newbutton);
+
+                        if (devModeToggle.Checked)
+                        {
+                            Button delkeybind = new Button();
+                            delkeybind.Text = "X";
+                            delkeybind.Left = buttonKeybindRemoveTemplate.Left;
+                            delkeybind.Top = buttonKeybindRemoveTemplate.Top + height * mult;
+                            delkeybind.Width = buttonKeybindRemoveTemplate.Width;
+                            delkeybind.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                            delkeybind.Tag = bind;
+                            delkeybind.Click += Remove_Keybind;
+                            splitContainerControls.Panel2.Controls.Add(delkeybind);
+                        }
+
                         mult++;
                     }
                 }
@@ -543,9 +641,56 @@ namespace GenshinConfigurator
                             newinvert.BackColor = Color.Transparent;
                             splitContainerControls.Panel2.Controls.Add(newinvert);
                         }
+
+                        if (devModeToggle.Checked)
+                        {
+                            Button delkeybind = new Button();
+                            delkeybind.Text = "X";
+                            delkeybind.Left = buttonKeybindRemoveTemplate.Left;
+                            delkeybind.Top = buttonKeybindRemoveTemplate.Top + height * mult;
+                            delkeybind.Width = buttonKeybindRemoveTemplate.Width;
+                            delkeybind.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                            delkeybind.Tag = bind;
+                            delkeybind.Click += Remove_Keybind;
+                            splitContainerControls.Panel2.Controls.Add(delkeybind);
+                        }
+
                         mult++;
                     }
                 }
+            }
+            if (devModeToggle.Checked)
+            {
+                ComboBox newkeybindlist = new ComboBox();
+                List<string> avail_keybinds = new List<string>();
+                List<int> binded_keybinds = new List<int>();
+                foreach (Control ctrl in splitContainerControls.Panel2.Controls)
+                {
+                    if ((ctrl is Label) && (ctrl.Tag != null)) binded_keybinds.Add(((Keybind)ctrl.Tag).actionId);
+                }
+                foreach (KeyValuePair<int,string> pair in Keycodes.actions)
+                {
+                    if (!binded_keybinds.Contains(pair.Key))
+                    {
+                        avail_keybinds.Add(pair.Value);
+                    }
+                }
+                newkeybindlist.Items.AddRange(avail_keybinds.ToArray());
+                newkeybindlist.SelectedIndex = 0;
+                newkeybindlist.Left = comboBoxKeybindListTemplate.Left;
+                newkeybindlist.Top = comboBoxKeybindListTemplate.Top + height * mult;
+                newkeybindlist.Tag = splitContainerControls.Panel2.Controls.Cast<Control>().Where(c => c.Tag != null).Where(c => c is Label).First(); // First bind
+                splitContainerControls.Panel2.Controls.Add(newkeybindlist);
+
+                Button newkeybind = new Button();
+                newkeybind.Text = "Add";
+                newkeybind.Left = buttonKeybindingAddTemplate.Left;
+                newkeybind.Top = buttonKeybindingAddTemplate.Top + height * mult;
+                newkeybind.Width = buttonKeybindingAddTemplate.Width;
+                newkeybind.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                newkeybind.Tag = newkeybindlist;
+                newkeybind.Click += Add_Keybind;
+                splitContainerControls.Panel2.Controls.Add(newkeybind);
             }
             splitContainerControls.Panel2.ResumeLayout();
             splitContainerControls.Panel2.Enabled = true;
@@ -624,31 +769,49 @@ namespace GenshinConfigurator
             Populate_Controls();
         }
 
-        private void Edit_Gamepad_Key(object sender, EventArgs e)
+        private Controller Controller_By_Bind(Keybind bind)
         {
-            ComboBox input = (ComboBox)sender;
-            XBoxController curctrl = null;
-
+            Controller curctrl = null;
             //Search for the controller that the bind is assigned to
             foreach (Controller ctrl in Graphics.settings_json._overrideControllerMapValueList)
             {
                 if (ctrl is XBoxController)
                 {
-                    if (input.Tag is GamepadKeybind)
+                    if (bind is GamepadKeybind)
                     {
-                        if (((XBoxController)ctrl).keybinds.Contains((GamepadKeybind)input.Tag))
+                        if (((XBoxController)ctrl).keybinds.Contains((GamepadKeybind)bind))
                         {
                             curctrl = ctrl as XBoxController;
                         }
-                    } else if (input.Tag is GamepadAxis)
+                    }
+                    else if (bind is GamepadAxis)
                     {
-                        if (((XBoxController)ctrl).axes.Contains((GamepadAxis)input.Tag))
+                        if (((XBoxController)ctrl).axes.Contains((GamepadAxis)bind))
                         {
                             curctrl = ctrl as XBoxController;
                         }
                     }
                 }
+                else if (ctrl is KeyboardController)
+                {
+                    if (bind is KeyboardKeybind)
+                    {
+                        if (((KeyboardController)ctrl).keybinds.Contains((KeyboardKeybind)bind))
+                        {
+                            curctrl = ctrl as KeyboardController;
+                        }
+                    }
+                }
             }
+
+            return curctrl;
+        }
+        private void Edit_Gamepad_Key(object sender, EventArgs e)
+        {
+            ComboBox input = (ComboBox)sender;
+
+            XBoxController curctrl = (XBoxController)Controller_By_Bind((Keybind)input.Tag); // For now, it's fine to assume that XBoxController will be returned
+
             if (input.SelectedIndex < 2) // LT, RT
             {
                 // Convert axis to button or vice-versa
