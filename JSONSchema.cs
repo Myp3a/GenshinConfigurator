@@ -60,17 +60,27 @@ namespace GenshinConfigurator
                     {
                         XDocument xml_doc = XDocument.Parse(xml_string);
                         XNamespace ns = "http://guavaman.com/rewired";
-                        if (xml_doc.Descendants(ns + "hardwareGuid").First().Value == "00000000-0000-0000-0000-000000000000")
+                        if (xml_doc.Root.Name == (ns + "KeyboardMap"))
                         {
                             KeyboardController kbd = new KeyboardController();
                             kbd.LoadFromString(xml_string);
                             _overrideControllerMapValueList.Add(kbd);
                         }
-                        else if(xml_doc.Descendants(ns + "hardwareGuid").First().Value == "d74a350e-fe8b-4e9e-bbcd-efff16d34115")
+                        else if (xml_doc.Root.Name == (ns + "MouseMap"))
                         {
-                            XBoxController xbc = new XBoxController();
-                            xbc.LoadFromString(xml_string);
-                            _overrideControllerMapValueList.Add(xbc);
+                            MouseController mouse = new MouseController();
+                            mouse.LoadFromString(xml_string);
+                            _overrideControllerMapValueList.Add(mouse);
+
+                        }
+                        else if (xml_doc.Root.Name == (ns + "JoystickMap"))
+                        {
+                            if (xml_doc.Descendants(ns + "hardwareGuid").First().Value == "d74a350e-fe8b-4e9e-bbcd-efff16d34115")
+                            {
+                                XBoxController xbc = new XBoxController();
+                                xbc.LoadFromString(xml_string);
+                                _overrideControllerMapValueList.Add(xbc);
+                            }
                         }
                     }
                 } catch (Exception ex)

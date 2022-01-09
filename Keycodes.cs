@@ -9,6 +9,26 @@ namespace GenshinConfigurator
 {
     internal class Keycodes
     {
+        public static List<string> mouse_axes = new List<string>
+        {
+            // 0 - 2
+            "Mouse Horizontal",
+            "Mouse Vertical",
+            "Mouse Wheel"
+        };
+
+        public static List<string> mouse_keys = new List<string>
+        {
+            // 3 - 9
+            "Left Mouse Button",
+            "Right Mouse Button",
+            "Middle Mouse Button",
+            "Mouse 4",
+            "Mouse 5",
+            "Mouse 6",
+            "Mouse 7"
+        };
+
         public static Dictionary<int,string> actions = new Dictionary<int, string>
         {
             { 0, "Side Movement" },

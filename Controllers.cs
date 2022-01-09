@@ -234,10 +234,103 @@ namespace GenshinConfigurator
         public abstract List<Keybind> keybinds { get; set; }
 
         public abstract void LoadFromString(string xmlstring);
-        public abstract string DumpToString(bool format);
+        public string DumpToString(bool format)
+        {
+            if (format)
+            {
+                return BuildObject().ToString();
+            }
+            else
+            {
+                string xml_string;
+                using (var strw = new StringWriter())
+                {
+                    BuildObject().Save(strw, SaveOptions.DisableFormatting);
+                    xml_string = strw.ToString();
+                    return xml_string;
+                }
+            }
+        }
 
         public abstract XDocument BuildObject();
 
+    }
+
+    internal class MouseController : Controller
+    {
+        public override List<Keybind> keybinds { get; set; }
+        public List<GamepadAxis> axes { get; set; }
+
+        public MouseController()
+        {
+            keybinds = new List<Keybind>();
+            axes = new List<GamepadAxis>();
+        }
+
+        public override XDocument BuildObject()
+        {
+            XNamespace ns = "http://guavaman.com/rewired";
+            XElement buttonMaps = new XElement(ns + "buttonMaps");
+            XElement axisMaps = new XElement(ns + "axisMaps");
+
+            foreach (GamepadKeybind bind in keybinds)
+            {
+                buttonMaps.Add(bind.DumpToXml());
+            }
+
+            foreach (GamepadAxis bind in axes)
+            {
+                axisMaps.Add(bind.DumpToXml());
+            }
+
+            XNamespace xsi = XNamespace.Get("http://www.w3.org/2001/XMLSchema-instance");
+            XDocument xml = new XDocument(new XDeclaration("1.0", "utf-16", null),
+                new XElement(ns + "MouseMap",
+                    new XAttribute("dataVersion", 2),
+                    new XAttribute(XNamespace.Xmlns + "xsi", xsi),
+                    new XAttribute(xsi + "schemaLocation", "http://guavaman.com/rewired http://guavaman.com/schemas/rewired/1.1/MouseMap.xsd"),
+                    new XElement(ns + "sourceMapId", sourceMapId),
+                    new XElement(ns + "categoryId", categoryId),
+                    new XElement(ns + "layoutId", layoutId),
+                    new XElement(ns + "name", name),
+                    new XElement(ns + "hardwareGuid", hardwareGuid),
+                    new XElement(ns + "enabled", enabled),
+                    buttonMaps,
+                    axisMaps
+                )
+            );
+
+            return xml;
+        }
+
+        public override void LoadFromString(string xmlstring)
+        {
+            XNamespace ns = "http://guavaman.com/rewired";
+            XElement xml = XElement.Parse(xmlstring);
+            sourceMapId = (int)(from el in xml.Descendants() where el.Name == ns + "sourceMapId" select el).First();
+            categoryId = (int)(from el in xml.Descendants() where el.Name == ns + "categoryId" select el).First();
+            layoutId = (int)(from el in xml.Descendants() where el.Name == ns + "layoutId" select el).First();
+            name = (string)(from el in xml.Descendants() where el.Name == ns + "name" select el).First();
+            hardwareGuid = (string)(from el in xml.Descendants() where el.Name == ns + "hardwareGuid" select el).First();
+            enabled = (bool)(from el in xml.Descendants() where el.Name == ns + "enabled" select el).First();
+            IEnumerable<XElement> keybindings =
+                from el in xml.Descendants()
+                where el.Name == ns + "ActionElementMap"
+                select el;
+            foreach (XElement bindingNode in keybindings)
+            {
+                if (bindingNode.Element(ns + "elementType").Value == "1")
+                {
+                    GamepadKeybind bind = new GamepadKeybind(bindingNode);
+                    keybinds.Add(bind);
+                }
+                else if (bindingNode.Element(ns + "elementType").Value == "0")
+                {
+                    GamepadAxis bind = new GamepadAxis(bindingNode);
+                    axes.Add(bind);
+                }
+            }
+        }
     }
 
     internal class XBoxController : Controller
@@ -274,24 +367,6 @@ namespace GenshinConfigurator
                 {
                     GamepadAxis bind = new GamepadAxis(bindingNode);
                     axes.Add(bind);
-                }
-            }
-        }
-
-        public override string DumpToString(bool format)
-        {
-            if (format)
-            {
-                return BuildObject().ToString();
-            }
-            else
-            {
-                string xml_string;
-                using (var strw = new StringWriter())
-                {
-                    BuildObject().Save(strw, SaveOptions.DisableFormatting);
-                    xml_string = strw.ToString();
-                    return xml_string;
                 }
             }
         }
@@ -394,23 +469,6 @@ namespace GenshinConfigurator
             }*/
 
             return xml;
-        }
-        public override string DumpToString(bool format = false)
-        {
-            if (format)
-            {
-                return BuildObject().ToString();
-            }
-            else
-            {
-                string xml_string;
-                using (var strw = new StringWriter())
-                {
-                    BuildObject().Save(strw, SaveOptions.DisableFormatting);
-                    xml_string = strw.ToString();
-                    return xml_string;
-                }
-            }
         }
     }
     internal class Controllers

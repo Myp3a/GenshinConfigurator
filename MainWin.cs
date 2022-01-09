@@ -26,12 +26,60 @@ namespace GenshinConfigurator
 
         private void MainWin_Load(object sender, EventArgs e)
         {
-            Settings = new SettingsContainer();
-            Graphics = Settings.Graphics;
-            Resolution = Settings.Resolution;
-            if (Graphics.settings_json.__controlsLoaded == false || Graphics.settings_json.__graphicsLoaded == false)
+            try
             {
-                DialogResult result = MessageBox.Show("Some part of your config is corrupted. Continuing may be dangerous.\nLaunch recovery mode?", "Config error", MessageBoxButtons.YesNo);
+                Settings = new SettingsContainer();
+                Graphics = Settings.Graphics;
+                Resolution = Settings.Resolution;
+                if (Graphics.settings_json.__controlsLoaded == false || Graphics.settings_json.__graphicsLoaded == false)
+                {
+                    DialogResult result = MessageBox.Show("Some part of your config is corrupted. Continuing may be dangerous.\nLaunch recovery mode?", "Config error", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        this.Shown += (s, args) => this.Hide();
+                        Recovery rec = new Recovery();
+                        rec.Closed += (s, args) => this.Close();
+                        rec.Show();
+                    }
+                }
+                if (Graphics.settings_json.__controlsLoaded)
+                {
+                    foreach (string controller_id in Graphics.settings_json._overrideControllerMapKeyList)
+                    {
+                        string[] parts = controller_id.Split(new[] { "__" }, StringSplitOptions.None);
+                        devicesList.Items.Add(parts[1] + "__" + parts[2]);
+                    }
+                    devicesList.SelectedIndex = 0;
+                    //Task.Run(() => Populate_Controls());
+                }
+                if (Graphics.settings_json.__graphicsLoaded)
+                {
+                    FPS_Box.Items.AddRange(Enum.GetNames(typeof(FPS)).Skip(1).ToArray());
+                    VSync_Box.Items.AddRange(Enum.GetNames(typeof(VSync)).Skip(1).ToArray());
+                    RenderResolution_Box.Items.AddRange(Enum.GetNames(typeof(RenderResolution)).Skip(1).ToArray());
+                    ShadowQuality_Box.Items.AddRange(Enum.GetNames(typeof(ShadowQuality)).Skip(1).ToArray());
+                    VisualEffects_Box.Items.AddRange(Enum.GetNames(typeof(VisualEffects)).Skip(1).ToArray());
+                    SFXQuality_Box.Items.AddRange(Enum.GetNames(typeof(SFXQuality)).Skip(1).ToArray());
+                    EnvironmentDetail_Box.Items.AddRange(Enum.GetNames(typeof(EnvironmentDetail)).Skip(1).ToArray());
+                    Antialiasing_Box.Items.AddRange(Enum.GetNames(typeof(Antialiasing)).Skip(1).ToArray());
+                    VolumetricFog_Box.Items.AddRange(Enum.GetNames(typeof(VolumetricFog)).Skip(1).ToArray());
+                    Reflections_Box.Items.AddRange(Enum.GetNames(typeof(Reflections)).Skip(1).ToArray());
+                    MotionBlur_Box.Items.AddRange(Enum.GetNames(typeof(MotionBlur)).Skip(1).ToArray());
+                    Bloom_Box.Items.AddRange(Enum.GetNames(typeof(Bloom)).Skip(1).ToArray());
+                    CrowdDensity_Box.Items.AddRange(Enum.GetNames(typeof(CrowdDensity)).Skip(1).ToArray());
+                    SubsurfaceScattering_Box.Items.AddRange(Enum.GetNames(typeof(SubsurfaceScattering)).Skip(1).ToArray());
+                    TeammateEffects_Box.Items.AddRange(Enum.GetNames(typeof(TeammateEffects)).Skip(1).ToArray());
+                    AnisotropicFiltering_Box.Items.AddRange(Enum.GetNames(typeof(AnisotropicFiltering)).Skip(1).ToArray());
+                    Preset_Box.Items.AddRange(Enum.GetNames(typeof(OverallQuality)));
+                    Reset_Button_Click(null, null);
+                }
+                Status_Label.Text = "Loaded config from registry.";
+                Status_Reset_Timer.Enabled = false;
+                Status_Reset_Timer.Enabled = true;
+            } 
+            catch
+            {
+                DialogResult result = MessageBox.Show("Some part of your config is corrupted. Can't contunue loading.\nLaunch recovery mode?", "Config error", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     this.Shown += (s, args) => this.Hide();
@@ -39,41 +87,13 @@ namespace GenshinConfigurator
                     rec.Closed += (s, args) => this.Close();
                     rec.Show();
                 }
-            }
-            if (Graphics.settings_json.__controlsLoaded)
-            {
-                foreach (string controller_id in Graphics.settings_json._overrideControllerMapKeyList)
+                else
                 {
-                    string[] parts = controller_id.Split(new[] { "__" }, StringSplitOptions.None);
-                    devicesList.Items.Add(parts[1] + "__" + parts[2]);
+                    Application.Exit();
                 }
-                devicesList.SelectedIndex = 0;
-                //Task.Run(() => Populate_Controls());
             }
-            if (Graphics.settings_json.__graphicsLoaded)
-            {
-                FPS_Box.Items.AddRange(Enum.GetNames(typeof(FPS)).Skip(1).ToArray());
-                VSync_Box.Items.AddRange(Enum.GetNames(typeof(VSync)).Skip(1).ToArray());
-                RenderResolution_Box.Items.AddRange(Enum.GetNames(typeof(RenderResolution)).Skip(1).ToArray());
-                ShadowQuality_Box.Items.AddRange(Enum.GetNames(typeof(ShadowQuality)).Skip(1).ToArray());
-                VisualEffects_Box.Items.AddRange(Enum.GetNames(typeof(VisualEffects)).Skip(1).ToArray());
-                SFXQuality_Box.Items.AddRange(Enum.GetNames(typeof(SFXQuality)).Skip(1).ToArray());
-                EnvironmentDetail_Box.Items.AddRange(Enum.GetNames(typeof(EnvironmentDetail)).Skip(1).ToArray());
-                Antialiasing_Box.Items.AddRange(Enum.GetNames(typeof(Antialiasing)).Skip(1).ToArray());
-                VolumetricFog_Box.Items.AddRange(Enum.GetNames(typeof(VolumetricFog)).Skip(1).ToArray());
-                Reflections_Box.Items.AddRange(Enum.GetNames(typeof(Reflections)).Skip(1).ToArray());
-                MotionBlur_Box.Items.AddRange(Enum.GetNames(typeof(MotionBlur)).Skip(1).ToArray());
-                Bloom_Box.Items.AddRange(Enum.GetNames(typeof(Bloom)).Skip(1).ToArray());
-                CrowdDensity_Box.Items.AddRange(Enum.GetNames(typeof(CrowdDensity)).Skip(1).ToArray());
-                SubsurfaceScattering_Box.Items.AddRange(Enum.GetNames(typeof(SubsurfaceScattering)).Skip(1).ToArray());
-                TeammateEffects_Box.Items.AddRange(Enum.GetNames(typeof(TeammateEffects)).Skip(1).ToArray());
-                AnisotropicFiltering_Box.Items.AddRange(Enum.GetNames(typeof(AnisotropicFiltering)).Skip(1).ToArray());
-                Preset_Box.Items.AddRange(Enum.GetNames(typeof(OverallQuality)));
-                Reset_Button_Click(null, null);
-            }
-            Status_Label.Text = "Loaded config from registry.";
-            Status_Reset_Timer.Enabled = false;
-            Status_Reset_Timer.Enabled = true;
+
+            
         }
 
         private void Unlock_Graphics(bool action)
@@ -458,7 +478,7 @@ namespace GenshinConfigurator
             int top = labelControlTemplate.Top;
             int height = 25;
             int mult = 0;
-            if (cntrl.hardwareGuid == "00000000-0000-0000-0000-000000000000")
+            if (cntrl is KeyboardController)
             {
                 // While keyboard is very flexible and have many actions, it still intersects with gamepad in some ways.
                 List<int> keyboardActionsBlacklist = new List<int> { 5 };
@@ -545,16 +565,112 @@ namespace GenshinConfigurator
                         }
                         mult++;
                     }
-                    
+
                 }
-            } else if (cntrl.hardwareGuid == "d74a350e-fe8b-4e9e-bbcd-efff16d34115")
+            }
+            else if (cntrl is MouseController) 
+            {
+                foreach (GamepadKeybind bind in cntrl.keybinds)
+                {
+                    string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
+                    if (name != "?" || devModeToggle.Checked)
+                    {
+                        Label newlabel = new Label();
+                        newlabel.Left = labelControlTemplate.Left;
+                        newlabel.Top = labelControlTemplate.Top + height * mult;
+                        newlabel.Text = (Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?");
+                        if (devModeToggle.Checked) newlabel.Text += " (" + bind.actionId.ToString() + ")";
+                        newlabel.AutoSize = true;
+                        newlabel.Tag = bind;
+                        splitContainerControls.Panel2.Controls.Add(newlabel);
+
+                        ComboBox newbutton = new ComboBox();
+                        newbutton.Left = gamepadButtonTemplate.Left;
+                        newbutton.Top = gamepadButtonTemplate.Top + height * mult;
+                        newbutton.Items.AddRange(Keycodes.mouse_keys.ToArray());
+                        newbutton.SelectedIndex = bind.elementIdentifierId - 3;
+                        newbutton.Tag = bind;
+                        newbutton.SelectedValueChanged += Edit_Mouse_Key;
+                        newbutton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                        newbutton.DropDownStyle = ComboBoxStyle.DropDownList;
+                        splitContainerControls.Panel2.Controls.Add(newbutton);
+
+                        if (devModeToggle.Checked)
+                        {
+                            Button delkeybind = new Button();
+                            delkeybind.Text = "X";
+                            delkeybind.Left = buttonKeybindRemoveTemplate.Left;
+                            delkeybind.Top = buttonKeybindRemoveTemplate.Top + height * mult;
+                            delkeybind.Width = buttonKeybindRemoveTemplate.Width;
+                            delkeybind.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                            delkeybind.Tag = bind;
+                            delkeybind.Click += Remove_Keybind;
+                            splitContainerControls.Panel2.Controls.Add(delkeybind);
+                        }
+
+                        mult++;
+                    }
+                }
+                foreach (GamepadAxis bind in ((MouseController)cntrl).axes)
+                {
+                    string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
+                    if (name != "?" || devModeToggle.Checked)
+                    {
+                        Label newlabel = new Label();
+                        newlabel.Left = labelControlTemplate.Left;
+                        newlabel.Top = labelControlTemplate.Top + height * mult;
+                        newlabel.Text = (Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?");
+                        if (devModeToggle.Checked) newlabel.Text += " (" + bind.actionId.ToString() + ")";
+                        newlabel.AutoSize = true;
+                        splitContainerControls.Panel2.Controls.Add(newlabel);
+
+                        ComboBox newbutton = new ComboBox();
+                        newbutton.Left = gamepadAxisTemplate.Left;
+                        newbutton.Top = gamepadAxisTemplate.Top + height * mult;
+                        newbutton.Items.AddRange(Keycodes.mouse_axes.ToArray());
+                        newbutton.SelectedIndex = bind.elementIdentifierId;
+                        newbutton.Tag = bind;
+                        newbutton.SelectedValueChanged += Edit_Gamepad_Axis;
+                        newbutton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                        newbutton.DropDownStyle = ComboBoxStyle.DropDownList;
+                        splitContainerControls.Panel2.Controls.Add(newbutton);
+
+                        CheckBox newinvert = new CheckBox();
+                        newinvert.Checked = bind.invert;
+                        newinvert.Top = gamepadAxisInvertTemplate.Top + height * mult - 3;
+                        newinvert.Left = gamepadAxisInvertTemplate.Left;
+                        newinvert.Tag = bind;
+                        newinvert.Text = "Invert";
+                        newinvert.CheckedChanged += Invert_Gamepad_Axis;
+                        newinvert.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                        newinvert.BackColor = Color.Transparent;
+                        splitContainerControls.Panel2.Controls.Add(newinvert);
+
+                        if (devModeToggle.Checked)
+                        {
+                            Button delkeybind = new Button();
+                            delkeybind.Text = "X";
+                            delkeybind.Left = buttonKeybindRemoveTemplate.Left;
+                            delkeybind.Top = buttonKeybindRemoveTemplate.Top + height * mult;
+                            delkeybind.Width = buttonKeybindRemoveTemplate.Width;
+                            delkeybind.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                            delkeybind.Tag = bind;
+                            delkeybind.Click += Remove_Keybind;
+                            splitContainerControls.Panel2.Controls.Add(delkeybind);
+                        }
+
+                        mult++;
+                    }
+                }
+            }
+            else if (cntrl is XBoxController)
             {
                 // These buttons have mappings for them, however, they do not appear doing something useful.
                 List<int> gamepadActionsBlacklist = new List<int> { 87, 88, 99 };
                 foreach (GamepadKeybind bind in cntrl.keybinds)
                 {
                     string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
-                    if ((name != "?" && !gamepadActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked )
+                    if ((name != "?" && !gamepadActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
                     {
                         Label newlabel = new Label();
                         newlabel.Left = labelControlTemplate.Left;
@@ -617,7 +733,8 @@ namespace GenshinConfigurator
                             newbutton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
                             newbutton.DropDownStyle = ComboBoxStyle.DropDownList;
                             splitContainerControls.Panel2.Controls.Add(newbutton);
-                        } else
+                        }
+                        else
                         {
                             ComboBox newbutton = new ComboBox();
                             newbutton.Left = gamepadAxisTemplate.Left;
@@ -841,6 +958,14 @@ namespace GenshinConfigurator
                 }
             }
         }
+
+        private void Edit_Mouse_Key(object sender, EventArgs e)
+        {
+            ComboBox input = (ComboBox)sender;
+            ((GamepadKeybind)input.Tag).elementIdentifierId = input.SelectedIndex + 3;
+        }
+
+
 
         private void exitButton_Click(object sender, EventArgs e)
         {
