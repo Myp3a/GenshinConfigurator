@@ -81,6 +81,40 @@ namespace GenshinConfigurator
             Read();
         }
 
+        public GraphicsSettings(string data)
+        {
+            RegistryKey HKCU = Registry.CurrentUser;
+            Gensh = HKCU.OpenSubKey("SOFTWARE\\miHoYo\\Genshin Impact", true);
+            string[] names = Gensh.GetValueNames();
+            foreach (string name in names)
+            {
+                if (name.Contains("GENERAL_DATA"))
+                {
+                    value_name = name;
+                    break;
+                }
+            }
+            settings_json = JsonConvert.DeserializeObject<MainJSON>(data);
+        }
+
+        public static string Raw()
+        {
+            RegistryKey HKCU = Registry.CurrentUser;
+            RegistryKey Gensh = HKCU.OpenSubKey("SOFTWARE\\miHoYo\\Genshin Impact", true);
+            string[] names = Gensh.GetValueNames();
+            string value_name = "";
+            foreach (string name in names)
+            {
+                if (name.Contains("GENERAL_DATA"))
+                {
+                    value_name = name;
+                    break;
+                }
+            }
+            string raw_settings = Encoding.UTF8.GetString((byte[])Gensh.GetValue(value_name));
+            return raw_settings;
+        }
+
         public void Change(int setting_num, int value_num)
         {
             foreach (GraphicsSetting setting in settings_json.graphicsData.customVolatileGrades)

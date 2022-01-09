@@ -35,20 +35,41 @@ namespace GenshinConfigurator
                 checkboxMainConfig.Checked = true;
                 if (Graphics.settings_json.__graphicsLoaded) checkboxGraphics.Checked = true;
                 if (Graphics.settings_json.__controlsLoaded) checkboxControls.Checked = true;
+                if (Graphics.settings_json.__graphicsLoaded && Graphics.settings_json.__controlsLoaded) StatusLabel.Text = "Everything is fine. You can close the recovery window.";
+                else StatusLabel.Text = "Fix config file and press \"Save\"";
             } catch
             {
-                textBoxRecovery.Text = "Failed to read config.";
-                buttonRecoverySave.Enabled = false;
+                textBoxRecovery.Text = GraphicsSettings.Raw();
+                StatusLabel.Text = "Main config file is corrupted. Fix it and press \"Save\"";
+                //buttonRecoverySave.Enabled = false;
             }
-            if (Graphics.settings_json.__graphicsLoaded && Graphics.settings_json.__controlsLoaded) StatusLabel.Text = "Everything is fine. You can close the recovery window.";
-            else StatusLabel.Text = "Fix config file and press \"Save\""; 
-            
         }
 
         private void buttonRecoverySave_Click(object sender, EventArgs e)
         {
-            Graphics.Write(textBoxRecovery.Text);
-            Recovery_Load(null, null);
+            bool fine = false;
+            if (!checkboxMainConfig.Checked)
+            {
+                try
+                {
+                    Graphics = new GraphicsSettings(textBoxRecovery.Text);
+                    fine = true;
+                }
+                catch
+                {
+                    fine = false;
+                }
+            }
+            if (fine)
+            {
+                Graphics.Write(textBoxRecovery.Text);
+                Recovery_Load(null, null);
+            } 
+            else
+            {
+                StatusLabel.Text = "Config file still broken. Not saving.";
+            }
+            
         }
     }
 }
