@@ -47,7 +47,16 @@ namespace GenshinConfigurator
                     foreach (string controller_id in Graphics.settings_json._overrideControllerMapKeyList)
                     {
                         string[] parts = controller_id.Split(new[] { "__" }, StringSplitOptions.None);
-                        devicesList.Items.Add(parts[1] + "__" + parts[2]);
+                        string name = "";
+                        if (parts[1] == "d74a350e-fe8b-4e9e-bbcd-efff16d34115")
+                        {
+                            name = "XInput Gamepad (" + parts[2] + ")";
+                        } 
+                        else if (parts[1] == "00000000-0000-0000-0000-000000000000")
+                        {
+                            name = "Keyboard (" + parts[2] + ")";
+                        }
+                        devicesList.Items.Add(name);
                     }
                     devicesList.SelectedIndex = 0;
                     //Task.Run(() => Populate_Controls());
