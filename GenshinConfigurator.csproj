@@ -144,6 +144,14 @@
   <ItemGroup>
     <Content Include="mainscreen.png" />
     <Content Include="pmngear.ico" />
+    <Content Include="wiki_img\Custom_Graphics.png" />
+    <Content Include="wiki_img\Dev_Mode.png" />
+    <Content Include="wiki_img\Gamepad_Edit.png" />
+    <Content Include="wiki_img\Keyboard_Edit.png" />
+    <Content Include="wiki_img\Log.png" />
+    <Content Include="wiki_img\New_Keybind.png" />
+    <Content Include="wiki_img\Preset_Graphics.png" />
+    <Content Include="wiki_img\Raw_Config.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets" Condition="Exists('packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets')" />
