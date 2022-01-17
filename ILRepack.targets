@@ -10,7 +10,7 @@
         Parallel="true"
         Internalize="true"
         InputAssemblies="@(InputAssemblies)"
-        TargetKind="WinExe"
+        TargetKind="Exe"
         OutputFile="$(OutputPath)\$(AssemblyName).exe"
     />
     </Target>
