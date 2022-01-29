@@ -52,9 +52,13 @@ namespace GenshinConfigurator
                         {
                             name = "XInput Gamepad (" + parts[2] + ")";
                         } 
-                        else if (parts[1] == "00000000-0000-0000-0000-000000000000")
+                        else if ((parts[1] == "00000000-0000-0000-0000-000000000000") && (parts[2] == "0"))
                         {
                             name = "Keyboard (" + parts[2] + ")";
+                        }
+                        else if ((parts[1] == "00000000-0000-0000-0000-000000000000") && (parts[2] == "1000000"))
+                        {
+                            name = "Mouse (" + parts[2] + ")";
                         }
                         devicesList.Items.Add(name);
                     }
@@ -416,6 +420,17 @@ namespace GenshinConfigurator
                     ((XBoxController)cntrl).axes.Remove((GamepadAxis)((Button)sender).Tag);
                 }
             }
+            else if (cntrl is MouseController)
+            {
+                if (((Button)sender).Tag is GamepadKeybind)
+                {
+                    ((MouseController)cntrl).keybinds.Remove((GamepadKeybind)((Button)sender).Tag);
+                }
+                else if (((Button)sender).Tag is GamepadAxis)
+                {
+                    ((MouseController)cntrl).axes.Remove((GamepadAxis)((Button)sender).Tag);
+                }
+            }
             Populate_Controls();
         }
 
@@ -465,6 +480,33 @@ namespace GenshinConfigurator
                     newbind.elementIdentifierId = 22;
                     newbind.actionId = actionId;
                     ((XBoxController)cntrl).keybinds.Add(newbind);
+                }
+            }
+            else if (cntrl is MouseController)
+            {
+                int actionId;
+                try
+                {
+                    actionId = Convert.ToInt32(bind_selector.Text);
+                }
+                catch
+                {
+                    actionId = Keycodes.actions.Where(c => c.Value == bind_selector.Text).First().Key;
+                }
+                List<int> axis_actions = new List<int> { 0, 1 }; // Forward and side movement. Axis keybinds are different, so let's leave it like that for now
+                if (axis_actions.Contains(actionId))
+                {
+                    GamepadAxis newbind = new GamepadAxis();
+                    newbind.elementIdentifierId = 0;
+                    newbind.actionId = actionId;
+                    ((MouseController)cntrl).axes.Add(newbind);
+                }
+                else
+                {
+                    GamepadKeybind newbind = new GamepadKeybind();
+                    newbind.elementIdentifierId = 3;
+                    newbind.actionId = actionId;
+                    ((MouseController)cntrl).keybinds.Add(newbind);
                 }
             }
             Populate_Controls();
@@ -925,6 +967,23 @@ namespace GenshinConfigurator
                         if (((KeyboardController)ctrl).keybinds.Contains((KeyboardKeybind)bind))
                         {
                             curctrl = ctrl as KeyboardController;
+                        }
+                    }
+                }
+                else if (ctrl is MouseController)
+                {
+                    if (bind is GamepadKeybind)
+                    {
+                        if (((MouseController)ctrl).keybinds.Contains((GamepadKeybind)bind))
+                        {
+                            curctrl = ctrl as MouseController;
+                        }
+                    }
+                    else if (bind is GamepadAxis)
+                    {
+                        if (((MouseController)ctrl).axes.Contains((GamepadAxis)bind))
+                        {
+                            curctrl = ctrl as MouseController;
                         }
                     }
                 }
