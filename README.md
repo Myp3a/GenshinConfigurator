@@ -67,7 +67,7 @@ Currently, there is no code style in this project. Anything is fine while it's e
  - More controllers support (Only XInput gamepad supported now)
  - Action IDs mappings to their names
  - Graphics settings adaptive UI
- - Sensitivity, Volume, Language settings
+ - Sensitivity, Language settings
  - Optimizations
 ---
 

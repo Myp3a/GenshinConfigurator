@@ -89,6 +89,9 @@
             this.applyControlsButton = new System.Windows.Forms.Button();
             this.inputDeviceLabel = new System.Windows.Forms.Label();
             this.devicesList = new System.Windows.Forms.ComboBox();
+            this.comboBoxKeybindListTemplate = new System.Windows.Forms.ComboBox();
+            this.buttonKeybindRemoveTemplate = new System.Windows.Forms.Button();
+            this.buttonKeybindingAddTemplate = new System.Windows.Forms.Button();
             this.gamepadAxisInvertTemplate = new System.Windows.Forms.CheckBox();
             this.gamepadAxisTemplate = new System.Windows.Forms.ComboBox();
             this.inputButtonTemplate = new System.Windows.Forms.TextBox();
@@ -98,6 +101,19 @@
             this.checkBoxShiftTemplate = new System.Windows.Forms.CheckBox();
             this.checkBoxCtrlTemplate = new System.Windows.Forms.CheckBox();
             this.gamepadButtonTemplate = new System.Windows.Forms.ComboBox();
+            this.tabVolume = new System.Windows.Forms.TabPage();
+            this.VoiceVolumeValueLabel = new System.Windows.Forms.Label();
+            this.trackBarVoiceVolume = new System.Windows.Forms.TrackBar();
+            this.VoiceVolumeLabel = new System.Windows.Forms.Label();
+            this.SFXVolumeValueLabel = new System.Windows.Forms.Label();
+            this.trackBarSFXVolume = new System.Windows.Forms.TrackBar();
+            this.SFXVolumeLabel = new System.Windows.Forms.Label();
+            this.MusicVolumeValueLabel = new System.Windows.Forms.Label();
+            this.trackBarMusicVolume = new System.Windows.Forms.TrackBar();
+            this.MusicVolumeLabel = new System.Windows.Forms.Label();
+            this.MainVolumeValueLabel = new System.Windows.Forms.Label();
+            this.trackBarMainVolume = new System.Windows.Forms.TrackBar();
+            this.MainVolumeLabel = new System.Windows.Forms.Label();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.Reload_Log_Button = new System.Windows.Forms.Button();
             this.textBoxLog = new System.Windows.Forms.TextBox();
@@ -105,9 +121,7 @@
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
             this.Load_Button_Raw = new System.Windows.Forms.Button();
             this.Save_Button_Raw = new System.Windows.Forms.Button();
-            this.buttonKeybindingAddTemplate = new System.Windows.Forms.Button();
-            this.buttonKeybindRemoveTemplate = new System.Windows.Forms.Button();
-            this.comboBoxKeybindListTemplate = new System.Windows.Forms.ComboBox();
+            this.ApplyVolumeButton = new System.Windows.Forms.Button();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
@@ -117,6 +131,11 @@
             this.splitContainerControls.Panel1.SuspendLayout();
             this.splitContainerControls.Panel2.SuspendLayout();
             this.splitContainerControls.SuspendLayout();
+            this.tabVolume.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarVoiceVolume)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSFXVolume)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMusicVolume)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMainVolume)).BeginInit();
             this.tabLog.SuspendLayout();
             this.tabRawConfig.SuspendLayout();
             this.SuspendLayout();
@@ -217,6 +236,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsTabs.Controls.Add(this.tabGraphics);
             this.settingsTabs.Controls.Add(this.tabControls);
+            this.settingsTabs.Controls.Add(this.tabVolume);
             this.settingsTabs.Controls.Add(this.tabLog);
             this.settingsTabs.Controls.Add(this.tabRawConfig);
             this.settingsTabs.Location = new System.Drawing.Point(0, 25);
@@ -725,6 +745,41 @@
             this.devicesList.TabIndex = 6;
             this.devicesList.SelectedIndexChanged += new System.EventHandler(this.Reload_Controls);
             // 
+            // comboBoxKeybindListTemplate
+            // 
+            this.comboBoxKeybindListTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxKeybindListTemplate.Enabled = false;
+            this.comboBoxKeybindListTemplate.FormattingEnabled = true;
+            this.comboBoxKeybindListTemplate.Location = new System.Drawing.Point(4, 5);
+            this.comboBoxKeybindListTemplate.Name = "comboBoxKeybindListTemplate";
+            this.comboBoxKeybindListTemplate.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxKeybindListTemplate.TabIndex = 12;
+            this.comboBoxKeybindListTemplate.Visible = false;
+            // 
+            // buttonKeybindRemoveTemplate
+            // 
+            this.buttonKeybindRemoveTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonKeybindRemoveTemplate.Enabled = false;
+            this.buttonKeybindRemoveTemplate.Location = new System.Drawing.Point(235, 4);
+            this.buttonKeybindRemoveTemplate.Name = "buttonKeybindRemoveTemplate";
+            this.buttonKeybindRemoveTemplate.Size = new System.Drawing.Size(23, 23);
+            this.buttonKeybindRemoveTemplate.TabIndex = 11;
+            this.buttonKeybindRemoveTemplate.Text = "X";
+            this.buttonKeybindRemoveTemplate.UseVisualStyleBackColor = true;
+            this.buttonKeybindRemoveTemplate.Visible = false;
+            // 
+            // buttonKeybindingAddTemplate
+            // 
+            this.buttonKeybindingAddTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonKeybindingAddTemplate.Enabled = false;
+            this.buttonKeybindingAddTemplate.Location = new System.Drawing.Point(451, 4);
+            this.buttonKeybindingAddTemplate.Name = "buttonKeybindingAddTemplate";
+            this.buttonKeybindingAddTemplate.Size = new System.Drawing.Size(75, 23);
+            this.buttonKeybindingAddTemplate.TabIndex = 10;
+            this.buttonKeybindingAddTemplate.Text = "Add";
+            this.buttonKeybindingAddTemplate.UseVisualStyleBackColor = true;
+            this.buttonKeybindingAddTemplate.Visible = false;
+            // 
             // gamepadAxisInvertTemplate
             // 
             this.gamepadAxisInvertTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -855,6 +910,145 @@
             this.gamepadButtonTemplate.TabIndex = 7;
             this.gamepadButtonTemplate.Visible = false;
             // 
+            // tabVolume
+            // 
+            this.tabVolume.BackColor = System.Drawing.SystemColors.Control;
+            this.tabVolume.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabVolume.Controls.Add(this.ApplyVolumeButton);
+            this.tabVolume.Controls.Add(this.VoiceVolumeValueLabel);
+            this.tabVolume.Controls.Add(this.trackBarVoiceVolume);
+            this.tabVolume.Controls.Add(this.VoiceVolumeLabel);
+            this.tabVolume.Controls.Add(this.SFXVolumeValueLabel);
+            this.tabVolume.Controls.Add(this.trackBarSFXVolume);
+            this.tabVolume.Controls.Add(this.SFXVolumeLabel);
+            this.tabVolume.Controls.Add(this.MusicVolumeValueLabel);
+            this.tabVolume.Controls.Add(this.trackBarMusicVolume);
+            this.tabVolume.Controls.Add(this.MusicVolumeLabel);
+            this.tabVolume.Controls.Add(this.MainVolumeValueLabel);
+            this.tabVolume.Controls.Add(this.trackBarMainVolume);
+            this.tabVolume.Controls.Add(this.MainVolumeLabel);
+            this.tabVolume.Location = new System.Drawing.Point(4, 22);
+            this.tabVolume.Name = "tabVolume";
+            this.tabVolume.Size = new System.Drawing.Size(539, 300);
+            this.tabVolume.TabIndex = 4;
+            this.tabVolume.Text = "Volume";
+            // 
+            // VoiceVolumeValueLabel
+            // 
+            this.VoiceVolumeValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.VoiceVolumeValueLabel.AutoSize = true;
+            this.VoiceVolumeValueLabel.Location = new System.Drawing.Point(514, 173);
+            this.VoiceVolumeValueLabel.Name = "VoiceVolumeValueLabel";
+            this.VoiceVolumeValueLabel.Size = new System.Drawing.Size(16, 13);
+            this.VoiceVolumeValueLabel.TabIndex = 11;
+            this.VoiceVolumeValueLabel.Text = "-1";
+            // 
+            // trackBarVoiceVolume
+            // 
+            this.trackBarVoiceVolume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBarVoiceVolume.Location = new System.Drawing.Point(10, 189);
+            this.trackBarVoiceVolume.Name = "trackBarVoiceVolume";
+            this.trackBarVoiceVolume.Size = new System.Drawing.Size(520, 45);
+            this.trackBarVoiceVolume.TabIndex = 10;
+            this.trackBarVoiceVolume.ValueChanged += new System.EventHandler(this.trackBarVoiceVolume_ValueChanged);
+            // 
+            // VoiceVolumeLabel
+            // 
+            this.VoiceVolumeLabel.AutoSize = true;
+            this.VoiceVolumeLabel.Location = new System.Drawing.Point(7, 173);
+            this.VoiceVolumeLabel.Name = "VoiceVolumeLabel";
+            this.VoiceVolumeLabel.Size = new System.Drawing.Size(72, 13);
+            this.VoiceVolumeLabel.TabIndex = 9;
+            this.VoiceVolumeLabel.Text = "Voice Volume";
+            // 
+            // SFXVolumeValueLabel
+            // 
+            this.SFXVolumeValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SFXVolumeValueLabel.AutoSize = true;
+            this.SFXVolumeValueLabel.Location = new System.Drawing.Point(514, 122);
+            this.SFXVolumeValueLabel.Name = "SFXVolumeValueLabel";
+            this.SFXVolumeValueLabel.Size = new System.Drawing.Size(16, 13);
+            this.SFXVolumeValueLabel.TabIndex = 8;
+            this.SFXVolumeValueLabel.Text = "-1";
+            // 
+            // trackBarSFXVolume
+            // 
+            this.trackBarSFXVolume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBarSFXVolume.Location = new System.Drawing.Point(10, 138);
+            this.trackBarSFXVolume.Name = "trackBarSFXVolume";
+            this.trackBarSFXVolume.Size = new System.Drawing.Size(520, 45);
+            this.trackBarSFXVolume.TabIndex = 7;
+            this.trackBarSFXVolume.ValueChanged += new System.EventHandler(this.trackBarSFXVolume_ValueChanged);
+            // 
+            // SFXVolumeLabel
+            // 
+            this.SFXVolumeLabel.AutoSize = true;
+            this.SFXVolumeLabel.Location = new System.Drawing.Point(7, 122);
+            this.SFXVolumeLabel.Name = "SFXVolumeLabel";
+            this.SFXVolumeLabel.Size = new System.Drawing.Size(65, 13);
+            this.SFXVolumeLabel.TabIndex = 6;
+            this.SFXVolumeLabel.Text = "SFX Volume";
+            // 
+            // MusicVolumeValueLabel
+            // 
+            this.MusicVolumeValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MusicVolumeValueLabel.AutoSize = true;
+            this.MusicVolumeValueLabel.Location = new System.Drawing.Point(514, 71);
+            this.MusicVolumeValueLabel.Name = "MusicVolumeValueLabel";
+            this.MusicVolumeValueLabel.Size = new System.Drawing.Size(16, 13);
+            this.MusicVolumeValueLabel.TabIndex = 5;
+            this.MusicVolumeValueLabel.Text = "-1";
+            // 
+            // trackBarMusicVolume
+            // 
+            this.trackBarMusicVolume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBarMusicVolume.Location = new System.Drawing.Point(10, 87);
+            this.trackBarMusicVolume.Name = "trackBarMusicVolume";
+            this.trackBarMusicVolume.Size = new System.Drawing.Size(520, 45);
+            this.trackBarMusicVolume.TabIndex = 4;
+            this.trackBarMusicVolume.ValueChanged += new System.EventHandler(this.trackBarMusicVolume_ValueChanged);
+            // 
+            // MusicVolumeLabel
+            // 
+            this.MusicVolumeLabel.AutoSize = true;
+            this.MusicVolumeLabel.Location = new System.Drawing.Point(7, 71);
+            this.MusicVolumeLabel.Name = "MusicVolumeLabel";
+            this.MusicVolumeLabel.Size = new System.Drawing.Size(73, 13);
+            this.MusicVolumeLabel.TabIndex = 3;
+            this.MusicVolumeLabel.Text = "Music Volume";
+            // 
+            // MainVolumeValueLabel
+            // 
+            this.MainVolumeValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MainVolumeValueLabel.AutoSize = true;
+            this.MainVolumeValueLabel.Location = new System.Drawing.Point(514, 11);
+            this.MainVolumeValueLabel.Name = "MainVolumeValueLabel";
+            this.MainVolumeValueLabel.Size = new System.Drawing.Size(16, 13);
+            this.MainVolumeValueLabel.TabIndex = 2;
+            this.MainVolumeValueLabel.Text = "-1";
+            // 
+            // trackBarMainVolume
+            // 
+            this.trackBarMainVolume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBarMainVolume.Location = new System.Drawing.Point(10, 27);
+            this.trackBarMainVolume.Name = "trackBarMainVolume";
+            this.trackBarMainVolume.Size = new System.Drawing.Size(520, 45);
+            this.trackBarMainVolume.TabIndex = 1;
+            this.trackBarMainVolume.ValueChanged += new System.EventHandler(this.trackBarMainVolume_ValueChanged);
+            // 
+            // MainVolumeLabel
+            // 
+            this.MainVolumeLabel.AutoSize = true;
+            this.MainVolumeLabel.Location = new System.Drawing.Point(7, 11);
+            this.MainVolumeLabel.Name = "MainVolumeLabel";
+            this.MainVolumeLabel.Size = new System.Drawing.Size(68, 13);
+            this.MainVolumeLabel.TabIndex = 0;
+            this.MainVolumeLabel.Text = "Main Volume";
+            // 
             // tabLog
             // 
             this.tabLog.Controls.Add(this.Reload_Log_Button);
@@ -939,40 +1133,16 @@
             this.Save_Button_Raw.UseVisualStyleBackColor = true;
             this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
             // 
-            // buttonKeybindingAddTemplate
+            // ApplyVolumeButton
             // 
-            this.buttonKeybindingAddTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonKeybindingAddTemplate.Enabled = false;
-            this.buttonKeybindingAddTemplate.Location = new System.Drawing.Point(451, 4);
-            this.buttonKeybindingAddTemplate.Name = "buttonKeybindingAddTemplate";
-            this.buttonKeybindingAddTemplate.Size = new System.Drawing.Size(75, 23);
-            this.buttonKeybindingAddTemplate.TabIndex = 10;
-            this.buttonKeybindingAddTemplate.Text = "Add";
-            this.buttonKeybindingAddTemplate.UseVisualStyleBackColor = true;
-            this.buttonKeybindingAddTemplate.Visible = false;
-            // 
-            // buttonKeybindRemoveTemplate
-            // 
-            this.buttonKeybindRemoveTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonKeybindRemoveTemplate.Enabled = false;
-            this.buttonKeybindRemoveTemplate.Location = new System.Drawing.Point(235, 4);
-            this.buttonKeybindRemoveTemplate.Name = "buttonKeybindRemoveTemplate";
-            this.buttonKeybindRemoveTemplate.Size = new System.Drawing.Size(23, 23);
-            this.buttonKeybindRemoveTemplate.TabIndex = 11;
-            this.buttonKeybindRemoveTemplate.Text = "X";
-            this.buttonKeybindRemoveTemplate.UseVisualStyleBackColor = true;
-            this.buttonKeybindRemoveTemplate.Visible = false;
-            // 
-            // comboBoxKeybindListTemplate
-            // 
-            this.comboBoxKeybindListTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxKeybindListTemplate.Enabled = false;
-            this.comboBoxKeybindListTemplate.FormattingEnabled = true;
-            this.comboBoxKeybindListTemplate.Location = new System.Drawing.Point(4, 5);
-            this.comboBoxKeybindListTemplate.Name = "comboBoxKeybindListTemplate";
-            this.comboBoxKeybindListTemplate.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxKeybindListTemplate.TabIndex = 12;
-            this.comboBoxKeybindListTemplate.Visible = false;
+            this.ApplyVolumeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ApplyVolumeButton.Location = new System.Drawing.Point(460, 272);
+            this.ApplyVolumeButton.Name = "ApplyVolumeButton";
+            this.ApplyVolumeButton.Size = new System.Drawing.Size(75, 23);
+            this.ApplyVolumeButton.TabIndex = 12;
+            this.ApplyVolumeButton.Text = "Apply";
+            this.ApplyVolumeButton.UseVisualStyleBackColor = true;
+            this.ApplyVolumeButton.Click += new System.EventHandler(this.Apply_Button_Click);
             // 
             // MainWin
             // 
@@ -1002,6 +1172,12 @@
             this.splitContainerControls.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControls)).EndInit();
             this.splitContainerControls.ResumeLayout(false);
+            this.tabVolume.ResumeLayout(false);
+            this.tabVolume.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarVoiceVolume)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSFXVolume)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMusicVolume)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMainVolume)).EndInit();
             this.tabLog.ResumeLayout(false);
             this.tabLog.PerformLayout();
             this.tabRawConfig.ResumeLayout(false);
@@ -1090,6 +1266,20 @@
         private System.Windows.Forms.Button buttonKeybindRemoveTemplate;
         private System.Windows.Forms.Button buttonKeybindingAddTemplate;
         private System.Windows.Forms.ComboBox comboBoxKeybindListTemplate;
+        private System.Windows.Forms.TabPage tabVolume;
+        private System.Windows.Forms.Label MusicVolumeValueLabel;
+        private System.Windows.Forms.TrackBar trackBarMusicVolume;
+        private System.Windows.Forms.Label MusicVolumeLabel;
+        private System.Windows.Forms.Label MainVolumeValueLabel;
+        private System.Windows.Forms.TrackBar trackBarMainVolume;
+        private System.Windows.Forms.Label MainVolumeLabel;
+        private System.Windows.Forms.Label VoiceVolumeValueLabel;
+        private System.Windows.Forms.TrackBar trackBarVoiceVolume;
+        private System.Windows.Forms.Label VoiceVolumeLabel;
+        private System.Windows.Forms.Label SFXVolumeValueLabel;
+        private System.Windows.Forms.TrackBar trackBarSFXVolume;
+        private System.Windows.Forms.Label SFXVolumeLabel;
+        private System.Windows.Forms.Button ApplyVolumeButton;
     }
 }
 

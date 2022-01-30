@@ -170,6 +170,10 @@ namespace GenshinConfigurator
             {
                 Fullscreen_Check.Checked = false;
             }
+            trackBarVoiceVolume.Value = Graphics.settings_json.volumeVoice;
+            trackBarSFXVolume.Value = Graphics.settings_json.volumeSFX;
+            trackBarMusicVolume.Value = Graphics.settings_json.volumeMusic;
+            trackBarMainVolume.Value = Graphics.settings_json.volumeGlobal;
             if (sender != null)
             {
                 Status_Label.Text = "Reloaded config from registry.";
@@ -1038,6 +1042,31 @@ namespace GenshinConfigurator
         private void exitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+
+        private void trackBarMusicVolume_ValueChanged(object sender, EventArgs e)
+        {
+            MusicVolumeValueLabel.Text = trackBarMusicVolume.Value.ToString();
+            Graphics.settings_json.volumeMusic = trackBarMusicVolume.Value;
+        }
+
+        private void trackBarMainVolume_ValueChanged(object sender, EventArgs e)
+        {
+            MainVolumeValueLabel.Text = trackBarMainVolume.Value.ToString();
+            Graphics.settings_json.volumeGlobal = trackBarMainVolume.Value;
+        }
+
+        private void trackBarSFXVolume_ValueChanged(object sender, EventArgs e)
+        {
+            SFXVolumeValueLabel.Text = trackBarSFXVolume.Value.ToString();
+            Graphics.settings_json.volumeSFX = trackBarSFXVolume.Value;
+        }
+
+        private void trackBarVoiceVolume_ValueChanged(object sender, EventArgs e)
+        {
+            VoiceVolumeValueLabel.Text = trackBarVoiceVolume.Value.ToString();
+            Graphics.settings_json.volumeVoice = trackBarVoiceVolume.Value;
         }
     }
 }
