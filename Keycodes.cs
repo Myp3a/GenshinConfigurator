@@ -158,7 +158,7 @@ namespace GenshinConfigurator
             { 133, "Pot Object: Turn Up?" },
             { 134, "Pot Object: Turn Down?" },
             { 135, "Pot Object: Turn Left?" },
-            { 136, "Pot Object: Turn Right" },
+            { 136, "Pot Object: Turn Right?" },
             { 137, "Right Stick Move?" },
             { 138, "LMB?" },
             { 139, "RMB?" },

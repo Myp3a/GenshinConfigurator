@@ -540,7 +540,7 @@ namespace GenshinConfigurator
                 foreach (KeyboardKeybind bind in cntrl.keybinds)
                 {
                     string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
-                    if ((name != "?" && !keyboardActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
+                    if ((!name.Contains("?") && !keyboardActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
                     {
                         Label newlabel = new Label();
                         newlabel.Left = labelControlTemplate.Left;
@@ -628,7 +628,7 @@ namespace GenshinConfigurator
                 foreach (GamepadKeybind bind in cntrl.keybinds)
                 {
                     string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
-                    if (name != "?" || devModeToggle.Checked)
+                    if (!name.Contains("?") || devModeToggle.Checked)
                     {
                         Label newlabel = new Label();
                         newlabel.Left = labelControlTemplate.Left;
@@ -669,7 +669,7 @@ namespace GenshinConfigurator
                 foreach (GamepadAxis bind in ((MouseController)cntrl).axes)
                 {
                     string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
-                    if (name != "?" || devModeToggle.Checked)
+                    if (!name.Contains("?") || devModeToggle.Checked)
                     {
                         Label newlabel = new Label();
                         newlabel.Left = labelControlTemplate.Left;
@@ -721,11 +721,11 @@ namespace GenshinConfigurator
             else if (cntrl is XBoxController)
             {
                 // These buttons have mappings for them, however, they do not appear doing something useful.
-                List<int> gamepadActionsBlacklist = new List<int> { 87, 88, 99 };
+                List<int> gamepadActionsBlacklist = new List<int> { 87, 88 };
                 foreach (GamepadKeybind bind in cntrl.keybinds)
                 {
                     string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
-                    if ((name != "?" && !gamepadActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
+                    if ((!name.Contains("?") && !gamepadActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
                     {
                         Label newlabel = new Label();
                         newlabel.Left = labelControlTemplate.Left;
@@ -766,7 +766,7 @@ namespace GenshinConfigurator
                 foreach (GamepadAxis bind in ((XBoxController)cntrl).axes)
                 {
                     string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
-                    if ((name != "?" && !gamepadActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
+                    if ((!name.Contains("?") && !gamepadActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
                     {
                         Label newlabel = new Label();
                         newlabel.Left = labelControlTemplate.Left;
