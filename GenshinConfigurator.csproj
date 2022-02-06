@@ -144,6 +144,7 @@
   <ItemGroup>
     <Content Include="mainscreen.png" />
     <Content Include="pmngear.ico" />
+    <Content Include="wiki_img\Add_Mouse.png" />
     <Content Include="wiki_img\Custom_Graphics.png" />
     <Content Include="wiki_img\Dev_Mode.png" />
     <Content Include="wiki_img\Gamepad_Edit.png" />

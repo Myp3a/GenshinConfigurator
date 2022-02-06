@@ -1068,5 +1068,82 @@ namespace GenshinConfigurator
             VoiceVolumeValueLabel.Text = trackBarVoiceVolume.Value.ToString();
             Graphics.settings_json.volumeVoice = trackBarVoiceVolume.Value;
         }
+
+        private void devModeToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            bool mouse = false;
+            if (devModeToggle.Checked)
+            {
+                controlsMenu.Visible = true;
+                
+            } 
+            else
+            {
+                controlsMenu.Visible = false;
+            }
+            foreach (Controller cntrl in Graphics.settings_json._overrideControllerMapValueList)
+            {
+                if (cntrl is MouseController)
+                {
+                    mouse = true;
+                }
+            }
+            if (mouse)
+            {
+                addMouseButton.Enabled = false;
+            }
+            else
+            {
+                addMouseButton.Enabled = true;
+            }
+        }
+
+        private void addMouseButton_Click(object sender, EventArgs e)
+        {
+            MouseController cntrl = new MouseController();
+            cntrl.name = "";
+            cntrl.enabled = true;
+            cntrl.hardwareGuid = "00000000-0000-0000-0000-000000000000";
+
+            GamepadKeybind lmb = new GamepadKeybind();
+            lmb.elementIdentifierId = 3;
+            lmb.actionId = 138;
+            GamepadKeybind rmb = new GamepadKeybind();
+            rmb.elementIdentifierId = 4;
+            rmb.actionId = 139;
+            GamepadKeybind attack = new GamepadKeybind();
+            attack.elementIdentifierId = 3;
+            attack.actionId = 16;
+            GamepadKeybind sprint = new GamepadKeybind();
+            sprint.elementIdentifierId = 4;
+            sprint.actionId = 21;
+            GamepadKeybind elvision = new GamepadKeybind();
+            elvision.elementIdentifierId = 5;
+            elvision.actionId = 57;
+
+            GamepadAxis horizontal = new GamepadAxis();
+            horizontal.elementIdentifierId = 0;
+            horizontal.actionId = 30;
+            GamepadAxis vertical = new GamepadAxis();
+            vertical.elementIdentifierId = 1;
+            vertical.actionId = 31;
+            GamepadAxis zoom = new GamepadAxis();
+            zoom.elementIdentifierId = 2;
+            zoom.actionId = 54;
+
+            cntrl.keybinds.Add(lmb);
+            cntrl.keybinds.Add(rmb);
+            cntrl.keybinds.Add(attack);
+            cntrl.keybinds.Add(sprint);
+            cntrl.keybinds.Add(elvision);
+            cntrl.axes.Add(horizontal);
+            cntrl.axes.Add(vertical);
+            cntrl.axes.Add(zoom);
+
+            Graphics.settings_json._overrideControllerMapValueList.Add(cntrl);
+            Graphics.settings_json._overrideControllerMapKeyList.Add("OverrideControllerMap__00000000-0000-0000-0000-000000000000__1000000");
+            Graphics.Save();
+            MessageBox.Show("Mouse added! Please, restart the application.");
+        }
     }
 }
