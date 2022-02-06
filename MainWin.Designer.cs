@@ -124,6 +124,12 @@
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
             this.Load_Button_Raw = new System.Windows.Forms.Button();
             this.Save_Button_Raw = new System.Windows.Forms.Button();
+            this.tabLanguage = new System.Windows.Forms.TabPage();
+            this.labelTextLanguage = new System.Windows.Forms.Label();
+            this.comboBoxTextLanguage = new System.Windows.Forms.ComboBox();
+            this.labelVoiceLanguage = new System.Windows.Forms.Label();
+            this.comboBoxVoiceLanguage = new System.Windows.Forms.ComboBox();
+            this.LanguageApplyButton = new System.Windows.Forms.Button();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
@@ -140,6 +146,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMainVolume)).BeginInit();
             this.tabLog.SuspendLayout();
             this.tabRawConfig.SuspendLayout();
+            this.tabLanguage.SuspendLayout();
             this.SuspendLayout();
             // 
             // TopBar
@@ -261,6 +268,7 @@
             this.settingsTabs.Controls.Add(this.tabGraphics);
             this.settingsTabs.Controls.Add(this.tabControls);
             this.settingsTabs.Controls.Add(this.tabVolume);
+            this.settingsTabs.Controls.Add(this.tabLanguage);
             this.settingsTabs.Controls.Add(this.tabLog);
             this.settingsTabs.Controls.Add(this.tabRawConfig);
             this.settingsTabs.Location = new System.Drawing.Point(0, 25);
@@ -1168,6 +1176,91 @@
             this.Save_Button_Raw.UseVisualStyleBackColor = true;
             this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
             // 
+            // tabLanguage
+            // 
+            this.tabLanguage.BackColor = System.Drawing.SystemColors.Control;
+            this.tabLanguage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabLanguage.Controls.Add(this.LanguageApplyButton);
+            this.tabLanguage.Controls.Add(this.comboBoxVoiceLanguage);
+            this.tabLanguage.Controls.Add(this.labelVoiceLanguage);
+            this.tabLanguage.Controls.Add(this.comboBoxTextLanguage);
+            this.tabLanguage.Controls.Add(this.labelTextLanguage);
+            this.tabLanguage.Location = new System.Drawing.Point(4, 22);
+            this.tabLanguage.Name = "tabLanguage";
+            this.tabLanguage.Size = new System.Drawing.Size(539, 300);
+            this.tabLanguage.TabIndex = 6;
+            this.tabLanguage.Text = "Language";
+            // 
+            // labelTextLanguage
+            // 
+            this.labelTextLanguage.AutoSize = true;
+            this.labelTextLanguage.Location = new System.Drawing.Point(7, 8);
+            this.labelTextLanguage.Name = "labelTextLanguage";
+            this.labelTextLanguage.Size = new System.Drawing.Size(79, 13);
+            this.labelTextLanguage.TabIndex = 0;
+            this.labelTextLanguage.Text = "Text Language";
+            // 
+            // comboBoxTextLanguage
+            // 
+            this.comboBoxTextLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxTextLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTextLanguage.FormattingEnabled = true;
+            this.comboBoxTextLanguage.Items.AddRange(new object[] {
+            "Simplified Chinese",
+            "Traditional Chinese",
+            "English",
+            "Korean",
+            "Japanese",
+            "Spanish",
+            "French",
+            "Russian",
+            "Thai",
+            "Vietnamese",
+            "German",
+            "Indonesian",
+            "Portuguese"});
+            this.comboBoxTextLanguage.Location = new System.Drawing.Point(409, 5);
+            this.comboBoxTextLanguage.Name = "comboBoxTextLanguage";
+            this.comboBoxTextLanguage.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTextLanguage.TabIndex = 1;
+            this.comboBoxTextLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxTextLanguage_SelectedIndexChanged);
+            // 
+            // labelVoiceLanguage
+            // 
+            this.labelVoiceLanguage.AutoSize = true;
+            this.labelVoiceLanguage.Location = new System.Drawing.Point(7, 35);
+            this.labelVoiceLanguage.Name = "labelVoiceLanguage";
+            this.labelVoiceLanguage.Size = new System.Drawing.Size(85, 13);
+            this.labelVoiceLanguage.TabIndex = 2;
+            this.labelVoiceLanguage.Text = "Voice Language";
+            // 
+            // comboBoxVoiceLanguage
+            // 
+            this.comboBoxVoiceLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxVoiceLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxVoiceLanguage.FormattingEnabled = true;
+            this.comboBoxVoiceLanguage.Items.AddRange(new object[] {
+            "Chinese",
+            "English",
+            "Japanese",
+            "Korean"});
+            this.comboBoxVoiceLanguage.Location = new System.Drawing.Point(409, 32);
+            this.comboBoxVoiceLanguage.Name = "comboBoxVoiceLanguage";
+            this.comboBoxVoiceLanguage.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxVoiceLanguage.TabIndex = 3;
+            this.comboBoxVoiceLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxVoiceLanguage_SelectedIndexChanged);
+            // 
+            // LanguageApplyButton
+            // 
+            this.LanguageApplyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.LanguageApplyButton.Location = new System.Drawing.Point(459, 272);
+            this.LanguageApplyButton.Name = "LanguageApplyButton";
+            this.LanguageApplyButton.Size = new System.Drawing.Size(75, 23);
+            this.LanguageApplyButton.TabIndex = 4;
+            this.LanguageApplyButton.Text = "Apply";
+            this.LanguageApplyButton.UseVisualStyleBackColor = true;
+            this.LanguageApplyButton.Click += new System.EventHandler(this.Apply_Button_Click);
+            // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1206,6 +1299,8 @@
             this.tabLog.PerformLayout();
             this.tabRawConfig.ResumeLayout(false);
             this.tabRawConfig.PerformLayout();
+            this.tabLanguage.ResumeLayout(false);
+            this.tabLanguage.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1306,6 +1401,12 @@
         private System.Windows.Forms.Button ApplyVolumeButton;
         private System.Windows.Forms.ToolStripDropDownButton controlsMenu;
         private System.Windows.Forms.ToolStripMenuItem addMouseButton;
+        private System.Windows.Forms.TabPage tabLanguage;
+        private System.Windows.Forms.Button LanguageApplyButton;
+        private System.Windows.Forms.ComboBox comboBoxVoiceLanguage;
+        private System.Windows.Forms.Label labelVoiceLanguage;
+        private System.Windows.Forms.ComboBox comboBoxTextLanguage;
+        private System.Windows.Forms.Label labelTextLanguage;
     }
 }
 

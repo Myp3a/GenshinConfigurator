@@ -174,6 +174,8 @@ namespace GenshinConfigurator
             trackBarSFXVolume.Value = Graphics.settings_json.volumeSFX;
             trackBarMusicVolume.Value = Graphics.settings_json.volumeMusic;
             trackBarMainVolume.Value = Graphics.settings_json.volumeGlobal;
+            comboBoxTextLanguage.SelectedIndex = Graphics.settings_json.deviceLanguageType - 1;
+            comboBoxVoiceLanguage.SelectedIndex = Graphics.settings_json.deviceVoiceLanguageType;
             if (sender != null)
             {
                 Status_Label.Text = "Reloaded config from registry.";
@@ -1144,6 +1146,16 @@ namespace GenshinConfigurator
             Graphics.settings_json._overrideControllerMapKeyList.Add("OverrideControllerMap__00000000-0000-0000-0000-000000000000__1000000");
             Graphics.Save();
             MessageBox.Show("Mouse added! Please, restart the application.");
+        }
+
+        private void comboBoxTextLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Graphics.settings_json.deviceLanguageType = comboBoxTextLanguage.SelectedIndex + 1;
+        }
+
+        private void comboBoxVoiceLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Graphics.settings_json.deviceVoiceLanguageType = comboBoxVoiceLanguage.SelectedIndex;
         }
     }
 }
