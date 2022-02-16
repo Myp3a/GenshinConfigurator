@@ -8,6 +8,32 @@ namespace GenshinConfigurator
 {
     internal class Enums
     {
+        public enum VoiceLanguage
+        {
+            None,
+            Chinese,
+            English,
+            Japanese,
+            Korean
+        }
+
+        public enum TextLanguage
+        {
+            SimplifiedChinese,
+            TraditionalChinese,
+            English,
+            Korean,
+            Japanese,
+            Spanish,
+            French,
+            Russian,
+            Thai,
+            Vietnamese,
+            German,
+            Indonesian,
+            Portugese
+        }
+
         public enum ResolutionData
         {
             Width,

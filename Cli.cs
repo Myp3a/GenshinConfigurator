@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using static GenshinConfigurator.Enums;
 
 namespace GenshinConfigurator
@@ -44,12 +45,10 @@ namespace GenshinConfigurator
     internal class Cli
     {
         SettingsContainer Settings;
-        GraphicsSettings Graphics;
         ResolutionSettings Resolution;
         public Cli()
         {
             Settings = new SettingsContainer();
-            Graphics = Settings.Graphics;
             Resolution = Settings.Resolution;
         }
 
@@ -65,13 +64,9 @@ namespace GenshinConfigurator
                         case "human":
                             string outtext = "";
                             const int offset = 25;
-                            pres = Graphics.currentPreset + 1; // Because graphics quality stored as 0-4, where 4 is -1
-                            if (pres == 5)
-                            {
-                                pres = -1;
-                            }
+                            pres = Settings.Graphics.current_preset;
                             outtext += "Overall Quality:" + new string(' ', offset-15) + Enum.GetName(typeof(Enums.OverallQuality), pres) + '\n';
-                            foreach (JSONSchema.GraphicsSetting setting in Graphics.settings_json.graphicsData.customVolatileGrades)
+                            foreach (JSONSchema.GraphicsSetting setting in Settings.Graphics.settings)
                             {
                                 string name;
                                 string val;
@@ -152,18 +147,14 @@ namespace GenshinConfigurator
                             break;
 
                         case "json":
-                            Console.WriteLine(Graphics.GetJSONGraphics());
+                            Console.WriteLine(JsonConvert.SerializeObject(Settings.Graphics.ToConfig()));
                             break;
 
                         case "raw":
                             outtext = "";
-                            pres = Graphics.currentPreset + 1; // Because graphics quality stored as 0-4, where 4 is -1
-                            if (pres == 5)
-                            {
-                                pres = -1;
-                            }
+                            pres = Settings.Graphics.current_preset;
                             outtext += "0:" + pres.ToString();
-                            foreach (JSONSchema.GraphicsSetting setting in Graphics.settings_json.graphicsData.customVolatileGrades)
+                            foreach (JSONSchema.GraphicsSetting setting in Settings.Graphics.settings)
                             {
                                 outtext += $" {setting.key}:{setting.value}";
                             }
@@ -180,7 +171,7 @@ namespace GenshinConfigurator
                     if (o.Config != null)
                     {
                         Settings.Load(o.Config);
-                        Graphics.Save();
+                        Settings.ToReg();
                         Resolution.Save();
                     }
 
@@ -297,8 +288,9 @@ namespace GenshinConfigurator
                                 }
                                 else
                                 {
-                                    Graphics.Change(key, value);
-                                    Graphics.Save();
+                                    Settings.Graphics.Change((SettingsType)key, value);
+                                    Settings.Apply("graphics");
+                                    Settings.ToReg();
                                 }
                             }
                         }

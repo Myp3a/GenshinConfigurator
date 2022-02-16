@@ -80,7 +80,6 @@
     <Compile Include="Cli.cs" />
     <Compile Include="Controllers.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="GraphicsSettings.cs" />
     <Compile Include="JSONSchema.cs" />
     <Compile Include="Keycodes.cs" />
     <Compile Include="MainWin.cs">
@@ -97,6 +96,7 @@
     <Compile Include="Recovery.Designer.cs">
       <DependentUpon>Recovery.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="MainWin.resx">
       <DependentUpon>MainWin.cs</DependentUpon>
       <SubType>Designer</SubType>

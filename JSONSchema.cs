@@ -124,6 +124,8 @@ namespace GenshinConfigurator
             public int volumeMusic { get; set; }
             public int volumeVoice { get; set; }
             public int audioAPI { get; set; }
+            public int audioDynamicRange { get; set; }
+            public int audioOutput { get; set; }
             public bool _audioSuccessInit { get; set; }
             public bool enableAudioChangeAndroidMinimumBufferCapacity { get; set; }
             public int audioAndroidMiniumBufferCapacity { get; set; }
@@ -158,9 +160,31 @@ namespace GenshinConfigurator
             public bool Fullscreen { get; set; }
         }
 
+        public class AudioConfig
+        {
+            public int Main { get; set; }
+            public int Music { get; set; }
+            public int SFX { get; set; }
+            public int Voice { get; set; }
+        }
+
+        public class LanguageConfig
+        {
+            public int Text { get; set; }
+            public int Voice { get; set; }
+        }
+
+        public class GraphicsConfig
+        {
+            public int preset { get; set; }
+            public Dictionary<int,int> custom { get; set; }
+        }
+
         public class ConfigFile { 
             public ResolutionConfig Resolution { get; set; }
-            public GraphicsData Graphics { get; set; }
+            public GraphicsConfig Graphics { get; set; }
+            public AudioConfig Audio { get; set; }
+            public LanguageConfig Language { get; set; }
         }
     }
 }

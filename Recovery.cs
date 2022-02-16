@@ -13,7 +13,6 @@ namespace GenshinConfigurator
     public partial class Recovery : Form
     {
         SettingsContainer Settings;
-        GraphicsSettings Graphics;
         ResolutionSettings Resolution;
 
         public Recovery()
@@ -29,17 +28,16 @@ namespace GenshinConfigurator
             try
             {
                 Settings = new SettingsContainer();
-                Graphics = Settings.Graphics;
                 Resolution = Settings.Resolution;
-                textBoxRecovery.Text = Graphics.GetJSON(true);
+                textBoxRecovery.Text = Settings.Raw();
                 checkboxMainConfig.Checked = true;
-                if (Graphics.settings_json.__graphicsLoaded) checkboxGraphics.Checked = true;
-                if (Graphics.settings_json.__controlsLoaded) checkboxControls.Checked = true;
-                if (Graphics.settings_json.__graphicsLoaded && Graphics.settings_json.__controlsLoaded) StatusLabel.Text = "Everything is fine. You can close the recovery window.";
+                if (Settings.graphicsLoaded) checkboxGraphics.Checked = true;
+                if (Settings.controlsLoaded) checkboxControls.Checked = true;
+                if (Settings.graphicsLoaded && Settings.controlsLoaded) StatusLabel.Text = "Everything is fine. You can close the recovery window.";
                 else StatusLabel.Text = "Fix config file and press \"Save\"";
             } catch
             {
-                textBoxRecovery.Text = GraphicsSettings.Raw();
+                textBoxRecovery.Text = Settings.Raw();
                 StatusLabel.Text = "Main config file is corrupted. Fix it and press \"Save\"";
                 //buttonRecoverySave.Enabled = false;
             }
@@ -48,21 +46,18 @@ namespace GenshinConfigurator
         private void buttonRecoverySave_Click(object sender, EventArgs e)
         {
             bool fine = false;
-            if (!checkboxMainConfig.Checked)
+            try
             {
-                try
-                {
-                    Graphics = new GraphicsSettings(textBoxRecovery.Text);
-                    fine = true;
-                }
-                catch
-                {
-                    fine = false;
-                }
+                Settings.Parse(textBoxRecovery.Text);
+                fine = true;
+            }
+            catch
+            {
+                fine = false;
             }
             if (fine)
             {
-                Graphics.Write(textBoxRecovery.Text);
+                Settings.ToReg();
                 Recovery_Load(null, null);
             } 
             else
