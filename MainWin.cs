@@ -179,6 +179,8 @@ namespace GenshinConfigurator
             trackBarSFXVolume.Value = Settings.Audio.sfx_volume;
             trackBarMusicVolume.Value = Settings.Audio.music_volume;
             trackBarMainVolume.Value = Settings.Audio.main_volume;
+            comboBoxAudioFormat.SelectedIndex = Settings.Audio.output_format;
+            comboBoxAudioDynamicRange.SelectedIndex = Settings.Audio.dynamic_range;
             comboBoxTextLanguage.SelectedIndex = (int)Settings.Language.text_lang - 1;
             comboBoxVoiceLanguage.SelectedIndex = (int)Settings.Language.voice_lang;
             if (sender != null)
@@ -1199,6 +1201,16 @@ namespace GenshinConfigurator
         private void comboBoxVoiceLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             Settings.Language.voice_lang = (VoiceLanguage)comboBoxVoiceLanguage.SelectedIndex;
+        }
+
+        private void comboBoxAudioDynamicRange_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Settings.Audio.dynamic_range = comboBoxAudioDynamicRange.SelectedIndex;
+        }
+
+        private void comboBoxAudioFormat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Settings.Audio.output_format = comboBoxAudioFormat.SelectedIndex;
         }
     }
 }

@@ -166,6 +166,8 @@ namespace GenshinConfigurator
             public int Music { get; set; }
             public int SFX { get; set; }
             public int Voice { get; set; }
+            public int DynamicRange { get; set; }
+            public int OutputFormat { get; set; }
         }
 
         public class LanguageConfig

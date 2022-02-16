@@ -103,7 +103,7 @@
             this.checkBoxShiftTemplate = new System.Windows.Forms.CheckBox();
             this.checkBoxCtrlTemplate = new System.Windows.Forms.CheckBox();
             this.gamepadButtonTemplate = new System.Windows.Forms.ComboBox();
-            this.tabVolume = new System.Windows.Forms.TabPage();
+            this.tabAudio = new System.Windows.Forms.TabPage();
             this.ApplyVolumeButton = new System.Windows.Forms.Button();
             this.VoiceVolumeValueLabel = new System.Windows.Forms.Label();
             this.trackBarVoiceVolume = new System.Windows.Forms.TrackBar();
@@ -130,6 +130,10 @@
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
             this.Load_Button_Raw = new System.Windows.Forms.Button();
             this.Save_Button_Raw = new System.Windows.Forms.Button();
+            this.labelAudioDynamicRange = new System.Windows.Forms.Label();
+            this.comboBoxAudioDynamicRange = new System.Windows.Forms.ComboBox();
+            this.labelAudioOutputFormat = new System.Windows.Forms.Label();
+            this.comboBoxAudioFormat = new System.Windows.Forms.ComboBox();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
@@ -139,7 +143,7 @@
             this.splitContainerControls.Panel1.SuspendLayout();
             this.splitContainerControls.Panel2.SuspendLayout();
             this.splitContainerControls.SuspendLayout();
-            this.tabVolume.SuspendLayout();
+            this.tabAudio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVoiceVolume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSFXVolume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMusicVolume)).BeginInit();
@@ -239,7 +243,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Status_Label});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 354);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 369);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(547, 22);
             this.statusStrip1.SizingGrip = false;
@@ -267,7 +271,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsTabs.Controls.Add(this.tabGraphics);
             this.settingsTabs.Controls.Add(this.tabControls);
-            this.settingsTabs.Controls.Add(this.tabVolume);
+            this.settingsTabs.Controls.Add(this.tabAudio);
             this.settingsTabs.Controls.Add(this.tabLanguage);
             this.settingsTabs.Controls.Add(this.tabLog);
             this.settingsTabs.Controls.Add(this.tabRawConfig);
@@ -275,7 +279,7 @@
             this.settingsTabs.Margin = new System.Windows.Forms.Padding(0);
             this.settingsTabs.Name = "settingsTabs";
             this.settingsTabs.SelectedIndex = 0;
-            this.settingsTabs.Size = new System.Drawing.Size(547, 326);
+            this.settingsTabs.Size = new System.Drawing.Size(547, 341);
             this.settingsTabs.TabIndex = 41;
             this.settingsTabs.SelectedIndexChanged += new System.EventHandler(this.settingsTabs_SelectedIndexChanged);
             // 
@@ -327,7 +331,7 @@
             this.tabGraphics.Location = new System.Drawing.Point(4, 22);
             this.tabGraphics.Name = "tabGraphics";
             this.tabGraphics.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGraphics.Size = new System.Drawing.Size(539, 300);
+            this.tabGraphics.Size = new System.Drawing.Size(539, 315);
             this.tabGraphics.TabIndex = 0;
             this.tabGraphics.Text = "Graphics";
             // 
@@ -707,7 +711,7 @@
             this.tabControls.Location = new System.Drawing.Point(4, 22);
             this.tabControls.Name = "tabControls";
             this.tabControls.Padding = new System.Windows.Forms.Padding(3);
-            this.tabControls.Size = new System.Drawing.Size(539, 300);
+            this.tabControls.Size = new System.Drawing.Size(539, 315);
             this.tabControls.TabIndex = 3;
             this.tabControls.Text = "Controls";
             // 
@@ -742,7 +746,7 @@
             this.splitContainerControls.Panel2.Controls.Add(this.checkBoxCtrlTemplate);
             this.splitContainerControls.Panel2.Controls.Add(this.gamepadButtonTemplate);
             this.splitContainerControls.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.Paint_BG);
-            this.splitContainerControls.Size = new System.Drawing.Size(533, 294);
+            this.splitContainerControls.Size = new System.Drawing.Size(533, 309);
             this.splitContainerControls.SplitterDistance = 36;
             this.splitContainerControls.TabIndex = 8;
             // 
@@ -942,33 +946,37 @@
             this.gamepadButtonTemplate.TabIndex = 7;
             this.gamepadButtonTemplate.Visible = false;
             // 
-            // tabVolume
+            // tabAudio
             // 
-            this.tabVolume.BackColor = System.Drawing.SystemColors.Control;
-            this.tabVolume.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabVolume.Controls.Add(this.ApplyVolumeButton);
-            this.tabVolume.Controls.Add(this.VoiceVolumeValueLabel);
-            this.tabVolume.Controls.Add(this.trackBarVoiceVolume);
-            this.tabVolume.Controls.Add(this.VoiceVolumeLabel);
-            this.tabVolume.Controls.Add(this.SFXVolumeValueLabel);
-            this.tabVolume.Controls.Add(this.trackBarSFXVolume);
-            this.tabVolume.Controls.Add(this.SFXVolumeLabel);
-            this.tabVolume.Controls.Add(this.MusicVolumeValueLabel);
-            this.tabVolume.Controls.Add(this.trackBarMusicVolume);
-            this.tabVolume.Controls.Add(this.MusicVolumeLabel);
-            this.tabVolume.Controls.Add(this.MainVolumeValueLabel);
-            this.tabVolume.Controls.Add(this.trackBarMainVolume);
-            this.tabVolume.Controls.Add(this.MainVolumeLabel);
-            this.tabVolume.Location = new System.Drawing.Point(4, 22);
-            this.tabVolume.Name = "tabVolume";
-            this.tabVolume.Size = new System.Drawing.Size(539, 300);
-            this.tabVolume.TabIndex = 4;
-            this.tabVolume.Text = "Volume";
+            this.tabAudio.BackColor = System.Drawing.SystemColors.Control;
+            this.tabAudio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabAudio.Controls.Add(this.comboBoxAudioFormat);
+            this.tabAudio.Controls.Add(this.labelAudioOutputFormat);
+            this.tabAudio.Controls.Add(this.comboBoxAudioDynamicRange);
+            this.tabAudio.Controls.Add(this.labelAudioDynamicRange);
+            this.tabAudio.Controls.Add(this.ApplyVolumeButton);
+            this.tabAudio.Controls.Add(this.VoiceVolumeValueLabel);
+            this.tabAudio.Controls.Add(this.trackBarVoiceVolume);
+            this.tabAudio.Controls.Add(this.VoiceVolumeLabel);
+            this.tabAudio.Controls.Add(this.SFXVolumeValueLabel);
+            this.tabAudio.Controls.Add(this.trackBarSFXVolume);
+            this.tabAudio.Controls.Add(this.SFXVolumeLabel);
+            this.tabAudio.Controls.Add(this.MusicVolumeValueLabel);
+            this.tabAudio.Controls.Add(this.trackBarMusicVolume);
+            this.tabAudio.Controls.Add(this.MusicVolumeLabel);
+            this.tabAudio.Controls.Add(this.MainVolumeValueLabel);
+            this.tabAudio.Controls.Add(this.trackBarMainVolume);
+            this.tabAudio.Controls.Add(this.MainVolumeLabel);
+            this.tabAudio.Location = new System.Drawing.Point(4, 22);
+            this.tabAudio.Name = "tabAudio";
+            this.tabAudio.Size = new System.Drawing.Size(539, 315);
+            this.tabAudio.TabIndex = 4;
+            this.tabAudio.Text = "Audio";
             // 
             // ApplyVolumeButton
             // 
             this.ApplyVolumeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ApplyVolumeButton.Location = new System.Drawing.Point(460, 272);
+            this.ApplyVolumeButton.Location = new System.Drawing.Point(455, 287);
             this.ApplyVolumeButton.Name = "ApplyVolumeButton";
             this.ApplyVolumeButton.Size = new System.Drawing.Size(75, 23);
             this.ApplyVolumeButton.TabIndex = 12;
@@ -1103,14 +1111,14 @@
             this.tabLanguage.Controls.Add(this.labelTextLanguage);
             this.tabLanguage.Location = new System.Drawing.Point(4, 22);
             this.tabLanguage.Name = "tabLanguage";
-            this.tabLanguage.Size = new System.Drawing.Size(539, 300);
+            this.tabLanguage.Size = new System.Drawing.Size(539, 315);
             this.tabLanguage.TabIndex = 6;
             this.tabLanguage.Text = "Language";
             // 
             // LanguageApplyButton
             // 
             this.LanguageApplyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LanguageApplyButton.Location = new System.Drawing.Point(459, 272);
+            this.LanguageApplyButton.Location = new System.Drawing.Point(459, 287);
             this.LanguageApplyButton.Name = "LanguageApplyButton";
             this.LanguageApplyButton.Size = new System.Drawing.Size(75, 23);
             this.LanguageApplyButton.TabIndex = 4;
@@ -1261,12 +1269,58 @@
             this.Save_Button_Raw.UseVisualStyleBackColor = true;
             this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
             // 
+            // labelAudioDynamicRange
+            // 
+            this.labelAudioDynamicRange.AutoSize = true;
+            this.labelAudioDynamicRange.Location = new System.Drawing.Point(7, 237);
+            this.labelAudioDynamicRange.Name = "labelAudioDynamicRange";
+            this.labelAudioDynamicRange.Size = new System.Drawing.Size(83, 13);
+            this.labelAudioDynamicRange.TabIndex = 13;
+            this.labelAudioDynamicRange.Text = "Dynamic Range";
+            // 
+            // comboBoxAudioDynamicRange
+            // 
+            this.comboBoxAudioDynamicRange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxAudioDynamicRange.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAudioDynamicRange.FormattingEnabled = true;
+            this.comboBoxAudioDynamicRange.Items.AddRange(new object[] {
+            "Full",
+            "Limited"});
+            this.comboBoxAudioDynamicRange.Location = new System.Drawing.Point(409, 234);
+            this.comboBoxAudioDynamicRange.Name = "comboBoxAudioDynamicRange";
+            this.comboBoxAudioDynamicRange.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxAudioDynamicRange.TabIndex = 14;
+            this.comboBoxAudioDynamicRange.SelectedIndexChanged += new System.EventHandler(this.comboBoxAudioDynamicRange_SelectedIndexChanged);
+            // 
+            // labelAudioOutputFormat
+            // 
+            this.labelAudioOutputFormat.AutoSize = true;
+            this.labelAudioOutputFormat.Location = new System.Drawing.Point(7, 264);
+            this.labelAudioOutputFormat.Name = "labelAudioOutputFormat";
+            this.labelAudioOutputFormat.Size = new System.Drawing.Size(74, 13);
+            this.labelAudioOutputFormat.TabIndex = 15;
+            this.labelAudioOutputFormat.Text = "Output Format";
+            // 
+            // comboBoxAudioFormat
+            // 
+            this.comboBoxAudioFormat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxAudioFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAudioFormat.FormattingEnabled = true;
+            this.comboBoxAudioFormat.Items.AddRange(new object[] {
+            "Stereo",
+            "Surround"});
+            this.comboBoxAudioFormat.Location = new System.Drawing.Point(409, 261);
+            this.comboBoxAudioFormat.Name = "comboBoxAudioFormat";
+            this.comboBoxAudioFormat.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxAudioFormat.TabIndex = 16;
+            this.comboBoxAudioFormat.SelectedIndexChanged += new System.EventHandler(this.comboBoxAudioFormat_SelectedIndexChanged);
+            // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(547, 376);
+            this.ClientSize = new System.Drawing.Size(547, 391);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.TopBar);
             this.Controls.Add(this.settingsTabs);
@@ -1289,8 +1343,8 @@
             this.splitContainerControls.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControls)).EndInit();
             this.splitContainerControls.ResumeLayout(false);
-            this.tabVolume.ResumeLayout(false);
-            this.tabVolume.PerformLayout();
+            this.tabAudio.ResumeLayout(false);
+            this.tabAudio.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVoiceVolume)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSFXVolume)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMusicVolume)).EndInit();
@@ -1385,7 +1439,7 @@
         private System.Windows.Forms.Button buttonKeybindRemoveTemplate;
         private System.Windows.Forms.Button buttonKeybindingAddTemplate;
         private System.Windows.Forms.ComboBox comboBoxKeybindListTemplate;
-        private System.Windows.Forms.TabPage tabVolume;
+        private System.Windows.Forms.TabPage tabAudio;
         private System.Windows.Forms.Label MusicVolumeValueLabel;
         private System.Windows.Forms.TrackBar trackBarMusicVolume;
         private System.Windows.Forms.Label MusicVolumeLabel;
@@ -1407,6 +1461,10 @@
         private System.Windows.Forms.Label labelVoiceLanguage;
         private System.Windows.Forms.ComboBox comboBoxTextLanguage;
         private System.Windows.Forms.Label labelTextLanguage;
+        private System.Windows.Forms.ComboBox comboBoxAudioFormat;
+        private System.Windows.Forms.Label labelAudioOutputFormat;
+        private System.Windows.Forms.ComboBox comboBoxAudioDynamicRange;
+        private System.Windows.Forms.Label labelAudioDynamicRange;
     }
 }
 

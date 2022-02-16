@@ -172,7 +172,6 @@ namespace GenshinConfigurator
                     {
                         Settings.Load(o.Config);
                         Settings.ToReg();
-                        Resolution.Save();
                     }
 
                     if (o.Resolution != null)

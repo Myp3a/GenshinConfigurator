@@ -59,6 +59,7 @@ namespace GenshinConfigurator
             this.data = Controls.Apply(data);
             this.data = Graphics.Apply(data);
             this.data = Language.Apply(data);
+            Resolution.Apply();
         }
 
         public void Apply(string type)
@@ -121,6 +122,7 @@ namespace GenshinConfigurator
                 Resolution.Change((int)ResolutionData.Width, config.Resolution.Width);
                 Resolution.Change((int)ResolutionData.Height, config.Resolution.Height);
                 Resolution.Change((int)ResolutionData.Fullscreen, Convert.ToInt32(config.Resolution.Fullscreen));
+                Apply("resolution");
             }
         }
 
@@ -136,6 +138,8 @@ namespace GenshinConfigurator
         public int music_volume;
         public int sfx_volume;
         public int voice_volume;
+        public int dynamic_range;
+        public int output_format;
 
         public AudioSettings(MainJSON data)
         {
@@ -153,6 +157,8 @@ namespace GenshinConfigurator
             this.music_volume = data.volumeMusic;
             this.sfx_volume = data.volumeSFX;
             this.voice_volume = data.volumeVoice;
+            this.dynamic_range = data.audioDynamicRange;
+            this.output_format = data.audioOutput;
         }
 
         public MainJSON Apply(MainJSON data)
@@ -161,6 +167,8 @@ namespace GenshinConfigurator
             data.volumeMusic = this.music_volume;
             data.volumeVoice = this.voice_volume;
             data.volumeSFX = this.sfx_volume;
+            data.audioOutput = this.output_format;
+            data.audioDynamicRange = this.dynamic_range;
             return data;
         }
 
@@ -171,6 +179,8 @@ namespace GenshinConfigurator
             config.Music = this.music_volume;
             config.SFX = this.sfx_volume;
             config.Voice = this.voice_volume;
+            config.DynamicRange = this.dynamic_range;
+            config.OutputFormat = this.output_format;
             return config;
         }
 
@@ -180,6 +190,8 @@ namespace GenshinConfigurator
             this.music_volume = config.Music;
             this.sfx_volume = config.SFX;
             this.voice_volume = config.Voice;
+            this.dynamic_range = config.DynamicRange;
+            this.output_format = config.OutputFormat;
         }
     }
 
