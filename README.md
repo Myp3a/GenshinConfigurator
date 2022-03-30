@@ -16,6 +16,9 @@ A configuration tool for Genshin Impact. It allows user to modify game settings 
  - Save/Load of graphics settings
  - Controls remapping
  - Add/Remove controls to base list
+ - Mouse remapping
+ - Audio settings
+ - Language settings
  - Log file viewer
  - Raw config editor
 
