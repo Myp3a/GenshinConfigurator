@@ -223,6 +223,7 @@ namespace GenshinConfigurator
     {
         public int current_preset;
         public List<GraphicsSetting> settings;
+        public double gamma;
 
         public GraphicsSettings(MainJSON data)
         {
@@ -238,12 +239,14 @@ namespace GenshinConfigurator
         {
             current_preset = data.graphicsData.currentVolatielGrade;
             settings = (List<GraphicsSetting>)data.graphicsData.customVolatileGrades;
+            gamma = data.gammaValue;
         }
 
         public MainJSON Apply(MainJSON data)
         {
             data.graphicsData.currentVolatielGrade = current_preset;
             data.graphicsData.customVolatileGrades = settings;
+            data.gammaValue = gamma;
             return data;
         }
 
@@ -275,6 +278,7 @@ namespace GenshinConfigurator
             GraphicsConfig config = new GraphicsConfig();
             config.preset = current_preset;
             config.custom = new Dictionary<int, int>();
+            config.gamma = gamma;
             foreach (GraphicsSetting setting in settings)
             {
                 config.custom[setting.key] = setting.value;
@@ -286,6 +290,7 @@ namespace GenshinConfigurator
         {
             this.current_preset = config.preset;
             this.settings = new List<GraphicsSetting>();
+            this.gamma = config.gamma;
             foreach (KeyValuePair<int,int> pair in config.custom)
             {
                 GraphicsSetting setting = new GraphicsSetting();

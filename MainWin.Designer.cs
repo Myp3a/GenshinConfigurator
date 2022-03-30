@@ -104,6 +104,10 @@
             this.checkBoxCtrlTemplate = new System.Windows.Forms.CheckBox();
             this.gamepadButtonTemplate = new System.Windows.Forms.ComboBox();
             this.tabAudio = new System.Windows.Forms.TabPage();
+            this.comboBoxAudioFormat = new System.Windows.Forms.ComboBox();
+            this.labelAudioOutputFormat = new System.Windows.Forms.Label();
+            this.comboBoxAudioDynamicRange = new System.Windows.Forms.ComboBox();
+            this.labelAudioDynamicRange = new System.Windows.Forms.Label();
             this.ApplyVolumeButton = new System.Windows.Forms.Button();
             this.VoiceVolumeValueLabel = new System.Windows.Forms.Label();
             this.trackBarVoiceVolume = new System.Windows.Forms.TrackBar();
@@ -130,10 +134,9 @@
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
             this.Load_Button_Raw = new System.Windows.Forms.Button();
             this.Save_Button_Raw = new System.Windows.Forms.Button();
-            this.labelAudioDynamicRange = new System.Windows.Forms.Label();
-            this.comboBoxAudioDynamicRange = new System.Windows.Forms.ComboBox();
-            this.labelAudioOutputFormat = new System.Windows.Forms.Label();
-            this.comboBoxAudioFormat = new System.Windows.Forms.ComboBox();
+            this.Gamma_Label = new System.Windows.Forms.Label();
+            this.GammaTrackBar = new System.Windows.Forms.TrackBar();
+            this.GammaValueLabel = new System.Windows.Forms.Label();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
@@ -151,6 +154,7 @@
             this.tabLanguage.SuspendLayout();
             this.tabLog.SuspendLayout();
             this.tabRawConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GammaTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // TopBar
@@ -287,6 +291,8 @@
             // 
             this.tabGraphics.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tabGraphics.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabGraphics.Controls.Add(this.GammaValueLabel);
+            this.tabGraphics.Controls.Add(this.Gamma_Label);
             this.tabGraphics.Controls.Add(this.ResolutionX);
             this.tabGraphics.Controls.Add(this.Resolution_Label);
             this.tabGraphics.Controls.Add(this.Preset_Label);
@@ -328,6 +334,7 @@
             this.tabGraphics.Controls.Add(this.VSync_Label);
             this.tabGraphics.Controls.Add(this.FPS_Box);
             this.tabGraphics.Controls.Add(this.FPS_Label);
+            this.tabGraphics.Controls.Add(this.GammaTrackBar);
             this.tabGraphics.Location = new System.Drawing.Point(4, 22);
             this.tabGraphics.Name = "tabGraphics";
             this.tabGraphics.Padding = new System.Windows.Forms.Padding(3);
@@ -338,7 +345,7 @@
             // ResolutionX
             // 
             this.ResolutionX.AutoSize = true;
-            this.ResolutionX.Location = new System.Drawing.Point(124, 273);
+            this.ResolutionX.Location = new System.Drawing.Point(124, 287);
             this.ResolutionX.Name = "ResolutionX";
             this.ResolutionX.Size = new System.Drawing.Size(12, 13);
             this.ResolutionX.TabIndex = 79;
@@ -347,7 +354,7 @@
             // Resolution_Label
             // 
             this.Resolution_Label.AutoSize = true;
-            this.Resolution_Label.Location = new System.Drawing.Point(13, 254);
+            this.Resolution_Label.Location = new System.Drawing.Point(13, 268);
             this.Resolution_Label.Name = "Resolution_Label";
             this.Resolution_Label.Size = new System.Drawing.Size(57, 13);
             this.Resolution_Label.TabIndex = 78;
@@ -375,7 +382,7 @@
             // Fullscreen_Check
             // 
             this.Fullscreen_Check.AutoSize = true;
-            this.Fullscreen_Check.Location = new System.Drawing.Point(248, 272);
+            this.Fullscreen_Check.Location = new System.Drawing.Point(248, 286);
             this.Fullscreen_Check.Name = "Fullscreen_Check";
             this.Fullscreen_Check.Size = new System.Drawing.Size(74, 17);
             this.Fullscreen_Check.TabIndex = 75;
@@ -384,21 +391,21 @@
             // 
             // Height_Text
             // 
-            this.Height_Text.Location = new System.Drawing.Point(142, 270);
+            this.Height_Text.Location = new System.Drawing.Point(142, 284);
             this.Height_Text.Name = "Height_Text";
             this.Height_Text.Size = new System.Drawing.Size(100, 20);
             this.Height_Text.TabIndex = 74;
             // 
             // Width_Text
             // 
-            this.Width_Text.Location = new System.Drawing.Point(16, 270);
+            this.Width_Text.Location = new System.Drawing.Point(16, 284);
             this.Width_Text.Name = "Width_Text";
             this.Width_Text.Size = new System.Drawing.Size(100, 20);
             this.Width_Text.TabIndex = 73;
             // 
             // Apply_Button_Graphics
             // 
-            this.Apply_Button_Graphics.Location = new System.Drawing.Point(452, 270);
+            this.Apply_Button_Graphics.Location = new System.Drawing.Point(452, 284);
             this.Apply_Button_Graphics.Name = "Apply_Button_Graphics";
             this.Apply_Button_Graphics.Size = new System.Drawing.Size(75, 23);
             this.Apply_Button_Graphics.TabIndex = 72;
@@ -408,7 +415,7 @@
             // 
             // Reset_Button_Graphics
             // 
-            this.Reset_Button_Graphics.Location = new System.Drawing.Point(371, 270);
+            this.Reset_Button_Graphics.Location = new System.Drawing.Point(371, 284);
             this.Reset_Button_Graphics.Name = "Reset_Button_Graphics";
             this.Reset_Button_Graphics.Size = new System.Drawing.Size(75, 23);
             this.Reset_Button_Graphics.TabIndex = 71;
@@ -973,6 +980,52 @@
             this.tabAudio.TabIndex = 4;
             this.tabAudio.Text = "Audio";
             // 
+            // comboBoxAudioFormat
+            // 
+            this.comboBoxAudioFormat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxAudioFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAudioFormat.FormattingEnabled = true;
+            this.comboBoxAudioFormat.Items.AddRange(new object[] {
+            "Stereo",
+            "Surround"});
+            this.comboBoxAudioFormat.Location = new System.Drawing.Point(409, 261);
+            this.comboBoxAudioFormat.Name = "comboBoxAudioFormat";
+            this.comboBoxAudioFormat.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxAudioFormat.TabIndex = 16;
+            this.comboBoxAudioFormat.SelectedIndexChanged += new System.EventHandler(this.comboBoxAudioFormat_SelectedIndexChanged);
+            // 
+            // labelAudioOutputFormat
+            // 
+            this.labelAudioOutputFormat.AutoSize = true;
+            this.labelAudioOutputFormat.Location = new System.Drawing.Point(7, 264);
+            this.labelAudioOutputFormat.Name = "labelAudioOutputFormat";
+            this.labelAudioOutputFormat.Size = new System.Drawing.Size(74, 13);
+            this.labelAudioOutputFormat.TabIndex = 15;
+            this.labelAudioOutputFormat.Text = "Output Format";
+            // 
+            // comboBoxAudioDynamicRange
+            // 
+            this.comboBoxAudioDynamicRange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxAudioDynamicRange.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAudioDynamicRange.FormattingEnabled = true;
+            this.comboBoxAudioDynamicRange.Items.AddRange(new object[] {
+            "Full",
+            "Limited"});
+            this.comboBoxAudioDynamicRange.Location = new System.Drawing.Point(409, 234);
+            this.comboBoxAudioDynamicRange.Name = "comboBoxAudioDynamicRange";
+            this.comboBoxAudioDynamicRange.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxAudioDynamicRange.TabIndex = 14;
+            this.comboBoxAudioDynamicRange.SelectedIndexChanged += new System.EventHandler(this.comboBoxAudioDynamicRange_SelectedIndexChanged);
+            // 
+            // labelAudioDynamicRange
+            // 
+            this.labelAudioDynamicRange.AutoSize = true;
+            this.labelAudioDynamicRange.Location = new System.Drawing.Point(7, 237);
+            this.labelAudioDynamicRange.Name = "labelAudioDynamicRange";
+            this.labelAudioDynamicRange.Size = new System.Drawing.Size(83, 13);
+            this.labelAudioDynamicRange.TabIndex = 13;
+            this.labelAudioDynamicRange.Text = "Dynamic Range";
+            // 
             // ApplyVolumeButton
             // 
             this.ApplyVolumeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -1192,7 +1245,7 @@
             this.tabLog.Location = new System.Drawing.Point(4, 22);
             this.tabLog.Name = "tabLog";
             this.tabLog.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLog.Size = new System.Drawing.Size(539, 300);
+            this.tabLog.Size = new System.Drawing.Size(539, 315);
             this.tabLog.TabIndex = 2;
             this.tabLog.Text = "Launch Log";
             // 
@@ -1230,7 +1283,7 @@
             this.tabRawConfig.Location = new System.Drawing.Point(4, 22);
             this.tabRawConfig.Name = "tabRawConfig";
             this.tabRawConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRawConfig.Size = new System.Drawing.Size(539, 300);
+            this.tabRawConfig.Size = new System.Drawing.Size(539, 315);
             this.tabRawConfig.TabIndex = 1;
             this.tabRawConfig.Text = "Raw Config";
             // 
@@ -1269,51 +1322,33 @@
             this.Save_Button_Raw.UseVisualStyleBackColor = true;
             this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
             // 
-            // labelAudioDynamicRange
+            // Gamma_Label
             // 
-            this.labelAudioDynamicRange.AutoSize = true;
-            this.labelAudioDynamicRange.Location = new System.Drawing.Point(7, 237);
-            this.labelAudioDynamicRange.Name = "labelAudioDynamicRange";
-            this.labelAudioDynamicRange.Size = new System.Drawing.Size(83, 13);
-            this.labelAudioDynamicRange.TabIndex = 13;
-            this.labelAudioDynamicRange.Text = "Dynamic Range";
+            this.Gamma_Label.AutoSize = true;
+            this.Gamma_Label.Location = new System.Drawing.Point(292, 256);
+            this.Gamma_Label.Name = "Gamma_Label";
+            this.Gamma_Label.Size = new System.Drawing.Size(43, 13);
+            this.Gamma_Label.TabIndex = 80;
+            this.Gamma_Label.Text = "Gamma";
             // 
-            // comboBoxAudioDynamicRange
+            // GammaTrackBar
             // 
-            this.comboBoxAudioDynamicRange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxAudioDynamicRange.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxAudioDynamicRange.FormattingEnabled = true;
-            this.comboBoxAudioDynamicRange.Items.AddRange(new object[] {
-            "Full",
-            "Limited"});
-            this.comboBoxAudioDynamicRange.Location = new System.Drawing.Point(409, 234);
-            this.comboBoxAudioDynamicRange.Name = "comboBoxAudioDynamicRange";
-            this.comboBoxAudioDynamicRange.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxAudioDynamicRange.TabIndex = 14;
-            this.comboBoxAudioDynamicRange.SelectedIndexChanged += new System.EventHandler(this.comboBoxAudioDynamicRange_SelectedIndexChanged);
+            this.GammaTrackBar.Location = new System.Drawing.Point(341, 252);
+            this.GammaTrackBar.Maximum = 160;
+            this.GammaTrackBar.Name = "GammaTrackBar";
+            this.GammaTrackBar.Size = new System.Drawing.Size(148, 45);
+            this.GammaTrackBar.TabIndex = 81;
+            this.GammaTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.GammaTrackBar.ValueChanged += new System.EventHandler(this.GammaTrackBar_ValueChanged);
             // 
-            // labelAudioOutputFormat
+            // GammaValueLabel
             // 
-            this.labelAudioOutputFormat.AutoSize = true;
-            this.labelAudioOutputFormat.Location = new System.Drawing.Point(7, 264);
-            this.labelAudioOutputFormat.Name = "labelAudioOutputFormat";
-            this.labelAudioOutputFormat.Size = new System.Drawing.Size(74, 13);
-            this.labelAudioOutputFormat.TabIndex = 15;
-            this.labelAudioOutputFormat.Text = "Output Format";
-            // 
-            // comboBoxAudioFormat
-            // 
-            this.comboBoxAudioFormat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxAudioFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxAudioFormat.FormattingEnabled = true;
-            this.comboBoxAudioFormat.Items.AddRange(new object[] {
-            "Stereo",
-            "Surround"});
-            this.comboBoxAudioFormat.Location = new System.Drawing.Point(409, 261);
-            this.comboBoxAudioFormat.Name = "comboBoxAudioFormat";
-            this.comboBoxAudioFormat.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxAudioFormat.TabIndex = 16;
-            this.comboBoxAudioFormat.SelectedIndexChanged += new System.EventHandler(this.comboBoxAudioFormat_SelectedIndexChanged);
+            this.GammaValueLabel.AutoSize = true;
+            this.GammaValueLabel.Location = new System.Drawing.Point(495, 256);
+            this.GammaValueLabel.Name = "GammaValueLabel";
+            this.GammaValueLabel.Size = new System.Drawing.Size(28, 13);
+            this.GammaValueLabel.TabIndex = 82;
+            this.GammaValueLabel.Text = "0.00";
             // 
             // MainWin
             // 
@@ -1355,6 +1390,7 @@
             this.tabLog.PerformLayout();
             this.tabRawConfig.ResumeLayout(false);
             this.tabRawConfig.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GammaTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1465,6 +1501,9 @@
         private System.Windows.Forms.Label labelAudioOutputFormat;
         private System.Windows.Forms.ComboBox comboBoxAudioDynamicRange;
         private System.Windows.Forms.Label labelAudioDynamicRange;
+        private System.Windows.Forms.Label GammaValueLabel;
+        private System.Windows.Forms.Label Gamma_Label;
+        private System.Windows.Forms.TrackBar GammaTrackBar;
     }
 }
 

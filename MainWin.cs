@@ -189,6 +189,14 @@ namespace GenshinConfigurator
                 Status_Reset_Timer.Enabled = false;
                 Status_Reset_Timer.Enabled = true;
             }
+            int GammaVal = (int)(Settings.Graphics.gamma * 100);
+            // double precision fix
+            if (GammaVal > 300) GammaVal = 300;
+            if (GammaVal < 140) GammaVal = 140;
+
+            // GammaVal is in range 300-140.
+            // Slider is in range 0-160.
+            GammaTrackBar.Value = 160 - (GammaVal - 140);
         }
 
         private void Lowest_Settings()
@@ -1211,6 +1219,15 @@ namespace GenshinConfigurator
         private void comboBoxAudioFormat_SelectedIndexChanged(object sender, EventArgs e)
         {
             Settings.Audio.output_format = comboBoxAudioFormat.SelectedIndex;
+        }
+
+        private void GammaTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            // Return back from range 0-160 to 300-140
+            double origval = 140 + (160 - GammaTrackBar.Value);
+            double val = (double)origval / 100;
+            GammaValueLabel.Text = val.ToString();
+            Settings.Graphics.gamma = val;
         }
     }
 }

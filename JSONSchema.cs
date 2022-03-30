@@ -183,6 +183,7 @@ namespace GenshinConfigurator
         {
             public int preset { get; set; }
             public Dictionary<int,int> custom { get; set; }
+            public double gamma { get; set; }
         }
 
         public class ConfigFile { 
