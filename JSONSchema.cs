@@ -135,6 +135,7 @@ namespace GenshinConfigurator
             public double maxLuminosity { get; set; }
             public double uiPaperWhite { get; set; }
             public double scenePaperWhite { get; set; }
+            public double gammaValue { get; set; }
             public List<string> _overrideControllerMapKeyList { get; set; }
 
             [JsonProperty(PropertyName = "_overrideControllerMapValueList")]
@@ -151,6 +152,8 @@ namespace GenshinConfigurator
             public int mtrAbortTimeOutCount { get; set; }
             public int mtrAutoTraceInterval { get; set; }
             public int mtrTraceCDEachReason { get; set; }
+            public List<string> _customDataKeyList { get; set; }
+            public List<string> _customDataValueList { get; set; }
         }
 
         public class ResolutionConfig
