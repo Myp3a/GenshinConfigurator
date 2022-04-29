@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 using System.Xml.Linq;
 using Newtonsoft.Json;
 
@@ -49,7 +46,7 @@ namespace GenshinConfigurator
                 try
                 {
                     graphicsData = JsonConvert.DeserializeObject<GraphicsData>(_graphicsData);
-                } catch (Exception ex)
+                } catch
                 {
                     __graphicsLoaded = false;
                 }
@@ -84,7 +81,7 @@ namespace GenshinConfigurator
                             }
                         }
                     }
-                } catch (Exception ex)
+                } catch
                 {
                     __controlsLoaded = false;
                 }

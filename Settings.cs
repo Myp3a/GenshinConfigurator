@@ -86,11 +86,13 @@ namespace GenshinConfigurator
 
         public void Save(string path)
         {
-            ConfigFile file = new ConfigFile();
-            file.Resolution = new ResolutionConfig { Fullscreen = Convert.ToBoolean(Resolution.Get((int)ResolutionData.Fullscreen)), Width = Resolution.Get((int)ResolutionData.Width), Height = Resolution.Get((int)ResolutionData.Height) };
-            file.Graphics = Graphics.ToConfig();
-            file.Audio = Audio.ToConfig();
-            file.Language = Language.ToConfig();
+            ConfigFile file = new ConfigFile
+            {
+                Resolution = new ResolutionConfig { Fullscreen = Convert.ToBoolean(Resolution.Get((int)ResolutionData.Fullscreen)), Width = Resolution.Get((int)ResolutionData.Width), Height = Resolution.Get((int)ResolutionData.Height) },
+                Graphics = Graphics.ToConfig(),
+                Audio = Audio.ToConfig(),
+                Language = Language.ToConfig()
+            };
             string result = JsonConvert.SerializeObject(file);
             StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
             sw.Write(result);
@@ -174,13 +176,15 @@ namespace GenshinConfigurator
 
         public AudioConfig ToConfig()
         {
-            AudioConfig config = new AudioConfig();
-            config.Main = this.main_volume;
-            config.Music = this.music_volume;
-            config.SFX = this.sfx_volume;
-            config.Voice = this.voice_volume;
-            config.DynamicRange = this.dynamic_range;
-            config.OutputFormat = this.output_format;
+            AudioConfig config = new AudioConfig
+            {
+                Main = this.main_volume,
+                Music = this.music_volume,
+                SFX = this.sfx_volume,
+                Voice = this.voice_volume,
+                DynamicRange = this.dynamic_range,
+                OutputFormat = this.output_format
+            };
             return config;
         }
 
@@ -275,10 +279,12 @@ namespace GenshinConfigurator
 
         public GraphicsConfig ToConfig()
         {
-            GraphicsConfig config = new GraphicsConfig();
-            config.preset = current_preset;
-            config.custom = new Dictionary<int, int>();
-            config.gamma = gamma;
+            GraphicsConfig config = new GraphicsConfig
+            {
+                preset = current_preset,
+                custom = new Dictionary<int, int>(),
+                gamma = gamma
+            };
             foreach (GraphicsSetting setting in settings)
             {
                 config.custom[setting.key] = setting.value;
@@ -293,9 +299,11 @@ namespace GenshinConfigurator
             this.gamma = config.gamma;
             foreach (KeyValuePair<int,int> pair in config.custom)
             {
-                GraphicsSetting setting = new GraphicsSetting();
-                setting.key = pair.Key;
-                setting.value = pair.Value;
+                GraphicsSetting setting = new GraphicsSetting
+                {
+                    key = pair.Key,
+                    value = pair.Value
+                };
                 this.settings.Add(setting);
             }
         }
@@ -337,9 +345,11 @@ namespace GenshinConfigurator
 
         public LanguageConfig ToConfig()
         {
-            LanguageConfig config = new LanguageConfig();
-            config.Text = (int)text_lang;
-            config.Voice = (int)voice_lang;
+            LanguageConfig config = new LanguageConfig
+            {
+                Text = (int)text_lang,
+                Voice = (int)voice_lang
+            };
             return config;
         }
     }

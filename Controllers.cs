@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace GenshinConfigurator
@@ -288,16 +285,20 @@ namespace GenshinConfigurator
             List<int> axis_actions = new List<int> { 0, 1, 2 }; // Movement and wheel
             if (axis_actions.Contains(actionId))
             {
-                GamepadAxis newbind = new GamepadAxis();
-                newbind.elementIdentifierId = 0;
-                newbind.actionId = actionId;
+                GamepadAxis newbind = new GamepadAxis
+                {
+                    elementIdentifierId = 0,
+                    actionId = actionId
+                };
                 axes.Add(newbind);
             }
             else
             {
-                GamepadKeybind newbind = new GamepadKeybind();
-                newbind.elementIdentifierId = 3;
-                newbind.actionId = actionId;
+                GamepadKeybind newbind = new GamepadKeybind
+                {
+                    elementIdentifierId = 3,
+                    actionId = actionId
+                };
                 keybinds.Add(newbind);
             }
         }
@@ -390,16 +391,20 @@ namespace GenshinConfigurator
             List<int> axis_actions = new List<int> { 0, 1 }; // Forward and side movement. Axis keybinds are different, so let's leave it like that for now
             if (axis_actions.Contains(actionId))
             {
-                GamepadAxis newbind = new GamepadAxis();
-                newbind.elementIdentifierId = 22;
-                newbind.actionId = actionId;
+                GamepadAxis newbind = new GamepadAxis
+                {
+                    elementIdentifierId = 22,
+                    actionId = actionId
+                };
                 axes.Add(newbind);
             }
             else
             {
-                GamepadKeybind newbind = new GamepadKeybind();
-                newbind.elementIdentifierId = 22;
-                newbind.actionId = actionId;
+                GamepadKeybind newbind = new GamepadKeybind
+                {
+                    elementIdentifierId = 22,
+                    actionId = actionId
+                };
                 keybinds.Add(newbind);
             }
         }
@@ -419,20 +424,20 @@ namespace GenshinConfigurator
             }
             else if (key < 6) // LT, RT
             {
-                if (bind is GamepadKeybind) // Converting to LT/RT
+                if (bind is GamepadKeybind keybind) // Converting to LT/RT
                 {
                     DeleteBind(bind);
-                    bind = new GamepadAxis((GamepadKeybind)bind);
+                    bind = new GamepadAxis(keybind);
                     axes.Add(bind);
                 }
                 bind.elementIdentifierId = key;
             } 
             else // Ordinary buttons
             {
-                if (bind is GamepadAxis) // Converting from LT/RT
+                if (bind is GamepadAxis axis) // Converting from LT/RT
                 {
                     DeleteBind(bind);
-                    bind = new GamepadKeybind((GamepadAxis)bind);
+                    bind = new GamepadKeybind(axis);
                     keybinds.Add(bind);
                 }
                 bind.elementIdentifierId = key;
@@ -516,9 +521,11 @@ namespace GenshinConfigurator
 
         public override void AddBind(int actionId)
         {
-            KeyboardKeybind newbind = new KeyboardKeybind();
-            newbind.elementIdentifierId = 0;
-            newbind.actionId = actionId;
+            KeyboardKeybind newbind = new KeyboardKeybind
+            {
+                elementIdentifierId = 0,
+                actionId = actionId
+            };
             keybinds.Add(newbind);
         }
 

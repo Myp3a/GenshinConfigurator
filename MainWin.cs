@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Linq;
 using static GenshinConfigurator.Enums;
 
 namespace GenshinConfigurator
@@ -108,12 +103,14 @@ namespace GenshinConfigurator
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            SaveFileDialog savedialog = new SaveFileDialog();
-            savedialog.Filter = "JSON config|*.json";
-            savedialog.DefaultExt = ".json";
-            savedialog.AddExtension = true;
-            savedialog.RestoreDirectory = true;
-            savedialog.OverwritePrompt = true;
+            SaveFileDialog savedialog = new SaveFileDialog
+            {
+                Filter = "JSON config|*.json",
+                DefaultExt = ".json",
+                AddExtension = true,
+                RestoreDirectory = true,
+                OverwritePrompt = true
+            };
             if (savedialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Save(Path.GetFullPath(savedialog.FileName));
@@ -125,9 +122,11 @@ namespace GenshinConfigurator
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog loaddialog = new OpenFileDialog();
-            loaddialog.Filter = "JSON config|*.json";
-            loaddialog.RestoreDirectory = true;
+            OpenFileDialog loaddialog = new OpenFileDialog
+            {
+                Filter = "JSON config|*.json",
+                RestoreDirectory = true
+            };
             if (loaddialog.ShowDialog() == DialogResult.OK)
             {
                 Settings.Load(Path.GetFullPath(loaddialog.FileName));
@@ -696,7 +695,7 @@ namespace GenshinConfigurator
                         mult++;
                     }
                 }
-                foreach (GamepadAxis bind in ((XBoxController)cntrl).axes)
+                foreach (GamepadAxis bind in cntrl.axes)
                 {
                     string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
                     if ((!name.Contains("?") && !gamepadActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
@@ -873,36 +872,54 @@ namespace GenshinConfigurator
 
         private void addMouseButton_Click(object sender, EventArgs e)
         {
-            MouseController cntrl = new MouseController();
-            cntrl.name = "";
-            cntrl.enabled = true;
-            cntrl.hardwareGuid = "00000000-0000-0000-0000-000000000000";
+            MouseController cntrl = new MouseController
+            {
+                name = "",
+                enabled = true,
+                hardwareGuid = "00000000-0000-0000-0000-000000000000"
+            };
 
-            GamepadKeybind lmb = new GamepadKeybind();
-            lmb.elementIdentifierId = 3;
-            lmb.actionId = 138;
-            GamepadKeybind rmb = new GamepadKeybind();
-            rmb.elementIdentifierId = 4;
-            rmb.actionId = 139;
-            GamepadKeybind attack = new GamepadKeybind();
-            attack.elementIdentifierId = 3;
-            attack.actionId = 16;
-            GamepadKeybind sprint = new GamepadKeybind();
-            sprint.elementIdentifierId = 4;
-            sprint.actionId = 21;
-            GamepadKeybind elvision = new GamepadKeybind();
-            elvision.elementIdentifierId = 5;
-            elvision.actionId = 57;
+            GamepadKeybind lmb = new GamepadKeybind
+            {
+                elementIdentifierId = 3,
+                actionId = 138
+            };
+            GamepadKeybind rmb = new GamepadKeybind
+            {
+                elementIdentifierId = 4,
+                actionId = 139
+            };
+            GamepadKeybind attack = new GamepadKeybind
+            {
+                elementIdentifierId = 3,
+                actionId = 16
+            };
+            GamepadKeybind sprint = new GamepadKeybind
+            {
+                elementIdentifierId = 4,
+                actionId = 21
+            };
+            GamepadKeybind elvision = new GamepadKeybind
+            {
+                elementIdentifierId = 5,
+                actionId = 57
+            };
 
-            GamepadAxis horizontal = new GamepadAxis();
-            horizontal.elementIdentifierId = 0;
-            horizontal.actionId = 30;
-            GamepadAxis vertical = new GamepadAxis();
-            vertical.elementIdentifierId = 1;
-            vertical.actionId = 31;
-            GamepadAxis zoom = new GamepadAxis();
-            zoom.elementIdentifierId = 2;
-            zoom.actionId = 54;
+            GamepadAxis horizontal = new GamepadAxis
+            {
+                elementIdentifierId = 0,
+                actionId = 30
+            };
+            GamepadAxis vertical = new GamepadAxis
+            {
+                elementIdentifierId = 1,
+                actionId = 31
+            };
+            GamepadAxis zoom = new GamepadAxis
+            {
+                elementIdentifierId = 2,
+                actionId = 54
+            };
 
             cntrl.keybinds.Add(lmb);
             cntrl.keybinds.Add(rmb);
