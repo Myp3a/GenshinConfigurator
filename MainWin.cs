@@ -23,6 +23,7 @@ namespace GenshinConfigurator
             InitializeComponent();
         }
 
+        // Global functions
         private void MainWin_Load(object sender, EventArgs e)
         {
             try
@@ -103,41 +104,44 @@ namespace GenshinConfigurator
                     Application.Exit();
                 }
             }
-
-            
         }
 
-        private void Unlock_Graphics(bool action)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
-            FPS_Box.Enabled = action;
-            VSync_Box.Enabled = action;
-            RenderResolution_Box.Enabled = action;
-            ShadowQuality_Box.Enabled = action;
-            VisualEffects_Box.Enabled = action;
-            SFXQuality_Box.Enabled = action;
-            EnvironmentDetail_Box.Enabled = action;
-            Antialiasing_Box.Enabled = action;
-            VolumetricFog_Box.Enabled = action;
-            Reflections_Box.Enabled = action;
-            MotionBlur_Box.Enabled = action;
-            Bloom_Box.Enabled = action;
-            CrowdDensity_Box.Enabled = action;
-            SubsurfaceScattering_Box.Enabled = action;
-            TeammateEffects_Box.Enabled = action;
-            AnisotropicFiltering_Box.Enabled = action;
-        }
-
-        private void Unlock_VolumetricFog(bool enabled)
-        {
-            if (enabled)
+            SaveFileDialog savedialog = new SaveFileDialog();
+            savedialog.Filter = "JSON config|*.json";
+            savedialog.DefaultExt = ".json";
+            savedialog.AddExtension = true;
+            savedialog.RestoreDirectory = true;
+            savedialog.OverwritePrompt = true;
+            if (savedialog.ShowDialog() == DialogResult.OK)
             {
-                VolumetricFog_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.VolumetricFog) - 1;
-                VolumetricFog_Box.Enabled = true;
-            } else
-            {
-                VolumetricFog_Box.SelectedIndex = 0;
-                VolumetricFog_Box.Enabled = false;
+                Settings.Save(Path.GetFullPath(savedialog.FileName));
+                Status_Label.Text = $"Saved config to {savedialog.FileName}.";
+                Status_Reset_Timer.Enabled = false;
+                Status_Reset_Timer.Enabled = true;
             }
+        }
+
+        private void LoadButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog loaddialog = new OpenFileDialog();
+            loaddialog.Filter = "JSON config|*.json";
+            loaddialog.RestoreDirectory = true;
+            if (loaddialog.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Load(Path.GetFullPath(loaddialog.FileName));
+                Status_Label.Text = $"Loaded config from {loaddialog.FileName}. Apply necessary parts.";
+                Status_Reset_Timer.Enabled = false;
+                Status_Reset_Timer.Enabled = true;
+            }
+            Reset_Button_Click(null, null);
+        }
+
+        private void Status_Reset_Timer_Tick(object sender, EventArgs e)
+        {
+            Status_Label.Text = "Ready.";
+            Status_Reset_Timer.Enabled = false;
         }
 
         private void Reset_Button_Click(object sender, EventArgs e)
@@ -171,7 +175,8 @@ namespace GenshinConfigurator
             if (Convert.ToBoolean(Resolution.Get((int)ResolutionData.Fullscreen)))
             {
                 Fullscreen_Check.Checked = true;
-            } else
+            }
+            else
             {
                 Fullscreen_Check.Checked = false;
             }
@@ -199,6 +204,13 @@ namespace GenshinConfigurator
             GammaTrackBar.Value = 160 - (GammaVal - 140);
         }
 
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        // End of global functions
+
+        // Graphics functions
         private void Lowest_Settings()
         {
             FPS_Box.SelectedIndex = 0;
@@ -278,6 +290,90 @@ namespace GenshinConfigurator
             TeammateEffects_Box.SelectedIndex = 0;
             AnisotropicFiltering_Box.SelectedIndex = 0;
         }
+
+        private void Unlock_Graphics(bool action)
+        {
+            FPS_Box.Enabled = action;
+            VSync_Box.Enabled = action;
+            RenderResolution_Box.Enabled = action;
+            ShadowQuality_Box.Enabled = action;
+            VisualEffects_Box.Enabled = action;
+            SFXQuality_Box.Enabled = action;
+            EnvironmentDetail_Box.Enabled = action;
+            Antialiasing_Box.Enabled = action;
+            VolumetricFog_Box.Enabled = action;
+            Reflections_Box.Enabled = action;
+            MotionBlur_Box.Enabled = action;
+            Bloom_Box.Enabled = action;
+            CrowdDensity_Box.Enabled = action;
+            SubsurfaceScattering_Box.Enabled = action;
+            TeammateEffects_Box.Enabled = action;
+            AnisotropicFiltering_Box.Enabled = action;
+        }
+
+        private void ShadowQuality_Box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ShadowQuality_Box.SelectedIndex > 1)
+            {
+                Unlock_VolumetricFog(true);
+            }
+            else
+            {
+                Unlock_VolumetricFog(false);
+            }
+        }
+
+        private void Unlock_VolumetricFog(bool enabled)
+        {
+            if (enabled)
+            {
+                VolumetricFog_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.VolumetricFog) - 1;
+                VolumetricFog_Box.Enabled = true;
+            } else
+            {
+                VolumetricFog_Box.SelectedIndex = 0;
+                VolumetricFog_Box.Enabled = false;
+            }
+        }
+
+        private void Preset_Box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (Preset_Box.SelectedIndex)
+            {
+                case 0:
+                    Lowest_Settings();
+                    break;
+                case 1:
+                    Low_Settings();
+                    break;
+                case 2:
+                    Medium_Settings();
+                    break;
+                case 3:
+                    High_Settings();
+                    break;
+                case 4:
+                    break;
+            }
+            if (Preset_Box.SelectedIndex == 4)
+            {
+                Unlock_Graphics(true);
+            }
+            else
+            {
+                Unlock_Graphics(false);
+            }
+        }
+
+        private void GammaTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            // Return back from range 0-160 to 300-140
+            double origval = 140 + (160 - GammaTrackBar.Value);
+            double val = (double)origval / 100;
+            GammaValueLabel.Text = val.ToString();
+            Settings.Graphics.gamma = val;
+        }
+
         private void Apply_Graphics_Button_Click(object sender, EventArgs e)
         {
             GraphicsSettings graphics = Settings.Graphics;
@@ -321,256 +417,9 @@ namespace GenshinConfigurator
             Status_Reset_Timer.Enabled = false;
             Status_Reset_Timer.Enabled = true;
         }
+        // End of graphics functions
 
-        private void Apply_Audio_Button_Click(object sender, EventArgs e)
-        {
-            Settings.Apply("audio");
-            Settings.ToReg();
-            Status_Label.Text = "Saved config to registry.";
-            Status_Reset_Timer.Enabled = false;
-            Status_Reset_Timer.Enabled = true;
-        }
-
-        private void Apply_Language_Button_Click(object sender, EventArgs e)
-        {
-            Settings.Apply("language");
-            Settings.ToReg();
-            Status_Label.Text = "Saved config to registry.";
-            Status_Reset_Timer.Enabled = false;
-            Status_Reset_Timer.Enabled = true;
-        }
-
-        private void Apply_Controls_Button_Click(object sender, EventArgs e)
-        {
-            Settings.Apply("controls");
-            Settings.ToReg();
-            Status_Label.Text = "Saved config to registry.";
-            Status_Reset_Timer.Enabled = false;
-            Status_Reset_Timer.Enabled = true;
-        }
-
-        private void Preset_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (Preset_Box.SelectedIndex)
-            {
-                case 0:
-                    Lowest_Settings();
-                    break;
-                case 1:
-                    Low_Settings();
-                    break;
-                case 2:
-                    Medium_Settings();
-                    break;
-                case 3:
-                    High_Settings();
-                    break;
-                case 4:
-                    break;
-            }
-            if (Preset_Box.SelectedIndex == 4)
-            {
-                Unlock_Graphics(true);
-            }
-            else
-            {
-                Unlock_Graphics(false);
-            }
-        }
-
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog savedialog = new SaveFileDialog();
-            savedialog.Filter = "JSON config|*.json";
-            savedialog.DefaultExt = ".json";
-            savedialog.AddExtension = true;
-            savedialog.RestoreDirectory = true;
-            savedialog.OverwritePrompt = true;
-            if (savedialog.ShowDialog() == DialogResult.OK)
-            {
-                Settings.Save(Path.GetFullPath(savedialog.FileName));
-                Status_Label.Text = $"Saved config to {savedialog.FileName}.";
-                Status_Reset_Timer.Enabled = false;
-                Status_Reset_Timer.Enabled = true;
-            }
-        }
-
-        private void LoadButton_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog loaddialog = new OpenFileDialog();
-            loaddialog.Filter = "JSON config|*.json";
-            loaddialog.RestoreDirectory = true;
-            if (loaddialog.ShowDialog() == DialogResult.OK)
-            {
-                Settings.Load(Path.GetFullPath(loaddialog.FileName));
-                Status_Label.Text = $"Loaded config from {loaddialog.FileName}. Apply necessary parts.";
-                Status_Reset_Timer.Enabled = false;
-                Status_Reset_Timer.Enabled = true;
-            }
-            Reset_Button_Click(null, null);
-        }
-
-        private void Status_Reset_Timer_Tick(object sender, EventArgs e)
-        {
-            Status_Label.Text = "Ready.";
-            Status_Reset_Timer.Enabled = false;
-        }
-
-        private void ShadowQuality_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ShadowQuality_Box.SelectedIndex > 1)
-            {
-                Unlock_VolumetricFog(true);
-            } else
-            {
-                Unlock_VolumetricFog(false);
-            }
-        }
-
-        private void Load_Button_Raw_Click(object sender, EventArgs e)
-        {
-            textBox_Config_Raw.Text = Settings.Raw();
-            Status_Label.Text = $"Loaded raw config from registry.";
-            Status_Reset_Timer.Enabled = false;
-            Status_Reset_Timer.Enabled = true;
-        }
-
-        private void Save_Button_Raw_Click(object sender, EventArgs e)
-        {
-            Settings.Parse(textBox_Config_Raw.Text);
-            Settings.Apply();
-            Settings.ToReg();
-            Status_Label.Text = $"Saved raw config to registry.";
-            Status_Reset_Timer.Enabled = false;
-            Status_Reset_Timer.Enabled = true;
-        }
-
-        private void Reload_Log_Button_Click(object sender, EventArgs e)
-        {
-            string log_path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName + @"\LocalLow\miHoYo\Genshin Impact\output_log.txt";
-            try
-            {
-                textBoxLog.Text = File.ReadAllText(log_path);
-            } catch (System.IO.IOException)
-            {
-                textBoxLog.Text = "Log file is currently used by Genshin.";
-            }
-            Status_Label.Text = "Loaded log file.";
-            Status_Reset_Timer.Enabled = false;
-            Status_Reset_Timer.Enabled = true;
-        }
-
-        private void Remove_Keybind(object sender, EventArgs e)
-        {
-            Controller cntrl = Controller_By_Bind((Keybind)((Button)sender).Tag);
-            // TODO: easier add/remove of binds
-            if (cntrl is KeyboardController)
-            {
-                ((KeyboardController)cntrl).keybinds.Remove((KeyboardKeybind)((Button)sender).Tag);
-            } 
-            else if (cntrl is XBoxController)
-            {
-                if (((Button)sender).Tag is GamepadKeybind)
-                {
-                    ((XBoxController)cntrl).keybinds.Remove((GamepadKeybind)((Button)sender).Tag);
-                } 
-                else if (((Button)sender).Tag is GamepadAxis) 
-                {
-                    ((XBoxController)cntrl).axes.Remove((GamepadAxis)((Button)sender).Tag);
-                }
-            }
-            else if (cntrl is MouseController)
-            {
-                if (((Button)sender).Tag is GamepadKeybind)
-                {
-                    ((MouseController)cntrl).keybinds.Remove((GamepadKeybind)((Button)sender).Tag);
-                }
-                else if (((Button)sender).Tag is GamepadAxis)
-                {
-                    ((MouseController)cntrl).axes.Remove((GamepadAxis)((Button)sender).Tag);
-                }
-            }
-            Populate_Controls();
-        }
-
-        private void Add_Keybind(object sender, EventArgs e)
-        {
-            // Controller is selected by the first bind
-            Button add_button = (Button)sender;
-            ComboBox bind_selector = add_button.Tag as ComboBox;
-            Keybind first_bind = (Keybind)((Label)bind_selector.Tag).Tag;
-            Controller cntrl = Controller_By_Bind(first_bind);
-            if (cntrl is KeyboardController)
-            {
-                KeyboardKeybind newbind = new KeyboardKeybind();
-                newbind.elementIdentifierId = 0;
-                try
-                {
-                    newbind.actionId = Convert.ToInt32(bind_selector.Text);
-                }
-                catch
-                {
-                    newbind.actionId = Keycodes.actions.Where(c => c.Value == bind_selector.Text).First().Key;
-                }
-                ((KeyboardController)cntrl).keybinds.Add(newbind);
-            }
-            else if (cntrl is XBoxController) 
-            {
-                int actionId;
-                try
-                {
-                    actionId = Convert.ToInt32(bind_selector.Text);
-                }
-                catch
-                {
-                    actionId = Keycodes.actions.Where(c => c.Value == bind_selector.Text).First().Key;
-                }
-                List<int> axis_actions = new List<int> { 0, 1 }; // Forward and side movement. Axis keybinds are different, so let's leave it like that for now
-                if (axis_actions.Contains(actionId))
-                {
-                    GamepadAxis newbind = new GamepadAxis();
-                    newbind.elementIdentifierId = 22;
-                    newbind.actionId = actionId;
-                    ((XBoxController)cntrl).axes.Add(newbind);
-                } 
-                else
-                {
-                    GamepadKeybind newbind = new GamepadKeybind();
-                    newbind.elementIdentifierId = 22;
-                    newbind.actionId = actionId;
-                    ((XBoxController)cntrl).keybinds.Add(newbind);
-                }
-            }
-            else if (cntrl is MouseController)
-            {
-                int actionId;
-                try
-                {
-                    actionId = Convert.ToInt32(bind_selector.Text);
-                }
-                catch
-                {
-                    actionId = Keycodes.actions.Where(c => c.Value == bind_selector.Text).First().Key;
-                }
-                List<int> axis_actions = new List<int> { 0, 1 }; // Forward and side movement. Axis keybinds are different, so let's leave it like that for now
-                if (axis_actions.Contains(actionId))
-                {
-                    GamepadAxis newbind = new GamepadAxis();
-                    newbind.elementIdentifierId = 0;
-                    newbind.actionId = actionId;
-                    ((MouseController)cntrl).axes.Add(newbind);
-                }
-                else
-                {
-                    GamepadKeybind newbind = new GamepadKeybind();
-                    newbind.elementIdentifierId = 3;
-                    newbind.actionId = actionId;
-                    ((MouseController)cntrl).keybinds.Add(newbind);
-                }
-            }
-            Populate_Controls();
-        }
-
+        // Controls functions
         private void Populate_Controls()
         {
             Status_Label.Text = "Loading controls...";
@@ -678,7 +527,7 @@ namespace GenshinConfigurator
 
                 }
             }
-            else if (cntrl is MouseController) 
+            else if (cntrl is MouseController)
             {
                 foreach (GamepadKeybind bind in cntrl.keybinds)
                 {
@@ -895,7 +744,7 @@ namespace GenshinConfigurator
                 {
                     if ((ctrl is Label) && (ctrl.Tag != null)) binded_keybinds.Add(((Keybind)ctrl.Tag).actionId);
                 }
-                foreach (KeyValuePair<int,string> pair in Keycodes.actions)
+                foreach (KeyValuePair<int, string> pair in Keycodes.actions)
                 {
                     if (!binded_keybinds.Contains(pair.Key))
                     {
@@ -934,61 +783,150 @@ namespace GenshinConfigurator
                 if (ctrl is Label) count++;
             }
             e.Graphics.TranslateTransform(splitContainerControls.Panel2.AutoScrollPosition.X, splitContainerControls.Panel2.AutoScrollPosition.Y);
-            for (int i = 2; i < count*25; i += 25)
+            for (int i = 2; i < count * 25; i += 25)
             {
                 e.Graphics.DrawLine(Pens.Black, 0, i, splitContainerControls.Panel2.Width, i);
             }
         }
 
-        private void Edit_Gamepad_Axis(object sender, EventArgs e)
+        private void devModeToggle_CheckedChanged(object sender, EventArgs e)
         {
-            ComboBox input = (ComboBox)sender;
-            ((GamepadAxis)input.Tag).elementIdentifierId = input.SelectedIndex;
-        }
-
-        private void Invert_Gamepad_Axis(object sender, EventArgs e)
-        {
-            CheckBox invert = (CheckBox)sender;
-            ((GamepadAxis)invert.Tag).invert = invert.Checked;
-        }
-
-        private void Toggle_Binding_Edit(object sender, EventArgs e)
-        {
-            TextBox input = (TextBox)sender;
-            if (input.Focused)
+            bool mouse = false;
+            if (devModeToggle.Checked)
             {
-                input.Text = "Press desired key...";
-            } else
+                controlsMenu.Visible = true;
+
+            }
+            else
             {
-                input.Text = Keycodes.keynames[((KeyboardKeybind)input.Tag).elementIdentifierId];
+                controlsMenu.Visible = false;
+            }
+            foreach (Controller cntrl in Settings.Controls.controllers)
+            {
+                if (cntrl is MouseController)
+                {
+                    mouse = true;
+                }
+            }
+            if (mouse)
+            {
+                addMouseButton.Enabled = false;
+            }
+            else
+            {
+                addMouseButton.Enabled = true;
             }
         }
-        private void Edit_Binding(object sender, EventArgs e)
+
+        private void Remove_Keybind(object sender, EventArgs e)
         {
-            TextBox input = (TextBox)sender;
-            if (Keycodes.keyboard.ContainsKey(((KeyEventArgs)e).KeyCode))
+            Controller cntrl = Controller_By_Bind((Keybind)((Button)sender).Tag);
+            // TODO: easier add/remove of binds
+            if (cntrl is KeyboardController)
             {
-                ((KeyboardKeybind)input.Tag).elementIdentifierId = Keycodes.keyboard[((KeyEventArgs)e).KeyCode];
-                input.Text = Keycodes.keynames[Keycodes.keyboard[((KeyEventArgs)e).KeyCode]];
+                ((KeyboardController)cntrl).keybinds.Remove((KeyboardKeybind)((Button)sender).Tag);
             }
-            tabControls.Focus();
+            else if (cntrl is XBoxController)
+            {
+                if (((Button)sender).Tag is GamepadKeybind)
+                {
+                    ((XBoxController)cntrl).keybinds.Remove((GamepadKeybind)((Button)sender).Tag);
+                }
+                else if (((Button)sender).Tag is GamepadAxis)
+                {
+                    ((XBoxController)cntrl).axes.Remove((GamepadAxis)((Button)sender).Tag);
+                }
+            }
+            else if (cntrl is MouseController)
+            {
+                if (((Button)sender).Tag is GamepadKeybind)
+                {
+                    ((MouseController)cntrl).keybinds.Remove((GamepadKeybind)((Button)sender).Tag);
+                }
+                else if (((Button)sender).Tag is GamepadAxis)
+                {
+                    ((MouseController)cntrl).axes.Remove((GamepadAxis)((Button)sender).Tag);
+                }
+            }
+            Populate_Controls();
         }
 
-        private void Prevent_Input(object sender, EventArgs e)
+        private void Add_Keybind(object sender, EventArgs e)
         {
-            ((KeyPressEventArgs)e).Handled = true;
-        }
-        private void settingsTabs_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch ((sender as TabControl).SelectedIndex)
+            // Controller is selected by the first bind
+            Button add_button = (Button)sender;
+            ComboBox bind_selector = add_button.Tag as ComboBox;
+            Keybind first_bind = (Keybind)((Label)bind_selector.Tag).Tag;
+            Controller cntrl = Controller_By_Bind(first_bind);
+            if (cntrl is KeyboardController)
             {
-                case 1:
-                    
-                    break;
-                case 2:
-                    Reload_Log_Button_Click(null, null);
-                    break;
+                KeyboardKeybind newbind = new KeyboardKeybind();
+                newbind.elementIdentifierId = 0;
+                try
+                {
+                    newbind.actionId = Convert.ToInt32(bind_selector.Text);
+                }
+                catch
+                {
+                    newbind.actionId = Keycodes.actions.Where(c => c.Value == bind_selector.Text).First().Key;
+                }
+                ((KeyboardController)cntrl).keybinds.Add(newbind);
             }
+            else if (cntrl is XBoxController)
+            {
+                int actionId;
+                try
+                {
+                    actionId = Convert.ToInt32(bind_selector.Text);
+                }
+                catch
+                {
+                    actionId = Keycodes.actions.Where(c => c.Value == bind_selector.Text).First().Key;
+                }
+                List<int> axis_actions = new List<int> { 0, 1 }; // Forward and side movement. Axis keybinds are different, so let's leave it like that for now
+                if (axis_actions.Contains(actionId))
+                {
+                    GamepadAxis newbind = new GamepadAxis();
+                    newbind.elementIdentifierId = 22;
+                    newbind.actionId = actionId;
+                    ((XBoxController)cntrl).axes.Add(newbind);
+                }
+                else
+                {
+                    GamepadKeybind newbind = new GamepadKeybind();
+                    newbind.elementIdentifierId = 22;
+                    newbind.actionId = actionId;
+                    ((XBoxController)cntrl).keybinds.Add(newbind);
+                }
+            }
+            else if (cntrl is MouseController)
+            {
+                int actionId;
+                try
+                {
+                    actionId = Convert.ToInt32(bind_selector.Text);
+                }
+                catch
+                {
+                    actionId = Keycodes.actions.Where(c => c.Value == bind_selector.Text).First().Key;
+                }
+                List<int> axis_actions = new List<int> { 0, 1 }; // Forward and side movement. Axis keybinds are different, so let's leave it like that for now
+                if (axis_actions.Contains(actionId))
+                {
+                    GamepadAxis newbind = new GamepadAxis();
+                    newbind.elementIdentifierId = 0;
+                    newbind.actionId = actionId;
+                    ((MouseController)cntrl).axes.Add(newbind);
+                }
+                else
+                {
+                    GamepadKeybind newbind = new GamepadKeybind();
+                    newbind.elementIdentifierId = 3;
+                    newbind.actionId = actionId;
+                    ((MouseController)cntrl).keybinds.Add(newbind);
+                }
+            }
+            Populate_Controls();
         }
 
         private void Reload_Controls(object sender, EventArgs e)
@@ -1050,6 +988,47 @@ namespace GenshinConfigurator
 
             return curctrl;
         }
+
+        private void Edit_Gamepad_Axis(object sender, EventArgs e)
+        {
+            ComboBox input = (ComboBox)sender;
+            ((GamepadAxis)input.Tag).elementIdentifierId = input.SelectedIndex;
+        }
+
+        private void Invert_Gamepad_Axis(object sender, EventArgs e)
+        {
+            CheckBox invert = (CheckBox)sender;
+            ((GamepadAxis)invert.Tag).invert = invert.Checked;
+        }
+
+        private void Toggle_Binding_Edit(object sender, EventArgs e)
+        {
+            TextBox input = (TextBox)sender;
+            if (input.Focused)
+            {
+                input.Text = "Press desired key...";
+            }
+            else
+            {
+                input.Text = Keycodes.keynames[((KeyboardKeybind)input.Tag).elementIdentifierId];
+            }
+        }
+        private void Edit_Binding(object sender, EventArgs e)
+        {
+            TextBox input = (TextBox)sender;
+            if (Keycodes.keyboard.ContainsKey(((KeyEventArgs)e).KeyCode))
+            {
+                ((KeyboardKeybind)input.Tag).elementIdentifierId = Keycodes.keyboard[((KeyEventArgs)e).KeyCode];
+                input.Text = Keycodes.keynames[Keycodes.keyboard[((KeyEventArgs)e).KeyCode]];
+            }
+            tabControls.Focus();
+        }
+
+        private void Prevent_Input(object sender, EventArgs e)
+        {
+            ((KeyPressEventArgs)e).Handled = true;
+        }
+
         private void Edit_Gamepad_Key(object sender, EventArgs e)
         {
             ComboBox input = (ComboBox)sender;
@@ -1066,11 +1045,13 @@ namespace GenshinConfigurator
                     axis.elementIdentifierId = input.SelectedIndex + 4;
                     curctrl.axes.Add(axis);
                     input.Tag = axis;
-                } else
+                }
+                else
                 {
                     ((GamepadAxis)input.Tag).elementIdentifierId = input.SelectedIndex + 4;
                 }
-            } else
+            }
+            else
             {
                 if ((input.Tag is GamepadAxis) && curctrl.axes.Contains((GamepadAxis)input.Tag))
                 {
@@ -1079,7 +1060,8 @@ namespace GenshinConfigurator
                     bind.elementIdentifierId = input.SelectedIndex + 4;
                     curctrl.keybinds.Add(bind);
                     input.Tag = bind;
-                } else
+                }
+                else
                 {
                     ((GamepadKeybind)input.Tag).elementIdentifierId = input.SelectedIndex + 4;
                 }
@@ -1090,67 +1072,6 @@ namespace GenshinConfigurator
         {
             ComboBox input = (ComboBox)sender;
             ((GamepadKeybind)input.Tag).elementIdentifierId = input.SelectedIndex + 3;
-        }
-
-
-
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-
-        private void trackBarMusicVolume_ValueChanged(object sender, EventArgs e)
-        {
-            MusicVolumeValueLabel.Text = trackBarMusicVolume.Value.ToString();
-            Settings.Audio.music_volume = trackBarMusicVolume.Value;
-        }
-
-        private void trackBarMainVolume_ValueChanged(object sender, EventArgs e)
-        {
-            MainVolumeValueLabel.Text = trackBarMainVolume.Value.ToString();
-            Settings.Audio.main_volume = trackBarMainVolume.Value;
-        }
-
-        private void trackBarSFXVolume_ValueChanged(object sender, EventArgs e)
-        {
-            SFXVolumeValueLabel.Text = trackBarSFXVolume.Value.ToString();
-            Settings.Audio.sfx_volume = trackBarSFXVolume.Value;
-        }
-
-        private void trackBarVoiceVolume_ValueChanged(object sender, EventArgs e)
-        {
-            VoiceVolumeValueLabel.Text = trackBarVoiceVolume.Value.ToString();
-            Settings.Audio.voice_volume = trackBarVoiceVolume.Value;
-        }
-
-        private void devModeToggle_CheckedChanged(object sender, EventArgs e)
-        {
-            bool mouse = false;
-            if (devModeToggle.Checked)
-            {
-                controlsMenu.Visible = true;
-                
-            } 
-            else
-            {
-                controlsMenu.Visible = false;
-            }
-            foreach (Controller cntrl in Settings.Controls.controllers)
-            {
-                if (cntrl is MouseController)
-                {
-                    mouse = true;
-                }
-            }
-            if (mouse)
-            {
-                addMouseButton.Enabled = false;
-            }
-            else
-            {
-                addMouseButton.Enabled = true;
-            }
         }
 
         private void addMouseButton_Click(object sender, EventArgs e)
@@ -1201,14 +1122,39 @@ namespace GenshinConfigurator
             MessageBox.Show("Mouse added! Please, restart the application.");
         }
 
-        private void comboBoxTextLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        private void Apply_Controls_Button_Click(object sender, EventArgs e)
         {
-            Settings.Language.text_lang = (TextLanguage)comboBoxTextLanguage.SelectedIndex + 1;
+            Settings.Apply("controls");
+            Settings.ToReg();
+            Status_Label.Text = "Saved config to registry.";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
+        }
+        // End of controls functions
+
+        // Audio functions
+        private void trackBarMusicVolume_ValueChanged(object sender, EventArgs e)
+        {
+            MusicVolumeValueLabel.Text = trackBarMusicVolume.Value.ToString();
+            Settings.Audio.music_volume = trackBarMusicVolume.Value;
         }
 
-        private void comboBoxVoiceLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        private void trackBarMainVolume_ValueChanged(object sender, EventArgs e)
         {
-            Settings.Language.voice_lang = (VoiceLanguage)comboBoxVoiceLanguage.SelectedIndex;
+            MainVolumeValueLabel.Text = trackBarMainVolume.Value.ToString();
+            Settings.Audio.main_volume = trackBarMainVolume.Value;
+        }
+
+        private void trackBarSFXVolume_ValueChanged(object sender, EventArgs e)
+        {
+            SFXVolumeValueLabel.Text = trackBarSFXVolume.Value.ToString();
+            Settings.Audio.sfx_volume = trackBarSFXVolume.Value;
+        }
+
+        private void trackBarVoiceVolume_ValueChanged(object sender, EventArgs e)
+        {
+            VoiceVolumeValueLabel.Text = trackBarVoiceVolume.Value.ToString();
+            Settings.Audio.voice_volume = trackBarVoiceVolume.Value;
         }
 
         private void comboBoxAudioDynamicRange_SelectedIndexChanged(object sender, EventArgs e)
@@ -1221,13 +1167,86 @@ namespace GenshinConfigurator
             Settings.Audio.output_format = comboBoxAudioFormat.SelectedIndex;
         }
 
-        private void GammaTrackBar_ValueChanged(object sender, EventArgs e)
+        private void Apply_Audio_Button_Click(object sender, EventArgs e)
         {
-            // Return back from range 0-160 to 300-140
-            double origval = 140 + (160 - GammaTrackBar.Value);
-            double val = (double)origval / 100;
-            GammaValueLabel.Text = val.ToString();
-            Settings.Graphics.gamma = val;
+            Settings.Apply("audio");
+            Settings.ToReg();
+            Status_Label.Text = "Saved config to registry.";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
         }
+        // End of audio functions
+
+        // Language functions
+        private void comboBoxTextLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Settings.Language.text_lang = (TextLanguage)comboBoxTextLanguage.SelectedIndex + 1;
+        }
+
+        private void comboBoxVoiceLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Settings.Language.voice_lang = (VoiceLanguage)comboBoxVoiceLanguage.SelectedIndex;
+        }
+
+        private void Apply_Language_Button_Click(object sender, EventArgs e)
+        {
+            Settings.Apply("language");
+            Settings.ToReg();
+            Status_Label.Text = "Saved config to registry.";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
+        }
+        // End of language functions
+
+        // Log functions
+        private void Reload_Log_Button_Click(object sender, EventArgs e)
+        {
+            string log_path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName + @"\LocalLow\miHoYo\Genshin Impact\output_log.txt";
+            try
+            {
+                textBoxLog.Text = File.ReadAllText(log_path);
+            }
+            catch (System.IO.IOException)
+            {
+                textBoxLog.Text = "Log file is currently used by Genshin.";
+            }
+            Status_Label.Text = "Loaded log file.";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
+        }
+
+        private void settingsTabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch ((sender as TabControl).SelectedIndex)
+            {
+                case 1:
+
+                    break;
+                case 2:
+                    Reload_Log_Button_Click(null, null);
+                    break;
+            }
+        }
+        // End of log functions
+
+        // Raw config functions
+        private void Load_Button_Raw_Click(object sender, EventArgs e)
+        {
+            textBox_Config_Raw.Text = Settings.Raw();
+            Status_Label.Text = $"Loaded raw config from registry.";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
+        }
+
+        private void Save_Button_Raw_Click(object sender, EventArgs e)
+        {
+            Settings.Parse(textBox_Config_Raw.Text);
+            Settings.Apply();
+            Settings.ToReg();
+            Status_Label.Text = $"Saved raw config to registry.";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
+        }
+        // End of raw config functions
     }
 }
