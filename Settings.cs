@@ -197,7 +197,7 @@ namespace GenshinConfigurator
 
     internal class ControlsSettings
     {
-        public List<Controller> controllers;
+        public Controllers controllers;
         public List<string> controller_ids;
 
         public ControlsSettings(MainJSON data)

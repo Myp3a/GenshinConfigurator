@@ -422,21 +422,205 @@ namespace GenshinConfigurator
         // Controls functions
         private void Populate_Controls()
         {
-            Status_Label.Text = "Loading controls...";
-            Status_Reset_Timer.Enabled = false;
-            Status_Reset_Timer.Enabled = true;
-            splitContainerControls.Panel2.VerticalScroll.Value = 0;
-            splitContainerControls.Panel2.Enabled = false;
-            splitContainerControls.Panel2.SuspendLayout();
-            List<Control> auto_controls = splitContainerControls.Panel2.Controls.Cast<Control>().Where(c => c.Visible).ToList();
-            foreach (Control control in auto_controls)
-            {
-                splitContainerControls.Panel2.Controls.Remove(control);
-            }
-            Controller cntrl = Settings.Controls.controllers[devicesList.SelectedIndex];
             int top = labelControlTemplate.Top;
             int height = 25;
             int mult = 0;
+            void Reset_Layout()
+            {
+                Status_Label.Text = "Loading controls...";
+                Status_Reset_Timer.Enabled = false;
+                Status_Reset_Timer.Enabled = true;
+                splitContainerControls.Panel2.VerticalScroll.Value = 0;
+                splitContainerControls.Panel2.Enabled = false;
+                splitContainerControls.Panel2.SuspendLayout();
+                List<Control> auto_controls = splitContainerControls.Panel2.Controls.Cast<Control>().Where(c => c.Visible).ToList();
+                foreach (Control control in auto_controls)
+                {
+                    splitContainerControls.Panel2.Controls.Remove(control);
+                }
+            }
+            void Resume_Layout()
+            {
+                splitContainerControls.Panel2.ResumeLayout();
+                splitContainerControls.Panel2.Enabled = true;
+                Status_Label.Text = "Controls loaded.";
+                Status_Reset_Timer.Enabled = false;
+                Status_Reset_Timer.Enabled = true;
+            }
+            void Add_Label(Keybind bind, int mlt)
+            {
+                string text = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
+                if (devModeToggle.Checked)
+                {
+                    text += " (" + bind.actionId.ToString() + ")";
+                }
+                Label newlabel = new Label
+                {
+                    Left = labelControlTemplate.Left,
+                    Top = labelControlTemplate.Top + height * mlt,
+                    Text = text,
+                    AutoSize = true,
+                    Tag = bind
+                };
+                splitContainerControls.Panel2.Controls.Add(newlabel);
+            }
+            void Add_Keyboard_Binding(Keybind bind, int mlt)
+            {
+                TextBox newinput = new TextBox
+                {
+                    Width = inputButtonTemplate.Width,
+                    Left = inputButtonTemplate.Left,
+                    Top = inputButtonTemplate.Top + height * mlt,
+                    Text = Keycodes.keynames[bind.elementIdentifierId],
+                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Tag = bind,
+                    TextAlign = HorizontalAlignment.Center
+                };
+                newinput.KeyPress += Prevent_Input;
+                newinput.KeyDown += Edit_Keyboard_Key;
+                newinput.GotFocus += Toggle_Binding_Edit;
+                newinput.LostFocus += Toggle_Binding_Edit;
+                splitContainerControls.Panel2.Controls.Add(newinput);
+            }
+            void Add_Keyboard_Modifiers(Keybind _bind, int mlt)
+            {
+                KeyboardKeybind bind = (KeyboardKeybind)_bind;
+                CheckBox newctrl = new CheckBox
+                {
+                    Checked = bind.ctrl,
+                    Left = checkBoxCtrlTemplate.Left,
+                    Top = checkBoxCtrlTemplate.Top + height * mlt - 3, // CheckBox size is different to inputBox size
+                    Text = "Ctrl",
+                    Width = checkBoxCtrlTemplate.Width,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Tag = bind,
+                    BackColor = Color.Transparent
+                };
+                splitContainerControls.Panel2.Controls.Add(newctrl);
+
+                CheckBox newshift = new CheckBox
+                {
+                    Checked = bind.shift,
+                    Left = checkBoxShiftTemplate.Left,
+                    Top = checkBoxShiftTemplate.Top + height * mlt - 3,
+                    Text = "Shift",
+                    Width = checkBoxShiftTemplate.Width,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Tag = bind,
+                    BackColor = Color.Transparent
+                };
+                splitContainerControls.Panel2.Controls.Add(newshift);
+
+                CheckBox newalt = new CheckBox
+                {
+                    Checked = bind.alt,
+                    Left = checkBoxAltTemplate.Left,
+                    Top = checkBoxAltTemplate.Top + height * mlt - 3,
+                    Text = "Alt",
+                    Width = checkBoxAltTemplate.Width,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Tag = bind,
+                    BackColor = Color.Transparent
+                };
+                splitContainerControls.Panel2.Controls.Add(newalt);
+            }
+            void Add_Controller_Binding(Keybind bind, string[] bindings, int mlt)
+            {
+                Controller cnt = Settings.Controls.controllers.Controller_By_Bind(bind);
+                int offset = 0;
+                switch (cnt)
+                {
+                    case MouseController _:
+                        offset = 3;
+                        break;
+                    case XBoxController _:
+                        offset = 4;
+                        break;
+                }
+                ComboBox newbutton = new ComboBox
+                {
+                    Left = gamepadButtonTemplate.Left,
+                    Top = gamepadButtonTemplate.Top + height * mlt,
+                    Tag = bind,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    DropDownStyle = ComboBoxStyle.DropDownList
+                };
+                newbutton.Items.AddRange(bindings);
+                newbutton.SelectedIndex = bind.elementIdentifierId - offset;
+                newbutton.SelectedValueChanged += Edit_Controller_Key;
+                splitContainerControls.Panel2.Controls.Add(newbutton);
+            }
+            void Add_Controller_Axes(Keybind bind, string[] bindings, int mlt)
+            {
+                ComboBox newbutton = new ComboBox
+                {
+                    Left = gamepadAxisTemplate.Left,
+                    Top = gamepadAxisTemplate.Top + height * mult,
+                    Tag = bind,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    DropDownStyle = ComboBoxStyle.DropDownList
+                };
+                newbutton.Items.AddRange(bindings);
+                newbutton.SelectedIndex = bind.elementIdentifierId;
+                newbutton.SelectedValueChanged += Edit_Controller_Axis;
+                splitContainerControls.Panel2.Controls.Add(newbutton);
+            }
+            void Add_Invert_Checkbox(Keybind bind, int mlt)
+            {
+                CheckBox newinvert = new CheckBox
+                {
+                    Checked = bind.invert,
+                    Top = gamepadAxisInvertTemplate.Top + height * mlt - 3,
+                    Left = gamepadAxisInvertTemplate.Left,
+                    Tag = bind,
+                    Text = "Invert",
+                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    BackColor = Color.Transparent
+                };
+                newinvert.CheckedChanged += Invert_Gamepad_Axis;
+                splitContainerControls.Panel2.Controls.Add(newinvert);
+            }
+            void Add_Delete_Button(Keybind bind, int mlt)
+            {
+                Button delkeybind = new Button
+                {
+                    Text = "X",
+                    Left = buttonKeybindRemoveTemplate.Left,
+                    Top = buttonKeybindRemoveTemplate.Top + height * mlt,
+                    Width = buttonKeybindRemoveTemplate.Width,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Tag = bind
+                };
+                delkeybind.Click += Remove_Keybind;
+                splitContainerControls.Panel2.Controls.Add(delkeybind);
+            }
+            void Add_New_Keybind(Keybind bind, string[] binds, int mlt)
+            {
+                ComboBox newkeybindlist = new ComboBox
+                {
+                    Left = comboBoxKeybindListTemplate.Left,
+                    Top = comboBoxKeybindListTemplate.Top + height * mlt,
+                    Tag = bind
+                };
+                newkeybindlist.Items.AddRange(binds);
+                splitContainerControls.Panel2.Controls.Add(newkeybindlist);
+
+                Button newkeybind = new Button
+                {
+                    Text = "Add",
+                    Left = buttonKeybindingAddTemplate.Left,
+                    Top = buttonKeybindingAddTemplate.Top + height * mult,
+                    Width = buttonKeybindingAddTemplate.Width,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Tag = newkeybindlist
+                };
+                newkeybind.Click += Add_Keybind;
+                splitContainerControls.Panel2.Controls.Add(newkeybind);
+            }
+
+
+            Reset_Layout();
+            Controller cntrl = Settings.Controls.controllers.List().ToArray()[devicesList.SelectedIndex];
             if (cntrl is KeyboardController)
             {
                 // While keyboard is very flexible and have many actions, it still intersects with gamepad in some ways.
@@ -446,81 +630,12 @@ namespace GenshinConfigurator
                     string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
                     if ((!name.Contains("?") && !keyboardActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
                     {
-                        Label newlabel = new Label();
-                        newlabel.Left = labelControlTemplate.Left;
-                        newlabel.Top = labelControlTemplate.Top + height * mult;
-                        newlabel.Text = (Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?");
-                        if (devModeToggle.Checked) newlabel.Text += " (" + bind.actionId.ToString() + ")";
-                        newlabel.AutoSize = true;
-                        newlabel.Tag = bind;
-                        splitContainerControls.Panel2.Controls.Add(newlabel);
-
-                        TextBox newinput = new TextBox();
-                        newinput.Width = inputButtonTemplate.Width;
-                        newinput.Left = inputButtonTemplate.Left;
-                        newinput.Top = inputButtonTemplate.Top + height * mult;
-                        newinput.Text = Keycodes.keynames[bind.elementIdentifierId];
-                        newinput.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                        newinput.Tag = bind;
-                        newinput.TextAlign = HorizontalAlignment.Center;
-                        newinput.KeyPress += Prevent_Input;
-                        newinput.KeyDown += Edit_Binding;
-                        newinput.GotFocus += Toggle_Binding_Edit;
-                        newinput.LostFocus += Toggle_Binding_Edit;
-                        splitContainerControls.Panel2.Controls.Add(newinput);
-                        /*Button newbutton = new Button();
-                        newbutton.Left = buttonKeyTemplate.Left;
-                        newbutton.Top = buttonKeyTemplate.Top + height * mult;
-                        newbutton.Width = buttonKeyTemplate.Width;
-                        newbutton.Text = Keycodes.keynames[bind.keyboard_keycode];
-                        newbutton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                        newbutton.Tag = bind;
-                        splitContainerControls.Panel2.Controls.Add(newbutton);*/
-
-                        CheckBox newctrl = new CheckBox();
-                        newctrl.Checked = bind.ctrl;
-                        newctrl.Left = checkBoxCtrlTemplate.Left;
-                        newctrl.Top = checkBoxCtrlTemplate.Top + height * mult - 3; // CheckBox size is different to inputBox size
-                        newctrl.Text = "Ctrl";
-                        newctrl.Width = checkBoxCtrlTemplate.Width;
-                        newctrl.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                        newctrl.Tag = bind;
-                        newctrl.BackColor = Color.Transparent;
-                        splitContainerControls.Panel2.Controls.Add(newctrl);
-
-                        CheckBox newshift = new CheckBox();
-                        newshift.Checked = bind.shift;
-                        newshift.Left = checkBoxShiftTemplate.Left;
-                        newshift.Top = checkBoxShiftTemplate.Top + height * mult - 3;
-                        newshift.Text = "Shift";
-                        newshift.Width = checkBoxShiftTemplate.Width;
-                        newshift.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                        newshift.Tag = bind;
-                        newshift.BackColor = Color.Transparent;
-                        splitContainerControls.Panel2.Controls.Add(newshift);
-
-                        CheckBox newalt = new CheckBox();
-                        newalt.Checked = bind.alt;
-                        newalt.Left = checkBoxAltTemplate.Left;
-                        newalt.Top = checkBoxAltTemplate.Top + height * mult - 3;
-                        newalt.Text = "Alt";
-                        newalt.Width = checkBoxAltTemplate.Width;
-                        newalt.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                        newalt.Tag = bind;
-                        newalt.BackColor = Color.Transparent;
-                        splitContainerControls.Panel2.Controls.Add(newalt);
-
+                        Add_Label(bind, mult);
+                        Add_Keyboard_Binding(bind, mult);
+                        Add_Keyboard_Modifiers(bind, mult);
                         if (devModeToggle.Checked)
                         {
-                            Button delkeybind = new Button();
-                            delkeybind.Text = "X";
-                            delkeybind.Left = buttonKeybindRemoveTemplate.Left;
-                            delkeybind.Top = buttonKeybindRemoveTemplate.Top + height * mult;
-                            delkeybind.Width = buttonKeybindRemoveTemplate.Width;
-                            delkeybind.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                            delkeybind.Tag = bind;
-                            delkeybind.Click += Remove_Keybind;
-                            splitContainerControls.Panel2.Controls.Add(delkeybind);
+                            Add_Delete_Button(bind, mult);
                         }
                         mult++;
                     }
@@ -534,96 +649,37 @@ namespace GenshinConfigurator
                     string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
                     if (!name.Contains("?") || devModeToggle.Checked)
                     {
-                        Label newlabel = new Label();
-                        newlabel.Left = labelControlTemplate.Left;
-                        newlabel.Top = labelControlTemplate.Top + height * mult;
-                        newlabel.Text = (Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?");
-                        if (devModeToggle.Checked) newlabel.Text += " (" + bind.actionId.ToString() + ")";
-                        newlabel.AutoSize = true;
-                        newlabel.Tag = bind;
-                        splitContainerControls.Panel2.Controls.Add(newlabel);
-
-                        ComboBox newbutton = new ComboBox();
-                        newbutton.Left = gamepadButtonTemplate.Left;
-                        newbutton.Top = gamepadButtonTemplate.Top + height * mult;
-                        newbutton.Items.AddRange(Keycodes.mouse_keys.ToArray());
-                        newbutton.SelectedIndex = bind.elementIdentifierId - 3;
-                        newbutton.Tag = bind;
-                        newbutton.SelectedValueChanged += Edit_Mouse_Key;
-                        newbutton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                        newbutton.DropDownStyle = ComboBoxStyle.DropDownList;
-                        splitContainerControls.Panel2.Controls.Add(newbutton);
-
+                        string[] mouse_keys = Keycodes.mouse_keys.ToArray();
+                        Add_Label(bind, mult);
+                        Add_Controller_Binding(bind, mouse_keys, mult);
                         if (devModeToggle.Checked)
                         {
-                            Button delkeybind = new Button();
-                            delkeybind.Text = "X";
-                            delkeybind.Left = buttonKeybindRemoveTemplate.Left;
-                            delkeybind.Top = buttonKeybindRemoveTemplate.Top + height * mult;
-                            delkeybind.Width = buttonKeybindRemoveTemplate.Width;
-                            delkeybind.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                            delkeybind.Tag = bind;
-                            delkeybind.Click += Remove_Keybind;
-                            splitContainerControls.Panel2.Controls.Add(delkeybind);
+                            Add_Delete_Button(bind, mult);
                         }
-
                         mult++;
                     }
                 }
-                foreach (GamepadAxis bind in ((MouseController)cntrl).axes)
+                foreach (GamepadAxis bind in cntrl.axes)
                 {
                     string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
                     if (!name.Contains("?") || devModeToggle.Checked)
                     {
-                        Label newlabel = new Label();
-                        newlabel.Left = labelControlTemplate.Left;
-                        newlabel.Top = labelControlTemplate.Top + height * mult;
-                        newlabel.Text = (Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?");
-                        if (devModeToggle.Checked) newlabel.Text += " (" + bind.actionId.ToString() + ")";
-                        newlabel.AutoSize = true;
-                        splitContainerControls.Panel2.Controls.Add(newlabel);
-
-                        ComboBox newbutton = new ComboBox();
-                        newbutton.Left = gamepadAxisTemplate.Left;
-                        newbutton.Top = gamepadAxisTemplate.Top + height * mult;
-                        newbutton.Items.AddRange(Keycodes.mouse_axes.ToArray());
-                        newbutton.SelectedIndex = bind.elementIdentifierId;
-                        newbutton.Tag = bind;
-                        newbutton.SelectedValueChanged += Edit_Gamepad_Axis;
-                        newbutton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                        newbutton.DropDownStyle = ComboBoxStyle.DropDownList;
-                        splitContainerControls.Panel2.Controls.Add(newbutton);
-
-                        CheckBox newinvert = new CheckBox();
-                        newinvert.Checked = bind.invert;
-                        newinvert.Top = gamepadAxisInvertTemplate.Top + height * mult - 3;
-                        newinvert.Left = gamepadAxisInvertTemplate.Left;
-                        newinvert.Tag = bind;
-                        newinvert.Text = "Invert";
-                        newinvert.CheckedChanged += Invert_Gamepad_Axis;
-                        newinvert.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                        newinvert.BackColor = Color.Transparent;
-                        splitContainerControls.Panel2.Controls.Add(newinvert);
-
+                        string[] mouse_axes = Keycodes.mouse_axes.ToArray();
+                        Add_Label(bind, mult);
+                        Add_Controller_Axes(bind,mouse_axes, mult);
+                        Add_Invert_Checkbox(bind, mult);
                         if (devModeToggle.Checked)
                         {
-                            Button delkeybind = new Button();
-                            delkeybind.Text = "X";
-                            delkeybind.Left = buttonKeybindRemoveTemplate.Left;
-                            delkeybind.Top = buttonKeybindRemoveTemplate.Top + height * mult;
-                            delkeybind.Width = buttonKeybindRemoveTemplate.Width;
-                            delkeybind.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                            delkeybind.Tag = bind;
-                            delkeybind.Click += Remove_Keybind;
-                            splitContainerControls.Panel2.Controls.Add(delkeybind);
+                            Add_Delete_Button(bind, mult);
                         }
-
                         mult++;
                     }
                 }
             }
             else if (cntrl is XBoxController)
             {
+                string[] gamepad_keys = gamepadButtonTemplate.Items.Cast<String>().ToArray();
+                string[] gamepad_axes = gamepadAxisTemplate.Items.Cast<String>().ToArray();
                 // These buttons have mappings for them, however, they do not appear doing something useful.
                 List<int> gamepadActionsBlacklist = new List<int> { 87, 88 };
                 foreach (GamepadKeybind bind in cntrl.keybinds)
@@ -631,39 +687,12 @@ namespace GenshinConfigurator
                     string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
                     if ((!name.Contains("?") && !gamepadActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
                     {
-                        Label newlabel = new Label();
-                        newlabel.Left = labelControlTemplate.Left;
-                        newlabel.Top = labelControlTemplate.Top + height * mult;
-                        newlabel.Text = (Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?");
-                        if (devModeToggle.Checked) newlabel.Text += " (" + bind.actionId.ToString() + ")";
-                        newlabel.AutoSize = true;
-                        newlabel.Tag = bind;
-                        splitContainerControls.Panel2.Controls.Add(newlabel);
-
-                        ComboBox newbutton = new ComboBox();
-                        newbutton.Left = gamepadButtonTemplate.Left;
-                        newbutton.Top = gamepadButtonTemplate.Top + height * mult;
-                        newbutton.Items.AddRange(gamepadButtonTemplate.Items.Cast<Object>().ToArray());
-                        newbutton.SelectedIndex = bind.elementIdentifierId - 4;
-                        newbutton.Tag = bind;
-                        newbutton.SelectedValueChanged += Edit_Gamepad_Key;
-                        newbutton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                        newbutton.DropDownStyle = ComboBoxStyle.DropDownList;
-                        splitContainerControls.Panel2.Controls.Add(newbutton);
-
+                        Add_Label(bind, mult);
+                        Add_Controller_Binding(bind, gamepad_keys, mult);
                         if (devModeToggle.Checked)
                         {
-                            Button delkeybind = new Button();
-                            delkeybind.Text = "X";
-                            delkeybind.Left = buttonKeybindRemoveTemplate.Left;
-                            delkeybind.Top = buttonKeybindRemoveTemplate.Top + height * mult;
-                            delkeybind.Width = buttonKeybindRemoveTemplate.Width;
-                            delkeybind.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                            delkeybind.Tag = bind;
-                            delkeybind.Click += Remove_Keybind;
-                            splitContainerControls.Panel2.Controls.Add(delkeybind);
+                            Add_Delete_Button(bind, mult);
                         }
-
                         mult++;
                     }
                 }
@@ -672,72 +701,26 @@ namespace GenshinConfigurator
                     string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
                     if ((!name.Contains("?") && !gamepadActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
                     {
-                        Label newlabel = new Label();
-                        newlabel.Left = labelControlTemplate.Left;
-                        newlabel.Top = labelControlTemplate.Top + height * mult;
-                        newlabel.Text = (Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?");
-                        if (devModeToggle.Checked) newlabel.Text += " (" + bind.actionId.ToString() + ")";
-                        newlabel.AutoSize = true;
-                        splitContainerControls.Panel2.Controls.Add(newlabel);
-
+                        Add_Label(bind, mult);
                         if (bind.elementIdentifierId > 3) // LT, RT as buttons
                         {
-                            ComboBox newbutton = new ComboBox();
-                            newbutton.Left = gamepadButtonTemplate.Left;
-                            newbutton.Top = gamepadButtonTemplate.Top + height * mult;
-                            newbutton.Items.AddRange(gamepadButtonTemplate.Items.Cast<Object>().ToArray());
-                            newbutton.SelectedIndex = bind.elementIdentifierId - 4;
-                            newbutton.Tag = bind;
-                            newbutton.SelectedValueChanged += Edit_Gamepad_Key;
-                            newbutton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                            newbutton.DropDownStyle = ComboBoxStyle.DropDownList;
-                            splitContainerControls.Panel2.Controls.Add(newbutton);
+                            Add_Controller_Binding(bind, gamepad_keys, mult);
                         }
                         else
                         {
-                            ComboBox newbutton = new ComboBox();
-                            newbutton.Left = gamepadAxisTemplate.Left;
-                            newbutton.Top = gamepadAxisTemplate.Top + height * mult;
-                            newbutton.Items.AddRange(gamepadAxisTemplate.Items.Cast<Object>().ToArray());
-                            newbutton.SelectedIndex = bind.elementIdentifierId;
-                            newbutton.Tag = bind;
-                            newbutton.SelectedValueChanged += Edit_Gamepad_Axis;
-                            newbutton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                            newbutton.DropDownStyle = ComboBoxStyle.DropDownList;
-                            splitContainerControls.Panel2.Controls.Add(newbutton);
-
-                            CheckBox newinvert = new CheckBox();
-                            newinvert.Checked = bind.invert;
-                            newinvert.Top = gamepadAxisInvertTemplate.Top + height * mult - 3;
-                            newinvert.Left = gamepadAxisInvertTemplate.Left;
-                            newinvert.Tag = bind;
-                            newinvert.Text = "Invert";
-                            newinvert.CheckedChanged += Invert_Gamepad_Axis;
-                            newinvert.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                            newinvert.BackColor = Color.Transparent;
-                            splitContainerControls.Panel2.Controls.Add(newinvert);
+                            Add_Controller_Axes(bind, gamepad_axes, mult);
+                            Add_Invert_Checkbox(bind, mult);
                         }
-
                         if (devModeToggle.Checked)
                         {
-                            Button delkeybind = new Button();
-                            delkeybind.Text = "X";
-                            delkeybind.Left = buttonKeybindRemoveTemplate.Left;
-                            delkeybind.Top = buttonKeybindRemoveTemplate.Top + height * mult;
-                            delkeybind.Width = buttonKeybindRemoveTemplate.Width;
-                            delkeybind.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                            delkeybind.Tag = bind;
-                            delkeybind.Click += Remove_Keybind;
-                            splitContainerControls.Panel2.Controls.Add(delkeybind);
+                            Add_Delete_Button(bind, mult);
                         }
-
                         mult++;
                     }
                 }
             }
             if (devModeToggle.Checked)
             {
-                ComboBox newkeybindlist = new ComboBox();
                 List<string> avail_keybinds = new List<string>();
                 List<int> binded_keybinds = new List<int>();
                 foreach (Control ctrl in splitContainerControls.Panel2.Controls)
@@ -751,28 +734,10 @@ namespace GenshinConfigurator
                         avail_keybinds.Add(pair.Value);
                     }
                 }
-                newkeybindlist.Items.AddRange(avail_keybinds.ToArray());
-                newkeybindlist.SelectedIndex = 0;
-                newkeybindlist.Left = comboBoxKeybindListTemplate.Left;
-                newkeybindlist.Top = comboBoxKeybindListTemplate.Top + height * mult;
-                newkeybindlist.Tag = splitContainerControls.Panel2.Controls.Cast<Control>().Where(c => c.Tag != null).Where(c => c is Label).First(); // First bind
-                splitContainerControls.Panel2.Controls.Add(newkeybindlist);
-
-                Button newkeybind = new Button();
-                newkeybind.Text = "Add";
-                newkeybind.Left = buttonKeybindingAddTemplate.Left;
-                newkeybind.Top = buttonKeybindingAddTemplate.Top + height * mult;
-                newkeybind.Width = buttonKeybindingAddTemplate.Width;
-                newkeybind.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-                newkeybind.Tag = newkeybindlist;
-                newkeybind.Click += Add_Keybind;
-                splitContainerControls.Panel2.Controls.Add(newkeybind);
+                Keybind bind = (Keybind)splitContainerControls.Panel2.Controls.Cast<Control>().Where(c => c.Tag != null).First(c => c is Label).Tag; // First bind
+                Add_New_Keybind(bind, avail_keybinds.ToArray(), mult);
             }
-            splitContainerControls.Panel2.ResumeLayout();
-            splitContainerControls.Panel2.Enabled = true;
-            Status_Label.Text = "Controls loaded.";
-            Status_Reset_Timer.Enabled = false;
-            Status_Reset_Timer.Enabled = true;
+            Resume_Layout();
         }
 
         private void Paint_BG(object sender, PaintEventArgs e)
@@ -801,7 +766,7 @@ namespace GenshinConfigurator
             {
                 controlsMenu.Visible = false;
             }
-            foreach (Controller cntrl in Settings.Controls.controllers)
+            foreach (Controller cntrl in Settings.Controls.controllers.List())
             {
                 if (cntrl is MouseController)
                 {
@@ -818,181 +783,29 @@ namespace GenshinConfigurator
             }
         }
 
-        private void Remove_Keybind(object sender, EventArgs e)
-        {
-            Controller cntrl = Controller_By_Bind((Keybind)((Button)sender).Tag);
-            // TODO: easier add/remove of binds
-            if (cntrl is KeyboardController)
-            {
-                ((KeyboardController)cntrl).keybinds.Remove((KeyboardKeybind)((Button)sender).Tag);
-            }
-            else if (cntrl is XBoxController)
-            {
-                if (((Button)sender).Tag is GamepadKeybind)
-                {
-                    ((XBoxController)cntrl).keybinds.Remove((GamepadKeybind)((Button)sender).Tag);
-                }
-                else if (((Button)sender).Tag is GamepadAxis)
-                {
-                    ((XBoxController)cntrl).axes.Remove((GamepadAxis)((Button)sender).Tag);
-                }
-            }
-            else if (cntrl is MouseController)
-            {
-                if (((Button)sender).Tag is GamepadKeybind)
-                {
-                    ((MouseController)cntrl).keybinds.Remove((GamepadKeybind)((Button)sender).Tag);
-                }
-                else if (((Button)sender).Tag is GamepadAxis)
-                {
-                    ((MouseController)cntrl).axes.Remove((GamepadAxis)((Button)sender).Tag);
-                }
-            }
-            Populate_Controls();
-        }
-
         private void Add_Keybind(object sender, EventArgs e)
         {
             // Controller is selected by the first bind
-            Button add_button = (Button)sender;
-            ComboBox bind_selector = add_button.Tag as ComboBox;
-            Keybind first_bind = (Keybind)((Label)bind_selector.Tag).Tag;
-            Controller cntrl = Controller_By_Bind(first_bind);
-            if (cntrl is KeyboardController)
-            {
-                KeyboardKeybind newbind = new KeyboardKeybind();
-                newbind.elementIdentifierId = 0;
-                try
-                {
-                    newbind.actionId = Convert.ToInt32(bind_selector.Text);
-                }
-                catch
-                {
-                    newbind.actionId = Keycodes.actions.Where(c => c.Value == bind_selector.Text).First().Key;
-                }
-                ((KeyboardController)cntrl).keybinds.Add(newbind);
-            }
-            else if (cntrl is XBoxController)
-            {
-                int actionId;
-                try
-                {
-                    actionId = Convert.ToInt32(bind_selector.Text);
-                }
-                catch
-                {
-                    actionId = Keycodes.actions.Where(c => c.Value == bind_selector.Text).First().Key;
-                }
-                List<int> axis_actions = new List<int> { 0, 1 }; // Forward and side movement. Axis keybinds are different, so let's leave it like that for now
-                if (axis_actions.Contains(actionId))
-                {
-                    GamepadAxis newbind = new GamepadAxis();
-                    newbind.elementIdentifierId = 22;
-                    newbind.actionId = actionId;
-                    ((XBoxController)cntrl).axes.Add(newbind);
-                }
-                else
-                {
-                    GamepadKeybind newbind = new GamepadKeybind();
-                    newbind.elementIdentifierId = 22;
-                    newbind.actionId = actionId;
-                    ((XBoxController)cntrl).keybinds.Add(newbind);
-                }
-            }
-            else if (cntrl is MouseController)
-            {
-                int actionId;
-                try
-                {
-                    actionId = Convert.ToInt32(bind_selector.Text);
-                }
-                catch
-                {
-                    actionId = Keycodes.actions.Where(c => c.Value == bind_selector.Text).First().Key;
-                }
-                List<int> axis_actions = new List<int> { 0, 1 }; // Forward and side movement. Axis keybinds are different, so let's leave it like that for now
-                if (axis_actions.Contains(actionId))
-                {
-                    GamepadAxis newbind = new GamepadAxis();
-                    newbind.elementIdentifierId = 0;
-                    newbind.actionId = actionId;
-                    ((MouseController)cntrl).axes.Add(newbind);
-                }
-                else
-                {
-                    GamepadKeybind newbind = new GamepadKeybind();
-                    newbind.elementIdentifierId = 3;
-                    newbind.actionId = actionId;
-                    ((MouseController)cntrl).keybinds.Add(newbind);
-                }
-            }
+            Button add_button = (Button)sender;                             // "Add bind" button
+            ComboBox bind_selector = add_button.Tag as ComboBox;            // ComboBox with selected bind
+            Keybind first_bind = (Keybind)bind_selector.Tag;   // First bind on the page (tied to the first label)
+            Controller cntrl = Settings.Controls.controllers.Controller_By_Bind(first_bind);  // Controller from bind
+            int actionId = Controllers.GetActionByName(bind_selector.Text);
+            cntrl.AddBind(actionId);
+            Populate_Controls();
+        }
+
+        private void Remove_Keybind(object sender, EventArgs e)
+        {
+            Controller cntrl = Settings.Controls.controllers.Controller_By_Bind((Keybind)((Button)sender).Tag);
+            Keybind bind = (Keybind)((Button)sender).Tag;
+            cntrl.DeleteBind(bind);
             Populate_Controls();
         }
 
         private void Reload_Controls(object sender, EventArgs e)
         {
             Populate_Controls();
-        }
-
-        private Controller Controller_By_Bind(Keybind bind)
-        {
-            Controller curctrl = null;
-            //Search for the controller that the bind is assigned to
-            foreach (Controller ctrl in Settings.Controls.controllers)
-            {
-                if (ctrl is XBoxController)
-                {
-                    if (bind is GamepadKeybind)
-                    {
-                        if (((XBoxController)ctrl).keybinds.Contains((GamepadKeybind)bind))
-                        {
-                            curctrl = ctrl as XBoxController;
-                        }
-                    }
-                    else if (bind is GamepadAxis)
-                    {
-                        if (((XBoxController)ctrl).axes.Contains((GamepadAxis)bind))
-                        {
-                            curctrl = ctrl as XBoxController;
-                        }
-                    }
-                }
-                else if (ctrl is KeyboardController)
-                {
-                    if (bind is KeyboardKeybind)
-                    {
-                        if (((KeyboardController)ctrl).keybinds.Contains((KeyboardKeybind)bind))
-                        {
-                            curctrl = ctrl as KeyboardController;
-                        }
-                    }
-                }
-                else if (ctrl is MouseController)
-                {
-                    if (bind is GamepadKeybind)
-                    {
-                        if (((MouseController)ctrl).keybinds.Contains((GamepadKeybind)bind))
-                        {
-                            curctrl = ctrl as MouseController;
-                        }
-                    }
-                    else if (bind is GamepadAxis)
-                    {
-                        if (((MouseController)ctrl).axes.Contains((GamepadAxis)bind))
-                        {
-                            curctrl = ctrl as MouseController;
-                        }
-                    }
-                }
-            }
-
-            return curctrl;
-        }
-
-        private void Edit_Gamepad_Axis(object sender, EventArgs e)
-        {
-            ComboBox input = (ComboBox)sender;
-            ((GamepadAxis)input.Tag).elementIdentifierId = input.SelectedIndex;
         }
 
         private void Invert_Gamepad_Axis(object sender, EventArgs e)
@@ -1013,12 +826,41 @@ namespace GenshinConfigurator
                 input.Text = Keycodes.keynames[((KeyboardKeybind)input.Tag).elementIdentifierId];
             }
         }
-        private void Edit_Binding(object sender, EventArgs e)
+
+        private void Edit_Controller_Axis(object sender, EventArgs e)
+        {
+            ComboBox input = (ComboBox)sender;
+            Keybind bind = (Keybind)input.Tag;
+            Controller cntrl = Settings.Controls.controllers.Controller_By_Bind(bind);
+            cntrl.EditBind(bind, input.SelectedIndex);
+        }
+
+        private void Edit_Controller_Key(object sender, EventArgs e)
+        {
+            ComboBox input = (ComboBox)sender;
+            Keybind bind = (Keybind)input.Tag;
+            Controller cntrl = Settings.Controls.controllers.Controller_By_Bind(bind);
+            int offset = 0;
+            switch (cntrl)
+            {
+                case MouseController _:
+                    offset = 3;
+                    break;
+                case XBoxController _:
+                    offset = 4;
+                    break;
+            }
+            cntrl.EditBind(bind, input.SelectedIndex + offset);
+        }
+
+        private void Edit_Keyboard_Key(object sender, EventArgs e)
         {
             TextBox input = (TextBox)sender;
-            if (Keycodes.keyboard.ContainsKey(((KeyEventArgs)e).KeyCode))
+            Keybind bind = (Keybind)input.Tag;
+            Controller cntrl = Settings.Controls.controllers.Controller_By_Bind(bind);
+            if (Keycodes.keyboard.ContainsKey(((KeyEventArgs)e).KeyCode)) //Valid key
             {
-                ((KeyboardKeybind)input.Tag).elementIdentifierId = Keycodes.keyboard[((KeyEventArgs)e).KeyCode];
+                cntrl.EditBind(bind, Keycodes.keyboard[((KeyEventArgs)e).KeyCode]);
                 input.Text = Keycodes.keynames[Keycodes.keyboard[((KeyEventArgs)e).KeyCode]];
             }
             tabControls.Focus();
@@ -1027,51 +869,6 @@ namespace GenshinConfigurator
         private void Prevent_Input(object sender, EventArgs e)
         {
             ((KeyPressEventArgs)e).Handled = true;
-        }
-
-        private void Edit_Gamepad_Key(object sender, EventArgs e)
-        {
-            ComboBox input = (ComboBox)sender;
-
-            XBoxController curctrl = (XBoxController)Controller_By_Bind((Keybind)input.Tag); // For now, it's fine to assume that XBoxController will be returned
-
-            if (input.SelectedIndex < 2) // LT, RT
-            {
-                // Convert axis to button or vice-versa
-                if ((input.Tag is GamepadKeybind) && curctrl.keybinds.Contains((GamepadKeybind)input.Tag))
-                {
-                    curctrl.keybinds.Remove((GamepadKeybind)input.Tag);
-                    GamepadAxis axis = new GamepadAxis((GamepadKeybind)input.Tag);
-                    axis.elementIdentifierId = input.SelectedIndex + 4;
-                    curctrl.axes.Add(axis);
-                    input.Tag = axis;
-                }
-                else
-                {
-                    ((GamepadAxis)input.Tag).elementIdentifierId = input.SelectedIndex + 4;
-                }
-            }
-            else
-            {
-                if ((input.Tag is GamepadAxis) && curctrl.axes.Contains((GamepadAxis)input.Tag))
-                {
-                    curctrl.axes.Remove((GamepadAxis)input.Tag);
-                    GamepadKeybind bind = new GamepadKeybind((GamepadAxis)input.Tag);
-                    bind.elementIdentifierId = input.SelectedIndex + 4;
-                    curctrl.keybinds.Add(bind);
-                    input.Tag = bind;
-                }
-                else
-                {
-                    ((GamepadKeybind)input.Tag).elementIdentifierId = input.SelectedIndex + 4;
-                }
-            }
-        }
-
-        private void Edit_Mouse_Key(object sender, EventArgs e)
-        {
-            ComboBox input = (ComboBox)sender;
-            ((GamepadKeybind)input.Tag).elementIdentifierId = input.SelectedIndex + 3;
         }
 
         private void addMouseButton_Click(object sender, EventArgs e)

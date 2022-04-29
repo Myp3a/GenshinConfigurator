@@ -35,7 +35,7 @@ namespace GenshinConfigurator
                 if (__controlsLoaded)
                 {
                     __overrideControllerMapValueList = new List<string>();
-                    foreach (Controller cntrl in _overrideControllerMapValueList)
+                    foreach (Controller cntrl in _overrideControllerMapValueList.List())
                     {
                         string xml_string = cntrl.DumpToString(false);
                         __overrideControllerMapValueList.Add(xml_string);
@@ -53,7 +53,8 @@ namespace GenshinConfigurator
                 {
                     __graphicsLoaded = false;
                 }
-                _overrideControllerMapValueList = new List<Controller>();
+                Controllers controllers = new Controllers();
+                _overrideControllerMapValueList = controllers;
                 try
                 {
                     foreach (string xml_string in __overrideControllerMapValueList)
@@ -64,13 +65,13 @@ namespace GenshinConfigurator
                         {
                             KeyboardController kbd = new KeyboardController();
                             kbd.LoadFromString(xml_string);
-                            _overrideControllerMapValueList.Add(kbd);
+                            controllers.Add(kbd);
                         }
                         else if (xml_doc.Root.Name == (ns + "MouseMap"))
                         {
                             MouseController mouse = new MouseController();
                             mouse.LoadFromString(xml_string);
-                            _overrideControllerMapValueList.Add(mouse);
+                            controllers.Add(mouse);
 
                         }
                         else if (xml_doc.Root.Name == (ns + "JoystickMap"))
@@ -79,7 +80,7 @@ namespace GenshinConfigurator
                             {
                                 XBoxController xbc = new XBoxController();
                                 xbc.LoadFromString(xml_string);
-                                _overrideControllerMapValueList.Add(xbc);
+                                controllers.Add(xbc);
                             }
                         }
                     }
@@ -142,7 +143,7 @@ namespace GenshinConfigurator
             public List<string> __overrideControllerMapValueList { get; set; }
 
             [JsonIgnore]
-            public List<Controller> _overrideControllerMapValueList { get; set; }
+            public Controllers _overrideControllerMapValueList { get; set; }
             public int lastSeenPreDownloadTime { get; set; }
             public bool mtrCached { get; set; }
             public bool mtrIsOpen { get; set; }

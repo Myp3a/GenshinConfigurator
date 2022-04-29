@@ -232,8 +232,25 @@ namespace GenshinConfigurator
         public string hardwareGuid;
         public bool enabled;
         public abstract List<Keybind> keybinds { get; set; }
+        public abstract List<Keybind> axes { get; set; }
 
         public abstract void LoadFromString(string xmlstring);
+        public abstract void AddBind(int actionId);
+        public abstract void EditBind(Keybind bind, int key);
+        public abstract XDocument BuildObject();
+
+        public void DeleteBind(Keybind bind)
+        {
+            if (axes.Contains(bind))
+            {
+                axes.Remove(bind);
+            }
+            if (keybinds.Contains(bind))
+            {
+                keybinds.Remove(bind);
+            }
+        }
+
         public string DumpToString(bool format)
         {
             if (format)
@@ -251,20 +268,43 @@ namespace GenshinConfigurator
                 }
             }
         }
-
-        public abstract XDocument BuildObject();
-
     }
 
     internal class MouseController : Controller
     {
         public override List<Keybind> keybinds { get; set; }
-        public List<GamepadAxis> axes { get; set; }
+        public override List<Keybind> axes { get; set; }
 
         public MouseController()
         {
             keybinds = new List<Keybind>();
-            axes = new List<GamepadAxis>();
+            axes = new List<Keybind>();
+        }
+
+        public override void AddBind(int actionId)
+        {
+            // 0 - Horizontal mouse movement
+            // 3 - LMB
+            List<int> axis_actions = new List<int> { 0, 1, 2 }; // Movement and wheel
+            if (axis_actions.Contains(actionId))
+            {
+                GamepadAxis newbind = new GamepadAxis();
+                newbind.elementIdentifierId = 0;
+                newbind.actionId = actionId;
+                axes.Add(newbind);
+            }
+            else
+            {
+                GamepadKeybind newbind = new GamepadKeybind();
+                newbind.elementIdentifierId = 3;
+                newbind.actionId = actionId;
+                keybinds.Add(newbind);
+            }
+        }
+
+        public override void EditBind(Keybind bind, int key)
+        {
+            bind.elementIdentifierId = key;
         }
 
         public override XDocument BuildObject()
@@ -336,13 +376,69 @@ namespace GenshinConfigurator
     internal class XBoxController : Controller
     {
         public override List<Keybind> keybinds { get; set; }
-        public List<GamepadAxis> axes { get; set; }
+        public override List<Keybind> axes { get; set; }
 
         public XBoxController()
         {
             keybinds = new List<Keybind>();
-            axes = new List<GamepadAxis>();
+            axes = new List<Keybind>();
         }
+
+        public override void AddBind(int actionId)
+        {
+            // 22 - Guide button. Unused in game, so here it's like "not defined".
+            List<int> axis_actions = new List<int> { 0, 1 }; // Forward and side movement. Axis keybinds are different, so let's leave it like that for now
+            if (axis_actions.Contains(actionId))
+            {
+                GamepadAxis newbind = new GamepadAxis();
+                newbind.elementIdentifierId = 22;
+                newbind.actionId = actionId;
+                axes.Add(newbind);
+            }
+            else
+            {
+                GamepadKeybind newbind = new GamepadKeybind();
+                newbind.elementIdentifierId = 22;
+                newbind.actionId = actionId;
+                keybinds.Add(newbind);
+            }
+        }
+
+        public override void EditBind(Keybind bind, int key)
+        {
+            // LT and RT stands out from other keys.
+            // They are mapped as axes, but behave like buttons.
+            // For now, let's restrict them from axes mappings.
+            //
+            // Still, when changing button mappings, we should convert them to appropriate class.
+            // It's Axis when LT/RT is used, and Button, when not.
+
+            if (key < 4) // Sticks axes
+            {
+                bind.elementIdentifierId = key;
+            }
+            else if (key < 6) // LT, RT
+            {
+                if (bind is GamepadKeybind) // Converting to LT/RT
+                {
+                    DeleteBind(bind);
+                    bind = new GamepadAxis((GamepadKeybind)bind);
+                    axes.Add(bind);
+                }
+                bind.elementIdentifierId = key;
+            } 
+            else // Ordinary buttons
+            {
+                if (bind is GamepadAxis) // Converting from LT/RT
+                {
+                    DeleteBind(bind);
+                    bind = new GamepadKeybind((GamepadAxis)bind);
+                    keybinds.Add(bind);
+                }
+                bind.elementIdentifierId = key;
+            }
+        }
+
         public override void LoadFromString(string xmlstring)
         {
             XNamespace ns = "http://guavaman.com/rewired";
@@ -410,9 +506,25 @@ namespace GenshinConfigurator
     internal class KeyboardController : Controller
     {
         public override List<Keybind> keybinds { get; set; }
+        public override List<Keybind> axes { get; set; }
         public KeyboardController()
         {
             keybinds = new List<Keybind>();
+            // Empty here
+            axes = new List<Keybind>();
+        }
+
+        public override void AddBind(int actionId)
+        {
+            KeyboardKeybind newbind = new KeyboardKeybind();
+            newbind.elementIdentifierId = 0;
+            newbind.actionId = actionId;
+            keybinds.Add(newbind);
+        }
+
+        public override void EditBind(Keybind bind, int key)
+        {
+            bind.elementIdentifierId = key;
         }
 
         public override void LoadFromString(string xmlstring)
@@ -473,13 +585,56 @@ namespace GenshinConfigurator
     }
     internal class Controllers
     {
+        List<Controller> controllers;
+
         public Controllers()
         {
-
+            controllers = new List<Controller>();
         }
-        /*private string[] GetControllerBindings()
+        
+        public void Add(Controller cntrl)
         {
-            return ;
-        }*/
+            controllers.Add(cntrl);
+        }
+
+        public void Remove(Controller cntrl)
+        {
+            controllers.Remove(cntrl);
+        }
+
+        public IEnumerable<Controller> List()
+        {
+            foreach (Controller cntrl in controllers)
+            {
+                yield return cntrl;
+            }
+        }
+
+        public Controller Controller_By_Bind(Keybind bind)
+        {
+            //Search for the controller that the bind is assigned to
+            foreach (Controller ctrl in controllers)
+            {
+                if (ctrl.axes.Contains(bind) || ctrl.keybinds.Contains(bind))
+                {
+                    return ctrl;
+                }
+            }
+            return null;
+        }
+
+        public static int GetActionByName(string name)
+        {
+            int actionId;
+            try
+            {
+                actionId = Convert.ToInt32(name);
+            }
+            catch
+            {
+                actionId = Keycodes.actions.Where(c => c.Value == name).First().Key;
+            }
+            return actionId;
+        }
     }
 }
