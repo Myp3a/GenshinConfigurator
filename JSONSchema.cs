@@ -163,25 +163,25 @@ namespace GenshinConfigurator
 
         public class AudioConfig
         {
-            public int Main { get; set; }
-            public int Music { get; set; }
-            public int SFX { get; set; }
-            public int Voice { get; set; }
-            public int DynamicRange { get; set; }
-            public int OutputFormat { get; set; }
+            public int? Main { get; set; }
+            public int? Music { get; set; }
+            public int? SFX { get; set; }
+            public int? Voice { get; set; }
+            public int? DynamicRange { get; set; }
+            public int? OutputFormat { get; set; }
         }
 
         public class LanguageConfig
         {
-            public int Text { get; set; }
-            public int Voice { get; set; }
+            public int? Text { get; set; }
+            public int? Voice { get; set; }
         }
 
         public class GraphicsConfig
         {
-            public int preset { get; set; }
+            public int? preset { get; set; }
             public Dictionary<int,int> custom { get; set; }
-            public double gamma { get; set; }
+            public double? gamma { get; set; }
         }
 
         public class ConfigFile { 

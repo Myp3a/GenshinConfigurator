@@ -106,17 +106,17 @@ namespace GenshinConfigurator
             ConfigFile config = JsonConvert.DeserializeObject<ConfigFile>(file);
             if (config.Graphics != null)
             {
-                this.Graphics = new GraphicsSettings(config.Graphics);
+                this.Graphics.FromConfig(config.Graphics);
                 Apply("graphics");
             }
             if (config.Audio != null)
             {
-                this.Audio = new AudioSettings(config.Audio);
+                this.Audio.FromConfig(config.Audio);
                 Apply("audio");
             }
             if (config.Language != null)
             {
-                this.Language = new LanguageSettings(config.Language);
+                this.Language.FromConfig(config.Language);
                 Apply("language");
             }
             if (config.Resolution != null)
@@ -190,12 +190,30 @@ namespace GenshinConfigurator
 
         public void FromConfig(AudioConfig config)
         {
-            this.main_volume = config.Main;
-            this.music_volume = config.Music;
-            this.sfx_volume = config.SFX;
-            this.voice_volume = config.Voice;
-            this.dynamic_range = config.DynamicRange;
-            this.output_format = config.OutputFormat;
+            if (config.Main != null)
+            {
+                this.main_volume = (int)config.Main;
+            }
+            if (config.Music != null)
+            {
+                this.music_volume = (int)config.Music;
+            }
+            if (config.SFX != null)
+            {
+                this.sfx_volume = (int)config.SFX;
+            }
+            if (config.Voice != null)
+            {
+                this.voice_volume = (int)config.Voice;
+            }
+            if (config.DynamicRange != null)
+            {
+                this.dynamic_range = (int)config.DynamicRange;
+            }
+            if (config.OutputFormat != null)
+            {
+                this.output_format = (int)config.OutputFormat;
+            }
         }
     }
 
@@ -294,17 +312,26 @@ namespace GenshinConfigurator
 
         public void FromConfig(GraphicsConfig config)
         {
-            this.current_preset = config.preset;
-            this.settings = new List<GraphicsSetting>();
-            this.gamma = config.gamma;
-            foreach (KeyValuePair<int,int> pair in config.custom)
+            if (config.preset != null)
             {
-                GraphicsSetting setting = new GraphicsSetting
+                this.current_preset = (int)config.preset;
+            }
+            if (config.custom.Keys.Count > 0)
+            {
+                this.settings = new List<GraphicsSetting>();
+                foreach (KeyValuePair<int, int> pair in config.custom)
                 {
-                    key = pair.Key,
-                    value = pair.Value
-                };
-                this.settings.Add(setting);
+                    GraphicsSetting setting = new GraphicsSetting
+                    {
+                        key = pair.Key,
+                        value = pair.Value
+                    };
+                    this.settings.Add(setting);
+                }
+            }
+            if (config.gamma != null)
+            {
+                this.gamma = (double)config.gamma;
             }
         }
     }
@@ -339,8 +366,14 @@ namespace GenshinConfigurator
 
         public void FromConfig(LanguageConfig config)
         {
-            this.text_lang = (TextLanguage)config.Text;
-            this.voice_lang = (VoiceLanguage)config.Voice;
+            if (config.Text != null)
+            {
+                this.text_lang = (TextLanguage)config.Text;
+            }
+            if (config.Voice != null)
+            {
+                this.voice_lang = (VoiceLanguage)config.Voice;
+            }
         }
 
         public LanguageConfig ToConfig()
