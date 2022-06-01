@@ -525,6 +525,7 @@ namespace GenshinConfigurator
             }
             void Add_Controller_Binding(Keybind bind, string[] bindings, int mlt)
             {
+                // this one is slowest
                 Controller cnt = Settings.Controls.controllers.Controller_By_Bind(bind);
                 int offset = 0;
                 switch (cnt)

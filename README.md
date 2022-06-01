@@ -9,7 +9,7 @@ A configuration tool for Genshin Impact. It allows user to modify game settings 
 [CLI Usage](#CLI-usage) •
 [Developing](#Developing)
 
-![Main window](mainscreen.png)
+![Main window](./img/mainscreen.png)
 ## Features
  - Out-of-the-game graphics settings edit
  - Custom resolution support
@@ -63,6 +63,8 @@ GenshinConfigurator.exe set -s 7:1 -s 2:1 -r 1234x678x0
 All contributions are welcome!  
 
 You may contribute in several ways like creating new features, fixing bugs or improving documentation and examples.  
+
+If you want to update the Configurator for a new Genshin version, please, read the [updating guide](./CONTRIBUTING.md).  
 
 Currently, there is no code style in this project. Anything is fine while it's easily readable.  
 
