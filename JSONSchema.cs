@@ -20,6 +20,19 @@ namespace GenshinConfigurator
             public IList<GraphicsSetting> customVolatileGrades { get; set; }
             public string volatileVersion { get; set; }
         }
+        public class perfItem
+        {
+            public int entryType { get; set; }
+            public int index { get; set; }
+            public string itemVersion { get; set; }
+        }
+        public class globalPerfData
+        {
+            public IList<perfItem> saveItems { get; set; }
+            public bool truePortedFromGraphicData { get; set; }
+            public string portedVersion { get; set; }
+            public bool portedFromGraphicData { get; set; }
+        }
         public class MainJSON
         {
             [OnSerializing]
@@ -28,6 +41,7 @@ namespace GenshinConfigurator
                 if (__graphicsLoaded)
                 {
                     _graphicsData = JsonConvert.SerializeObject(graphicsData);
+                    _globalPerfData = JsonConvert.SerializeObject(globalPerfData);
                 }
                 if (__controlsLoaded)
                 {
@@ -46,6 +60,7 @@ namespace GenshinConfigurator
                 try
                 {
                     graphicsData = JsonConvert.DeserializeObject<GraphicsData>(_graphicsData);
+                    globalPerfData = JsonConvert.DeserializeObject<globalPerfData>(_globalPerfData);
                 } catch
                 {
                     __graphicsLoaded = false;
@@ -107,7 +122,12 @@ namespace GenshinConfigurator
 
             [JsonIgnore]
             public GraphicsData graphicsData { get; set; }
-            public string globalPerfData { get; set; }
+
+            [JsonProperty(PropertyName = "globalPerfData")]
+            public string _globalPerfData { get; set; }
+
+            [JsonIgnore]
+            public globalPerfData globalPerfData { get; set; }
             public int miniMapConfig { get; set; }
             public bool enableCameraSlope { get; set; }
             public bool enableCameraCombatLock { get; set; }
@@ -141,6 +161,8 @@ namespace GenshinConfigurator
 
             [JsonIgnore]
             public Controllers _overrideControllerMapValueList { get; set; }
+            public bool rewiredDisableKeyboard { get; set; }
+            public bool disableRewiredDelayInit { get; set; }
             public int lastSeenPreDownloadTime { get; set; }
             public bool mtrCached { get; set; }
             public bool mtrIsOpen { get; set; }

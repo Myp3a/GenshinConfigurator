@@ -269,6 +269,19 @@ namespace GenshinConfigurator
             data.graphicsData.currentVolatielGrade = current_preset;
             data.graphicsData.customVolatileGrades = settings;
             data.gammaValue = gamma;
+            globalPerfData perfdata = data.globalPerfData;
+            perfdata.portedVersion = data.graphicsData.volatileVersion;
+            perfdata.saveItems = new List<perfItem>();
+            foreach (GraphicsSetting setting in settings)
+            {
+                perfItem perfitem = new perfItem
+                {
+                    entryType = setting.key,
+                    index = setting.value - 1,
+                    itemVersion = data.graphicsData.volatileVersion
+                };
+                perfdata.saveItems.Add(perfitem);
+            }
             return data;
         }
 
