@@ -45,6 +45,8 @@
             this.Status_Reset_Timer = new System.Windows.Forms.Timer(this.components);
             this.settingsTabs = new System.Windows.Forms.TabControl();
             this.tabGraphics = new System.Windows.Forms.TabPage();
+            this.GammaValueLabel = new System.Windows.Forms.Label();
+            this.Gamma_Label = new System.Windows.Forms.Label();
             this.ResolutionX = new System.Windows.Forms.Label();
             this.Resolution_Label = new System.Windows.Forms.Label();
             this.Preset_Label = new System.Windows.Forms.Label();
@@ -86,6 +88,7 @@
             this.VSync_Label = new System.Windows.Forms.Label();
             this.FPS_Box = new System.Windows.Forms.ComboBox();
             this.FPS_Label = new System.Windows.Forms.Label();
+            this.GammaTrackBar = new System.Windows.Forms.TrackBar();
             this.tabControls = new System.Windows.Forms.TabPage();
             this.splitContainerControls = new System.Windows.Forms.SplitContainer();
             this.applyControlsButton = new System.Windows.Forms.Button();
@@ -134,13 +137,12 @@
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
             this.Load_Button_Raw = new System.Windows.Forms.Button();
             this.Save_Button_Raw = new System.Windows.Forms.Button();
-            this.Gamma_Label = new System.Windows.Forms.Label();
-            this.GammaTrackBar = new System.Windows.Forms.TrackBar();
-            this.GammaValueLabel = new System.Windows.Forms.Label();
+            this.noControlsConfiguredLabel = new System.Windows.Forms.Label();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
             this.tabGraphics.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GammaTrackBar)).BeginInit();
             this.tabControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControls)).BeginInit();
             this.splitContainerControls.Panel1.SuspendLayout();
@@ -154,7 +156,6 @@
             this.tabLanguage.SuspendLayout();
             this.tabLog.SuspendLayout();
             this.tabRawConfig.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GammaTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // TopBar
@@ -341,6 +342,24 @@
             this.tabGraphics.Size = new System.Drawing.Size(539, 315);
             this.tabGraphics.TabIndex = 0;
             this.tabGraphics.Text = "Graphics";
+            // 
+            // GammaValueLabel
+            // 
+            this.GammaValueLabel.AutoSize = true;
+            this.GammaValueLabel.Location = new System.Drawing.Point(495, 256);
+            this.GammaValueLabel.Name = "GammaValueLabel";
+            this.GammaValueLabel.Size = new System.Drawing.Size(28, 13);
+            this.GammaValueLabel.TabIndex = 82;
+            this.GammaValueLabel.Text = "0.00";
+            // 
+            // Gamma_Label
+            // 
+            this.Gamma_Label.AutoSize = true;
+            this.Gamma_Label.Location = new System.Drawing.Point(292, 256);
+            this.Gamma_Label.Name = "Gamma_Label";
+            this.Gamma_Label.Size = new System.Drawing.Size(43, 13);
+            this.Gamma_Label.TabIndex = 80;
+            this.Gamma_Label.Text = "Gamma";
             // 
             // ResolutionX
             // 
@@ -712,6 +731,16 @@
             this.FPS_Label.TabIndex = 39;
             this.FPS_Label.Text = "FPS";
             // 
+            // GammaTrackBar
+            // 
+            this.GammaTrackBar.Location = new System.Drawing.Point(341, 252);
+            this.GammaTrackBar.Maximum = 160;
+            this.GammaTrackBar.Name = "GammaTrackBar";
+            this.GammaTrackBar.Size = new System.Drawing.Size(148, 45);
+            this.GammaTrackBar.TabIndex = 81;
+            this.GammaTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.GammaTrackBar.ValueChanged += new System.EventHandler(this.GammaTrackBar_ValueChanged);
+            // 
             // tabControls
             // 
             this.tabControls.Controls.Add(this.splitContainerControls);
@@ -740,6 +769,7 @@
             // splitContainerControls.Panel2
             // 
             this.splitContainerControls.Panel2.AutoScroll = true;
+            this.splitContainerControls.Panel2.Controls.Add(this.noControlsConfiguredLabel);
             this.splitContainerControls.Panel2.Controls.Add(this.comboBoxKeybindListTemplate);
             this.splitContainerControls.Panel2.Controls.Add(this.buttonKeybindRemoveTemplate);
             this.splitContainerControls.Panel2.Controls.Add(this.buttonKeybindingAddTemplate);
@@ -1322,33 +1352,16 @@
             this.Save_Button_Raw.UseVisualStyleBackColor = true;
             this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
             // 
-            // Gamma_Label
+            // noControlsConfiguredLabel
             // 
-            this.Gamma_Label.AutoSize = true;
-            this.Gamma_Label.Location = new System.Drawing.Point(292, 256);
-            this.Gamma_Label.Name = "Gamma_Label";
-            this.Gamma_Label.Size = new System.Drawing.Size(43, 13);
-            this.Gamma_Label.TabIndex = 80;
-            this.Gamma_Label.Text = "Gamma";
-            // 
-            // GammaTrackBar
-            // 
-            this.GammaTrackBar.Location = new System.Drawing.Point(341, 252);
-            this.GammaTrackBar.Maximum = 160;
-            this.GammaTrackBar.Name = "GammaTrackBar";
-            this.GammaTrackBar.Size = new System.Drawing.Size(148, 45);
-            this.GammaTrackBar.TabIndex = 81;
-            this.GammaTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.GammaTrackBar.ValueChanged += new System.EventHandler(this.GammaTrackBar_ValueChanged);
-            // 
-            // GammaValueLabel
-            // 
-            this.GammaValueLabel.AutoSize = true;
-            this.GammaValueLabel.Location = new System.Drawing.Point(495, 256);
-            this.GammaValueLabel.Name = "GammaValueLabel";
-            this.GammaValueLabel.Size = new System.Drawing.Size(28, 13);
-            this.GammaValueLabel.TabIndex = 82;
-            this.GammaValueLabel.Text = "0.00";
+            this.noControlsConfiguredLabel.AutoSize = true;
+            this.noControlsConfiguredLabel.Location = new System.Drawing.Point(7, 10);
+            this.noControlsConfiguredLabel.Name = "noControlsConfiguredLabel";
+            this.noControlsConfiguredLabel.Size = new System.Drawing.Size(422, 13);
+            this.noControlsConfiguredLabel.TabIndex = 13;
+            this.noControlsConfiguredLabel.Text = "No controls override configured. Please, change controls settings in game to gene" +
+    "rate it.";
+            this.noControlsConfiguredLabel.Visible = false;
             // 
             // MainWin
             // 
@@ -1364,6 +1377,7 @@
             this.Name = "MainWin";
             this.Text = "Genshin Impact Configurator";
             this.Load += new System.EventHandler(this.MainWin_Load);
+            this.Shown += new System.EventHandler(this.MainWin_Shown);
             this.TopBar.ResumeLayout(false);
             this.TopBar.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -1371,6 +1385,7 @@
             this.settingsTabs.ResumeLayout(false);
             this.tabGraphics.ResumeLayout(false);
             this.tabGraphics.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GammaTrackBar)).EndInit();
             this.tabControls.ResumeLayout(false);
             this.splitContainerControls.Panel1.ResumeLayout(false);
             this.splitContainerControls.Panel1.PerformLayout();
@@ -1390,7 +1405,6 @@
             this.tabLog.PerformLayout();
             this.tabRawConfig.ResumeLayout(false);
             this.tabRawConfig.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GammaTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1504,6 +1518,7 @@
         private System.Windows.Forms.Label GammaValueLabel;
         private System.Windows.Forms.Label Gamma_Label;
         private System.Windows.Forms.TrackBar GammaTrackBar;
+        private System.Windows.Forms.Label noControlsConfiguredLabel;
     }
 }
 

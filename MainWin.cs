@@ -38,25 +38,34 @@ namespace GenshinConfigurator
                 }
                 if (Settings.controlsLoaded)
                 {
-                    foreach (string controller_id in Settings.Controls.controller_ids)
+                    if (Settings.Controls.controller_ids.Count == 0)
                     {
-                        string[] parts = controller_id.Split(new[] { "__" }, StringSplitOptions.None);
-                        string name = "";
-                        if (parts[1] == "d74a350e-fe8b-4e9e-bbcd-efff16d34115")
-                        {
-                            name = "XInput Gamepad (" + parts[2] + ")";
-                        } 
-                        else if ((parts[1] == "00000000-0000-0000-0000-000000000000") && (parts[2] == "0"))
-                        {
-                            name = "Keyboard (" + parts[2] + ")";
-                        }
-                        else if ((parts[1] == "00000000-0000-0000-0000-000000000000") && (parts[2] == "1000000"))
-                        {
-                            name = "Mouse (" + parts[2] + ")";
-                        }
-                        devicesList.Items.Add(name);
+                        devicesList.Items.Add("No devices");
+                        devicesList.Enabled = false;
+                        applyControlsButton.Enabled = false;
+                        noControlsConfiguredLabel.Visible = true;
                     }
-                    devicesList.SelectedIndex = 0;
+                    else
+                    {
+                        foreach (string controller_id in Settings.Controls.controller_ids)
+                        {
+                            string[] parts = controller_id.Split(new[] { "__" }, StringSplitOptions.None);
+                            string name = "";
+                            if (parts[1] == "d74a350e-fe8b-4e9e-bbcd-efff16d34115")
+                            {
+                                name = "XInput Gamepad (" + parts[2] + ")";
+                            }
+                            else if ((parts[1] == "00000000-0000-0000-0000-000000000000") && (parts[2] == "0"))
+                            {
+                                name = "Keyboard (" + parts[2] + ")";
+                            }
+                            else if ((parts[1] == "00000000-0000-0000-0000-000000000000") && (parts[2] == "1000000"))
+                            {
+                                name = "Mouse (" + parts[2] + ")";
+                            }
+                            devicesList.Items.Add(name);
+                        }
+                    }
                     //Task.Run(() => Populate_Controls());
                 }
                 if (Settings.graphicsLoaded)
@@ -421,6 +430,10 @@ namespace GenshinConfigurator
         // Controls functions
         private void Populate_Controls()
         {
+            if (devicesList.Enabled == false)
+            {
+                return;
+            }
             int top = labelControlTemplate.Top;
             int height = 25;
             int mult = 0;
@@ -933,7 +946,8 @@ namespace GenshinConfigurator
 
             Settings.Controls.controllers.Add(cntrl);
             Settings.Controls.controller_ids.Add("OverrideControllerMap__00000000-0000-0000-0000-000000000000__1000000");
-            Settings.Save("controls");
+            Settings.Apply("controls");
+            Settings.ToReg();
             MessageBox.Show("Mouse added! Please, restart the application.");
         }
 
@@ -1061,6 +1075,11 @@ namespace GenshinConfigurator
             Status_Label.Text = $"Saved raw config to registry.";
             Status_Reset_Timer.Enabled = false;
             Status_Reset_Timer.Enabled = true;
+        }
+
+        private void MainWin_Shown(object sender, EventArgs e)
+        {
+            devicesList.SelectedIndex = 0;
         }
         // End of raw config functions
     }
