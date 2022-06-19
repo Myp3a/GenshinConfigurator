@@ -185,9 +185,9 @@
         public enum TeammateEffects
         {
             None,
-            On,
+            Off,
             Partially,
-            Off
+            On
         }
 
         public enum AnisotropicFiltering
