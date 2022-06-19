@@ -94,6 +94,7 @@
             this.applyControlsButton = new System.Windows.Forms.Button();
             this.inputDeviceLabel = new System.Windows.Forms.Label();
             this.devicesList = new System.Windows.Forms.ComboBox();
+            this.noControlsConfiguredLabel = new System.Windows.Forms.Label();
             this.comboBoxKeybindListTemplate = new System.Windows.Forms.ComboBox();
             this.buttonKeybindRemoveTemplate = new System.Windows.Forms.Button();
             this.buttonKeybindingAddTemplate = new System.Windows.Forms.Button();
@@ -137,7 +138,6 @@
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
             this.Load_Button_Raw = new System.Windows.Forms.Button();
             this.Save_Button_Raw = new System.Windows.Forms.Button();
-            this.noControlsConfiguredLabel = new System.Windows.Forms.Label();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
@@ -818,6 +818,17 @@
             this.devicesList.TabIndex = 6;
             this.devicesList.SelectedIndexChanged += new System.EventHandler(this.Reload_Controls);
             // 
+            // noControlsConfiguredLabel
+            // 
+            this.noControlsConfiguredLabel.AutoSize = true;
+            this.noControlsConfiguredLabel.Location = new System.Drawing.Point(7, 10);
+            this.noControlsConfiguredLabel.Name = "noControlsConfiguredLabel";
+            this.noControlsConfiguredLabel.Size = new System.Drawing.Size(422, 13);
+            this.noControlsConfiguredLabel.TabIndex = 13;
+            this.noControlsConfiguredLabel.Text = "No controls override configured. Please, change controls settings in game to gene" +
+    "rate it.";
+            this.noControlsConfiguredLabel.Visible = false;
+            // 
             // comboBoxKeybindListTemplate
             // 
             this.comboBoxKeybindListTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1352,17 +1363,6 @@
             this.Save_Button_Raw.UseVisualStyleBackColor = true;
             this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
             // 
-            // noControlsConfiguredLabel
-            // 
-            this.noControlsConfiguredLabel.AutoSize = true;
-            this.noControlsConfiguredLabel.Location = new System.Drawing.Point(7, 10);
-            this.noControlsConfiguredLabel.Name = "noControlsConfiguredLabel";
-            this.noControlsConfiguredLabel.Size = new System.Drawing.Size(422, 13);
-            this.noControlsConfiguredLabel.TabIndex = 13;
-            this.noControlsConfiguredLabel.Text = "No controls override configured. Please, change controls settings in game to gene" +
-    "rate it.";
-            this.noControlsConfiguredLabel.Visible = false;
-            // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1377,7 +1377,6 @@
             this.Name = "MainWin";
             this.Text = "Genshin Impact Configurator";
             this.Load += new System.EventHandler(this.MainWin_Load);
-            this.Shown += new System.EventHandler(this.MainWin_Shown);
             this.TopBar.ResumeLayout(false);
             this.TopBar.PerformLayout();
             this.statusStrip1.ResumeLayout(false);

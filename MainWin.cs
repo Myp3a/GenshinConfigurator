@@ -66,6 +66,7 @@ namespace GenshinConfigurator
                             devicesList.Items.Add(name);
                         }
                     }
+                    devicesList.SelectedIndex = 0;
                     //Task.Run(() => Populate_Controls());
                 }
                 if (Settings.graphicsLoaded)
@@ -1075,11 +1076,6 @@ namespace GenshinConfigurator
             Status_Label.Text = $"Saved raw config to registry.";
             Status_Reset_Timer.Enabled = false;
             Status_Reset_Timer.Enabled = true;
-        }
-
-        private void MainWin_Shown(object sender, EventArgs e)
-        {
-            devicesList.SelectedIndex = 0;
         }
         // End of raw config functions
     }
