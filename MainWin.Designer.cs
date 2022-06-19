@@ -1225,11 +1225,6 @@
             this.comboBoxVoiceLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxVoiceLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxVoiceLanguage.FormattingEnabled = true;
-            this.comboBoxVoiceLanguage.Items.AddRange(new object[] {
-            "Chinese",
-            "English",
-            "Japanese",
-            "Korean"});
             this.comboBoxVoiceLanguage.Location = new System.Drawing.Point(409, 32);
             this.comboBoxVoiceLanguage.Name = "comboBoxVoiceLanguage";
             this.comboBoxVoiceLanguage.Size = new System.Drawing.Size(121, 21);
@@ -1250,20 +1245,6 @@
             this.comboBoxTextLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxTextLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTextLanguage.FormattingEnabled = true;
-            this.comboBoxTextLanguage.Items.AddRange(new object[] {
-            "Simplified Chinese",
-            "Traditional Chinese",
-            "English",
-            "Korean",
-            "Japanese",
-            "Spanish",
-            "French",
-            "Russian",
-            "Thai",
-            "Vietnamese",
-            "German",
-            "Indonesian",
-            "Portuguese"});
             this.comboBoxTextLanguage.Location = new System.Drawing.Point(409, 5);
             this.comboBoxTextLanguage.Name = "comboBoxTextLanguage";
             this.comboBoxTextLanguage.Size = new System.Drawing.Size(121, 21);

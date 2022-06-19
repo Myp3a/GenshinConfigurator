@@ -4,7 +4,6 @@
     {
         public enum VoiceLanguage
         {
-            None,
             Chinese,
             English,
             Japanese,
@@ -13,19 +12,20 @@
 
         public enum TextLanguage
         {
+            None,
+            English,
             SimplifiedChinese,
             TraditionalChinese,
-            English,
-            Korean,
-            Japanese,
-            Spanish,
             French,
+            German,
+            Spanish,
+            Portugese,
             Russian,
+            Japanese,
+            Korean,
             Thai,
             Vietnamese,
-            German,
-            Indonesian,
-            Portugese
+            Indonesian
         }
 
         public enum ResolutionData
