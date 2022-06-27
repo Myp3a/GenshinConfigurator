@@ -47,6 +47,7 @@ namespace GenshinConfigurator
         public Cli()
         {
             Settings = new SettingsContainer();
+            Settings.Populate();
             Resolution = Settings.Resolution;
         }
 

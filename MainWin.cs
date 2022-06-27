@@ -25,6 +25,7 @@ namespace GenshinConfigurator
             try
             {
                 Settings = new SettingsContainer();
+                Settings.Populate();
                 Resolution = Settings.Resolution;
                 if (Settings.controlsLoaded == false || Settings.graphicsLoaded == false)
                 {

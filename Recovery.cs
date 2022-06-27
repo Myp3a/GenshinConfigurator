@@ -21,6 +21,7 @@ namespace GenshinConfigurator
             try
             {
                 Settings = new SettingsContainer();
+                Settings.Populate();
                 Resolution = Settings.Resolution;
                 textBoxRecovery.Text = Settings.Raw();
                 checkboxMainConfig.Checked = true;
@@ -30,7 +31,7 @@ namespace GenshinConfigurator
                 else StatusLabel.Text = "Fix config file and press \"Save\"";
             } catch
             {
-                textBoxRecovery.Text = Settings.Raw();
+                textBoxRecovery.Text = RegistryContainer.Load();
                 StatusLabel.Text = "Main config file is corrupted. Fix it and press \"Save\"";
                 //buttonRecoverySave.Enabled = false;
             }

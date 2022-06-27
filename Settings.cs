@@ -20,6 +20,11 @@ namespace GenshinConfigurator
         public bool controlsLoaded, graphicsLoaded;
         public SettingsContainer()
         {
+            
+        }
+
+        public void Populate()
+        {
             FromReg();
             this.controlsLoaded = data.__controlsLoaded;
             this.graphicsLoaded = data.__graphicsLoaded;
