@@ -18,6 +18,7 @@ namespace GenshinConfigurator
             checkboxMainConfig.Checked = false;
             checkboxGraphics.Checked = false;
             checkboxControls.Checked = false;
+            checkboxGraphicsValues.Checked = false;
             try
             {
                 Settings = new SettingsContainer();
@@ -25,9 +26,16 @@ namespace GenshinConfigurator
                 Resolution = Settings.Resolution;
                 textBoxRecovery.Text = Settings.Raw();
                 checkboxMainConfig.Checked = true;
-                if (Settings.graphicsLoaded) checkboxGraphics.Checked = true;
+                if (Settings.graphicsLoaded)
+                {
+                    checkboxGraphics.Checked = true;
+                    if (Settings.graphicsValid)
+                    {
+                        checkboxGraphicsValues.Checked = true;
+                    }
+                }
                 if (Settings.controlsLoaded) checkboxControls.Checked = true;
-                if (Settings.graphicsLoaded && Settings.controlsLoaded) StatusLabel.Text = "Everything is fine. You can close the recovery window.";
+                if (Settings.graphicsLoaded && Settings.controlsLoaded && checkboxGraphicsValues.Checked) StatusLabel.Text = "Everything is fine. You can close the recovery window.";
                 else StatusLabel.Text = "Fix config file and press \"Save\"";
             } catch
             {

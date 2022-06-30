@@ -27,17 +27,6 @@ namespace GenshinConfigurator
                 Settings = new SettingsContainer();
                 Settings.Populate();
                 Resolution = Settings.Resolution;
-                if (Settings.controlsLoaded == false || Settings.graphicsLoaded == false)
-                {
-                    DialogResult result = MessageBox.Show("Some part of your config is corrupted. Continuing may be dangerous.\nLaunch recovery mode?", "Config error", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.Yes)
-                    {
-                        this.Shown += (s, args) => this.Hide();
-                        Recovery rec = new Recovery();
-                        rec.Closed += (s, args) => this.Close();
-                        rec.Show();
-                    }
-                }
                 if (Settings.controlsLoaded)
                 {
                     if (Settings.Controls.controller_ids.Count == 0)
@@ -72,9 +61,20 @@ namespace GenshinConfigurator
                     //Task.Run(() => Populate_Controls());
                 }
                 if (Settings.graphicsLoaded)
-                {
-                    Reset_Button_Click(null, null);
+                { 
+                    if (Settings.graphicsValid == false)
+                    {
+                        DialogResult result = MessageBox.Show("Graphics values outside of defined range. Initializing empty graphics config.\nLaunch recovery mode?", "Config error", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            this.Shown += (s, args) => this.Hide();
+                            Recovery rec = new Recovery();
+                            rec.Closed += (s, args) => this.Close();
+                            rec.Show();
+                        }
+                    }
                 }
+                Reset_Button_Click(null, null);
                 Status_Label.Text = "Loaded config from registry.";
                 Status_Reset_Timer.Enabled = false;
                 Status_Reset_Timer.Enabled = true;
@@ -96,8 +96,10 @@ namespace GenshinConfigurator
             }
         }
 
+        // Fills selectors with values from enums
         private void Fill_Selectors()
         {
+            // Graphics
             FPS_Box.Items.AddRange(Enum.GetNames(typeof(FPS)).Skip(1).ToArray());
             VSync_Box.Items.AddRange(Enum.GetNames(typeof(VSync)).Skip(1).ToArray());
             RenderResolution_Box.Items.AddRange(Enum.GetNames(typeof(RenderResolution)).Skip(1).ToArray());
@@ -116,6 +118,7 @@ namespace GenshinConfigurator
             AnisotropicFiltering_Box.Items.AddRange(Enum.GetNames(typeof(AnisotropicFiltering)).Skip(1).ToArray());
             Preset_Box.Items.AddRange(Enum.GetNames(typeof(OverallQuality)));
 
+            // Language
             comboBoxTextLanguage.Items.AddRange(Enum.GetNames(typeof(TextLanguage)).Skip(1).ToArray());
             comboBoxVoiceLanguage.Items.AddRange(Enum.GetNames(typeof(VoiceLanguage)).ToArray());
         }
@@ -163,63 +166,19 @@ namespace GenshinConfigurator
         }
 
         private void Reset_Button_Click(object sender, EventArgs e)
-        {
-            if (Settings.Graphics.current_preset == -1)
+        {    
+            Reset_Audio();
+            Reset_Language();
+            if (Settings.graphicsValid)
             {
-                Preset_Box.SelectedIndex = 4;
+                Reset_Graphics();
             }
-            else
-            {
-                Preset_Box.SelectedIndex = Settings.Graphics.current_preset - 1;
-            }
-            FPS_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.FPS) - 1;
-            VSync_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.VSync) - 1;
-            RenderResolution_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.RenderResolution) - 1;
-            ShadowQuality_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.ShadowQuality) - 1;
-            VisualEffects_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.VisualEffects) - 1;
-            SFXQuality_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.SFXQuality) - 1;
-            EnvironmentDetail_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.EnvironmentDetail) - 1;
-            Antialiasing_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.Antialiasing) - 1;
-            VolumetricFog_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.VolumetricFog) - 1;
-            Reflections_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.Reflections) - 1;
-            MotionBlur_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.MotionBlur) - 1;
-            Bloom_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.Bloom) - 1;
-            CrowdDensity_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.CrowdDensity) - 1;
-            SubsurfaceScattering_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.SubsurfaceScattering) - 1;
-            TeammateEffects_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.TeammateEffects) - 1;
-            AnisotropicFiltering_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.AnisotropicFiltering) - 1;
-            Width_Text.Text = Resolution.Get((int)ResolutionData.Width).ToString();
-            Height_Text.Text = Resolution.Get((int)ResolutionData.Height).ToString();
-            if (Convert.ToBoolean(Resolution.Get((int)ResolutionData.Fullscreen)))
-            {
-                Fullscreen_Check.Checked = true;
-            }
-            else
-            {
-                Fullscreen_Check.Checked = false;
-            }
-            trackBarVoiceVolume.Value = Settings.Audio.voice_volume;
-            trackBarSFXVolume.Value = Settings.Audio.sfx_volume;
-            trackBarMusicVolume.Value = Settings.Audio.music_volume;
-            trackBarMainVolume.Value = Settings.Audio.main_volume;
-            comboBoxAudioFormat.SelectedIndex = Settings.Audio.output_format;
-            comboBoxAudioDynamicRange.SelectedIndex = Settings.Audio.dynamic_range;
-            comboBoxTextLanguage.SelectedIndex = (int)Settings.Language.text_lang - 1;
-            comboBoxVoiceLanguage.SelectedIndex = (int)Settings.Language.voice_lang;
             if (sender != null)
             {
                 Status_Label.Text = "Reloaded config from registry.";
                 Status_Reset_Timer.Enabled = false;
                 Status_Reset_Timer.Enabled = true;
             }
-            int GammaVal = (int)(Settings.Graphics.gamma * 100);
-            // double precision fix
-            if (GammaVal > 300) GammaVal = 300;
-            if (GammaVal < 140) GammaVal = 140;
-
-            // GammaVal is in range 300-140.
-            // Slider is in range 0-160.
-            GammaTrackBar.Value = 160 - (GammaVal - 140);
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -419,7 +378,6 @@ namespace GenshinConfigurator
             graphics.Change(SettingsType.SubsurfaceScattering, SubsurfaceScattering_Box.SelectedIndex + 1);
             graphics.Change(SettingsType.TeammateEffects, TeammateEffects_Box.SelectedIndex + 1);
             graphics.Change(SettingsType.AnisotropicFiltering, AnisotropicFiltering_Box.SelectedIndex + 1);
-            Settings.Apply("graphics");
             Resolution.Change((int)ResolutionData.Width, Convert.ToInt32(Width_Text.Text));
             Resolution.Change((int)ResolutionData.Height, Convert.ToInt32(Height_Text.Text));
             if (Fullscreen_Check.Checked)
@@ -429,11 +387,57 @@ namespace GenshinConfigurator
             {
                 Resolution.Change((int)ResolutionData.Fullscreen, 0);
             }
-            Settings.Apply("resolution");
+            Settings.Apply();
             Settings.ToReg();
             Status_Label.Text = "Saved config to registry.";
             Status_Reset_Timer.Enabled = false;
             Status_Reset_Timer.Enabled = true;
+        }
+
+        private void Reset_Graphics()
+        {
+            if (Settings.Graphics.current_preset == -1)
+            {
+                Preset_Box.SelectedIndex = 4;
+            }
+            else
+            {
+                Preset_Box.SelectedIndex = Settings.Graphics.current_preset - 1;
+            }
+            FPS_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.FPS) - 1;
+            VSync_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.VSync) - 1;
+            RenderResolution_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.RenderResolution) - 1;
+            ShadowQuality_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.ShadowQuality) - 1;
+            VisualEffects_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.VisualEffects) - 1;
+            SFXQuality_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.SFXQuality) - 1;
+            EnvironmentDetail_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.EnvironmentDetail) - 1;
+            Antialiasing_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.Antialiasing) - 1;
+            VolumetricFog_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.VolumetricFog) - 1;
+            Reflections_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.Reflections) - 1;
+            MotionBlur_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.MotionBlur) - 1;
+            Bloom_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.Bloom) - 1;
+            CrowdDensity_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.CrowdDensity) - 1;
+            SubsurfaceScattering_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.SubsurfaceScattering) - 1;
+            TeammateEffects_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.TeammateEffects) - 1;
+            AnisotropicFiltering_Box.SelectedIndex = Settings.Graphics.Get(SettingsType.AnisotropicFiltering) - 1;
+            Width_Text.Text = Resolution.Get((int)ResolutionData.Width).ToString();
+            Height_Text.Text = Resolution.Get((int)ResolutionData.Height).ToString();
+            if (Convert.ToBoolean(Resolution.Get((int)ResolutionData.Fullscreen)))
+            {
+                Fullscreen_Check.Checked = true;
+            }
+            else
+            {
+                Fullscreen_Check.Checked = false;
+            }
+            int GammaVal = (int)(Settings.Graphics.gamma * 100);
+            // double precision fix
+            if (GammaVal > 300) GammaVal = 300;
+            if (GammaVal < 140) GammaVal = 140;
+
+            // GammaVal is in range 300-140.
+            // Slider is in range 0-160.
+            GammaTrackBar.Value = 160 - (GammaVal - 140);
         }
         // End of graphics functions
 
@@ -956,14 +960,14 @@ namespace GenshinConfigurator
 
             Settings.Controls.controllers.Add(cntrl);
             Settings.Controls.controller_ids.Add("OverrideControllerMap__00000000-0000-0000-0000-000000000000__1000000");
-            Settings.Apply("controls");
+            Settings.Apply();
             Settings.ToReg();
             MessageBox.Show("Mouse added! Please, restart the application.");
         }
 
         private void Apply_Controls_Button_Click(object sender, EventArgs e)
         {
-            Settings.Apply("controls");
+            Settings.Apply();
             Settings.ToReg();
             Status_Label.Text = "Saved config to registry.";
             Status_Reset_Timer.Enabled = false;
@@ -975,65 +979,65 @@ namespace GenshinConfigurator
         private void trackBarMusicVolume_ValueChanged(object sender, EventArgs e)
         {
             MusicVolumeValueLabel.Text = trackBarMusicVolume.Value.ToString();
-            Settings.Audio.music_volume = trackBarMusicVolume.Value;
         }
 
         private void trackBarMainVolume_ValueChanged(object sender, EventArgs e)
         {
             MainVolumeValueLabel.Text = trackBarMainVolume.Value.ToString();
-            Settings.Audio.main_volume = trackBarMainVolume.Value;
         }
 
         private void trackBarSFXVolume_ValueChanged(object sender, EventArgs e)
         {
             SFXVolumeValueLabel.Text = trackBarSFXVolume.Value.ToString();
-            Settings.Audio.sfx_volume = trackBarSFXVolume.Value;
         }
 
         private void trackBarVoiceVolume_ValueChanged(object sender, EventArgs e)
         {
             VoiceVolumeValueLabel.Text = trackBarVoiceVolume.Value.ToString();
-            Settings.Audio.voice_volume = trackBarVoiceVolume.Value;
-        }
-
-        private void comboBoxAudioDynamicRange_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Settings.Audio.dynamic_range = comboBoxAudioDynamicRange.SelectedIndex;
-        }
-
-        private void comboBoxAudioFormat_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Settings.Audio.output_format = comboBoxAudioFormat.SelectedIndex;
         }
 
         private void Apply_Audio_Button_Click(object sender, EventArgs e)
         {
-            Settings.Apply("audio");
+            Settings.Audio.music_volume = trackBarMusicVolume.Value;
+            Settings.Audio.main_volume = trackBarMainVolume.Value;
+            Settings.Audio.sfx_volume = trackBarSFXVolume.Value;
+            Settings.Audio.voice_volume = trackBarVoiceVolume.Value;
+            Settings.Audio.dynamic_range = comboBoxAudioDynamicRange.SelectedIndex;
+            Settings.Audio.output_format = comboBoxAudioFormat.SelectedIndex;
+            Settings.Apply();
             Settings.ToReg();
             Status_Label.Text = "Saved config to registry.";
             Status_Reset_Timer.Enabled = false;
             Status_Reset_Timer.Enabled = true;
+        }
+
+        private void Reset_Audio()
+        {
+            trackBarVoiceVolume.Value = Settings.Audio.voice_volume;
+            trackBarSFXVolume.Value = Settings.Audio.sfx_volume;
+            trackBarMusicVolume.Value = Settings.Audio.music_volume;
+            trackBarMainVolume.Value = Settings.Audio.main_volume;
+            comboBoxAudioFormat.SelectedIndex = Settings.Audio.output_format;
+            comboBoxAudioDynamicRange.SelectedIndex = Settings.Audio.dynamic_range;
         }
         // End of audio functions
 
         // Language functions
-        private void comboBoxTextLanguage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Settings.Language.text_lang = (TextLanguage)comboBoxTextLanguage.SelectedIndex + 1;
-        }
-
-        private void comboBoxVoiceLanguage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Settings.Language.voice_lang = (VoiceLanguage)comboBoxVoiceLanguage.SelectedIndex;
-        }
-
         private void Apply_Language_Button_Click(object sender, EventArgs e)
         {
-            Settings.Apply("language");
+            Settings.Language.text_lang = (TextLanguage)comboBoxTextLanguage.SelectedIndex + 1;
+            Settings.Language.voice_lang = (VoiceLanguage)comboBoxVoiceLanguage.SelectedIndex;
+            Settings.Apply();
             Settings.ToReg();
             Status_Label.Text = "Saved config to registry.";
             Status_Reset_Timer.Enabled = false;
             Status_Reset_Timer.Enabled = true;
+        }
+
+        private void Reset_Language()
+        {
+            comboBoxTextLanguage.SelectedIndex = (int)Settings.Language.text_lang - 1;
+            comboBoxVoiceLanguage.SelectedIndex = (int)Settings.Language.voice_lang;
         }
         // End of language functions
 

@@ -35,6 +35,7 @@
             this.buttonRecoverySave = new System.Windows.Forms.Button();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.checkboxGraphicsValues = new System.Windows.Forms.CheckBox();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,7 +81,7 @@
             this.checkboxControls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkboxControls.AutoSize = true;
             this.checkboxControls.Enabled = false;
-            this.checkboxControls.Location = new System.Drawing.Point(283, 428);
+            this.checkboxControls.Location = new System.Drawing.Point(416, 428);
             this.checkboxControls.Name = "checkboxControls";
             this.checkboxControls.Size = new System.Drawing.Size(124, 17);
             this.checkboxControls.TabIndex = 3;
@@ -117,11 +118,24 @@
             this.StatusLabel.Text = "StatusLabel";
             this.StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // checkboxGraphicsValues
+            // 
+            this.checkboxGraphicsValues.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkboxGraphicsValues.AutoSize = true;
+            this.checkboxGraphicsValues.Enabled = false;
+            this.checkboxGraphicsValues.Location = new System.Drawing.Point(283, 428);
+            this.checkboxGraphicsValues.Name = "checkboxGraphicsValues";
+            this.checkboxGraphicsValues.Size = new System.Drawing.Size(127, 17);
+            this.checkboxGraphicsValues.TabIndex = 6;
+            this.checkboxGraphicsValues.Text = "Graphics values valid";
+            this.checkboxGraphicsValues.UseVisualStyleBackColor = true;
+            // 
             // Recovery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 472);
+            this.Controls.Add(this.checkboxGraphicsValues);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.buttonRecoverySave);
             this.Controls.Add(this.checkboxControls);
@@ -147,5 +161,6 @@
         private System.Windows.Forms.Button buttonRecoverySave;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
+        private System.Windows.Forms.CheckBox checkboxGraphicsValues;
     }
 }

@@ -1033,7 +1033,6 @@
             this.comboBoxAudioFormat.Name = "comboBoxAudioFormat";
             this.comboBoxAudioFormat.Size = new System.Drawing.Size(121, 21);
             this.comboBoxAudioFormat.TabIndex = 16;
-            this.comboBoxAudioFormat.SelectedIndexChanged += new System.EventHandler(this.comboBoxAudioFormat_SelectedIndexChanged);
             // 
             // labelAudioOutputFormat
             // 
@@ -1056,7 +1055,6 @@
             this.comboBoxAudioDynamicRange.Name = "comboBoxAudioDynamicRange";
             this.comboBoxAudioDynamicRange.Size = new System.Drawing.Size(121, 21);
             this.comboBoxAudioDynamicRange.TabIndex = 14;
-            this.comboBoxAudioDynamicRange.SelectedIndexChanged += new System.EventHandler(this.comboBoxAudioDynamicRange_SelectedIndexChanged);
             // 
             // labelAudioDynamicRange
             // 
@@ -1229,7 +1227,6 @@
             this.comboBoxVoiceLanguage.Name = "comboBoxVoiceLanguage";
             this.comboBoxVoiceLanguage.Size = new System.Drawing.Size(121, 21);
             this.comboBoxVoiceLanguage.TabIndex = 3;
-            this.comboBoxVoiceLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxVoiceLanguage_SelectedIndexChanged);
             // 
             // labelVoiceLanguage
             // 
@@ -1249,7 +1246,6 @@
             this.comboBoxTextLanguage.Name = "comboBoxTextLanguage";
             this.comboBoxTextLanguage.Size = new System.Drawing.Size(121, 21);
             this.comboBoxTextLanguage.TabIndex = 1;
-            this.comboBoxTextLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBoxTextLanguage_SelectedIndexChanged);
             // 
             // labelTextLanguage
             // 

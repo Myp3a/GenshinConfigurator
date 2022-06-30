@@ -287,7 +287,7 @@ namespace GenshinConfigurator
                                 else
                                 {
                                     Settings.Graphics.Change((SettingsType)key, value);
-                                    Settings.Apply("graphics");
+                                    Settings.Apply();
                                     Settings.ToReg();
                                 }
                             }

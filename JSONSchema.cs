@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Xml.Linq;
@@ -65,6 +64,14 @@ namespace GenshinConfigurator
                 {
                     __graphicsLoaded = false;
                 }
+                if (__graphicsLoaded)
+                {
+                    __graphicsInRange = true;
+                    foreach (GraphicsSetting setting in graphicsData.customVolatileGrades)
+                    {
+                        __graphicsInRange &= GraphicsSettings.Check(setting.key, setting.value);
+                    }
+                }
                 Controllers controllers = new Controllers();
                 _overrideControllerMapValueList = controllers;
                 try
@@ -105,6 +112,8 @@ namespace GenshinConfigurator
             public bool __controlsLoaded { get; set; } = true;
             [JsonIgnore]
             public bool __graphicsLoaded { get; set; } = true;
+            [JsonIgnore]
+            public bool __graphicsInRange { get; set; } = false;
             public string deviceUUID { get; set; }
             public string userLocalDataVersionId { get; set; }
             public int deviceLanguageType { get; set; }

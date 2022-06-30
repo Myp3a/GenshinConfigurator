@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using static GenshinConfigurator.Enums;
 using static GenshinConfigurator.JSONSchema;
@@ -17,7 +18,7 @@ namespace GenshinConfigurator
         public LanguageSettings Language;
         public ControlsSettings Controls;
         MainJSON data;
-        public bool controlsLoaded, graphicsLoaded;
+        public bool controlsLoaded, graphicsLoaded, graphicsValid;
         public SettingsContainer()
         {
             
@@ -28,6 +29,7 @@ namespace GenshinConfigurator
             FromReg();
             this.controlsLoaded = data.__controlsLoaded;
             this.graphicsLoaded = data.__graphicsLoaded;
+            this.graphicsValid = data.__graphicsInRange;
         }
 
         public void Parse(string raw_cfg)
@@ -67,28 +69,6 @@ namespace GenshinConfigurator
             Resolution.Apply();
         }
 
-        public void Apply(string type)
-        {
-            switch (type)
-            {
-                case "audio":
-                    this.data = Audio.Apply(data);
-                    break;
-                case "controls":
-                    this.data = Controls.Apply(data);
-                    break;
-                case "graphics":
-                    this.data = Graphics.Apply(data);
-                    break;
-                case "language":
-                    this.data = Language.Apply(data);
-                    break;
-                case "resolution":
-                    Resolution.Apply();
-                    break;
-            }
-        }
-
         public void Save(string path)
         {
             ConfigFile file = new ConfigFile
@@ -112,25 +92,22 @@ namespace GenshinConfigurator
             if (config.Graphics != null)
             {
                 this.Graphics.FromConfig(config.Graphics);
-                Apply("graphics");
             }
             if (config.Audio != null)
             {
                 this.Audio.FromConfig(config.Audio);
-                Apply("audio");
             }
             if (config.Language != null)
             {
                 this.Language.FromConfig(config.Language);
-                Apply("language");
             }
             if (config.Resolution != null)
             {
                 Resolution.Change((int)ResolutionData.Width, config.Resolution.Width);
                 Resolution.Change((int)ResolutionData.Height, config.Resolution.Height);
                 Resolution.Change((int)ResolutionData.Fullscreen, Convert.ToInt32(config.Resolution.Fullscreen));
-                Apply("resolution");
             }
+            Apply();
         }
 
         public string Raw()
@@ -311,6 +288,66 @@ namespace GenshinConfigurator
                 }
             }
             return 0; // Should never be called
+        }
+
+        public static bool Check(int s_int, int val)
+        {
+            SettingsType s_type = (SettingsType)s_int;
+            // Is there a better way of doing this?
+            Type val_enum = null;
+            switch (s_type)
+            {
+                case SettingsType.VSync:
+                    val_enum = typeof(VSync);
+                    break;
+                case SettingsType.RenderResolution:
+                    val_enum = typeof(RenderResolution);
+                    break;
+                case SettingsType.ShadowQuality:
+                    val_enum = typeof(ShadowQuality);
+                    break;
+                case SettingsType.VisualEffects:
+                    val_enum = typeof(VisualEffects);
+                    break;
+                case SettingsType.SFXQuality:
+                    val_enum = typeof(SFXQuality);
+                    break;
+                case SettingsType.EnvironmentDetail:
+                    val_enum = typeof(EnvironmentDetail);
+                    break;
+                case SettingsType.FPS:
+                    val_enum = typeof(FPS);
+                    break;
+                case SettingsType.Antialiasing:
+                    val_enum = typeof(Antialiasing);
+                    break;
+                case SettingsType.VolumetricFog:
+                    val_enum = typeof(VolumetricFog);
+                    break;
+                case SettingsType.Reflections:
+                    val_enum = typeof(Reflections);
+                    break;
+                case SettingsType.MotionBlur:
+                    val_enum = typeof(MotionBlur);
+                    break;
+                case SettingsType.Bloom:
+                    val_enum = typeof(Bloom);
+                    break;
+                case SettingsType.CrowdDensity:
+                    val_enum = typeof(CrowdDensity);
+                    break;
+                case SettingsType.SubsurfaceScattering:
+                    val_enum = typeof(SubsurfaceScattering);
+                    break;
+                case SettingsType.TeammateEffects:
+                    val_enum = typeof(TeammateEffects);
+                    break;
+                case SettingsType.AnisotropicFiltering:
+                    val_enum = typeof(AnisotropicFiltering);
+                    break;
+            }
+            if (val_enum == null) return false;
+            return Enum.GetValues(val_enum).Cast<int>().ToArray().Contains(val) && val > 0;
         }
 
         public GraphicsConfig ToConfig()
