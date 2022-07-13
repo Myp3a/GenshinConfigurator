@@ -183,6 +183,7 @@ namespace GenshinConfigurator
             public int mtrTraceCDEachReason { get; set; }
             public List<string> _customDataKeyList { get; set; }
             public List<string> _customDataValueList { get; set; }
+            public List<int> _serializedCodeSwitches { get; set; }
         }
 
         public class ResolutionConfig

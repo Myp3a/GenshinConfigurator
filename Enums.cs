@@ -37,13 +37,13 @@
         public enum SettingsType
         {
             OverallQuality,
-            VSync,
+            FPS,
             RenderResolution,
             ShadowQuality,
             VisualEffects,
             SFXQuality,
             EnvironmentDetail,
-            FPS,
+            VSync,
             Antialiasing,
             VolumetricFog,
             Reflections,
@@ -126,7 +126,8 @@
         {
             None,
             f30,
-            f60
+            f60,
+            f45
         }
 
         public enum Antialiasing 
