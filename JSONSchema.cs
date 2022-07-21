@@ -95,11 +95,22 @@ namespace GenshinConfigurator
                         }
                         else if (xml_doc.Root.Name == (ns + "JoystickMap"))
                         {
+                            // Only Xbox have a GUID? Is it tied to the controller?
+                            // Is the configuration is the same for same class controllers?
+                            // Is there a reliable way to detect controller type?
+                            // GUID exists everywhere, but (most?) sometimes isn't populated
+                            // Name sometimes doesn't exist
                             if (xml_doc.Descendants(ns + "hardwareGuid").First().Value == "d74a350e-fe8b-4e9e-bbcd-efff16d34115")
                             {
                                 XBoxController xbc = new XBoxController();
                                 xbc.LoadFromString(xml_string);
                                 controllers.Add(xbc);
+                            }
+                            else if (xml_doc.Root.Attribute("hardwareName").Value == "Wireless Controller")
+                            {
+                                DualSenseController dsc = new DualSenseController();
+                                dsc.LoadFromString(xml_string);
+                                controllers.Add(dsc);
                             }
                         }
                     }

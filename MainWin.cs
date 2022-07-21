@@ -54,6 +54,14 @@ namespace GenshinConfigurator
                             {
                                 name = "Mouse (" + parts[2] + ")";
                             }
+                            else if ((parts[1] == "00000000-0000-0000-0000-000000000000") && (parts[2].Substring(4) == "003"))
+                            {
+                                name = "DualSense Gamepad (" + parts[2] + ")";
+                            }
+                            else
+                            {
+                                name = "Unknown device (" + parts[2] + ")";
+                            }
                             devicesList.Items.Add(name);
                         }
                     }
@@ -561,6 +569,7 @@ namespace GenshinConfigurator
                         offset = 3;
                         break;
                     case XBoxController _:
+                    case DualSenseController _:
                         offset = 4;
                         break;
                 }
@@ -705,8 +714,51 @@ namespace GenshinConfigurator
             }
             else if (cntrl is XBoxController)
             {
-                string[] gamepad_keys = gamepadButtonTemplate.Items.Cast<String>().ToArray();
-                string[] gamepad_axes = gamepadAxisTemplate.Items.Cast<String>().ToArray();
+                string[] gamepad_keys = Keycodes.xbox_gamepad_keys.ToArray();
+                string[] gamepad_axes = Keycodes.gamepad_axes.ToArray();
+                // These buttons have mappings for them, however, they do not appear doing something useful.
+                List<int> gamepadActionsBlacklist = new List<int> { 87, 88 };
+                foreach (GamepadKeybind bind in cntrl.keybinds)
+                {
+                    string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
+                    if ((!name.Contains("?") && !gamepadActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
+                    {
+                        Add_Label(bind, mult);
+                        Add_Controller_Binding(bind, gamepad_keys, mult);
+                        if (devModeToggle.Checked)
+                        {
+                            Add_Delete_Button(bind, mult);
+                        }
+                        mult++;
+                    }
+                }
+                foreach (GamepadAxis bind in cntrl.axes)
+                {
+                    string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
+                    if ((!name.Contains("?") && !gamepadActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
+                    {
+                        Add_Label(bind, mult);
+                        if (bind.elementIdentifierId > 3) // LT, RT as buttons
+                        {
+                            Add_Controller_Binding(bind, gamepad_keys, mult);
+                        }
+                        else
+                        {
+                            Add_Controller_Axes(bind, gamepad_axes, mult);
+                            Add_Invert_Checkbox(bind, mult);
+                        }
+                        if (devModeToggle.Checked)
+                        {
+                            Add_Delete_Button(bind, mult);
+                        }
+                        mult++;
+                    }
+                }
+            }
+            else if (cntrl is DualSenseController)
+            {
+                string[] gamepad_keys = Keycodes.dualsense_gamepad_keys.ToArray();
+                string[] gamepad_axes = Keycodes.gamepad_axes.ToArray();
                 // These buttons have mappings for them, however, they do not appear doing something useful.
                 List<int> gamepadActionsBlacklist = new List<int> { 87, 88 };
                 foreach (GamepadKeybind bind in cntrl.keybinds)
@@ -874,6 +926,7 @@ namespace GenshinConfigurator
                     offset = 3;
                     break;
                 case XBoxController _:
+                case DualSenseController _:
                     offset = 4;
                     break;
             }
@@ -1076,6 +1129,7 @@ namespace GenshinConfigurator
         private void Load_Button_Raw_Click(object sender, EventArgs e)
         {
             textBox_Config_Raw.Text = Settings.Raw();
+            Settings.Parse(textBox_Config_Raw.Text); // Needed to work around DualSense buttons remapping
             Status_Label.Text = $"Loaded raw config from registry.";
             Status_Reset_Timer.Enabled = false;
             Status_Reset_Timer.Enabled = true;
@@ -1086,6 +1140,7 @@ namespace GenshinConfigurator
             Settings.Parse(textBox_Config_Raw.Text);
             Settings.Apply();
             Settings.ToReg();
+            Settings.Parse(textBox_Config_Raw.Text); // And again, to restore DualSense mappings
             Status_Label.Text = $"Saved raw config to registry.";
             Status_Reset_Timer.Enabled = false;
             Status_Reset_Timer.Enabled = true;

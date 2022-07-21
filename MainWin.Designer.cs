@@ -882,13 +882,6 @@
             this.gamepadAxisTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gamepadAxisTemplate.Enabled = false;
             this.gamepadAxisTemplate.FormattingEnabled = true;
-            this.gamepadAxisTemplate.Items.AddRange(new object[] {
-            "Left Stick X",
-            "Left Stick Y",
-            "Right Stick X",
-            "Right Stick Y",
-            "LT",
-            "RT"});
             this.gamepadAxisTemplate.Location = new System.Drawing.Point(405, 5);
             this.gamepadAxisTemplate.Name = "gamepadAxisTemplate";
             this.gamepadAxisTemplate.Size = new System.Drawing.Size(121, 21);
@@ -968,26 +961,6 @@
             this.gamepadButtonTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gamepadButtonTemplate.Enabled = false;
             this.gamepadButtonTemplate.FormattingEnabled = true;
-            this.gamepadButtonTemplate.Items.AddRange(new object[] {
-            "LT",
-            "RT",
-            "A",
-            "B",
-            "X",
-            "Y",
-            "LB",
-            "RB",
-            "Back",
-            "Start",
-            "Left Stick Button",
-            "Right Stick Button",
-            "D-Pad Up",
-            "D-Pad Right",
-            "D-Pad Down",
-            "D-Pad Left",
-            "Left Stick",
-            "Right Stick",
-            "Guide"});
             this.gamepadButtonTemplate.Location = new System.Drawing.Point(405, 5);
             this.gamepadButtonTemplate.Name = "gamepadButtonTemplate";
             this.gamepadButtonTemplate.Size = new System.Drawing.Size(121, 21);

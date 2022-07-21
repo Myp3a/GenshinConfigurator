@@ -5,6 +5,64 @@ namespace GenshinConfigurator
 {
     internal class Keycodes
     {
+        public static List<string> gamepad_axes = new List<string>
+        {
+            "Left Stick X",
+            "Left Stick Y",
+            "Right Stick X",
+            "Right Stick Y",
+            "LT",
+            "RT"
+        };
+
+        public static List<string> xbox_gamepad_keys = new List<string>
+        {
+            "LT",
+            "RT",
+            "A",
+            "B",
+            "X",
+            "Y",
+            "LB",
+            "RB",
+            "Back",
+            "Start",
+            "Left Stick Button",
+            "Right Stick Button",
+            "D-Pad Up",
+            "D-Pad Right",
+            "D-Pad Down",
+            "D-Pad Left",
+            "Left Stick",
+            "Right Stick",
+            "Guide"
+        };
+
+        public static List<string> dualsense_gamepad_keys = new List<string>
+        {
+            "LT",
+            "RT",
+            "Cross",
+            "Circle",
+            "Square",
+            "Triangle",
+            "L1",
+            "R1",
+            "Create",
+            "Options",
+            "PS Button",
+            "Touchpad Button",
+            "Left Stick Button",
+            "Right Stick Button",
+            "D-Pad Up",
+            "D-Pad Right",
+            "D-Pad Down",
+            "D-Pad Left",
+            "Left Stick",
+            "Right Stick",
+            "Mute"
+        };
+
         public static List<string> mouse_axes = new List<string>
         {
             // 0 - 2

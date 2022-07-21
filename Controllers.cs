@@ -227,6 +227,7 @@ namespace GenshinConfigurator
         public int layoutId;
         public string name;
         public string hardwareGuid;
+        public string hardwareName;
         public bool enabled;
         public abstract List<Keybind> keybinds { get; set; }
         public abstract List<Keybind> axes { get; set; }
@@ -493,7 +494,7 @@ namespace GenshinConfigurator
                 new XElement(ns + "JoystickMap",
                     new XAttribute("dataVersion", 2),
                     new XAttribute(XNamespace.Xmlns + "xsi", xsi),
-                    new XAttribute(xsi + "schemaLocation", "http://guavaman.com/rewired http://guavaman.com/schemas/rewired/1.1/KeyboardMap.xsd"),
+                    new XAttribute(xsi + "schemaLocation", "http://guavaman.com/rewired http://guavaman.com/schemas/rewired/1.1/JoystickMap.xsd"),
                     new XElement(ns + "sourceMapId", sourceMapId),
                     new XElement(ns + "categoryId", categoryId),
                     new XElement(ns + "layoutId", layoutId),
@@ -508,6 +509,182 @@ namespace GenshinConfigurator
             return xml;
         }
     }
+
+    internal class DualSenseController : Controller
+    {
+        public override List<Keybind> keybinds { get; set; }
+        public override List<Keybind> axes { get; set; }
+
+        public DualSenseController()
+        {
+            keybinds = new List<Keybind>();
+            axes = new List<Keybind>();
+        }
+
+        // 41? 160? What the hell is wrong with DualSense handling?
+        // Probably, Genshin uses some old version of Rewired that doesn't support DualSense, and it appears as "Unknown Controller".
+        // However, it's somehow recognized by the game correctly - does that mean that any unknown controller will be seen as DualSense?
+        private static Dictionary<int, int> translate_table = new Dictionary<int, int>
+        {
+            { 32, 8 },      // Square
+            { 33, 6 },      // Cross
+            { 34, 7 },      // Circle
+            { 35, 9 },      // Triangle
+            { 36, 10 },     // L1
+            { 37, 11 },     // R1
+            { 38, 4 },      // LT
+            { 39, 5 },      // RT
+            { 40, 12 },     // Create
+            { 41, 13 },     // Options
+            { 42, 16 },     // LS
+            { 43, 17 },     // RS
+            { 44, 14 },     // PS? Not working, as on Xbox
+            { 45, 15 },     // Touchpad
+            { 46, 22 },     // Placeholder for Left / Right Stick. It never worked on any controller.
+            { 47, 23 },
+            { 48, 24 },     // Mute? Should be, but not recognized
+            { 160, 18 },    // D-Pad Up
+            { 161, 19 },    // D-Pad Right
+            { 162, 20 },    // D-Pad Down
+            { 163, 21 },    // D-Pad Left
+        };
+
+        private static int Translate(int code)
+        {
+            // Buttons end at 24. Config keycodes are way higher.
+            if (code < 25)
+            {
+                return translate_table.FirstOrDefault(trans => trans.Value == code).Key;
+            }
+            else
+            {
+                return translate_table[code];
+            }
+        }
+        
+        public override void AddBind(int actionId)
+        {
+            // 14 - PS button. Unused in game, so here it's like "not defined".
+            List<int> axis_actions = new List<int> { 0, 1 }; // Forward and side movement. Axis keybinds are different, so let's leave it like that for now
+            if (axis_actions.Contains(actionId))
+            {
+                GamepadAxis newbind = new GamepadAxis
+                {
+                    elementIdentifierId = 14,
+                    actionId = actionId
+                };
+                axes.Add(newbind);
+            }
+            else
+            {
+                GamepadKeybind newbind = new GamepadKeybind
+                {
+                    elementIdentifierId = 14,
+                    actionId = actionId
+                };
+                keybinds.Add(newbind);
+            }
+        }
+
+        public override void EditBind(Keybind bind, int key)
+        {
+            // LT and RT stands out from other keys.
+            // They are mapped as axes, but behave like buttons.
+            // For now, let's restrict them from axes mappings.
+            //
+            // Still, when changing button mappings, we should convert them to appropriate class.
+            // It's Axis when LT/RT is used, and Button, when not.
+            // 
+            // While the above is true for others, DualSense doesn't do this. With it, LT and RT still mapped as buttons.
+          
+            if (key < 4) // Sticks axes
+            {
+                bind.elementIdentifierId = key;
+            }
+            else // Ordinary buttons
+            {
+                bind.elementIdentifierId = key;
+            }
+        }
+
+        public override void LoadFromString(string xmlstring)
+        {
+            XNamespace ns = "http://guavaman.com/rewired";
+            XElement xml = XElement.Parse(xmlstring);
+            sourceMapId = (int)(from el in xml.Descendants() where el.Name == ns + "sourceMapId" select el).First();
+            categoryId = (int)(from el in xml.Descendants() where el.Name == ns + "categoryId" select el).First();
+            layoutId = (int)(from el in xml.Descendants() where el.Name == ns + "layoutId" select el).First();
+            name = (string)(from el in xml.Descendants() where el.Name == ns + "name" select el).First();
+            hardwareGuid = (string)(from el in xml.Descendants() where el.Name == ns + "hardwareGuid" select el).First();
+            hardwareName = (string)xml.Attribute("hardwareName").Value;
+            enabled = (bool)(from el in xml.Descendants() where el.Name == ns + "enabled" select el).First();
+            IEnumerable<XElement> keybindings =
+                from el in xml.Descendants()
+                where el.Name == ns + "ActionElementMap"
+                select el;
+            foreach (XElement bindingNode in keybindings)
+            {
+                if (bindingNode.Element(ns + "elementType").Value == "1")
+                {
+                    GamepadKeybind bind = new GamepadKeybind(bindingNode);
+                    bind.elementIdentifierId = Translate(bind.elementIdentifierId);
+                    keybinds.Add(bind);
+                }
+                else if (bindingNode.Element(ns + "elementType").Value == "0")
+                {
+                    GamepadAxis bind = new GamepadAxis(bindingNode);
+                    // why.
+                    if (bind.elementIdentifierId == 5) bind.elementIdentifierId = 3;
+                    else if (bind.elementIdentifierId == 3) bind.elementIdentifierId = 4;
+                    else if (bind.elementIdentifierId == 4) bind.elementIdentifierId = 5;
+                    axes.Add(bind);
+                }
+            }
+        }
+
+        public override XDocument BuildObject()
+        {
+            XNamespace ns = "http://guavaman.com/rewired";
+            XElement buttonMaps = new XElement(ns + "buttonMaps");
+            XElement axisMaps = new XElement(ns + "axisMaps");
+
+            foreach (GamepadKeybind bind in keybinds)
+            {
+                bind.elementIdentifierId = Translate(bind.elementIdentifierId);
+                buttonMaps.Add(bind.DumpToXml());
+            }
+
+            foreach (GamepadAxis bind in axes)
+            {
+                if (bind.elementIdentifierId == 3) bind.elementIdentifierId = 5;
+                else if (bind.elementIdentifierId == 4) bind.elementIdentifierId = 3;
+                else if (bind.elementIdentifierId == 5) bind.elementIdentifierId = 4;
+                axisMaps.Add(bind.DumpToXml());
+            }
+
+            XNamespace xsi = XNamespace.Get("http://www.w3.org/2001/XMLSchema-instance");
+            XDocument xml = new XDocument(new XDeclaration("1.0", "utf-16", null),
+                new XElement(ns + "JoystickMap",
+                    new XAttribute("dataVersion", 2),
+                    new XAttribute(XNamespace.Xmlns + "xsi", xsi),
+                    new XAttribute(xsi + "schemaLocation", "http://guavaman.com/rewired http://guavaman.com/schemas/rewired/1.1/JoystickMap.xsd"),
+                    new XAttribute("hardwareGuid", hardwareGuid),
+                    new XAttribute("hardwareName", hardwareName),
+                    new XElement(ns + "sourceMapId", sourceMapId),
+                    new XElement(ns + "categoryId", categoryId),
+                    new XElement(ns + "layoutId", layoutId),
+                    new XElement(ns + "name", name),
+                    new XElement(ns + "hardwareGuid", hardwareGuid),
+                    new XElement(ns + "enabled", enabled),
+                    buttonMaps,
+                    axisMaps
+                )
+            );
+
+            return xml;
+        }
+    }
+
     internal class KeyboardController : Controller
     {
         public override List<Keybind> keybinds { get; set; }
