@@ -182,8 +182,12 @@ namespace GenshinConfigurator
             [JsonIgnore]
             public Controllers _overrideControllerMapValueList { get; set; }
             public bool rewiredDisableKeyboard { get; set; }
+            public bool rewiredEnableKeyboard { get; set; }
             public bool disableRewiredDelayInit { get; set; }
+            public bool disableRewiredInitProtection { get; set; }
             public int lastSeenPreDownloadTime { get; set; }
+            public bool forceDisableQuestResourceManagement { get; set; }
+            public bool needReportQuestResourceDeleteStatusFiles { get; set; }
             public bool mtrCached { get; set; }
             public bool mtrIsOpen { get; set; }
             public int mtrMaxTTL { get; set; }
@@ -192,9 +196,22 @@ namespace GenshinConfigurator
             public int mtrAbortTimeOutCount { get; set; }
             public int mtrAutoTraceInterval { get; set; }
             public int mtrTraceCDEachReason { get; set; }
+            public int mtrTimeInterval { get; set; }
+            public List<object> mtrBanReasons { get; set; }
             public List<string> _customDataKeyList { get; set; }
             public List<string> _customDataValueList { get; set; }
             public List<int> _serializedCodeSwitches { get; set; }
+            public bool urlCheckCached { get; set; }
+            public bool urlCheckIsOpen { get; set; }
+            public bool urlCheckAllIP { get; set; }
+            public int urlCheckTimeOut { get; set; }
+            public int urlCheckSueecssTraceCount { get; set; }
+            public int urlCheckErrorTraceCount { get; set; }
+            public int urlCheckAbortTimeOutCount { get; set; }
+            public int urlCheckTimeInterval { get; set; }
+            public int urlCheckCDEachReason { get; set; }
+            public List<object> urlCheckBanReasons { get; set; }
+            public bool mtrUseOldWinVersion { get; set; }
         }
 
         public class ResolutionConfig
