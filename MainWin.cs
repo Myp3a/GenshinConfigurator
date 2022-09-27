@@ -46,6 +46,10 @@ namespace GenshinConfigurator
                             {
                                 name = "XInput Gamepad (" + parts[2] + ")";
                             }
+                            else if (parts[1] == "cd9718bf-a87a-44bc-8716-60a0def28a9f")
+                            {
+                                name = "DualShock 4 Gamepad (" + parts[2] + ")";
+                            }
                             else if ((parts[1] == "00000000-0000-0000-0000-000000000000") && (parts[2] == "0"))
                             {
                                 name = "Keyboard (" + parts[2] + ")";
@@ -569,6 +573,7 @@ namespace GenshinConfigurator
                         offset = 3;
                         break;
                     case XBoxController _:
+                    case DS4Controller _:
                     case DualSenseController _:
                         offset = 4;
                         break;
@@ -715,6 +720,49 @@ namespace GenshinConfigurator
             else if (cntrl is XBoxController)
             {
                 string[] gamepad_keys = Keycodes.xbox_gamepad_keys.ToArray();
+                string[] gamepad_axes = Keycodes.gamepad_axes.ToArray();
+                // These buttons have mappings for them, however, they do not appear doing something useful.
+                List<int> gamepadActionsBlacklist = new List<int> { 87, 88 };
+                foreach (GamepadKeybind bind in cntrl.keybinds)
+                {
+                    string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
+                    if ((!name.Contains("?") && !gamepadActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
+                    {
+                        Add_Label(bind, mult);
+                        Add_Controller_Binding(bind, gamepad_keys, mult);
+                        if (devModeToggle.Checked)
+                        {
+                            Add_Delete_Button(bind, mult);
+                        }
+                        mult++;
+                    }
+                }
+                foreach (GamepadAxis bind in cntrl.axes)
+                {
+                    string name = Keycodes.actions.ContainsKey(bind.actionId) ? Keycodes.actions[bind.actionId] : "?";
+                    if ((!name.Contains("?") && !gamepadActionsBlacklist.Contains(bind.actionId)) || devModeToggle.Checked)
+                    {
+                        Add_Label(bind, mult);
+                        if (bind.elementIdentifierId > 3) // LT, RT as buttons
+                        {
+                            Add_Controller_Binding(bind, gamepad_keys, mult);
+                        }
+                        else
+                        {
+                            Add_Controller_Axes(bind, gamepad_axes, mult);
+                            Add_Invert_Checkbox(bind, mult);
+                        }
+                        if (devModeToggle.Checked)
+                        {
+                            Add_Delete_Button(bind, mult);
+                        }
+                        mult++;
+                    }
+                }
+            }
+            else if (cntrl is DS4Controller)
+            {
+                string[] gamepad_keys = Keycodes.dualshock4_gamepad_keys.ToArray();
                 string[] gamepad_axes = Keycodes.gamepad_axes.ToArray();
                 // These buttons have mappings for them, however, they do not appear doing something useful.
                 List<int> gamepadActionsBlacklist = new List<int> { 87, 88 };
@@ -926,6 +974,7 @@ namespace GenshinConfigurator
                     offset = 3;
                     break;
                 case XBoxController _:
+                case DS4Controller _:
                 case DualSenseController _:
                     offset = 4;
                     break;

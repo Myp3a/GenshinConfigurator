@@ -95,18 +95,24 @@ namespace GenshinConfigurator
                         }
                         else if (xml_doc.Root.Name == (ns + "JoystickMap"))
                         {
-                            // Only Xbox have a GUID? Is it tied to the controller?
-                            // Is the configuration is the same for same class controllers?
-                            // Is there a reliable way to detect controller type?
-                            // GUID exists everywhere, but (most?) sometimes isn't populated
-                            // Name sometimes doesn't exist
+                            // GUID is tied to controller type.
+                            // Probably, configuration is same for all controllers of same type.
+                            // Controller type is detected by GUID.
+                            // Mouse + kbd + unknown controllers doesn't have a GUID.
+                            // Name is populated only sometimes.
                             if (xml_doc.Descendants(ns + "hardwareGuid").First().Value == "d74a350e-fe8b-4e9e-bbcd-efff16d34115")
                             {
                                 XBoxController xbc = new XBoxController();
                                 xbc.LoadFromString(xml_string);
                                 controllers.Add(xbc);
                             }
-                            else if (xml_doc.Root.Attribute("hardwareName").Value == "Wireless Controller")
+                            else if (xml_doc.Descendants(ns + "hardwareGuid").First().Value == "cd9718bf-a87a-44bc-8716-60a0def28a9f")
+                            {
+                                DS4Controller ds4c = new DS4Controller();
+                                ds4c.LoadFromString(xml_string);
+                                controllers.Add(ds4c);
+                            }
+                            else if (xml_doc.Root.Attribute("hardwareName").Value == "Wireless Controller" && xml_doc.Descendants(ns + "hardwareGuid").First().Value == "00000000-0000-0000-0000-000000000000")
                             {
                                 DualSenseController dsc = new DualSenseController();
                                 dsc.LoadFromString(xml_string);

@@ -38,6 +38,30 @@ namespace GenshinConfigurator
             "Guide"
         };
 
+        public static List<string> dualshock4_gamepad_keys = new List<string>
+        {
+            "L2",
+            "R2",
+            "Cross",
+            "Circle",
+            "Square",
+            "Triangle",
+            "L1",
+            "R1",
+            "Share",
+            "Options",
+            "PS Button",
+            "Touchpad Button",
+            "Left Stick Button",
+            "Right Stick Button",
+            "D-Pad Up",
+            "D-Pad Right",
+            "D-Pad Down",
+            "D-Pad Left",
+            "Left Stick",
+            "Right Stick"
+        };
+
         public static List<string> dualsense_gamepad_keys = new List<string>
         {
             "LT",
