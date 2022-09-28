@@ -268,6 +268,96 @@ namespace GenshinConfigurator
         }
     }
 
+    internal class UnknownController : Controller
+    {
+        public override List<Keybind> keybinds { get; set; }
+        public override List<Keybind> axes { get; set; }
+        public UnknownController()
+        {
+            keybinds = new List<Keybind>();
+            axes = new List<Keybind>();
+        }
+
+        public override void AddBind(int actionId)
+        {
+            GamepadKeybind newbind = new GamepadKeybind
+            {
+                elementIdentifierId = 0,
+                actionId = actionId
+            };
+            keybinds.Add(newbind);
+        }
+
+        public override void EditBind(Keybind bind, int key)
+        {
+            bind.elementIdentifierId = key;
+        }
+
+        public override void LoadFromString(string xmlstring)
+        {
+            XNamespace ns = "http://guavaman.com/rewired";
+            XElement xml = XElement.Parse(xmlstring);
+            sourceMapId = (int)(from el in xml.Descendants() where el.Name == ns + "sourceMapId" select el).First();
+            categoryId = (int)(from el in xml.Descendants() where el.Name == ns + "categoryId" select el).First();
+            layoutId = (int)(from el in xml.Descendants() where el.Name == ns + "layoutId" select el).First();
+            name = (string)(from el in xml.Descendants() where el.Name == ns + "name" select el).First();
+            hardwareGuid = (string)(from el in xml.Descendants() where el.Name == ns + "hardwareGuid" select el).First();
+            enabled = (bool)(from el in xml.Descendants() where el.Name == ns + "enabled" select el).First();
+            IEnumerable<XElement> keybindings =
+                from el in xml.Descendants()
+                where el.Name == ns + "ActionElementMap"
+                select el;
+            foreach (XElement bindingNode in keybindings)
+            {
+                if (bindingNode.Element(ns + "elementType").Value == "1")
+                {
+                    GamepadKeybind bind = new GamepadKeybind(bindingNode);
+                    keybinds.Add(bind);
+                }
+                else if (bindingNode.Element(ns + "elementType").Value == "0")
+                {
+                    GamepadAxis bind = new GamepadAxis(bindingNode);
+                    axes.Add(bind);
+                }
+            }
+        }
+
+        public override XDocument BuildObject()
+        {
+            XNamespace ns = "http://guavaman.com/rewired";
+            XElement buttonMaps = new XElement(ns + "buttonMaps");
+            XElement axisMaps = new XElement(ns + "axisMaps");
+
+            foreach (GamepadKeybind bind in keybinds)
+            {
+                buttonMaps.Add(bind.DumpToXml());
+            }
+
+            foreach (GamepadAxis bind in axes)
+            {
+                axisMaps.Add(bind.DumpToXml());
+            }
+
+            XNamespace xsi = XNamespace.Get("http://www.w3.org/2001/XMLSchema-instance");
+            XDocument xml = new XDocument(new XDeclaration("1.0", "utf-16", null),
+                new XElement(ns + "JoystickMap",
+                    new XAttribute("dataVersion", 2),
+                    new XAttribute(XNamespace.Xmlns + "xsi", xsi),
+                    new XAttribute(xsi + "schemaLocation", "http://guavaman.com/rewired http://guavaman.com/schemas/rewired/1.1/JoystickMap.xsd"),
+                    new XElement(ns + "sourceMapId", sourceMapId),
+                    new XElement(ns + "categoryId", categoryId),
+                    new XElement(ns + "layoutId", layoutId),
+                    new XElement(ns + "name", name),
+                    new XElement(ns + "hardwareGuid", hardwareGuid),
+                    new XElement(ns + "enabled", enabled),
+                    buttonMaps,
+                    axisMaps
+                )
+            );
+
+            return xml;
+        }
+    }
     internal class MouseController : Controller
     {
         public override List<Keybind> keybinds { get; set; }

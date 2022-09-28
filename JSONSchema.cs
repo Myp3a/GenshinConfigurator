@@ -118,6 +118,12 @@ namespace GenshinConfigurator
                                 dsc.LoadFromString(xml_string);
                                 controllers.Add(dsc);
                             }
+                            else
+                            {
+                                UnknownController c = new UnknownController();
+                                c.LoadFromString(xml_string);
+                                controllers.Add(c);
+                            }
                         }
                     }
                 } catch
