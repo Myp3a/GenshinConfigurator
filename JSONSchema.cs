@@ -173,6 +173,9 @@ namespace GenshinConfigurator
             public bool _audioSuccessInit { get; set; }
             public bool enableAudioChangeAndroidMinimumBufferCapacity { get; set; }
             public int audioAndroidMiniumBufferCapacity { get; set; }
+            public int vibrationLevel { get; set; }
+            public int vibrationIntensity { get; set; }
+            public bool usingNewVibrationSetting { get; set; }
             public bool motionBlur { get; set; }
             public bool gyroAiming { get; set; }
             public bool firstHDRSetting { get; set; }
@@ -189,9 +192,11 @@ namespace GenshinConfigurator
             public Controllers _overrideControllerMapValueList { get; set; }
             public bool rewiredDisableKeyboard { get; set; }
             public bool rewiredEnableKeyboard { get; set; }
+            public bool rewiredEnableEDS { get; set; }
             public bool disableRewiredDelayInit { get; set; }
             public bool disableRewiredInitProtection { get; set; }
             public int lastSeenPreDownloadTime { get; set; }
+            public bool enableEffectAssembleInEditor { get; set; }
             public bool forceDisableQuestResourceManagement { get; set; }
             public bool needReportQuestResourceDeleteStatusFiles { get; set; }
             public bool mtrCached { get; set; }
