@@ -215,6 +215,7 @@ namespace GenshinConfigurator
             public int mtrTraceCDEachReason { get; set; }
             public int mtrTimeInterval { get; set; }
             public List<object> mtrBanReasons { get; set; }
+            public bool gcgInLevelDefaultShowUIDetail { get; set; }
             public List<string> _customDataKeyList { get; set; }
             public List<string> _customDataValueList { get; set; }
             public List<int> _serializedCodeSwitches { get; set; }
