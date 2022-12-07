@@ -134,7 +134,7 @@
         {
             None,
             Off,
-            TAA,
+            FSR2,
             SMAA
         }
 
