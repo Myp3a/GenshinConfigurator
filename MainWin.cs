@@ -512,10 +512,11 @@ namespace GenshinConfigurator
                     Text = Keycodes.keynames[bind.elementIdentifierId],
                     Anchor = AnchorStyles.Top | AnchorStyles.Right,
                     Tag = bind,
-                    TextAlign = HorizontalAlignment.Center
+                    TextAlign = HorizontalAlignment.Center,
+                    TabStop = false
                 };
                 newinput.KeyPress += Prevent_Input;
-                newinput.KeyDown += Edit_Keyboard_Key;
+                newinput.PreviewKeyDown += Edit_Keyboard_Key;
                 newinput.GotFocus += Toggle_Binding_Edit;
                 newinput.LostFocus += Toggle_Binding_Edit;
                 splitContainerControls.Panel2.Controls.Add(newinput);
@@ -532,7 +533,8 @@ namespace GenshinConfigurator
                     Width = checkBoxCtrlTemplate.Width,
                     Anchor = AnchorStyles.Top | AnchorStyles.Right,
                     Tag = bind,
-                    BackColor = Color.Transparent
+                    BackColor = Color.Transparent,
+                    TabStop = false
                 };
                 splitContainerControls.Panel2.Controls.Add(newctrl);
 
@@ -545,7 +547,8 @@ namespace GenshinConfigurator
                     Width = checkBoxShiftTemplate.Width,
                     Anchor = AnchorStyles.Top | AnchorStyles.Right,
                     Tag = bind,
-                    BackColor = Color.Transparent
+                    BackColor = Color.Transparent,
+                    TabStop = false
                 };
                 splitContainerControls.Panel2.Controls.Add(newshift);
 
@@ -558,7 +561,8 @@ namespace GenshinConfigurator
                     Width = checkBoxAltTemplate.Width,
                     Anchor = AnchorStyles.Top | AnchorStyles.Right,
                     Tag = bind,
-                    BackColor = Color.Transparent
+                    BackColor = Color.Transparent,
+                    TabStop = false
                 };
                 splitContainerControls.Panel2.Controls.Add(newalt);
             }
@@ -630,7 +634,8 @@ namespace GenshinConfigurator
                     Top = buttonKeybindRemoveTemplate.Top + height * mlt,
                     Width = buttonKeybindRemoveTemplate.Width,
                     Anchor = AnchorStyles.Top | AnchorStyles.Right,
-                    Tag = bind
+                    Tag = bind,
+                    TabStop = false
                 };
                 delkeybind.Click += Remove_Keybind;
                 splitContainerControls.Panel2.Controls.Add(delkeybind);
@@ -641,7 +646,8 @@ namespace GenshinConfigurator
                 {
                     Left = comboBoxKeybindListTemplate.Left,
                     Top = comboBoxKeybindListTemplate.Top + height * mlt,
-                    Tag = bind
+                    Tag = bind,
+                    TabStop = false
                 };
                 newkeybindlist.Items.AddRange(binds);
                 splitContainerControls.Panel2.Controls.Add(newkeybindlist);
@@ -653,7 +659,8 @@ namespace GenshinConfigurator
                     Top = buttonKeybindingAddTemplate.Top + height * mult,
                     Width = buttonKeybindingAddTemplate.Width,
                     Anchor = AnchorStyles.Top | AnchorStyles.Right,
-                    Tag = newkeybindlist
+                    Tag = newkeybindlist,
+                    TabStop = false
                 };
                 newkeybind.Click += Add_Keybind;
                 splitContainerControls.Panel2.Controls.Add(newkeybind);
@@ -987,10 +994,10 @@ namespace GenshinConfigurator
             TextBox input = (TextBox)sender;
             Keybind bind = (Keybind)input.Tag;
             Controller cntrl = Settings.Controls.controllers.Controller_By_Bind(bind);
-            if (Keycodes.keyboard.ContainsKey(((KeyEventArgs)e).KeyCode)) //Valid key
+            if (Keycodes.keyboard.ContainsKey(((PreviewKeyDownEventArgs)e).KeyCode)) //Valid key
             {
-                cntrl.EditBind(bind, Keycodes.keyboard[((KeyEventArgs)e).KeyCode]);
-                input.Text = Keycodes.keynames[Keycodes.keyboard[((KeyEventArgs)e).KeyCode]];
+                cntrl.EditBind(bind, Keycodes.keyboard[((PreviewKeyDownEventArgs)e).KeyCode]);
+                input.Text = Keycodes.keynames[Keycodes.keyboard[((PreviewKeyDownEventArgs)e).KeyCode]];
             }
             tabControls.Focus();
         }
