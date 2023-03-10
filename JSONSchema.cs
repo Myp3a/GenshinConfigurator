@@ -230,6 +230,7 @@ namespace GenshinConfigurator
             public int urlCheckCDEachReason { get; set; }
             public List<object> urlCheckBanReasons { get; set; }
             public bool mtrUseOldWinVersion { get; set; }
+            public string greyTestDeviceUniqueId { get; set; }
         }
 
         public class ResolutionConfig
