@@ -1270,12 +1270,40 @@ namespace GenshinConfigurator
             GamepadVerticalSensitivityAiming_Value.Text = GamepadVerticalSensitivityAiming_TrackBar.Value.ToString();
         }
 
+        private void GamepadGyroHorizontalSensitivity_TrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            GamepadGyroHorizontalSensitivity_Value.Text = GamepadGyroHorizontalSensitivity_TrackBar.Value.ToString();
+        }
+
+        private void GamepadGyroVerticalSensitivity_TrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            GamepadGyroVerticalSensitivity_Value.Text = GamepadGyroVerticalSensitivity_TrackBar.Value.ToString();
+        }
+
+        private void GamepadVibrationLevel_TrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            GamepadVibrationLevel_Value.Text = GamepadVibrationLevel_TrackBar.Value.ToString();
+        }
+
         private void Reset_Gamepad_Controls()
         {
             GamepadHorizontalSensitivity_TrackBar.Value = Settings.ControlsGamepad.horizontal_sensitivity + 1;
             GamepadVerticalSensitivity_TrackBar.Value = Settings.ControlsGamepad.vertical_sensitivity + 1;
             GamepadHorizontalSensitivityAiming_TrackBar.Value = Settings.ControlsGamepad.horizontal_sensitivity_aiming + 1;
             GamepadVerticalSensitivityAiming_TrackBar.Value = Settings.ControlsGamepad.vertical_sensitivity_aiming + 1;
+            GamepadGyroHorizontalSensitivity_TrackBar.Value = Settings.ControlsGamepad.gyro_horizontal_sensitivity + 1;
+            GamepadGyroVerticalSensitivity_TrackBar.Value = Settings.ControlsGamepad.gyro_vertical_sensitivity + 1;
+            GamepadInvertHorizontalAxis_Checkbox.Checked = Settings.ControlsGamepad.invert_horizontal_axis;
+            GamepadInvertHorizontalAxisAiming_Checkbox.Checked = Settings.ControlsGamepad.invert_horizontal_axis_aiming;
+            GamepadInvertVerticalAxis_Checkbox.Checked = Settings.ControlsGamepad.invert_vertical_axis;
+            GamepadInvertVerticalAxisAiming_Checkbox.Checked = Settings.ControlsGamepad.invert_vertical_axis_aiming;
+            GamepadGyroAiming_Checkbox.Checked = Settings.ControlsGamepad.gyro_aiming;
+            GamepadGyroAxis_Box.SelectedIndex = Settings.ControlsGamepad.gyro_axis;
+            GamepadGyroDisableVerticalStick_Checkbox.Checked = Settings.ControlsGamepad.disable_right_stick_vertical_axis;
+            GamepadGyroInvertHorizontalAxis_Checkbox.Checked = Settings.ControlsGamepad.gyro_invert_horizontal_axis;
+            GamepadGyroInvertVerticalAxis_Checkbox.Checked = Settings.ControlsGamepad.gyro_invert_vertical_axis;
+            GamepadGradedVibration_Box.SelectedIndex = Settings.ControlsGamepad.graded_vibration;
+            GamepadVibrationLevel_TrackBar.Value = Settings.ControlsGamepad.vibration_power;
         }
         private void ApplyGamepadControls_Button_Click(object sender, EventArgs e)
         {
@@ -1283,6 +1311,19 @@ namespace GenshinConfigurator
             Settings.ControlsGamepad.vertical_sensitivity = GamepadVerticalSensitivity_TrackBar.Value - 1;
             Settings.ControlsGamepad.horizontal_sensitivity_aiming = GamepadHorizontalSensitivityAiming_TrackBar.Value - 1;
             Settings.ControlsGamepad.vertical_sensitivity_aiming = GamepadVerticalSensitivityAiming_TrackBar.Value - 1;
+            Settings.ControlsGamepad.gyro_horizontal_sensitivity = GamepadGyroHorizontalSensitivity_TrackBar.Value - 1;
+            Settings.ControlsGamepad.gyro_vertical_sensitivity = GamepadGyroVerticalSensitivity_TrackBar.Value - 1;
+            Settings.ControlsGamepad.invert_horizontal_axis = GamepadInvertHorizontalAxis_Checkbox.Checked;
+            Settings.ControlsGamepad.invert_vertical_axis = GamepadInvertVerticalAxis_Checkbox.Checked;
+            Settings.ControlsGamepad.invert_horizontal_axis_aiming = GamepadInvertHorizontalAxisAiming_Checkbox.Checked;
+            Settings.ControlsGamepad.invert_vertical_axis_aiming = GamepadInvertVerticalAxisAiming_Checkbox.Checked;
+            Settings.ControlsGamepad.gyro_aiming = GamepadGyroAiming_Checkbox.Checked;
+            Settings.ControlsGamepad.gyro_axis = GamepadGyroAxis_Box.SelectedIndex;
+            Settings.ControlsGamepad.disable_right_stick_vertical_axis = GamepadGyroDisableVerticalStick_Checkbox.Checked;
+            Settings.ControlsGamepad.gyro_invert_horizontal_axis = GamepadGyroInvertHorizontalAxis_Checkbox.Checked;
+            Settings.ControlsGamepad.gyro_invert_vertical_axis = GamepadGyroInvertVerticalAxis_Checkbox.Checked;
+            Settings.ControlsGamepad.graded_vibration = GamepadGradedVibration_Box.SelectedIndex;
+            Settings.ControlsGamepad.vibration_power = GamepadVibrationLevel_TrackBar.Value;
             Settings.Apply();
             Settings.ToReg();
             Status_Label.Text = "Saved config to registry.";

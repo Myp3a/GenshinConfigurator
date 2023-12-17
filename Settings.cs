@@ -608,6 +608,19 @@ namespace GenshinConfigurator
         public int horizontal_sensitivity;
         public int vertical_sensitivity_aiming;
         public int horizontal_sensitivity_aiming;
+        public bool invert_horizontal_axis;
+        public bool invert_vertical_axis;
+        public bool invert_horizontal_axis_aiming;
+        public bool invert_vertical_axis_aiming;
+        public bool gyro_aiming;
+        public int gyro_axis;
+        public int gyro_horizontal_sensitivity;
+        public int gyro_vertical_sensitivity;
+        public bool disable_right_stick_vertical_axis;
+        public bool gyro_invert_horizontal_axis;
+        public bool gyro_invert_vertical_axis;
+        public int graded_vibration;
+        public int vibration_power;
 
         public ControlsGamepadSettings(MainJSON data)
         {
@@ -625,6 +638,19 @@ namespace GenshinConfigurator
             this.horizontal_sensitivity = data.inputData.joypadSenseIndex;
             this.vertical_sensitivity_aiming = data.inputData.joypadFocusSenseIndexY;
             this.horizontal_sensitivity_aiming = data.inputData.joypadFocusSenseIndex;
+            this.invert_horizontal_axis = data.inputData.joypadInvertCameraX;
+            this.invert_vertical_axis = data.inputData.joypadInvertCameraY;
+            this.invert_horizontal_axis_aiming = data.inputData.joypadInvertFocusCameraX;
+            this.invert_vertical_axis_aiming = data.inputData.joypadInvertFocusCameraY;
+            this.gyro_aiming = data.gyroAiming;
+            this.gyro_axis = data.gyroRotateType;
+            this.gyro_horizontal_sensitivity = data.gyroHorMoveSpeedIndex;
+            this.gyro_vertical_sensitivity = data.gyroVerMoveSpeedIndex;
+            this.disable_right_stick_vertical_axis = data.gyroExcludeRightStickVerInput;
+            this.gyro_invert_horizontal_axis = data.gyroHorReverse;
+            this.gyro_invert_vertical_axis = data.gyroVerReverse;
+            this.graded_vibration = data.vibrationLevel;
+            this.vibration_power = data.vibrationIntensity;
         }
 
         public MainJSON Apply(MainJSON data)
@@ -633,6 +659,19 @@ namespace GenshinConfigurator
             data.inputData.joypadSenseIndex = this.horizontal_sensitivity;
             data.inputData.joypadFocusSenseIndexY = this.vertical_sensitivity_aiming;
             data.inputData.joypadFocusSenseIndex = this.horizontal_sensitivity_aiming;
+            data.inputData.joypadInvertCameraX = this.invert_vertical_axis;
+            data.inputData.joypadInvertCameraY = this.invert_horizontal_axis;
+            data.inputData.joypadInvertFocusCameraX = this.invert_horizontal_axis_aiming;
+            data.inputData.joypadInvertFocusCameraY = this.invert_vertical_axis_aiming;
+            data.gyroAiming = this.gyro_aiming;
+            data.gyroRotateType = this.gyro_axis;
+            data.gyroHorMoveSpeedIndex = this.gyro_horizontal_sensitivity;
+            data.gyroVerMoveSpeedIndex = this.gyro_vertical_sensitivity;
+            data.gyroExcludeRightStickVerInput = this.disable_right_stick_vertical_axis;
+            data.gyroHorReverse = this.gyro_invert_horizontal_axis;
+            data.gyroVerReverse = this.gyro_invert_vertical_axis;
+            data.vibrationLevel = this.graded_vibration;
+            data.vibrationIntensity = this.vibration_power;
             return data;
         }
 
@@ -642,6 +681,19 @@ namespace GenshinConfigurator
             if (config.HorizontalSensitivity != null) this.horizontal_sensitivity = (int)config.HorizontalSensitivity;
             if (config.VerticalSensitivityAiming != null) this.vertical_sensitivity_aiming = (int)config.VerticalSensitivityAiming;
             if (config.HorizontalSensitivityAiming != null) this.horizontal_sensitivity_aiming = (int)config.HorizontalSensitivityAiming;
+            if (config.InvertHorizontalAxis != null) this.invert_horizontal_axis = (bool)config.InvertHorizontalAxis;
+            if (config.InvertVerticalAxis != null) this.invert_vertical_axis = (bool)config.InvertVerticalAxis;
+            if (config.InvertHorizontalAxisAiming != null) this.invert_horizontal_axis_aiming = (bool)config.InvertHorizontalAxisAiming;
+            if (config.InvertVerticalAxisAiming != null) this.invert_vertical_axis_aiming = (bool)config.InvertVerticalAxisAiming;
+            if (config.GyroAiming != null) this.gyro_aiming = (bool)config.GyroAiming;
+            if (config.GyroAxis != null) this.gyro_axis = (int)config.GyroAxis;
+            if (config.GyroHorizontalSensitivity != null) this.gyro_horizontal_sensitivity = (int)config.GyroHorizontalSensitivity;
+            if (config.GyroVerticalSensitivity != null) this.gyro_vertical_sensitivity = (int)config.GyroVerticalSensitivity;
+            if (config.DisableRightStickVerticalAxis != null) this.disable_right_stick_vertical_axis = (bool)config.DisableRightStickVerticalAxis;
+            if (config.GyroInvertHorizontalAxis != null) this.gyro_invert_horizontal_axis = (bool)config.GyroInvertHorizontalAxis;
+            if (config.GyroInvertVerticalAxis != null) this.gyro_invert_vertical_axis = (bool)config.GyroInvertVerticalAxis;
+            if (config.GradedVibration != null) this.graded_vibration = (int)config.GradedVibration;
+            if (config.VibrationPower != null) this.vibration_power = (int)config.VibrationPower;
         }
 
         public ControlsGamepadConfig ToConfig()
@@ -652,6 +704,19 @@ namespace GenshinConfigurator
                 HorizontalSensitivity = this.horizontal_sensitivity,
                 VerticalSensitivityAiming = this.vertical_sensitivity_aiming,
                 HorizontalSensitivityAiming = this.horizontal_sensitivity_aiming,
+                InvertHorizontalAxis = this.invert_horizontal_axis,
+                InvertVerticalAxis = this.invert_vertical_axis,
+                InvertHorizontalAxisAiming = this.invert_horizontal_axis_aiming,
+                InvertVerticalAxisAiming = this.invert_vertical_axis_aiming,
+                GyroAiming = this.gyro_aiming,
+                GyroAxis = this.gyro_axis,
+                GyroHorizontalSensitivity = this.gyro_horizontal_sensitivity,
+                GyroVerticalSensitivity = this.gyro_vertical_sensitivity,
+                DisableRightStickVerticalAxis = this.disable_right_stick_vertical_axis,
+                GyroInvertHorizontalAxis = this.gyro_invert_horizontal_axis,
+                GyroInvertVerticalAxis = this.gyro_invert_vertical_axis,
+                GradedVibration = this.graded_vibration,
+                VibrationPower = this.vibration_power,
             };
             return config;
         }

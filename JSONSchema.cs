@@ -240,7 +240,7 @@ namespace GenshinConfigurator
             public int gyroHorMoveSpeedIndex { get; set; }
             public int gyroVerMoveSpeedIndex { get; set; }
             public bool gyroHorReverse { get; set; }
-            public bool gyrVerReverse { get; set; }
+            public bool gyroVerReverse { get; set; }
             public int gyroRotateType { get; set; }
             public bool gyroExcludeRightStickVerInput { get; set; }
             public bool firstHDRSetting { get; set; }
@@ -342,6 +342,19 @@ namespace GenshinConfigurator
             public int? HorizontalSensitivity { get; set; }
             public int? VerticalSensitivityAiming { get; set; }
             public int? HorizontalSensitivityAiming { get; set; }
+            public bool? InvertHorizontalAxis { get; set; }
+            public bool? InvertVerticalAxis { get; set; }
+            public bool? InvertHorizontalAxisAiming { get; set; }
+            public bool? InvertVerticalAxisAiming { get; set; }
+            public bool? GyroAiming { get; set; }
+            public int? GyroAxis { get; set; }
+            public int? GyroHorizontalSensitivity { get; set; }
+            public int? GyroVerticalSensitivity { get; set; }
+            public bool? DisableRightStickVerticalAxis { get; set; }
+            public bool? GyroInvertHorizontalAxis { get; set; }
+            public bool? GyroInvertVerticalAxis { get; set; }
+            public int? GradedVibration { get; set; }
+            public int? VibrationPower { get; set; }
         }
         public class ControlsMiscConfig
         {
