@@ -15,6 +15,7 @@ A configuration tool for Genshin Impact. It allows user to modify game settings 
  - Custom resolution support
  - Save/Load of graphics settings
  - Controls remapping
+ - Sensitivity and other control settings
  - Add/Remove controls to base list
  - Mouse remapping
  - Audio settings
@@ -69,11 +70,10 @@ If you want to update the Configurator for a new Genshin version, please, read t
 Currently, there is no code style in this project. Anything is fine while it's easily readable.  
 
 ### What's currently missing
- - More controllers support (Only XInput gamepad supported now)
  - Action IDs mappings to their names
  - Graphics settings adaptive UI
- - Sensitivity settings
  - Optimizations
+ - Probably should be rewritten with WPF
 ---
 
 > *Disclaimer: Genshin Impact Configurator is an unofficial application and not affiliated with miHoYo or Cognosphere Ltd. in any way. "Genshin Impact" is a registered trademark of Cognosphere Ltd.*
