@@ -89,7 +89,7 @@
             this.FPS_Box = new System.Windows.Forms.ComboBox();
             this.FPS_Label = new System.Windows.Forms.Label();
             this.GammaTrackBar = new System.Windows.Forms.TrackBar();
-            this.tabControls = new System.Windows.Forms.TabPage();
+            this.tabKeybindings = new System.Windows.Forms.TabPage();
             this.splitContainerControls = new System.Windows.Forms.SplitContainer();
             this.applyControlsButton = new System.Windows.Forms.Button();
             this.inputDeviceLabel = new System.Windows.Forms.Label();
@@ -107,6 +107,28 @@
             this.checkBoxShiftTemplate = new System.Windows.Forms.CheckBox();
             this.checkBoxCtrlTemplate = new System.Windows.Forms.CheckBox();
             this.gamepadButtonTemplate = new System.Windows.Forms.ComboBox();
+            this.tabControlsKeyboard = new System.Windows.Forms.TabPage();
+            this.ApplyKeyboardControlsButton = new System.Windows.Forms.Button();
+            this.AutomaticBoatCameraAngleCorrection_Box = new System.Windows.Forms.ComboBox();
+            this.AutomaticBoatCameraAngleCorrection_Label = new System.Windows.Forms.Label();
+            this.DefaultCameraHeight_Value = new System.Windows.Forms.Label();
+            this.DefaultCameraHeight_Label = new System.Windows.Forms.Label();
+            this.VerticalSensitivity_Label = new System.Windows.Forms.Label();
+            this.VerticalSensitivity_Value = new System.Windows.Forms.Label();
+            this.SmartCombatCamera_Checkbox = new System.Windows.Forms.CheckBox();
+            this.HorizontalSensitivity_Label = new System.Windows.Forms.Label();
+            this.AutomaticViewHeight_Checkbox = new System.Windows.Forms.CheckBox();
+            this.HorizontalSensitivity_Value = new System.Windows.Forms.Label();
+            this.VerticalSensitivityAiming_Value = new System.Windows.Forms.Label();
+            this.VerticalSensitivityAiming_Label = new System.Windows.Forms.Label();
+            this.HorizontalSensitivityAiming_Label = new System.Windows.Forms.Label();
+            this.HorizontalSensitivityAiming_Value = new System.Windows.Forms.Label();
+            this.HorizontalSensitivity_TrackBar = new System.Windows.Forms.TrackBar();
+            this.VerticalSensitivity_TrackBar = new System.Windows.Forms.TrackBar();
+            this.HorizontalSensitivityAiming_TrackBar = new System.Windows.Forms.TrackBar();
+            this.VerticalSensitivityAiming_TrackBar = new System.Windows.Forms.TrackBar();
+            this.DefaultCameraHeight_TrackBar = new System.Windows.Forms.TrackBar();
+            this.tabControlsGamepad = new System.Windows.Forms.TabPage();
             this.tabAudio = new System.Windows.Forms.TabPage();
             this.comboBoxAudioFormat = new System.Windows.Forms.ComboBox();
             this.labelAudioOutputFormat = new System.Windows.Forms.Label();
@@ -138,16 +160,25 @@
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
             this.Load_Button_Raw = new System.Windows.Forms.Button();
             this.Save_Button_Raw = new System.Windows.Forms.Button();
+            this.ControlsKeyboardResetButton = new System.Windows.Forms.Button();
+            this.AudioResetButton = new System.Windows.Forms.Button();
+            this.LanguageResetButton = new System.Windows.Forms.Button();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
             this.tabGraphics.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GammaTrackBar)).BeginInit();
-            this.tabControls.SuspendLayout();
+            this.tabKeybindings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControls)).BeginInit();
             this.splitContainerControls.Panel1.SuspendLayout();
             this.splitContainerControls.Panel2.SuspendLayout();
             this.splitContainerControls.SuspendLayout();
+            this.tabControlsKeyboard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.HorizontalSensitivity_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VerticalSensitivity_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HorizontalSensitivityAiming_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VerticalSensitivityAiming_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DefaultCameraHeight_TrackBar)).BeginInit();
             this.tabAudio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVoiceVolume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSFXVolume)).BeginInit();
@@ -161,12 +192,13 @@
             // TopBar
             // 
             this.TopBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.TopBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.TopBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileMenu,
             this.controlsMenu});
             this.TopBar.Location = new System.Drawing.Point(0, 0);
             this.TopBar.Name = "TopBar";
-            this.TopBar.Size = new System.Drawing.Size(547, 25);
+            this.TopBar.Size = new System.Drawing.Size(729, 27);
             this.TopBar.TabIndex = 39;
             this.TopBar.Text = "toolStrip1";
             // 
@@ -182,45 +214,45 @@
             this.exitButton});
             this.FileMenu.Name = "FileMenu";
             this.FileMenu.ShowDropDownArrow = false;
-            this.FileMenu.Size = new System.Drawing.Size(29, 22);
+            this.FileMenu.Size = new System.Drawing.Size(36, 24);
             this.FileMenu.Text = "File";
             // 
             // SaveButton
             // 
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(128, 22);
+            this.SaveButton.Size = new System.Drawing.Size(161, 26);
             this.SaveButton.Text = "Save";
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // LoadButton
             // 
             this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(128, 22);
+            this.LoadButton.Size = new System.Drawing.Size(161, 26);
             this.LoadButton.Text = "Load";
             this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(158, 6);
             // 
             // devModeToggle
             // 
             this.devModeToggle.CheckOnClick = true;
             this.devModeToggle.Name = "devModeToggle";
-            this.devModeToggle.Size = new System.Drawing.Size(128, 22);
+            this.devModeToggle.Size = new System.Drawing.Size(161, 26);
             this.devModeToggle.Text = "Dev Mode";
             this.devModeToggle.CheckedChanged += new System.EventHandler(this.devModeToggle_CheckedChanged);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(125, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(158, 6);
             // 
             // exitButton
             // 
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(128, 22);
+            this.exitButton.Size = new System.Drawing.Size(161, 26);
             this.exitButton.Text = "Exit";
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
@@ -233,24 +265,26 @@
             this.controlsMenu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.controlsMenu.Name = "controlsMenu";
             this.controlsMenu.ShowDropDownArrow = false;
-            this.controlsMenu.Size = new System.Drawing.Size(56, 22);
+            this.controlsMenu.Size = new System.Drawing.Size(68, 24);
             this.controlsMenu.Text = "Controls";
             this.controlsMenu.Visible = false;
             // 
             // addMouseButton
             // 
             this.addMouseButton.Name = "addMouseButton";
-            this.addMouseButton.Size = new System.Drawing.Size(189, 22);
+            this.addMouseButton.Size = new System.Drawing.Size(236, 26);
             this.addMouseButton.Text = "Add Mouse controller";
             this.addMouseButton.Click += new System.EventHandler(this.addMouseButton_Click);
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Status_Label});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 369);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 455);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(547, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(729, 26);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 40;
             this.statusStrip1.Text = "statusStrip1";
@@ -259,7 +293,7 @@
             // 
             this.Status_Label.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.Status_Label.Name = "Status_Label";
-            this.Status_Label.Size = new System.Drawing.Size(532, 17);
+            this.Status_Label.Size = new System.Drawing.Size(709, 20);
             this.Status_Label.Spring = true;
             this.Status_Label.Text = "Opened";
             this.Status_Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -275,21 +309,24 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsTabs.Controls.Add(this.tabGraphics);
-            this.settingsTabs.Controls.Add(this.tabControls);
+            this.settingsTabs.Controls.Add(this.tabKeybindings);
+            this.settingsTabs.Controls.Add(this.tabControlsKeyboard);
+            this.settingsTabs.Controls.Add(this.tabControlsGamepad);
             this.settingsTabs.Controls.Add(this.tabAudio);
             this.settingsTabs.Controls.Add(this.tabLanguage);
             this.settingsTabs.Controls.Add(this.tabLog);
             this.settingsTabs.Controls.Add(this.tabRawConfig);
-            this.settingsTabs.Location = new System.Drawing.Point(0, 25);
+            this.settingsTabs.Location = new System.Drawing.Point(0, 31);
             this.settingsTabs.Margin = new System.Windows.Forms.Padding(0);
             this.settingsTabs.Name = "settingsTabs";
             this.settingsTabs.SelectedIndex = 0;
-            this.settingsTabs.Size = new System.Drawing.Size(547, 341);
+            this.settingsTabs.Size = new System.Drawing.Size(729, 420);
             this.settingsTabs.TabIndex = 41;
             this.settingsTabs.SelectedIndexChanged += new System.EventHandler(this.settingsTabs_SelectedIndexChanged);
             // 
             // tabGraphics
             // 
+            this.tabGraphics.AutoScroll = true;
             this.tabGraphics.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tabGraphics.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabGraphics.Controls.Add(this.GammaValueLabel);
@@ -336,55 +373,61 @@
             this.tabGraphics.Controls.Add(this.FPS_Box);
             this.tabGraphics.Controls.Add(this.FPS_Label);
             this.tabGraphics.Controls.Add(this.GammaTrackBar);
-            this.tabGraphics.Location = new System.Drawing.Point(4, 22);
+            this.tabGraphics.Location = new System.Drawing.Point(4, 25);
+            this.tabGraphics.Margin = new System.Windows.Forms.Padding(4);
             this.tabGraphics.Name = "tabGraphics";
-            this.tabGraphics.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGraphics.Size = new System.Drawing.Size(539, 315);
+            this.tabGraphics.Padding = new System.Windows.Forms.Padding(4);
+            this.tabGraphics.Size = new System.Drawing.Size(721, 391);
             this.tabGraphics.TabIndex = 0;
             this.tabGraphics.Text = "Graphics";
             // 
             // GammaValueLabel
             // 
             this.GammaValueLabel.AutoSize = true;
-            this.GammaValueLabel.Location = new System.Drawing.Point(495, 256);
+            this.GammaValueLabel.Location = new System.Drawing.Point(660, 315);
+            this.GammaValueLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.GammaValueLabel.Name = "GammaValueLabel";
-            this.GammaValueLabel.Size = new System.Drawing.Size(28, 13);
+            this.GammaValueLabel.Size = new System.Drawing.Size(31, 16);
             this.GammaValueLabel.TabIndex = 82;
             this.GammaValueLabel.Text = "0.00";
             // 
             // Gamma_Label
             // 
             this.Gamma_Label.AutoSize = true;
-            this.Gamma_Label.Location = new System.Drawing.Point(292, 256);
+            this.Gamma_Label.Location = new System.Drawing.Point(389, 315);
+            this.Gamma_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Gamma_Label.Name = "Gamma_Label";
-            this.Gamma_Label.Size = new System.Drawing.Size(43, 13);
+            this.Gamma_Label.Size = new System.Drawing.Size(55, 16);
             this.Gamma_Label.TabIndex = 80;
             this.Gamma_Label.Text = "Gamma";
             // 
             // ResolutionX
             // 
             this.ResolutionX.AutoSize = true;
-            this.ResolutionX.Location = new System.Drawing.Point(124, 287);
+            this.ResolutionX.Location = new System.Drawing.Point(165, 353);
+            this.ResolutionX.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ResolutionX.Name = "ResolutionX";
-            this.ResolutionX.Size = new System.Drawing.Size(12, 13);
+            this.ResolutionX.Size = new System.Drawing.Size(13, 16);
             this.ResolutionX.TabIndex = 79;
             this.ResolutionX.Text = "x";
             // 
             // Resolution_Label
             // 
             this.Resolution_Label.AutoSize = true;
-            this.Resolution_Label.Location = new System.Drawing.Point(13, 268);
+            this.Resolution_Label.Location = new System.Drawing.Point(17, 330);
+            this.Resolution_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Resolution_Label.Name = "Resolution_Label";
-            this.Resolution_Label.Size = new System.Drawing.Size(57, 13);
+            this.Resolution_Label.Size = new System.Drawing.Size(71, 16);
             this.Resolution_Label.TabIndex = 78;
             this.Resolution_Label.Text = "Resolution";
             // 
             // Preset_Label
             // 
             this.Preset_Label.AutoSize = true;
-            this.Preset_Label.Location = new System.Drawing.Point(13, 12);
+            this.Preset_Label.Location = new System.Drawing.Point(17, 15);
+            this.Preset_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Preset_Label.Name = "Preset_Label";
-            this.Preset_Label.Size = new System.Drawing.Size(37, 13);
+            this.Preset_Label.Size = new System.Drawing.Size(46, 16);
             this.Preset_Label.TabIndex = 77;
             this.Preset_Label.Text = "Preset";
             // 
@@ -392,41 +435,46 @@
             // 
             this.Preset_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Preset_Box.FormattingEnabled = true;
-            this.Preset_Box.Location = new System.Drawing.Point(121, 9);
+            this.Preset_Box.Location = new System.Drawing.Point(161, 11);
+            this.Preset_Box.Margin = new System.Windows.Forms.Padding(4);
             this.Preset_Box.Name = "Preset_Box";
-            this.Preset_Box.Size = new System.Drawing.Size(121, 21);
+            this.Preset_Box.Size = new System.Drawing.Size(160, 24);
             this.Preset_Box.TabIndex = 76;
             this.Preset_Box.SelectedIndexChanged += new System.EventHandler(this.Preset_Box_SelectedIndexChanged);
             // 
             // Fullscreen_Check
             // 
             this.Fullscreen_Check.AutoSize = true;
-            this.Fullscreen_Check.Location = new System.Drawing.Point(248, 286);
+            this.Fullscreen_Check.Location = new System.Drawing.Point(331, 352);
+            this.Fullscreen_Check.Margin = new System.Windows.Forms.Padding(4);
             this.Fullscreen_Check.Name = "Fullscreen_Check";
-            this.Fullscreen_Check.Size = new System.Drawing.Size(74, 17);
+            this.Fullscreen_Check.Size = new System.Drawing.Size(91, 20);
             this.Fullscreen_Check.TabIndex = 75;
             this.Fullscreen_Check.Text = "Fullscreen";
             this.Fullscreen_Check.UseVisualStyleBackColor = true;
             // 
             // Height_Text
             // 
-            this.Height_Text.Location = new System.Drawing.Point(142, 284);
+            this.Height_Text.Location = new System.Drawing.Point(189, 350);
+            this.Height_Text.Margin = new System.Windows.Forms.Padding(4);
             this.Height_Text.Name = "Height_Text";
-            this.Height_Text.Size = new System.Drawing.Size(100, 20);
+            this.Height_Text.Size = new System.Drawing.Size(132, 22);
             this.Height_Text.TabIndex = 74;
             // 
             // Width_Text
             // 
-            this.Width_Text.Location = new System.Drawing.Point(16, 284);
+            this.Width_Text.Location = new System.Drawing.Point(21, 350);
+            this.Width_Text.Margin = new System.Windows.Forms.Padding(4);
             this.Width_Text.Name = "Width_Text";
-            this.Width_Text.Size = new System.Drawing.Size(100, 20);
+            this.Width_Text.Size = new System.Drawing.Size(132, 22);
             this.Width_Text.TabIndex = 73;
             // 
             // Apply_Button_Graphics
             // 
-            this.Apply_Button_Graphics.Location = new System.Drawing.Point(452, 284);
+            this.Apply_Button_Graphics.Location = new System.Drawing.Point(603, 350);
+            this.Apply_Button_Graphics.Margin = new System.Windows.Forms.Padding(4);
             this.Apply_Button_Graphics.Name = "Apply_Button_Graphics";
-            this.Apply_Button_Graphics.Size = new System.Drawing.Size(75, 23);
+            this.Apply_Button_Graphics.Size = new System.Drawing.Size(100, 28);
             this.Apply_Button_Graphics.TabIndex = 72;
             this.Apply_Button_Graphics.Text = "Apply";
             this.Apply_Button_Graphics.UseVisualStyleBackColor = true;
@@ -434,9 +482,10 @@
             // 
             // Reset_Button_Graphics
             // 
-            this.Reset_Button_Graphics.Location = new System.Drawing.Point(371, 284);
+            this.Reset_Button_Graphics.Location = new System.Drawing.Point(495, 350);
+            this.Reset_Button_Graphics.Margin = new System.Windows.Forms.Padding(4);
             this.Reset_Button_Graphics.Name = "Reset_Button_Graphics";
-            this.Reset_Button_Graphics.Size = new System.Drawing.Size(75, 23);
+            this.Reset_Button_Graphics.Size = new System.Drawing.Size(100, 28);
             this.Reset_Button_Graphics.TabIndex = 71;
             this.Reset_Button_Graphics.Text = "Reset";
             this.Reset_Button_Graphics.UseVisualStyleBackColor = true;
@@ -446,17 +495,19 @@
             // 
             this.AnisotropicFiltering_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AnisotropicFiltering_Box.FormattingEnabled = true;
-            this.AnisotropicFiltering_Box.Location = new System.Drawing.Point(406, 225);
+            this.AnisotropicFiltering_Box.Location = new System.Drawing.Point(541, 277);
+            this.AnisotropicFiltering_Box.Margin = new System.Windows.Forms.Padding(4);
             this.AnisotropicFiltering_Box.Name = "AnisotropicFiltering_Box";
-            this.AnisotropicFiltering_Box.Size = new System.Drawing.Size(121, 21);
+            this.AnisotropicFiltering_Box.Size = new System.Drawing.Size(160, 24);
             this.AnisotropicFiltering_Box.TabIndex = 70;
             // 
             // AnisotropicFiltering_Label
             // 
             this.AnisotropicFiltering_Label.AutoSize = true;
-            this.AnisotropicFiltering_Label.Location = new System.Drawing.Point(292, 228);
+            this.AnisotropicFiltering_Label.Location = new System.Drawing.Point(389, 281);
+            this.AnisotropicFiltering_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.AnisotropicFiltering_Label.Name = "AnisotropicFiltering_Label";
-            this.AnisotropicFiltering_Label.Size = new System.Drawing.Size(98, 13);
+            this.AnisotropicFiltering_Label.Size = new System.Drawing.Size(124, 16);
             this.AnisotropicFiltering_Label.TabIndex = 69;
             this.AnisotropicFiltering_Label.Text = "Anisotropic Filtering";
             // 
@@ -464,17 +515,19 @@
             // 
             this.TeammateEffects_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TeammateEffects_Box.FormattingEnabled = true;
-            this.TeammateEffects_Box.Location = new System.Drawing.Point(406, 198);
+            this.TeammateEffects_Box.Location = new System.Drawing.Point(541, 244);
+            this.TeammateEffects_Box.Margin = new System.Windows.Forms.Padding(4);
             this.TeammateEffects_Box.Name = "TeammateEffects_Box";
-            this.TeammateEffects_Box.Size = new System.Drawing.Size(121, 21);
+            this.TeammateEffects_Box.Size = new System.Drawing.Size(160, 24);
             this.TeammateEffects_Box.TabIndex = 68;
             // 
             // TeammateEffects_Label
             // 
             this.TeammateEffects_Label.AutoSize = true;
-            this.TeammateEffects_Label.Location = new System.Drawing.Point(292, 201);
+            this.TeammateEffects_Label.Location = new System.Drawing.Point(389, 247);
+            this.TeammateEffects_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TeammateEffects_Label.Name = "TeammateEffects_Label";
-            this.TeammateEffects_Label.Size = new System.Drawing.Size(93, 13);
+            this.TeammateEffects_Label.Size = new System.Drawing.Size(116, 16);
             this.TeammateEffects_Label.TabIndex = 67;
             this.TeammateEffects_Label.Text = "Teammate Effects";
             // 
@@ -482,17 +535,19 @@
             // 
             this.SubsurfaceScattering_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SubsurfaceScattering_Box.FormattingEnabled = true;
-            this.SubsurfaceScattering_Box.Location = new System.Drawing.Point(406, 171);
+            this.SubsurfaceScattering_Box.Location = new System.Drawing.Point(541, 210);
+            this.SubsurfaceScattering_Box.Margin = new System.Windows.Forms.Padding(4);
             this.SubsurfaceScattering_Box.Name = "SubsurfaceScattering_Box";
-            this.SubsurfaceScattering_Box.Size = new System.Drawing.Size(121, 21);
+            this.SubsurfaceScattering_Box.Size = new System.Drawing.Size(160, 24);
             this.SubsurfaceScattering_Box.TabIndex = 66;
             // 
             // SubsurfaceScattering_Label
             // 
             this.SubsurfaceScattering_Label.AutoSize = true;
-            this.SubsurfaceScattering_Label.Location = new System.Drawing.Point(292, 174);
+            this.SubsurfaceScattering_Label.Location = new System.Drawing.Point(389, 214);
+            this.SubsurfaceScattering_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SubsurfaceScattering_Label.Name = "SubsurfaceScattering_Label";
-            this.SubsurfaceScattering_Label.Size = new System.Drawing.Size(112, 13);
+            this.SubsurfaceScattering_Label.Size = new System.Drawing.Size(138, 16);
             this.SubsurfaceScattering_Label.TabIndex = 65;
             this.SubsurfaceScattering_Label.Text = "Subsurface Scattering";
             // 
@@ -500,17 +555,19 @@
             // 
             this.CrowdDensity_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CrowdDensity_Box.FormattingEnabled = true;
-            this.CrowdDensity_Box.Location = new System.Drawing.Point(406, 144);
+            this.CrowdDensity_Box.Location = new System.Drawing.Point(541, 177);
+            this.CrowdDensity_Box.Margin = new System.Windows.Forms.Padding(4);
             this.CrowdDensity_Box.Name = "CrowdDensity_Box";
-            this.CrowdDensity_Box.Size = new System.Drawing.Size(121, 21);
+            this.CrowdDensity_Box.Size = new System.Drawing.Size(160, 24);
             this.CrowdDensity_Box.TabIndex = 64;
             // 
             // CrowdDensity_Label
             // 
             this.CrowdDensity_Label.AutoSize = true;
-            this.CrowdDensity_Label.Location = new System.Drawing.Point(292, 147);
+            this.CrowdDensity_Label.Location = new System.Drawing.Point(389, 181);
+            this.CrowdDensity_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.CrowdDensity_Label.Name = "CrowdDensity_Label";
-            this.CrowdDensity_Label.Size = new System.Drawing.Size(75, 13);
+            this.CrowdDensity_Label.Size = new System.Drawing.Size(93, 16);
             this.CrowdDensity_Label.TabIndex = 63;
             this.CrowdDensity_Label.Text = "Crowd Density";
             // 
@@ -518,17 +575,19 @@
             // 
             this.Bloom_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Bloom_Box.FormattingEnabled = true;
-            this.Bloom_Box.Location = new System.Drawing.Point(406, 117);
+            this.Bloom_Box.Location = new System.Drawing.Point(541, 144);
+            this.Bloom_Box.Margin = new System.Windows.Forms.Padding(4);
             this.Bloom_Box.Name = "Bloom_Box";
-            this.Bloom_Box.Size = new System.Drawing.Size(121, 21);
+            this.Bloom_Box.Size = new System.Drawing.Size(160, 24);
             this.Bloom_Box.TabIndex = 62;
             // 
             // Bloom_Label
             // 
             this.Bloom_Label.AutoSize = true;
-            this.Bloom_Label.Location = new System.Drawing.Point(292, 120);
+            this.Bloom_Label.Location = new System.Drawing.Point(389, 148);
+            this.Bloom_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Bloom_Label.Name = "Bloom_Label";
-            this.Bloom_Label.Size = new System.Drawing.Size(36, 13);
+            this.Bloom_Label.Size = new System.Drawing.Size(46, 16);
             this.Bloom_Label.TabIndex = 61;
             this.Bloom_Label.Text = "Bloom";
             // 
@@ -536,17 +595,19 @@
             // 
             this.MotionBlur_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MotionBlur_Box.FormattingEnabled = true;
-            this.MotionBlur_Box.Location = new System.Drawing.Point(406, 90);
+            this.MotionBlur_Box.Location = new System.Drawing.Point(541, 111);
+            this.MotionBlur_Box.Margin = new System.Windows.Forms.Padding(4);
             this.MotionBlur_Box.Name = "MotionBlur_Box";
-            this.MotionBlur_Box.Size = new System.Drawing.Size(121, 21);
+            this.MotionBlur_Box.Size = new System.Drawing.Size(160, 24);
             this.MotionBlur_Box.TabIndex = 60;
             // 
             // MotionBlur_Label
             // 
             this.MotionBlur_Label.AutoSize = true;
-            this.MotionBlur_Label.Location = new System.Drawing.Point(292, 93);
+            this.MotionBlur_Label.Location = new System.Drawing.Point(389, 114);
+            this.MotionBlur_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MotionBlur_Label.Name = "MotionBlur_Label";
-            this.MotionBlur_Label.Size = new System.Drawing.Size(60, 13);
+            this.MotionBlur_Label.Size = new System.Drawing.Size(73, 16);
             this.MotionBlur_Label.TabIndex = 59;
             this.MotionBlur_Label.Text = "Motion Blur";
             // 
@@ -554,17 +615,19 @@
             // 
             this.Reflections_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Reflections_Box.FormattingEnabled = true;
-            this.Reflections_Box.Location = new System.Drawing.Point(406, 63);
+            this.Reflections_Box.Location = new System.Drawing.Point(541, 78);
+            this.Reflections_Box.Margin = new System.Windows.Forms.Padding(4);
             this.Reflections_Box.Name = "Reflections_Box";
-            this.Reflections_Box.Size = new System.Drawing.Size(121, 21);
+            this.Reflections_Box.Size = new System.Drawing.Size(160, 24);
             this.Reflections_Box.TabIndex = 58;
             // 
             // Reflections_Label
             // 
             this.Reflections_Label.AutoSize = true;
-            this.Reflections_Label.Location = new System.Drawing.Point(292, 66);
+            this.Reflections_Label.Location = new System.Drawing.Point(389, 81);
+            this.Reflections_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Reflections_Label.Name = "Reflections_Label";
-            this.Reflections_Label.Size = new System.Drawing.Size(60, 13);
+            this.Reflections_Label.Size = new System.Drawing.Size(74, 16);
             this.Reflections_Label.TabIndex = 57;
             this.Reflections_Label.Text = "Reflections";
             // 
@@ -572,17 +635,19 @@
             // 
             this.VolumetricFog_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.VolumetricFog_Box.FormattingEnabled = true;
-            this.VolumetricFog_Box.Location = new System.Drawing.Point(406, 36);
+            this.VolumetricFog_Box.Location = new System.Drawing.Point(541, 44);
+            this.VolumetricFog_Box.Margin = new System.Windows.Forms.Padding(4);
             this.VolumetricFog_Box.Name = "VolumetricFog_Box";
-            this.VolumetricFog_Box.Size = new System.Drawing.Size(121, 21);
+            this.VolumetricFog_Box.Size = new System.Drawing.Size(160, 24);
             this.VolumetricFog_Box.TabIndex = 56;
             // 
             // VolumetricFog_Label
             // 
             this.VolumetricFog_Label.AutoSize = true;
-            this.VolumetricFog_Label.Location = new System.Drawing.Point(292, 39);
+            this.VolumetricFog_Label.Location = new System.Drawing.Point(389, 48);
+            this.VolumetricFog_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.VolumetricFog_Label.Name = "VolumetricFog_Label";
-            this.VolumetricFog_Label.Size = new System.Drawing.Size(77, 13);
+            this.VolumetricFog_Label.Size = new System.Drawing.Size(97, 16);
             this.VolumetricFog_Label.TabIndex = 55;
             this.VolumetricFog_Label.Text = "Volumetric Fog";
             // 
@@ -590,17 +655,19 @@
             // 
             this.Antialiasing_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Antialiasing_Box.FormattingEnabled = true;
-            this.Antialiasing_Box.Location = new System.Drawing.Point(121, 225);
+            this.Antialiasing_Box.Location = new System.Drawing.Point(161, 277);
+            this.Antialiasing_Box.Margin = new System.Windows.Forms.Padding(4);
             this.Antialiasing_Box.Name = "Antialiasing_Box";
-            this.Antialiasing_Box.Size = new System.Drawing.Size(121, 21);
+            this.Antialiasing_Box.Size = new System.Drawing.Size(160, 24);
             this.Antialiasing_Box.TabIndex = 54;
             // 
             // Antialiasing_Label
             // 
             this.Antialiasing_Label.AutoSize = true;
-            this.Antialiasing_Label.Location = new System.Drawing.Point(13, 228);
+            this.Antialiasing_Label.Location = new System.Drawing.Point(17, 281);
+            this.Antialiasing_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Antialiasing_Label.Name = "Antialiasing_Label";
-            this.Antialiasing_Label.Size = new System.Drawing.Size(60, 13);
+            this.Antialiasing_Label.Size = new System.Drawing.Size(76, 16);
             this.Antialiasing_Label.TabIndex = 53;
             this.Antialiasing_Label.Text = "Antialiasing";
             // 
@@ -608,17 +675,19 @@
             // 
             this.EnvironmentDetail_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EnvironmentDetail_Box.FormattingEnabled = true;
-            this.EnvironmentDetail_Box.Location = new System.Drawing.Point(121, 198);
+            this.EnvironmentDetail_Box.Location = new System.Drawing.Point(161, 244);
+            this.EnvironmentDetail_Box.Margin = new System.Windows.Forms.Padding(4);
             this.EnvironmentDetail_Box.Name = "EnvironmentDetail_Box";
-            this.EnvironmentDetail_Box.Size = new System.Drawing.Size(121, 21);
+            this.EnvironmentDetail_Box.Size = new System.Drawing.Size(160, 24);
             this.EnvironmentDetail_Box.TabIndex = 52;
             // 
             // EnvironmentDetail_Label
             // 
             this.EnvironmentDetail_Label.AutoSize = true;
-            this.EnvironmentDetail_Label.Location = new System.Drawing.Point(13, 201);
+            this.EnvironmentDetail_Label.Location = new System.Drawing.Point(17, 247);
+            this.EnvironmentDetail_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.EnvironmentDetail_Label.Name = "EnvironmentDetail_Label";
-            this.EnvironmentDetail_Label.Size = new System.Drawing.Size(96, 13);
+            this.EnvironmentDetail_Label.Size = new System.Drawing.Size(119, 16);
             this.EnvironmentDetail_Label.TabIndex = 51;
             this.EnvironmentDetail_Label.Text = "Environment Detail";
             // 
@@ -626,17 +695,19 @@
             // 
             this.SFXQuality_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SFXQuality_Box.FormattingEnabled = true;
-            this.SFXQuality_Box.Location = new System.Drawing.Point(121, 171);
+            this.SFXQuality_Box.Location = new System.Drawing.Point(161, 210);
+            this.SFXQuality_Box.Margin = new System.Windows.Forms.Padding(4);
             this.SFXQuality_Box.Name = "SFXQuality_Box";
-            this.SFXQuality_Box.Size = new System.Drawing.Size(121, 21);
+            this.SFXQuality_Box.Size = new System.Drawing.Size(160, 24);
             this.SFXQuality_Box.TabIndex = 50;
             // 
             // SFXQuality_Label
             // 
             this.SFXQuality_Label.AutoSize = true;
-            this.SFXQuality_Label.Location = new System.Drawing.Point(13, 174);
+            this.SFXQuality_Label.Location = new System.Drawing.Point(17, 214);
+            this.SFXQuality_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SFXQuality_Label.Name = "SFXQuality_Label";
-            this.SFXQuality_Label.Size = new System.Drawing.Size(62, 13);
+            this.SFXQuality_Label.Size = new System.Drawing.Size(76, 16);
             this.SFXQuality_Label.TabIndex = 49;
             this.SFXQuality_Label.Text = "SFX Quality";
             // 
@@ -644,17 +715,19 @@
             // 
             this.VisualEffects_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.VisualEffects_Box.FormattingEnabled = true;
-            this.VisualEffects_Box.Location = new System.Drawing.Point(121, 144);
+            this.VisualEffects_Box.Location = new System.Drawing.Point(161, 177);
+            this.VisualEffects_Box.Margin = new System.Windows.Forms.Padding(4);
             this.VisualEffects_Box.Name = "VisualEffects_Box";
-            this.VisualEffects_Box.Size = new System.Drawing.Size(121, 21);
+            this.VisualEffects_Box.Size = new System.Drawing.Size(160, 24);
             this.VisualEffects_Box.TabIndex = 48;
             // 
             // VisualEffects_Label
             // 
             this.VisualEffects_Label.AutoSize = true;
-            this.VisualEffects_Label.Location = new System.Drawing.Point(13, 147);
+            this.VisualEffects_Label.Location = new System.Drawing.Point(17, 181);
+            this.VisualEffects_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.VisualEffects_Label.Name = "VisualEffects_Label";
-            this.VisualEffects_Label.Size = new System.Drawing.Size(71, 13);
+            this.VisualEffects_Label.Size = new System.Drawing.Size(87, 16);
             this.VisualEffects_Label.TabIndex = 47;
             this.VisualEffects_Label.Text = "Visual Effects";
             // 
@@ -662,18 +735,20 @@
             // 
             this.ShadowQuality_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ShadowQuality_Box.FormattingEnabled = true;
-            this.ShadowQuality_Box.Location = new System.Drawing.Point(121, 117);
+            this.ShadowQuality_Box.Location = new System.Drawing.Point(161, 144);
+            this.ShadowQuality_Box.Margin = new System.Windows.Forms.Padding(4);
             this.ShadowQuality_Box.Name = "ShadowQuality_Box";
-            this.ShadowQuality_Box.Size = new System.Drawing.Size(121, 21);
+            this.ShadowQuality_Box.Size = new System.Drawing.Size(160, 24);
             this.ShadowQuality_Box.TabIndex = 46;
             this.ShadowQuality_Box.SelectedIndexChanged += new System.EventHandler(this.ShadowQuality_Box_SelectedIndexChanged);
             // 
             // ShadowQuality_Label
             // 
             this.ShadowQuality_Label.AutoSize = true;
-            this.ShadowQuality_Label.Location = new System.Drawing.Point(13, 120);
+            this.ShadowQuality_Label.Location = new System.Drawing.Point(17, 148);
+            this.ShadowQuality_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ShadowQuality_Label.Name = "ShadowQuality_Label";
-            this.ShadowQuality_Label.Size = new System.Drawing.Size(81, 13);
+            this.ShadowQuality_Label.Size = new System.Drawing.Size(100, 16);
             this.ShadowQuality_Label.TabIndex = 45;
             this.ShadowQuality_Label.Text = "Shadow Quality";
             // 
@@ -681,17 +756,19 @@
             // 
             this.RenderResolution_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.RenderResolution_Box.FormattingEnabled = true;
-            this.RenderResolution_Box.Location = new System.Drawing.Point(121, 90);
+            this.RenderResolution_Box.Location = new System.Drawing.Point(161, 111);
+            this.RenderResolution_Box.Margin = new System.Windows.Forms.Padding(4);
             this.RenderResolution_Box.Name = "RenderResolution_Box";
-            this.RenderResolution_Box.Size = new System.Drawing.Size(121, 21);
+            this.RenderResolution_Box.Size = new System.Drawing.Size(160, 24);
             this.RenderResolution_Box.TabIndex = 44;
             // 
             // RenderResolution_Label
             // 
             this.RenderResolution_Label.AutoSize = true;
-            this.RenderResolution_Label.Location = new System.Drawing.Point(13, 93);
+            this.RenderResolution_Label.Location = new System.Drawing.Point(17, 114);
+            this.RenderResolution_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.RenderResolution_Label.Name = "RenderResolution_Label";
-            this.RenderResolution_Label.Size = new System.Drawing.Size(95, 13);
+            this.RenderResolution_Label.Size = new System.Drawing.Size(119, 16);
             this.RenderResolution_Label.TabIndex = 43;
             this.RenderResolution_Label.Text = "Render Resolution";
             // 
@@ -699,17 +776,19 @@
             // 
             this.VSync_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.VSync_Box.FormattingEnabled = true;
-            this.VSync_Box.Location = new System.Drawing.Point(121, 63);
+            this.VSync_Box.Location = new System.Drawing.Point(161, 78);
+            this.VSync_Box.Margin = new System.Windows.Forms.Padding(4);
             this.VSync_Box.Name = "VSync_Box";
-            this.VSync_Box.Size = new System.Drawing.Size(121, 21);
+            this.VSync_Box.Size = new System.Drawing.Size(160, 24);
             this.VSync_Box.TabIndex = 42;
             // 
             // VSync_Label
             // 
             this.VSync_Label.AutoSize = true;
-            this.VSync_Label.Location = new System.Drawing.Point(13, 66);
+            this.VSync_Label.Location = new System.Drawing.Point(17, 81);
+            this.VSync_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.VSync_Label.Name = "VSync_Label";
-            this.VSync_Label.Size = new System.Drawing.Size(38, 13);
+            this.VSync_Label.Size = new System.Drawing.Size(46, 16);
             this.VSync_Label.TabIndex = 41;
             this.VSync_Label.Text = "VSync";
             // 
@@ -717,46 +796,51 @@
             // 
             this.FPS_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FPS_Box.FormattingEnabled = true;
-            this.FPS_Box.Location = new System.Drawing.Point(121, 36);
+            this.FPS_Box.Location = new System.Drawing.Point(161, 44);
+            this.FPS_Box.Margin = new System.Windows.Forms.Padding(4);
             this.FPS_Box.Name = "FPS_Box";
-            this.FPS_Box.Size = new System.Drawing.Size(121, 21);
+            this.FPS_Box.Size = new System.Drawing.Size(160, 24);
             this.FPS_Box.TabIndex = 40;
             // 
             // FPS_Label
             // 
             this.FPS_Label.AutoSize = true;
-            this.FPS_Label.Location = new System.Drawing.Point(13, 39);
+            this.FPS_Label.Location = new System.Drawing.Point(17, 48);
+            this.FPS_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.FPS_Label.Name = "FPS_Label";
-            this.FPS_Label.Size = new System.Drawing.Size(27, 13);
+            this.FPS_Label.Size = new System.Drawing.Size(33, 16);
             this.FPS_Label.TabIndex = 39;
             this.FPS_Label.Text = "FPS";
             // 
             // GammaTrackBar
             // 
-            this.GammaTrackBar.Location = new System.Drawing.Point(341, 252);
+            this.GammaTrackBar.Location = new System.Drawing.Point(455, 310);
+            this.GammaTrackBar.Margin = new System.Windows.Forms.Padding(4);
             this.GammaTrackBar.Maximum = 160;
             this.GammaTrackBar.Name = "GammaTrackBar";
-            this.GammaTrackBar.Size = new System.Drawing.Size(148, 45);
+            this.GammaTrackBar.Size = new System.Drawing.Size(197, 56);
             this.GammaTrackBar.TabIndex = 81;
             this.GammaTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.GammaTrackBar.ValueChanged += new System.EventHandler(this.GammaTrackBar_ValueChanged);
             // 
-            // tabControls
+            // tabKeybindings
             // 
-            this.tabControls.Controls.Add(this.splitContainerControls);
-            this.tabControls.Location = new System.Drawing.Point(4, 22);
-            this.tabControls.Name = "tabControls";
-            this.tabControls.Padding = new System.Windows.Forms.Padding(3);
-            this.tabControls.Size = new System.Drawing.Size(539, 315);
-            this.tabControls.TabIndex = 3;
-            this.tabControls.Text = "Controls";
+            this.tabKeybindings.Controls.Add(this.splitContainerControls);
+            this.tabKeybindings.Location = new System.Drawing.Point(4, 25);
+            this.tabKeybindings.Margin = new System.Windows.Forms.Padding(4);
+            this.tabKeybindings.Name = "tabKeybindings";
+            this.tabKeybindings.Padding = new System.Windows.Forms.Padding(4);
+            this.tabKeybindings.Size = new System.Drawing.Size(721, 391);
+            this.tabKeybindings.TabIndex = 3;
+            this.tabKeybindings.Text = "Keybindings";
             // 
             // splitContainerControls
             // 
             this.splitContainerControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainerControls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControls.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainerControls.Location = new System.Drawing.Point(3, 3);
+            this.splitContainerControls.Location = new System.Drawing.Point(4, 4);
+            this.splitContainerControls.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerControls.Name = "splitContainerControls";
             this.splitContainerControls.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -783,16 +867,18 @@
             this.splitContainerControls.Panel2.Controls.Add(this.checkBoxCtrlTemplate);
             this.splitContainerControls.Panel2.Controls.Add(this.gamepadButtonTemplate);
             this.splitContainerControls.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.Paint_BG);
-            this.splitContainerControls.Size = new System.Drawing.Size(533, 309);
+            this.splitContainerControls.Size = new System.Drawing.Size(713, 383);
             this.splitContainerControls.SplitterDistance = 36;
+            this.splitContainerControls.SplitterWidth = 5;
             this.splitContainerControls.TabIndex = 8;
             // 
             // applyControlsButton
             // 
             this.applyControlsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.applyControlsButton.Location = new System.Drawing.Point(451, 5);
+            this.applyControlsButton.Location = new System.Drawing.Point(604, 6);
+            this.applyControlsButton.Margin = new System.Windows.Forms.Padding(4);
             this.applyControlsButton.Name = "applyControlsButton";
-            this.applyControlsButton.Size = new System.Drawing.Size(75, 23);
+            this.applyControlsButton.Size = new System.Drawing.Size(100, 28);
             this.applyControlsButton.TabIndex = 8;
             this.applyControlsButton.Text = "Apply";
             this.applyControlsButton.UseVisualStyleBackColor = true;
@@ -801,9 +887,10 @@
             // inputDeviceLabel
             // 
             this.inputDeviceLabel.AutoSize = true;
-            this.inputDeviceLabel.Location = new System.Drawing.Point(7, 10);
+            this.inputDeviceLabel.Location = new System.Drawing.Point(9, 12);
+            this.inputDeviceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.inputDeviceLabel.Name = "inputDeviceLabel";
-            this.inputDeviceLabel.Size = new System.Drawing.Size(66, 13);
+            this.inputDeviceLabel.Size = new System.Drawing.Size(79, 16);
             this.inputDeviceLabel.TabIndex = 7;
             this.inputDeviceLabel.Text = "Input device";
             // 
@@ -812,18 +899,20 @@
             this.devicesList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devicesList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.devicesList.FormattingEnabled = true;
-            this.devicesList.Location = new System.Drawing.Point(159, 6);
+            this.devicesList.Location = new System.Drawing.Point(215, 7);
+            this.devicesList.Margin = new System.Windows.Forms.Padding(4);
             this.devicesList.Name = "devicesList";
-            this.devicesList.Size = new System.Drawing.Size(286, 21);
+            this.devicesList.Size = new System.Drawing.Size(380, 24);
             this.devicesList.TabIndex = 6;
             this.devicesList.SelectedIndexChanged += new System.EventHandler(this.Reload_Controls);
             // 
             // noControlsConfiguredLabel
             // 
             this.noControlsConfiguredLabel.AutoSize = true;
-            this.noControlsConfiguredLabel.Location = new System.Drawing.Point(7, 10);
+            this.noControlsConfiguredLabel.Location = new System.Drawing.Point(9, 12);
+            this.noControlsConfiguredLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.noControlsConfiguredLabel.Name = "noControlsConfiguredLabel";
-            this.noControlsConfiguredLabel.Size = new System.Drawing.Size(422, 13);
+            this.noControlsConfiguredLabel.Size = new System.Drawing.Size(527, 16);
             this.noControlsConfiguredLabel.TabIndex = 13;
             this.noControlsConfiguredLabel.Text = "No controls override configured. Please, change controls settings in game to gene" +
     "rate it.";
@@ -834,9 +923,10 @@
             this.comboBoxKeybindListTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxKeybindListTemplate.Enabled = false;
             this.comboBoxKeybindListTemplate.FormattingEnabled = true;
-            this.comboBoxKeybindListTemplate.Location = new System.Drawing.Point(4, 5);
+            this.comboBoxKeybindListTemplate.Location = new System.Drawing.Point(5, 6);
+            this.comboBoxKeybindListTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxKeybindListTemplate.Name = "comboBoxKeybindListTemplate";
-            this.comboBoxKeybindListTemplate.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxKeybindListTemplate.Size = new System.Drawing.Size(160, 24);
             this.comboBoxKeybindListTemplate.TabIndex = 12;
             this.comboBoxKeybindListTemplate.Visible = false;
             // 
@@ -844,9 +934,10 @@
             // 
             this.buttonKeybindRemoveTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonKeybindRemoveTemplate.Enabled = false;
-            this.buttonKeybindRemoveTemplate.Location = new System.Drawing.Point(235, 4);
+            this.buttonKeybindRemoveTemplate.Location = new System.Drawing.Point(494, 5);
+            this.buttonKeybindRemoveTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.buttonKeybindRemoveTemplate.Name = "buttonKeybindRemoveTemplate";
-            this.buttonKeybindRemoveTemplate.Size = new System.Drawing.Size(23, 23);
+            this.buttonKeybindRemoveTemplate.Size = new System.Drawing.Size(31, 28);
             this.buttonKeybindRemoveTemplate.TabIndex = 11;
             this.buttonKeybindRemoveTemplate.Text = "X";
             this.buttonKeybindRemoveTemplate.UseVisualStyleBackColor = true;
@@ -856,9 +947,10 @@
             // 
             this.buttonKeybindingAddTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonKeybindingAddTemplate.Enabled = false;
-            this.buttonKeybindingAddTemplate.Location = new System.Drawing.Point(451, 4);
+            this.buttonKeybindingAddTemplate.Location = new System.Drawing.Point(782, 5);
+            this.buttonKeybindingAddTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.buttonKeybindingAddTemplate.Name = "buttonKeybindingAddTemplate";
-            this.buttonKeybindingAddTemplate.Size = new System.Drawing.Size(75, 23);
+            this.buttonKeybindingAddTemplate.Size = new System.Drawing.Size(100, 28);
             this.buttonKeybindingAddTemplate.TabIndex = 10;
             this.buttonKeybindingAddTemplate.Text = "Add";
             this.buttonKeybindingAddTemplate.UseVisualStyleBackColor = true;
@@ -868,9 +960,10 @@
             // 
             this.gamepadAxisInvertTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.gamepadAxisInvertTemplate.AutoSize = true;
-            this.gamepadAxisInvertTemplate.Location = new System.Drawing.Point(346, 6);
+            this.gamepadAxisInvertTemplate.Location = new System.Drawing.Point(652, 7);
+            this.gamepadAxisInvertTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.gamepadAxisInvertTemplate.Name = "gamepadAxisInvertTemplate";
-            this.gamepadAxisInvertTemplate.Size = new System.Drawing.Size(53, 17);
+            this.gamepadAxisInvertTemplate.Size = new System.Drawing.Size(61, 20);
             this.gamepadAxisInvertTemplate.TabIndex = 9;
             this.gamepadAxisInvertTemplate.Text = "Invert";
             this.gamepadAxisInvertTemplate.UseVisualStyleBackColor = true;
@@ -882,9 +975,10 @@
             this.gamepadAxisTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gamepadAxisTemplate.Enabled = false;
             this.gamepadAxisTemplate.FormattingEnabled = true;
-            this.gamepadAxisTemplate.Location = new System.Drawing.Point(405, 5);
+            this.gamepadAxisTemplate.Location = new System.Drawing.Point(721, 6);
+            this.gamepadAxisTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.gamepadAxisTemplate.Name = "gamepadAxisTemplate";
-            this.gamepadAxisTemplate.Size = new System.Drawing.Size(121, 21);
+            this.gamepadAxisTemplate.Size = new System.Drawing.Size(160, 24);
             this.gamepadAxisTemplate.TabIndex = 8;
             this.gamepadAxisTemplate.Visible = false;
             // 
@@ -892,18 +986,20 @@
             // 
             this.inputButtonTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.inputButtonTemplate.Enabled = false;
-            this.inputButtonTemplate.Location = new System.Drawing.Point(264, 5);
+            this.inputButtonTemplate.Location = new System.Drawing.Point(533, 6);
+            this.inputButtonTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.inputButtonTemplate.Name = "inputButtonTemplate";
-            this.inputButtonTemplate.Size = new System.Drawing.Size(118, 20);
+            this.inputButtonTemplate.Size = new System.Drawing.Size(156, 22);
             this.inputButtonTemplate.TabIndex = 6;
             this.inputButtonTemplate.Visible = false;
             // 
             // labelControlTemplate
             // 
             this.labelControlTemplate.AutoSize = true;
-            this.labelControlTemplate.Location = new System.Drawing.Point(7, 9);
+            this.labelControlTemplate.Location = new System.Drawing.Point(9, 11);
+            this.labelControlTemplate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelControlTemplate.Name = "labelControlTemplate";
-            this.labelControlTemplate.Size = new System.Drawing.Size(71, 13);
+            this.labelControlTemplate.Size = new System.Drawing.Size(89, 16);
             this.labelControlTemplate.TabIndex = 0;
             this.labelControlTemplate.Text = "Control Name";
             this.labelControlTemplate.Visible = false;
@@ -911,9 +1007,10 @@
             // buttonKeyTemplate
             // 
             this.buttonKeyTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonKeyTemplate.Location = new System.Drawing.Point(264, 3);
+            this.buttonKeyTemplate.Location = new System.Drawing.Point(533, 4);
+            this.buttonKeyTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.buttonKeyTemplate.Name = "buttonKeyTemplate";
-            this.buttonKeyTemplate.Size = new System.Drawing.Size(118, 23);
+            this.buttonKeyTemplate.Size = new System.Drawing.Size(157, 28);
             this.buttonKeyTemplate.TabIndex = 1;
             this.buttonKeyTemplate.Text = "Selected Key";
             this.buttonKeyTemplate.UseVisualStyleBackColor = true;
@@ -923,9 +1020,10 @@
             // 
             this.checkBoxAltTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxAltTemplate.AutoSize = true;
-            this.checkBoxAltTemplate.Location = new System.Drawing.Point(488, 6);
+            this.checkBoxAltTemplate.Location = new System.Drawing.Point(839, 7);
+            this.checkBoxAltTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxAltTemplate.Name = "checkBoxAltTemplate";
-            this.checkBoxAltTemplate.Size = new System.Drawing.Size(38, 17);
+            this.checkBoxAltTemplate.Size = new System.Drawing.Size(44, 20);
             this.checkBoxAltTemplate.TabIndex = 4;
             this.checkBoxAltTemplate.Text = "Alt";
             this.checkBoxAltTemplate.UseVisualStyleBackColor = true;
@@ -935,9 +1033,10 @@
             // 
             this.checkBoxShiftTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxShiftTemplate.AutoSize = true;
-            this.checkBoxShiftTemplate.Location = new System.Drawing.Point(435, 6);
+            this.checkBoxShiftTemplate.Location = new System.Drawing.Point(770, 7);
+            this.checkBoxShiftTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxShiftTemplate.Name = "checkBoxShiftTemplate";
-            this.checkBoxShiftTemplate.Size = new System.Drawing.Size(47, 17);
+            this.checkBoxShiftTemplate.Size = new System.Drawing.Size(54, 20);
             this.checkBoxShiftTemplate.TabIndex = 2;
             this.checkBoxShiftTemplate.Text = "Shift";
             this.checkBoxShiftTemplate.UseVisualStyleBackColor = true;
@@ -947,9 +1046,10 @@
             // 
             this.checkBoxCtrlTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxCtrlTemplate.AutoSize = true;
-            this.checkBoxCtrlTemplate.Location = new System.Drawing.Point(388, 6);
+            this.checkBoxCtrlTemplate.Location = new System.Drawing.Point(705, 7);
+            this.checkBoxCtrlTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxCtrlTemplate.Name = "checkBoxCtrlTemplate";
-            this.checkBoxCtrlTemplate.Size = new System.Drawing.Size(41, 17);
+            this.checkBoxCtrlTemplate.Size = new System.Drawing.Size(48, 20);
             this.checkBoxCtrlTemplate.TabIndex = 3;
             this.checkBoxCtrlTemplate.Text = "Ctrl";
             this.checkBoxCtrlTemplate.UseVisualStyleBackColor = true;
@@ -961,16 +1061,275 @@
             this.gamepadButtonTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gamepadButtonTemplate.Enabled = false;
             this.gamepadButtonTemplate.FormattingEnabled = true;
-            this.gamepadButtonTemplate.Location = new System.Drawing.Point(405, 5);
+            this.gamepadButtonTemplate.Location = new System.Drawing.Point(721, 6);
+            this.gamepadButtonTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.gamepadButtonTemplate.Name = "gamepadButtonTemplate";
-            this.gamepadButtonTemplate.Size = new System.Drawing.Size(121, 21);
+            this.gamepadButtonTemplate.Size = new System.Drawing.Size(160, 24);
             this.gamepadButtonTemplate.TabIndex = 7;
             this.gamepadButtonTemplate.Visible = false;
             // 
+            // tabControlsKeyboard
+            // 
+            this.tabControlsKeyboard.AutoScroll = true;
+            this.tabControlsKeyboard.BackColor = System.Drawing.SystemColors.Control;
+            this.tabControlsKeyboard.Controls.Add(this.ControlsKeyboardResetButton);
+            this.tabControlsKeyboard.Controls.Add(this.ApplyKeyboardControlsButton);
+            this.tabControlsKeyboard.Controls.Add(this.AutomaticBoatCameraAngleCorrection_Box);
+            this.tabControlsKeyboard.Controls.Add(this.AutomaticBoatCameraAngleCorrection_Label);
+            this.tabControlsKeyboard.Controls.Add(this.DefaultCameraHeight_Value);
+            this.tabControlsKeyboard.Controls.Add(this.DefaultCameraHeight_Label);
+            this.tabControlsKeyboard.Controls.Add(this.VerticalSensitivity_Label);
+            this.tabControlsKeyboard.Controls.Add(this.VerticalSensitivity_Value);
+            this.tabControlsKeyboard.Controls.Add(this.SmartCombatCamera_Checkbox);
+            this.tabControlsKeyboard.Controls.Add(this.HorizontalSensitivity_Label);
+            this.tabControlsKeyboard.Controls.Add(this.AutomaticViewHeight_Checkbox);
+            this.tabControlsKeyboard.Controls.Add(this.HorizontalSensitivity_Value);
+            this.tabControlsKeyboard.Controls.Add(this.VerticalSensitivityAiming_Value);
+            this.tabControlsKeyboard.Controls.Add(this.VerticalSensitivityAiming_Label);
+            this.tabControlsKeyboard.Controls.Add(this.HorizontalSensitivityAiming_Label);
+            this.tabControlsKeyboard.Controls.Add(this.HorizontalSensitivityAiming_Value);
+            this.tabControlsKeyboard.Controls.Add(this.HorizontalSensitivity_TrackBar);
+            this.tabControlsKeyboard.Controls.Add(this.VerticalSensitivity_TrackBar);
+            this.tabControlsKeyboard.Controls.Add(this.HorizontalSensitivityAiming_TrackBar);
+            this.tabControlsKeyboard.Controls.Add(this.VerticalSensitivityAiming_TrackBar);
+            this.tabControlsKeyboard.Controls.Add(this.DefaultCameraHeight_TrackBar);
+            this.tabControlsKeyboard.Location = new System.Drawing.Point(4, 25);
+            this.tabControlsKeyboard.Name = "tabControlsKeyboard";
+            this.tabControlsKeyboard.Size = new System.Drawing.Size(721, 391);
+            this.tabControlsKeyboard.TabIndex = 7;
+            this.tabControlsKeyboard.Text = "Controls (Keyboard)";
+            // 
+            // ApplyKeyboardControlsButton
+            // 
+            this.ApplyKeyboardControlsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ApplyKeyboardControlsButton.Location = new System.Drawing.Point(612, 359);
+            this.ApplyKeyboardControlsButton.Margin = new System.Windows.Forms.Padding(4);
+            this.ApplyKeyboardControlsButton.Name = "ApplyKeyboardControlsButton";
+            this.ApplyKeyboardControlsButton.Size = new System.Drawing.Size(100, 28);
+            this.ApplyKeyboardControlsButton.TabIndex = 20;
+            this.ApplyKeyboardControlsButton.Text = "Apply";
+            this.ApplyKeyboardControlsButton.UseVisualStyleBackColor = true;
+            this.ApplyKeyboardControlsButton.Click += new System.EventHandler(this.ApplyKeyboardControlsButton_Click);
+            // 
+            // AutomaticBoatCameraAngleCorrection_Box
+            // 
+            this.AutomaticBoatCameraAngleCorrection_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AutomaticBoatCameraAngleCorrection_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.AutomaticBoatCameraAngleCorrection_Box.FormattingEnabled = true;
+            this.AutomaticBoatCameraAngleCorrection_Box.Items.AddRange(new object[] {
+            "No",
+            "Yes",
+            "Not in combat"});
+            this.AutomaticBoatCameraAngleCorrection_Box.Location = new System.Drawing.Point(592, 328);
+            this.AutomaticBoatCameraAngleCorrection_Box.Name = "AutomaticBoatCameraAngleCorrection_Box";
+            this.AutomaticBoatCameraAngleCorrection_Box.Size = new System.Drawing.Size(121, 24);
+            this.AutomaticBoatCameraAngleCorrection_Box.TabIndex = 19;
+            // 
+            // AutomaticBoatCameraAngleCorrection_Label
+            // 
+            this.AutomaticBoatCameraAngleCorrection_Label.AutoSize = true;
+            this.AutomaticBoatCameraAngleCorrection_Label.Location = new System.Drawing.Point(5, 331);
+            this.AutomaticBoatCameraAngleCorrection_Label.Name = "AutomaticBoatCameraAngleCorrection_Label";
+            this.AutomaticBoatCameraAngleCorrection_Label.Size = new System.Drawing.Size(250, 16);
+            this.AutomaticBoatCameraAngleCorrection_Label.TabIndex = 18;
+            this.AutomaticBoatCameraAngleCorrection_Label.Text = "Automatic Boat Camera Angle Correction";
+            // 
+            // DefaultCameraHeight_Value
+            // 
+            this.DefaultCameraHeight_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DefaultCameraHeight_Value.AutoSize = true;
+            this.DefaultCameraHeight_Value.Location = new System.Drawing.Point(686, 277);
+            this.DefaultCameraHeight_Value.Name = "DefaultCameraHeight_Value";
+            this.DefaultCameraHeight_Value.Size = new System.Drawing.Size(18, 16);
+            this.DefaultCameraHeight_Value.TabIndex = 17;
+            this.DefaultCameraHeight_Value.Text = "-1";
+            // 
+            // DefaultCameraHeight_Label
+            // 
+            this.DefaultCameraHeight_Label.AutoSize = true;
+            this.DefaultCameraHeight_Label.Location = new System.Drawing.Point(5, 277);
+            this.DefaultCameraHeight_Label.Name = "DefaultCameraHeight_Label";
+            this.DefaultCameraHeight_Label.Size = new System.Drawing.Size(142, 16);
+            this.DefaultCameraHeight_Label.TabIndex = 16;
+            this.DefaultCameraHeight_Label.Text = "Default Camera Height";
+            // 
+            // VerticalSensitivity_Label
+            // 
+            this.VerticalSensitivity_Label.AutoSize = true;
+            this.VerticalSensitivity_Label.Location = new System.Drawing.Point(5, 67);
+            this.VerticalSensitivity_Label.Name = "VerticalSensitivity_Label";
+            this.VerticalSensitivity_Label.Size = new System.Drawing.Size(115, 16);
+            this.VerticalSensitivity_Label.TabIndex = 1;
+            this.VerticalSensitivity_Label.Text = "Vertical Sensitivity";
+            // 
+            // VerticalSensitivity_Value
+            // 
+            this.VerticalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.VerticalSensitivity_Value.AutoSize = true;
+            this.VerticalSensitivity_Value.Location = new System.Drawing.Point(686, 67);
+            this.VerticalSensitivity_Value.Name = "VerticalSensitivity_Value";
+            this.VerticalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
+            this.VerticalSensitivity_Value.TabIndex = 2;
+            this.VerticalSensitivity_Value.Text = "-1";
+            // 
+            // SmartCombatCamera_Checkbox
+            // 
+            this.SmartCombatCamera_Checkbox.AutoSize = true;
+            this.SmartCombatCamera_Checkbox.Location = new System.Drawing.Point(11, 254);
+            this.SmartCombatCamera_Checkbox.Name = "SmartCombatCamera_Checkbox";
+            this.SmartCombatCamera_Checkbox.Size = new System.Drawing.Size(152, 20);
+            this.SmartCombatCamera_Checkbox.TabIndex = 14;
+            this.SmartCombatCamera_Checkbox.Text = "Smart Battle Camera";
+            this.SmartCombatCamera_Checkbox.UseVisualStyleBackColor = true;
+            // 
+            // HorizontalSensitivity_Label
+            // 
+            this.HorizontalSensitivity_Label.AutoSize = true;
+            this.HorizontalSensitivity_Label.Location = new System.Drawing.Point(5, 14);
+            this.HorizontalSensitivity_Label.Name = "HorizontalSensitivity_Label";
+            this.HorizontalSensitivity_Label.Size = new System.Drawing.Size(130, 16);
+            this.HorizontalSensitivity_Label.TabIndex = 4;
+            this.HorizontalSensitivity_Label.Text = "Horizontal Sensitivity";
+            // 
+            // AutomaticViewHeight_Checkbox
+            // 
+            this.AutomaticViewHeight_Checkbox.AutoSize = true;
+            this.AutomaticViewHeight_Checkbox.Location = new System.Drawing.Point(11, 228);
+            this.AutomaticViewHeight_Checkbox.Name = "AutomaticViewHeight_Checkbox";
+            this.AutomaticViewHeight_Checkbox.Size = new System.Drawing.Size(162, 20);
+            this.AutomaticViewHeight_Checkbox.TabIndex = 13;
+            this.AutomaticViewHeight_Checkbox.Text = "Automatic View Height";
+            this.AutomaticViewHeight_Checkbox.UseVisualStyleBackColor = true;
+            // 
+            // HorizontalSensitivity_Value
+            // 
+            this.HorizontalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.HorizontalSensitivity_Value.AutoSize = true;
+            this.HorizontalSensitivity_Value.Location = new System.Drawing.Point(686, 14);
+            this.HorizontalSensitivity_Value.Name = "HorizontalSensitivity_Value";
+            this.HorizontalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
+            this.HorizontalSensitivity_Value.TabIndex = 5;
+            this.HorizontalSensitivity_Value.Text = "-1";
+            // 
+            // VerticalSensitivityAiming_Value
+            // 
+            this.VerticalSensitivityAiming_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.VerticalSensitivityAiming_Value.AutoSize = true;
+            this.VerticalSensitivityAiming_Value.Location = new System.Drawing.Point(686, 173);
+            this.VerticalSensitivityAiming_Value.Name = "VerticalSensitivityAiming_Value";
+            this.VerticalSensitivityAiming_Value.Size = new System.Drawing.Size(18, 16);
+            this.VerticalSensitivityAiming_Value.TabIndex = 11;
+            this.VerticalSensitivityAiming_Value.Text = "-1";
+            // 
+            // VerticalSensitivityAiming_Label
+            // 
+            this.VerticalSensitivityAiming_Label.AutoSize = true;
+            this.VerticalSensitivityAiming_Label.Location = new System.Drawing.Point(5, 173);
+            this.VerticalSensitivityAiming_Label.Name = "VerticalSensitivityAiming_Label";
+            this.VerticalSensitivityAiming_Label.Size = new System.Drawing.Size(167, 16);
+            this.VerticalSensitivityAiming_Label.TabIndex = 10;
+            this.VerticalSensitivityAiming_Label.Text = "Vertical Sensitivity (Aiming)";
+            // 
+            // HorizontalSensitivityAiming_Label
+            // 
+            this.HorizontalSensitivityAiming_Label.AutoSize = true;
+            this.HorizontalSensitivityAiming_Label.Location = new System.Drawing.Point(5, 120);
+            this.HorizontalSensitivityAiming_Label.Name = "HorizontalSensitivityAiming_Label";
+            this.HorizontalSensitivityAiming_Label.Size = new System.Drawing.Size(182, 16);
+            this.HorizontalSensitivityAiming_Label.TabIndex = 7;
+            this.HorizontalSensitivityAiming_Label.Text = "Horizontal Sensitivity (Aiming)";
+            // 
+            // HorizontalSensitivityAiming_Value
+            // 
+            this.HorizontalSensitivityAiming_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.HorizontalSensitivityAiming_Value.AutoSize = true;
+            this.HorizontalSensitivityAiming_Value.Location = new System.Drawing.Point(686, 120);
+            this.HorizontalSensitivityAiming_Value.Name = "HorizontalSensitivityAiming_Value";
+            this.HorizontalSensitivityAiming_Value.Size = new System.Drawing.Size(18, 16);
+            this.HorizontalSensitivityAiming_Value.TabIndex = 8;
+            this.HorizontalSensitivityAiming_Value.Text = "-1";
+            // 
+            // HorizontalSensitivity_TrackBar
+            // 
+            this.HorizontalSensitivity_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.HorizontalSensitivity_TrackBar.Location = new System.Drawing.Point(3, 33);
+            this.HorizontalSensitivity_TrackBar.Maximum = 5;
+            this.HorizontalSensitivity_TrackBar.Minimum = 1;
+            this.HorizontalSensitivity_TrackBar.Name = "HorizontalSensitivity_TrackBar";
+            this.HorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.HorizontalSensitivity_TrackBar.TabIndex = 0;
+            this.HorizontalSensitivity_TrackBar.Value = 1;
+            this.HorizontalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.HorizontalSensitivity_TrackBar_ValueChanged);
+            // 
+            // VerticalSensitivity_TrackBar
+            // 
+            this.VerticalSensitivity_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.VerticalSensitivity_TrackBar.Location = new System.Drawing.Point(3, 86);
+            this.VerticalSensitivity_TrackBar.Maximum = 5;
+            this.VerticalSensitivity_TrackBar.Minimum = 1;
+            this.VerticalSensitivity_TrackBar.Name = "VerticalSensitivity_TrackBar";
+            this.VerticalSensitivity_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.VerticalSensitivity_TrackBar.TabIndex = 1;
+            this.VerticalSensitivity_TrackBar.Value = 1;
+            this.VerticalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.VerticalSensitivity_TrackBar_ValueChanged);
+            // 
+            // HorizontalSensitivityAiming_TrackBar
+            // 
+            this.HorizontalSensitivityAiming_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.HorizontalSensitivityAiming_TrackBar.Location = new System.Drawing.Point(3, 139);
+            this.HorizontalSensitivityAiming_TrackBar.Maximum = 5;
+            this.HorizontalSensitivityAiming_TrackBar.Minimum = 1;
+            this.HorizontalSensitivityAiming_TrackBar.Name = "HorizontalSensitivityAiming_TrackBar";
+            this.HorizontalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.HorizontalSensitivityAiming_TrackBar.TabIndex = 6;
+            this.HorizontalSensitivityAiming_TrackBar.Value = 1;
+            this.HorizontalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.HorizontalSensitivityAiming_TrackBar_ValueChanged);
+            // 
+            // VerticalSensitivityAiming_TrackBar
+            // 
+            this.VerticalSensitivityAiming_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.VerticalSensitivityAiming_TrackBar.Location = new System.Drawing.Point(3, 192);
+            this.VerticalSensitivityAiming_TrackBar.Maximum = 5;
+            this.VerticalSensitivityAiming_TrackBar.Minimum = 1;
+            this.VerticalSensitivityAiming_TrackBar.Name = "VerticalSensitivityAiming_TrackBar";
+            this.VerticalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.VerticalSensitivityAiming_TrackBar.TabIndex = 9;
+            this.VerticalSensitivityAiming_TrackBar.Value = 1;
+            this.VerticalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.VerticalSensitivityAiming_TrackBar_ValueChanged);
+            // 
+            // DefaultCameraHeight_TrackBar
+            // 
+            this.DefaultCameraHeight_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DefaultCameraHeight_TrackBar.Location = new System.Drawing.Point(3, 296);
+            this.DefaultCameraHeight_TrackBar.Maximum = 60;
+            this.DefaultCameraHeight_TrackBar.Minimum = 45;
+            this.DefaultCameraHeight_TrackBar.Name = "DefaultCameraHeight_TrackBar";
+            this.DefaultCameraHeight_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.DefaultCameraHeight_TrackBar.TabIndex = 15;
+            this.DefaultCameraHeight_TrackBar.Value = 45;
+            this.DefaultCameraHeight_TrackBar.ValueChanged += new System.EventHandler(this.DefaultCameraHeight_TrackBar_ValueChanged);
+            // 
+            // tabControlsGamepad
+            // 
+            this.tabControlsGamepad.AutoScroll = true;
+            this.tabControlsGamepad.BackColor = System.Drawing.SystemColors.Control;
+            this.tabControlsGamepad.Location = new System.Drawing.Point(4, 25);
+            this.tabControlsGamepad.Name = "tabControlsGamepad";
+            this.tabControlsGamepad.Size = new System.Drawing.Size(721, 391);
+            this.tabControlsGamepad.TabIndex = 8;
+            this.tabControlsGamepad.Text = "Controls (Gamepad)";
+            // 
             // tabAudio
             // 
+            this.tabAudio.AutoScroll = true;
             this.tabAudio.BackColor = System.Drawing.SystemColors.Control;
             this.tabAudio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabAudio.Controls.Add(this.AudioResetButton);
             this.tabAudio.Controls.Add(this.comboBoxAudioFormat);
             this.tabAudio.Controls.Add(this.labelAudioOutputFormat);
             this.tabAudio.Controls.Add(this.comboBoxAudioDynamicRange);
@@ -988,9 +1347,10 @@
             this.tabAudio.Controls.Add(this.MainVolumeValueLabel);
             this.tabAudio.Controls.Add(this.trackBarMainVolume);
             this.tabAudio.Controls.Add(this.MainVolumeLabel);
-            this.tabAudio.Location = new System.Drawing.Point(4, 22);
+            this.tabAudio.Location = new System.Drawing.Point(4, 25);
+            this.tabAudio.Margin = new System.Windows.Forms.Padding(4);
             this.tabAudio.Name = "tabAudio";
-            this.tabAudio.Size = new System.Drawing.Size(539, 315);
+            this.tabAudio.Size = new System.Drawing.Size(721, 391);
             this.tabAudio.TabIndex = 4;
             this.tabAudio.Text = "Audio";
             // 
@@ -1002,17 +1362,19 @@
             this.comboBoxAudioFormat.Items.AddRange(new object[] {
             "Stereo",
             "Surround"});
-            this.comboBoxAudioFormat.Location = new System.Drawing.Point(409, 261);
+            this.comboBoxAudioFormat.Location = new System.Drawing.Point(545, 321);
+            this.comboBoxAudioFormat.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxAudioFormat.Name = "comboBoxAudioFormat";
-            this.comboBoxAudioFormat.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxAudioFormat.Size = new System.Drawing.Size(160, 24);
             this.comboBoxAudioFormat.TabIndex = 16;
             // 
             // labelAudioOutputFormat
             // 
             this.labelAudioOutputFormat.AutoSize = true;
-            this.labelAudioOutputFormat.Location = new System.Drawing.Point(7, 264);
+            this.labelAudioOutputFormat.Location = new System.Drawing.Point(9, 325);
+            this.labelAudioOutputFormat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAudioOutputFormat.Name = "labelAudioOutputFormat";
-            this.labelAudioOutputFormat.Size = new System.Drawing.Size(74, 13);
+            this.labelAudioOutputFormat.Size = new System.Drawing.Size(90, 16);
             this.labelAudioOutputFormat.TabIndex = 15;
             this.labelAudioOutputFormat.Text = "Output Format";
             // 
@@ -1024,26 +1386,29 @@
             this.comboBoxAudioDynamicRange.Items.AddRange(new object[] {
             "Full",
             "Limited"});
-            this.comboBoxAudioDynamicRange.Location = new System.Drawing.Point(409, 234);
+            this.comboBoxAudioDynamicRange.Location = new System.Drawing.Point(545, 288);
+            this.comboBoxAudioDynamicRange.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxAudioDynamicRange.Name = "comboBoxAudioDynamicRange";
-            this.comboBoxAudioDynamicRange.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxAudioDynamicRange.Size = new System.Drawing.Size(160, 24);
             this.comboBoxAudioDynamicRange.TabIndex = 14;
             // 
             // labelAudioDynamicRange
             // 
             this.labelAudioDynamicRange.AutoSize = true;
-            this.labelAudioDynamicRange.Location = new System.Drawing.Point(7, 237);
+            this.labelAudioDynamicRange.Location = new System.Drawing.Point(9, 292);
+            this.labelAudioDynamicRange.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAudioDynamicRange.Name = "labelAudioDynamicRange";
-            this.labelAudioDynamicRange.Size = new System.Drawing.Size(83, 13);
+            this.labelAudioDynamicRange.Size = new System.Drawing.Size(104, 16);
             this.labelAudioDynamicRange.TabIndex = 13;
             this.labelAudioDynamicRange.Text = "Dynamic Range";
             // 
             // ApplyVolumeButton
             // 
             this.ApplyVolumeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ApplyVolumeButton.Location = new System.Drawing.Point(455, 287);
+            this.ApplyVolumeButton.Location = new System.Drawing.Point(607, 353);
+            this.ApplyVolumeButton.Margin = new System.Windows.Forms.Padding(4);
             this.ApplyVolumeButton.Name = "ApplyVolumeButton";
-            this.ApplyVolumeButton.Size = new System.Drawing.Size(75, 23);
+            this.ApplyVolumeButton.Size = new System.Drawing.Size(100, 28);
             this.ApplyVolumeButton.TabIndex = 12;
             this.ApplyVolumeButton.Text = "Apply";
             this.ApplyVolumeButton.UseVisualStyleBackColor = true;
@@ -1053,9 +1418,10 @@
             // 
             this.VoiceVolumeValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.VoiceVolumeValueLabel.AutoSize = true;
-            this.VoiceVolumeValueLabel.Location = new System.Drawing.Point(514, 173);
+            this.VoiceVolumeValueLabel.Location = new System.Drawing.Point(685, 213);
+            this.VoiceVolumeValueLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.VoiceVolumeValueLabel.Name = "VoiceVolumeValueLabel";
-            this.VoiceVolumeValueLabel.Size = new System.Drawing.Size(16, 13);
+            this.VoiceVolumeValueLabel.Size = new System.Drawing.Size(18, 16);
             this.VoiceVolumeValueLabel.TabIndex = 11;
             this.VoiceVolumeValueLabel.Text = "-1";
             // 
@@ -1063,18 +1429,20 @@
             // 
             this.trackBarVoiceVolume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBarVoiceVolume.Location = new System.Drawing.Point(10, 189);
+            this.trackBarVoiceVolume.Location = new System.Drawing.Point(13, 233);
+            this.trackBarVoiceVolume.Margin = new System.Windows.Forms.Padding(4);
             this.trackBarVoiceVolume.Name = "trackBarVoiceVolume";
-            this.trackBarVoiceVolume.Size = new System.Drawing.Size(520, 45);
+            this.trackBarVoiceVolume.Size = new System.Drawing.Size(693, 56);
             this.trackBarVoiceVolume.TabIndex = 10;
             this.trackBarVoiceVolume.ValueChanged += new System.EventHandler(this.trackBarVoiceVolume_ValueChanged);
             // 
             // VoiceVolumeLabel
             // 
             this.VoiceVolumeLabel.AutoSize = true;
-            this.VoiceVolumeLabel.Location = new System.Drawing.Point(7, 173);
+            this.VoiceVolumeLabel.Location = new System.Drawing.Point(9, 213);
+            this.VoiceVolumeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.VoiceVolumeLabel.Name = "VoiceVolumeLabel";
-            this.VoiceVolumeLabel.Size = new System.Drawing.Size(72, 13);
+            this.VoiceVolumeLabel.Size = new System.Drawing.Size(91, 16);
             this.VoiceVolumeLabel.TabIndex = 9;
             this.VoiceVolumeLabel.Text = "Voice Volume";
             // 
@@ -1082,9 +1450,10 @@
             // 
             this.SFXVolumeValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SFXVolumeValueLabel.AutoSize = true;
-            this.SFXVolumeValueLabel.Location = new System.Drawing.Point(514, 122);
+            this.SFXVolumeValueLabel.Location = new System.Drawing.Point(685, 150);
+            this.SFXVolumeValueLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SFXVolumeValueLabel.Name = "SFXVolumeValueLabel";
-            this.SFXVolumeValueLabel.Size = new System.Drawing.Size(16, 13);
+            this.SFXVolumeValueLabel.Size = new System.Drawing.Size(18, 16);
             this.SFXVolumeValueLabel.TabIndex = 8;
             this.SFXVolumeValueLabel.Text = "-1";
             // 
@@ -1092,18 +1461,20 @@
             // 
             this.trackBarSFXVolume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBarSFXVolume.Location = new System.Drawing.Point(10, 138);
+            this.trackBarSFXVolume.Location = new System.Drawing.Point(13, 170);
+            this.trackBarSFXVolume.Margin = new System.Windows.Forms.Padding(4);
             this.trackBarSFXVolume.Name = "trackBarSFXVolume";
-            this.trackBarSFXVolume.Size = new System.Drawing.Size(520, 45);
+            this.trackBarSFXVolume.Size = new System.Drawing.Size(693, 56);
             this.trackBarSFXVolume.TabIndex = 7;
             this.trackBarSFXVolume.ValueChanged += new System.EventHandler(this.trackBarSFXVolume_ValueChanged);
             // 
             // SFXVolumeLabel
             // 
             this.SFXVolumeLabel.AutoSize = true;
-            this.SFXVolumeLabel.Location = new System.Drawing.Point(7, 122);
+            this.SFXVolumeLabel.Location = new System.Drawing.Point(9, 150);
+            this.SFXVolumeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SFXVolumeLabel.Name = "SFXVolumeLabel";
-            this.SFXVolumeLabel.Size = new System.Drawing.Size(65, 13);
+            this.SFXVolumeLabel.Size = new System.Drawing.Size(81, 16);
             this.SFXVolumeLabel.TabIndex = 6;
             this.SFXVolumeLabel.Text = "SFX Volume";
             // 
@@ -1111,9 +1482,10 @@
             // 
             this.MusicVolumeValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.MusicVolumeValueLabel.AutoSize = true;
-            this.MusicVolumeValueLabel.Location = new System.Drawing.Point(514, 71);
+            this.MusicVolumeValueLabel.Location = new System.Drawing.Point(685, 87);
+            this.MusicVolumeValueLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MusicVolumeValueLabel.Name = "MusicVolumeValueLabel";
-            this.MusicVolumeValueLabel.Size = new System.Drawing.Size(16, 13);
+            this.MusicVolumeValueLabel.Size = new System.Drawing.Size(18, 16);
             this.MusicVolumeValueLabel.TabIndex = 5;
             this.MusicVolumeValueLabel.Text = "-1";
             // 
@@ -1121,18 +1493,20 @@
             // 
             this.trackBarMusicVolume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBarMusicVolume.Location = new System.Drawing.Point(10, 87);
+            this.trackBarMusicVolume.Location = new System.Drawing.Point(13, 107);
+            this.trackBarMusicVolume.Margin = new System.Windows.Forms.Padding(4);
             this.trackBarMusicVolume.Name = "trackBarMusicVolume";
-            this.trackBarMusicVolume.Size = new System.Drawing.Size(520, 45);
+            this.trackBarMusicVolume.Size = new System.Drawing.Size(693, 56);
             this.trackBarMusicVolume.TabIndex = 4;
             this.trackBarMusicVolume.ValueChanged += new System.EventHandler(this.trackBarMusicVolume_ValueChanged);
             // 
             // MusicVolumeLabel
             // 
             this.MusicVolumeLabel.AutoSize = true;
-            this.MusicVolumeLabel.Location = new System.Drawing.Point(7, 71);
+            this.MusicVolumeLabel.Location = new System.Drawing.Point(9, 87);
+            this.MusicVolumeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MusicVolumeLabel.Name = "MusicVolumeLabel";
-            this.MusicVolumeLabel.Size = new System.Drawing.Size(73, 13);
+            this.MusicVolumeLabel.Size = new System.Drawing.Size(91, 16);
             this.MusicVolumeLabel.TabIndex = 3;
             this.MusicVolumeLabel.Text = "Music Volume";
             // 
@@ -1140,9 +1514,10 @@
             // 
             this.MainVolumeValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.MainVolumeValueLabel.AutoSize = true;
-            this.MainVolumeValueLabel.Location = new System.Drawing.Point(514, 11);
+            this.MainVolumeValueLabel.Location = new System.Drawing.Point(685, 14);
+            this.MainVolumeValueLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MainVolumeValueLabel.Name = "MainVolumeValueLabel";
-            this.MainVolumeValueLabel.Size = new System.Drawing.Size(16, 13);
+            this.MainVolumeValueLabel.Size = new System.Drawing.Size(18, 16);
             this.MainVolumeValueLabel.TabIndex = 2;
             this.MainVolumeValueLabel.Text = "-1";
             // 
@@ -1150,18 +1525,20 @@
             // 
             this.trackBarMainVolume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBarMainVolume.Location = new System.Drawing.Point(10, 27);
+            this.trackBarMainVolume.Location = new System.Drawing.Point(13, 33);
+            this.trackBarMainVolume.Margin = new System.Windows.Forms.Padding(4);
             this.trackBarMainVolume.Name = "trackBarMainVolume";
-            this.trackBarMainVolume.Size = new System.Drawing.Size(520, 45);
+            this.trackBarMainVolume.Size = new System.Drawing.Size(693, 56);
             this.trackBarMainVolume.TabIndex = 1;
             this.trackBarMainVolume.ValueChanged += new System.EventHandler(this.trackBarMainVolume_ValueChanged);
             // 
             // MainVolumeLabel
             // 
             this.MainVolumeLabel.AutoSize = true;
-            this.MainVolumeLabel.Location = new System.Drawing.Point(7, 11);
+            this.MainVolumeLabel.Location = new System.Drawing.Point(9, 14);
+            this.MainVolumeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MainVolumeLabel.Name = "MainVolumeLabel";
-            this.MainVolumeLabel.Size = new System.Drawing.Size(68, 13);
+            this.MainVolumeLabel.Size = new System.Drawing.Size(85, 16);
             this.MainVolumeLabel.TabIndex = 0;
             this.MainVolumeLabel.Text = "Main Volume";
             // 
@@ -1169,23 +1546,26 @@
             // 
             this.tabLanguage.BackColor = System.Drawing.SystemColors.Control;
             this.tabLanguage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabLanguage.Controls.Add(this.LanguageResetButton);
             this.tabLanguage.Controls.Add(this.LanguageApplyButton);
             this.tabLanguage.Controls.Add(this.comboBoxVoiceLanguage);
             this.tabLanguage.Controls.Add(this.labelVoiceLanguage);
             this.tabLanguage.Controls.Add(this.comboBoxTextLanguage);
             this.tabLanguage.Controls.Add(this.labelTextLanguage);
-            this.tabLanguage.Location = new System.Drawing.Point(4, 22);
+            this.tabLanguage.Location = new System.Drawing.Point(4, 25);
+            this.tabLanguage.Margin = new System.Windows.Forms.Padding(4);
             this.tabLanguage.Name = "tabLanguage";
-            this.tabLanguage.Size = new System.Drawing.Size(539, 315);
+            this.tabLanguage.Size = new System.Drawing.Size(721, 391);
             this.tabLanguage.TabIndex = 6;
             this.tabLanguage.Text = "Language";
             // 
             // LanguageApplyButton
             // 
             this.LanguageApplyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LanguageApplyButton.Location = new System.Drawing.Point(459, 287);
+            this.LanguageApplyButton.Location = new System.Drawing.Point(612, 353);
+            this.LanguageApplyButton.Margin = new System.Windows.Forms.Padding(4);
             this.LanguageApplyButton.Name = "LanguageApplyButton";
-            this.LanguageApplyButton.Size = new System.Drawing.Size(75, 23);
+            this.LanguageApplyButton.Size = new System.Drawing.Size(100, 28);
             this.LanguageApplyButton.TabIndex = 4;
             this.LanguageApplyButton.Text = "Apply";
             this.LanguageApplyButton.UseVisualStyleBackColor = true;
@@ -1196,17 +1576,19 @@
             this.comboBoxVoiceLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxVoiceLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxVoiceLanguage.FormattingEnabled = true;
-            this.comboBoxVoiceLanguage.Location = new System.Drawing.Point(409, 32);
+            this.comboBoxVoiceLanguage.Location = new System.Drawing.Point(545, 39);
+            this.comboBoxVoiceLanguage.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxVoiceLanguage.Name = "comboBoxVoiceLanguage";
-            this.comboBoxVoiceLanguage.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxVoiceLanguage.Size = new System.Drawing.Size(160, 24);
             this.comboBoxVoiceLanguage.TabIndex = 3;
             // 
             // labelVoiceLanguage
             // 
             this.labelVoiceLanguage.AutoSize = true;
-            this.labelVoiceLanguage.Location = new System.Drawing.Point(7, 35);
+            this.labelVoiceLanguage.Location = new System.Drawing.Point(9, 43);
+            this.labelVoiceLanguage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelVoiceLanguage.Name = "labelVoiceLanguage";
-            this.labelVoiceLanguage.Size = new System.Drawing.Size(85, 13);
+            this.labelVoiceLanguage.Size = new System.Drawing.Size(106, 16);
             this.labelVoiceLanguage.TabIndex = 2;
             this.labelVoiceLanguage.Text = "Voice Language";
             // 
@@ -1215,17 +1597,19 @@
             this.comboBoxTextLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxTextLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTextLanguage.FormattingEnabled = true;
-            this.comboBoxTextLanguage.Location = new System.Drawing.Point(409, 5);
+            this.comboBoxTextLanguage.Location = new System.Drawing.Point(545, 6);
+            this.comboBoxTextLanguage.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxTextLanguage.Name = "comboBoxTextLanguage";
-            this.comboBoxTextLanguage.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTextLanguage.Size = new System.Drawing.Size(160, 24);
             this.comboBoxTextLanguage.TabIndex = 1;
             // 
             // labelTextLanguage
             // 
             this.labelTextLanguage.AutoSize = true;
-            this.labelTextLanguage.Location = new System.Drawing.Point(7, 8);
+            this.labelTextLanguage.Location = new System.Drawing.Point(9, 10);
+            this.labelTextLanguage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTextLanguage.Name = "labelTextLanguage";
-            this.labelTextLanguage.Size = new System.Drawing.Size(79, 13);
+            this.labelTextLanguage.Size = new System.Drawing.Size(97, 16);
             this.labelTextLanguage.TabIndex = 0;
             this.labelTextLanguage.Text = "Text Language";
             // 
@@ -1233,19 +1617,21 @@
             // 
             this.tabLog.Controls.Add(this.Reload_Log_Button);
             this.tabLog.Controls.Add(this.textBoxLog);
-            this.tabLog.Location = new System.Drawing.Point(4, 22);
+            this.tabLog.Location = new System.Drawing.Point(4, 25);
+            this.tabLog.Margin = new System.Windows.Forms.Padding(4);
             this.tabLog.Name = "tabLog";
-            this.tabLog.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLog.Size = new System.Drawing.Size(539, 315);
+            this.tabLog.Padding = new System.Windows.Forms.Padding(4);
+            this.tabLog.Size = new System.Drawing.Size(721, 391);
             this.tabLog.TabIndex = 2;
             this.tabLog.Text = "Launch Log";
             // 
             // Reload_Log_Button
             // 
             this.Reload_Log_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Reload_Log_Button.Location = new System.Drawing.Point(456, 271);
+            this.Reload_Log_Button.Location = new System.Drawing.Point(608, 334);
+            this.Reload_Log_Button.Margin = new System.Windows.Forms.Padding(4);
             this.Reload_Log_Button.Name = "Reload_Log_Button";
-            this.Reload_Log_Button.Size = new System.Drawing.Size(75, 23);
+            this.Reload_Log_Button.Size = new System.Drawing.Size(100, 28);
             this.Reload_Log_Button.TabIndex = 1;
             this.Reload_Log_Button.Text = "Reload";
             this.Reload_Log_Button.UseVisualStyleBackColor = true;
@@ -1256,13 +1642,14 @@
             this.textBoxLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLog.Location = new System.Drawing.Point(3, 3);
+            this.textBoxLog.Location = new System.Drawing.Point(4, 4);
+            this.textBoxLog.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxLog.MaxLength = 3276700;
             this.textBoxLog.Multiline = true;
             this.textBoxLog.Name = "textBoxLog";
             this.textBoxLog.ReadOnly = true;
             this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxLog.Size = new System.Drawing.Size(533, 262);
+            this.textBoxLog.Size = new System.Drawing.Size(709, 322);
             this.textBoxLog.TabIndex = 0;
             // 
             // tabRawConfig
@@ -1271,10 +1658,11 @@
             this.tabRawConfig.Controls.Add(this.textBox_Config_Raw);
             this.tabRawConfig.Controls.Add(this.Load_Button_Raw);
             this.tabRawConfig.Controls.Add(this.Save_Button_Raw);
-            this.tabRawConfig.Location = new System.Drawing.Point(4, 22);
+            this.tabRawConfig.Location = new System.Drawing.Point(4, 25);
+            this.tabRawConfig.Margin = new System.Windows.Forms.Padding(4);
             this.tabRawConfig.Name = "tabRawConfig";
-            this.tabRawConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRawConfig.Size = new System.Drawing.Size(539, 315);
+            this.tabRawConfig.Padding = new System.Windows.Forms.Padding(4);
+            this.tabRawConfig.Size = new System.Drawing.Size(721, 391);
             this.tabRawConfig.TabIndex = 1;
             this.tabRawConfig.Text = "Raw Config";
             // 
@@ -1283,20 +1671,22 @@
             this.textBox_Config_Raw.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Config_Raw.Location = new System.Drawing.Point(9, 7);
+            this.textBox_Config_Raw.Location = new System.Drawing.Point(12, 9);
+            this.textBox_Config_Raw.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Config_Raw.MaxLength = 3276700;
             this.textBox_Config_Raw.Multiline = true;
             this.textBox_Config_Raw.Name = "textBox_Config_Raw";
             this.textBox_Config_Raw.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_Config_Raw.Size = new System.Drawing.Size(522, 258);
+            this.textBox_Config_Raw.Size = new System.Drawing.Size(695, 317);
             this.textBox_Config_Raw.TabIndex = 2;
             // 
             // Load_Button_Raw
             // 
             this.Load_Button_Raw.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Load_Button_Raw.Location = new System.Drawing.Point(375, 271);
+            this.Load_Button_Raw.Location = new System.Drawing.Point(500, 334);
+            this.Load_Button_Raw.Margin = new System.Windows.Forms.Padding(4);
             this.Load_Button_Raw.Name = "Load_Button_Raw";
-            this.Load_Button_Raw.Size = new System.Drawing.Size(75, 23);
+            this.Load_Button_Raw.Size = new System.Drawing.Size(100, 28);
             this.Load_Button_Raw.TabIndex = 1;
             this.Load_Button_Raw.Text = "Load";
             this.Load_Button_Raw.UseVisualStyleBackColor = true;
@@ -1305,25 +1695,61 @@
             // Save_Button_Raw
             // 
             this.Save_Button_Raw.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Save_Button_Raw.Location = new System.Drawing.Point(456, 271);
+            this.Save_Button_Raw.Location = new System.Drawing.Point(608, 334);
+            this.Save_Button_Raw.Margin = new System.Windows.Forms.Padding(4);
             this.Save_Button_Raw.Name = "Save_Button_Raw";
-            this.Save_Button_Raw.Size = new System.Drawing.Size(75, 23);
+            this.Save_Button_Raw.Size = new System.Drawing.Size(100, 28);
             this.Save_Button_Raw.TabIndex = 0;
             this.Save_Button_Raw.Text = "Save";
             this.Save_Button_Raw.UseVisualStyleBackColor = true;
             this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
             // 
+            // ControlsKeyboardResetButton
+            // 
+            this.ControlsKeyboardResetButton.Location = new System.Drawing.Point(504, 359);
+            this.ControlsKeyboardResetButton.Margin = new System.Windows.Forms.Padding(4);
+            this.ControlsKeyboardResetButton.Name = "ControlsKeyboardResetButton";
+            this.ControlsKeyboardResetButton.Size = new System.Drawing.Size(100, 28);
+            this.ControlsKeyboardResetButton.TabIndex = 72;
+            this.ControlsKeyboardResetButton.Text = "Reset";
+            this.ControlsKeyboardResetButton.UseVisualStyleBackColor = true;
+            this.ControlsKeyboardResetButton.Click += new System.EventHandler(this.Reset_Button_Click);
+            // 
+            // AudioResetButton
+            // 
+            this.AudioResetButton.Location = new System.Drawing.Point(499, 353);
+            this.AudioResetButton.Margin = new System.Windows.Forms.Padding(4);
+            this.AudioResetButton.Name = "AudioResetButton";
+            this.AudioResetButton.Size = new System.Drawing.Size(100, 28);
+            this.AudioResetButton.TabIndex = 72;
+            this.AudioResetButton.Text = "Reset";
+            this.AudioResetButton.UseVisualStyleBackColor = true;
+            this.AudioResetButton.Click += new System.EventHandler(this.Reset_Button_Click);
+            // 
+            // LanguageResetButton
+            // 
+            this.LanguageResetButton.Location = new System.Drawing.Point(504, 353);
+            this.LanguageResetButton.Margin = new System.Windows.Forms.Padding(4);
+            this.LanguageResetButton.Name = "LanguageResetButton";
+            this.LanguageResetButton.Size = new System.Drawing.Size(100, 28);
+            this.LanguageResetButton.TabIndex = 72;
+            this.LanguageResetButton.Text = "Reset";
+            this.LanguageResetButton.UseVisualStyleBackColor = true;
+            this.LanguageResetButton.Click += new System.EventHandler(this.Reset_Button_Click);
+            // 
             // MainWin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(547, 391);
+            this.ClientSize = new System.Drawing.Size(729, 481);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.TopBar);
             this.Controls.Add(this.settingsTabs);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(747, 528);
             this.Name = "MainWin";
             this.Text = "Genshin Impact Configurator";
             this.Load += new System.EventHandler(this.MainWin_Load);
@@ -1335,13 +1761,20 @@
             this.tabGraphics.ResumeLayout(false);
             this.tabGraphics.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GammaTrackBar)).EndInit();
-            this.tabControls.ResumeLayout(false);
+            this.tabKeybindings.ResumeLayout(false);
             this.splitContainerControls.Panel1.ResumeLayout(false);
             this.splitContainerControls.Panel1.PerformLayout();
             this.splitContainerControls.Panel2.ResumeLayout(false);
             this.splitContainerControls.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControls)).EndInit();
             this.splitContainerControls.ResumeLayout(false);
+            this.tabControlsKeyboard.ResumeLayout(false);
+            this.tabControlsKeyboard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.HorizontalSensitivity_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VerticalSensitivity_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HorizontalSensitivityAiming_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VerticalSensitivityAiming_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DefaultCameraHeight_TrackBar)).EndInit();
             this.tabAudio.ResumeLayout(false);
             this.tabAudio.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVoiceVolume)).EndInit();
@@ -1415,7 +1848,7 @@
         private System.Windows.Forms.TabPage tabLog;
         private System.Windows.Forms.Button Reload_Log_Button;
         private System.Windows.Forms.TextBox textBoxLog;
-        private System.Windows.Forms.TabPage tabControls;
+        private System.Windows.Forms.TabPage tabKeybindings;
         private System.Windows.Forms.Label inputDeviceLabel;
         private System.Windows.Forms.ComboBox devicesList;
         private System.Windows.Forms.SplitContainer splitContainerControls;
@@ -1468,6 +1901,31 @@
         private System.Windows.Forms.Label Gamma_Label;
         private System.Windows.Forms.TrackBar GammaTrackBar;
         private System.Windows.Forms.Label noControlsConfiguredLabel;
+        private System.Windows.Forms.TabPage tabControlsKeyboard;
+        private System.Windows.Forms.TabPage tabControlsGamepad;
+        private System.Windows.Forms.ComboBox AutomaticBoatCameraAngleCorrection_Box;
+        private System.Windows.Forms.Label AutomaticBoatCameraAngleCorrection_Label;
+        private System.Windows.Forms.Label DefaultCameraHeight_Value;
+        private System.Windows.Forms.Label DefaultCameraHeight_Label;
+        private System.Windows.Forms.Label VerticalSensitivity_Label;
+        private System.Windows.Forms.Label VerticalSensitivity_Value;
+        private System.Windows.Forms.CheckBox SmartCombatCamera_Checkbox;
+        private System.Windows.Forms.Label HorizontalSensitivity_Label;
+        private System.Windows.Forms.CheckBox AutomaticViewHeight_Checkbox;
+        private System.Windows.Forms.Label HorizontalSensitivity_Value;
+        private System.Windows.Forms.Label VerticalSensitivityAiming_Value;
+        private System.Windows.Forms.Label VerticalSensitivityAiming_Label;
+        private System.Windows.Forms.Label HorizontalSensitivityAiming_Label;
+        private System.Windows.Forms.Label HorizontalSensitivityAiming_Value;
+        private System.Windows.Forms.TrackBar HorizontalSensitivity_TrackBar;
+        private System.Windows.Forms.TrackBar VerticalSensitivity_TrackBar;
+        private System.Windows.Forms.TrackBar HorizontalSensitivityAiming_TrackBar;
+        private System.Windows.Forms.TrackBar VerticalSensitivityAiming_TrackBar;
+        private System.Windows.Forms.TrackBar DefaultCameraHeight_TrackBar;
+        private System.Windows.Forms.Button ApplyKeyboardControlsButton;
+        private System.Windows.Forms.Button ControlsKeyboardResetButton;
+        private System.Windows.Forms.Button AudioResetButton;
+        private System.Windows.Forms.Button LanguageResetButton;
     }
 }
 

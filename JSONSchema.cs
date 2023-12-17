@@ -8,6 +8,46 @@ namespace GenshinConfigurator
 {
     internal class JSONSchema
     {
+        public class InputData
+        {
+            public string scriptVersion { get; set; }
+            public double mouseSensitivity { get; set; }
+            public int joypadSenseIndex { get; set; }
+            public int joypadFocusSenseIndex { get; set; }
+            public bool joypadInvertCameraX { get; set; }
+            public bool joypadInvertCameraY { get; set; }
+            public bool joypadInvertFocusCameraX { get; set; }
+            public bool joypadInvertFocusCameraY { get; set; }
+            public int mouseSenseIndex { get; set; }
+            public int mouseFocusSenseIndex { get; set; }
+            public int touchpadSenseIndex { get; set; }
+            public int touchpadFocusSenseIndex { get; set; }
+            public bool enableTouchpadFocusAcceleration { get; set; }
+            public double lastJoypadDefaultScale { get; set; }
+            public double lastJoypadFocusScale { get; set; }
+            public double lastPCDefaultScale { get; set; }
+            public double lastPCFocusScale { get; set; }
+            public double lastTouchDefaultScale { get; set; }
+            public double lastTouchFcousScale { get; set; }
+            public bool switchWalkRunByBtn { get; set; }
+            public bool skiffCameraAutoFix { get; set; }
+            public bool skiffCameraAutoFixInCombat { get; set; }
+            public double cameraDistanceRatio { get; set; }
+            public bool wwiseVibration { get; set; }
+            public bool isYInited { get; set; }
+            public int joypadSenseIndexY { get; set; }
+            public int joypadFocusSenseIndexY { get; set; }
+            public int mouseSenseIndexY { get; set; }
+            public int mouseFocusSenseIndexY { get; set; }
+            public int touchpadSenseIndexY { get; set; }
+            public int touchpadFocusSenseIndexY { get; set; }
+            public double lastJoypadDefaultScaleY { get; set; }
+            public double lastJoypadFocusScaleY { get; set; }
+            public double lastPCDefaultScaleY { get; set; }
+            public double lastPCFocusScaleY { get; set; }
+            public double lastTouchDefaultScaleY { get; set; }
+            public double lastTouchFcousScaleY { get; set; }
+        }
         public class GraphicsSetting
         {
             public int key { get; set; }
@@ -41,6 +81,7 @@ namespace GenshinConfigurator
                 {
                     _graphicsData = JsonConvert.SerializeObject(graphicsData);
                     _globalPerfData = JsonConvert.SerializeObject(globalPerfData);
+                    _inputData = JsonConvert.SerializeObject(inputData);
                 }
                 if (__controlsLoaded)
                 {
@@ -63,6 +104,13 @@ namespace GenshinConfigurator
                 } catch
                 {
                     __graphicsLoaded = false;
+                }
+                try
+                {
+                    inputData = JsonConvert.DeserializeObject<InputData>(_inputData);
+                } catch
+                {
+                    __inputLoaded = false;
                 }
                 if (__graphicsLoaded)
                 {
@@ -132,6 +180,8 @@ namespace GenshinConfigurator
                 }
             }
             [JsonIgnore]
+            public bool __inputLoaded { get; set; } = true;
+            [JsonIgnore]
             public bool __controlsLoaded { get; set; } = true;
             [JsonIgnore]
             public bool __graphicsLoaded { get; set; } = true;
@@ -147,7 +197,10 @@ namespace GenshinConfigurator
             public string targetUID { get; set; }
             public string curAccountName { get; set; }
             public string uiSaveData { get; set; }
-            public string inputData { get; set; }
+            [JsonProperty(PropertyName = "inputData")]
+            public string _inputData { get; set; }
+            [JsonIgnore]
+            public InputData inputData { get; set; }
 
             [JsonProperty(PropertyName = "graphicsData")]
             public string _graphicsData { get; set; }
@@ -275,11 +328,24 @@ namespace GenshinConfigurator
             public double? gamma { get; set; }
         }
 
+        public class ControlsKeyboardConfig
+        {
+            public int? VerticalSensitivity { get; set; }
+            public int? HorizontalSensitivity { get; set; }
+            public int? VerticalSensitivityAiming { get; set; }
+            public int? HorizontalSensitivityAiming { get; set; }
+            public bool? AutomaticViewHeight { get; set; }
+            public bool? SmartCombatCamera { get; set; }
+            public double? DefaultCameraHeight { get; set; }
+            public int? AutomaticBoatCameraAngleCorrection { get; set; }
+        }
+
         public class ConfigFile { 
             public ResolutionConfig Resolution { get; set; }
             public GraphicsConfig Graphics { get; set; }
             public AudioConfig Audio { get; set; }
             public LanguageConfig Language { get; set; }
+            public ControlsKeyboardConfig ControlsKeyboard { get; set; }
         }
     }
 }

@@ -16,9 +16,10 @@ namespace GenshinConfigurator
         public ResolutionSettings Resolution;
         public AudioSettings Audio;
         public LanguageSettings Language;
-        public ControlsSettings Controls;
+        public Keybindings Keybindings;
+        public ControlsKeyboardSettings ControlsKeyboard;
         MainJSON data;
-        public bool controlsLoaded, graphicsLoaded, graphicsValid;
+        public bool controlsLoaded, graphicsLoaded, graphicsValid, inputLoaded;
         public SettingsContainer()
         {
             
@@ -29,6 +30,7 @@ namespace GenshinConfigurator
             FromReg();
             this.controlsLoaded = data.__controlsLoaded;
             this.graphicsLoaded = data.__graphicsLoaded;
+            this.inputLoaded = data.__inputLoaded;
             this.graphicsValid = data.__graphicsInRange;
         }
 
@@ -45,8 +47,9 @@ namespace GenshinConfigurator
             }
             this.Audio = new AudioSettings(data);
             this.Language = new LanguageSettings(data);
-            this.Controls = new ControlsSettings(data);
+            this.Keybindings = new Keybindings(data);
             this.Resolution = new ResolutionSettings();
+            this.ControlsKeyboard = new ControlsKeyboardSettings(data);
         }
 
         public void ToReg()
@@ -63,9 +66,10 @@ namespace GenshinConfigurator
         public void Apply()
         {
             this.data = Audio.Apply(data);
-            this.data = Controls.Apply(data);
+            this.data = Keybindings.Apply(data);
             this.data = Graphics.Apply(data);
             this.data = Language.Apply(data);
+            this.data = ControlsKeyboard.Apply(data);
             Resolution.Apply();
         }
 
@@ -76,7 +80,8 @@ namespace GenshinConfigurator
                 Resolution = new ResolutionConfig { Fullscreen = Convert.ToBoolean(Resolution.Get((int)ResolutionData.Fullscreen)), Width = Resolution.Get((int)ResolutionData.Width), Height = Resolution.Get((int)ResolutionData.Height) },
                 Graphics = Graphics.ToConfig(),
                 Audio = Audio.ToConfig(),
-                Language = Language.ToConfig()
+                Language = Language.ToConfig(),
+                ControlsKeyboard = ControlsKeyboard.ToConfig(),
             };
             string result = JsonConvert.SerializeObject(file);
             StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
@@ -106,6 +111,10 @@ namespace GenshinConfigurator
                 Resolution.Change((int)ResolutionData.Width, config.Resolution.Width);
                 Resolution.Change((int)ResolutionData.Height, config.Resolution.Height);
                 Resolution.Change((int)ResolutionData.Fullscreen, Convert.ToInt32(config.Resolution.Fullscreen));
+            }
+            if (config.ControlsKeyboard != null)
+            {
+                ControlsKeyboard.FromConfig(config.ControlsKeyboard);
             }
             Apply();
         }
@@ -199,12 +208,12 @@ namespace GenshinConfigurator
         }
     }
 
-    internal class ControlsSettings
+    internal class Keybindings
     {
         public Controllers controllers;
         public List<string> controller_ids;
 
-        public ControlsSettings(MainJSON data)
+        public Keybindings(MainJSON data)
         {
             Load(data);
         }
@@ -437,6 +446,104 @@ namespace GenshinConfigurator
             {
                 Text = (int)text_lang,
                 Voice = (int)voice_lang
+            };
+            return config;
+        }
+    }
+
+    internal class ControlsKeyboardSettings
+    {
+        public int vertical_sensitivity;
+        public int horizontal_sensitivity;
+        public int vertical_sensitivity_aiming;
+        public int horizontal_sensitivity_aiming;
+        public bool automatic_view_height;
+        public bool smart_combat_camera;
+        public double default_camera_height;
+        public int automatic_boat_camera_angle_correction;
+
+        public ControlsKeyboardSettings(MainJSON data)
+        {
+            Load(data);
+        }
+
+        public ControlsKeyboardSettings(ControlsKeyboardConfig config)
+        {
+            FromConfig(config);
+        }
+
+        public void Load(MainJSON data)
+        {
+            this.vertical_sensitivity = data.inputData.mouseSenseIndexY;
+            this.horizontal_sensitivity = data.inputData.mouseSenseIndex;
+            this.vertical_sensitivity_aiming = data.inputData.mouseFocusSenseIndexY;
+            this.horizontal_sensitivity_aiming = data.inputData.mouseFocusSenseIndex;
+            this.automatic_view_height = data.enableCameraSlope;
+            this.smart_combat_camera = data.enableCameraCombatLock;
+            this.default_camera_height = Math.Round(data.inputData.cameraDistanceRatio * 1.5 + 4.5,1);
+            if (data.inputData.skiffCameraAutoFix && data.inputData.skiffCameraAutoFixInCombat)
+            {
+                this.automatic_boat_camera_angle_correction = 1;
+            } else if (data.inputData.skiffCameraAutoFix)
+            {
+                this.automatic_boat_camera_angle_correction = 2;
+            } else
+            {
+                this.automatic_boat_camera_angle_correction = 0;
+            }
+        }
+
+        public MainJSON Apply(MainJSON data)
+        {
+            data.inputData.mouseSenseIndexY = this.vertical_sensitivity;
+            data.inputData.mouseSenseIndex = this.horizontal_sensitivity;
+            data.inputData.mouseFocusSenseIndexY = this.vertical_sensitivity_aiming;
+            data.inputData.mouseFocusSenseIndex = this.horizontal_sensitivity_aiming;
+            data.enableCameraSlope = this.automatic_view_height;
+            data.enableCameraCombatLock = this.smart_combat_camera;
+            data.inputData.cameraDistanceRatio = (this.default_camera_height - 4.5) / 1.5;
+            switch (this.automatic_boat_camera_angle_correction)
+            {
+                case 0:
+                    data.inputData.skiffCameraAutoFix = false;
+                    data.inputData.skiffCameraAutoFixInCombat = false;
+                    break;
+                case 1:
+                    data.inputData.skiffCameraAutoFix = true;
+                    data.inputData.skiffCameraAutoFixInCombat = true;
+                    break;
+                case 2:
+                    data.inputData.skiffCameraAutoFix = true;
+                    data.inputData.skiffCameraAutoFixInCombat = false;
+                    break;
+            }
+            return data;
+        }
+
+        public void FromConfig(ControlsKeyboardConfig config)
+        {
+            if (config.VerticalSensitivity != null) this.vertical_sensitivity = (int)config.VerticalSensitivity;
+            if (config.HorizontalSensitivity != null) this.horizontal_sensitivity = (int)config.HorizontalSensitivity;
+            if (config.VerticalSensitivityAiming != null) this.vertical_sensitivity_aiming = (int)config.VerticalSensitivityAiming;
+            if (config.HorizontalSensitivityAiming != null) this.horizontal_sensitivity_aiming = (int)config.HorizontalSensitivityAiming;
+            if (config.AutomaticViewHeight != null) this.automatic_view_height = (bool)config.AutomaticViewHeight;
+            if (config.SmartCombatCamera != null) this.smart_combat_camera = (bool)config.SmartCombatCamera;
+            if (config.DefaultCameraHeight != null) this.default_camera_height = (double)config.DefaultCameraHeight;
+            if (config.AutomaticBoatCameraAngleCorrection != null) this.automatic_boat_camera_angle_correction = (int)config.AutomaticBoatCameraAngleCorrection;
+        }
+
+        public ControlsKeyboardConfig ToConfig()
+        {
+            ControlsKeyboardConfig config = new ControlsKeyboardConfig
+            {
+                VerticalSensitivity = this.vertical_sensitivity,
+                HorizontalSensitivity = this.horizontal_sensitivity,
+                VerticalSensitivityAiming = this.vertical_sensitivity_aiming,
+                HorizontalSensitivityAiming = this.horizontal_sensitivity_aiming,
+                AutomaticViewHeight = this.automatic_view_height,
+                SmartCombatCamera = this.smart_combat_camera,
+                DefaultCameraHeight = this.default_camera_height,
+                AutomaticBoatCameraAngleCorrection = this.automatic_boat_camera_angle_correction,
             };
             return config;
         }

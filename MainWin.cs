@@ -29,7 +29,7 @@ namespace GenshinConfigurator
                 Resolution = Settings.Resolution;
                 if (Settings.controlsLoaded)
                 {
-                    if (Settings.Controls.controller_ids.Count == 0)
+                    if (Settings.Keybindings.controller_ids.Count == 0)
                     {
                         devicesList.Items.Add("No devices");
                         devicesList.Enabled = false;
@@ -38,7 +38,7 @@ namespace GenshinConfigurator
                     }
                     else
                     {
-                        foreach (string controller_id in Settings.Controls.controller_ids)
+                        foreach (string controller_id in Settings.Keybindings.controller_ids)
                         {
                             string[] parts = controller_id.Split(new[] { "__" }, StringSplitOptions.None);
                             string name = "";
@@ -181,6 +181,7 @@ namespace GenshinConfigurator
         {    
             Reset_Audio();
             Reset_Language();
+            Reset_Keyboard_Controls();
             if (Settings.graphicsValid)
             {
                 Reset_Graphics();
@@ -569,7 +570,7 @@ namespace GenshinConfigurator
             void Add_Controller_Binding(Keybind bind, string[] bindings, int mlt)
             {
                 // this one is slowest
-                Controller cnt = Settings.Controls.controllers.Controller_By_Bind(bind);
+                Controller cnt = Settings.Keybindings.controllers.Controller_By_Bind(bind);
                 int offset = 0;
                 switch (cnt)
                 {
@@ -668,7 +669,7 @@ namespace GenshinConfigurator
 
 
             Reset_Layout();
-            Controller cntrl = Settings.Controls.controllers.List().ToArray()[devicesList.SelectedIndex];
+            Controller cntrl = Settings.Keybindings.controllers.List().ToArray()[devicesList.SelectedIndex];
             if (cntrl is KeyboardController)
             {
                 // While keyboard is very flexible and have many actions, it still intersects with gamepad in some ways.
@@ -900,7 +901,7 @@ namespace GenshinConfigurator
             {
                 controlsMenu.Visible = false;
             }
-            foreach (Controller cntrl in Settings.Controls.controllers.List())
+            foreach (Controller cntrl in Settings.Keybindings.controllers.List())
             {
                 if (cntrl is MouseController)
                 {
@@ -923,7 +924,7 @@ namespace GenshinConfigurator
             Button add_button = (Button)sender;                             // "Add bind" button
             ComboBox bind_selector = add_button.Tag as ComboBox;            // ComboBox with selected bind
             Keybind first_bind = (Keybind)bind_selector.Tag;   // First bind on the page (tied to the first label)
-            Controller cntrl = Settings.Controls.controllers.Controller_By_Bind(first_bind);  // Controller from bind
+            Controller cntrl = Settings.Keybindings.controllers.Controller_By_Bind(first_bind);  // Controller from bind
             int actionId = Controllers.GetActionByName(bind_selector.Text);
             cntrl.AddBind(actionId);
             Populate_Controls();
@@ -931,7 +932,7 @@ namespace GenshinConfigurator
 
         private void Remove_Keybind(object sender, EventArgs e)
         {
-            Controller cntrl = Settings.Controls.controllers.Controller_By_Bind((Keybind)((Button)sender).Tag);
+            Controller cntrl = Settings.Keybindings.controllers.Controller_By_Bind((Keybind)((Button)sender).Tag);
             Keybind bind = (Keybind)((Button)sender).Tag;
             cntrl.DeleteBind(bind);
             Populate_Controls();
@@ -965,7 +966,7 @@ namespace GenshinConfigurator
         {
             ComboBox input = (ComboBox)sender;
             Keybind bind = (Keybind)input.Tag;
-            Controller cntrl = Settings.Controls.controllers.Controller_By_Bind(bind);
+            Controller cntrl = Settings.Keybindings.controllers.Controller_By_Bind(bind);
             cntrl.EditBind(bind, input.SelectedIndex);
         }
 
@@ -973,7 +974,7 @@ namespace GenshinConfigurator
         {
             ComboBox input = (ComboBox)sender;
             Keybind bind = (Keybind)input.Tag;
-            Controller cntrl = Settings.Controls.controllers.Controller_By_Bind(bind);
+            Controller cntrl = Settings.Keybindings.controllers.Controller_By_Bind(bind);
             int offset = 0;
             switch (cntrl)
             {
@@ -993,13 +994,13 @@ namespace GenshinConfigurator
         {
             TextBox input = (TextBox)sender;
             Keybind bind = (Keybind)input.Tag;
-            Controller cntrl = Settings.Controls.controllers.Controller_By_Bind(bind);
+            Controller cntrl = Settings.Keybindings.controllers.Controller_By_Bind(bind);
             if (Keycodes.keyboard.ContainsKey(((PreviewKeyDownEventArgs)e).KeyCode)) //Valid key
             {
                 cntrl.EditBind(bind, Keycodes.keyboard[((PreviewKeyDownEventArgs)e).KeyCode]);
                 input.Text = Keycodes.keynames[Keycodes.keyboard[((PreviewKeyDownEventArgs)e).KeyCode]];
             }
-            tabControls.Focus();
+            tabKeybindings.Focus();
         }
 
         private void Prevent_Input(object sender, EventArgs e)
@@ -1067,8 +1068,8 @@ namespace GenshinConfigurator
             cntrl.axes.Add(vertical);
             cntrl.axes.Add(zoom);
 
-            Settings.Controls.controllers.Add(cntrl);
-            Settings.Controls.controller_ids.Add("OverrideControllerMap__00000000-0000-0000-0000-000000000000__1000000");
+            Settings.Keybindings.controllers.Add(cntrl);
+            Settings.Keybindings.controller_ids.Add("OverrideControllerMap__00000000-0000-0000-0000-000000000000__1000000");
             Settings.Apply();
             Settings.ToReg();
             MessageBox.Show("Mouse added! Please, restart the application.");
@@ -1202,5 +1203,61 @@ namespace GenshinConfigurator
             Status_Reset_Timer.Enabled = true;
         }
         // End of raw config functions
+
+        // Keyboard controls functions
+        private void HorizontalSensitivity_TrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            HorizontalSensitivity_Value.Text = HorizontalSensitivity_TrackBar.Value.ToString();
+        }
+
+        private void VerticalSensitivity_TrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            VerticalSensitivity_Value.Text = VerticalSensitivity_TrackBar.Value.ToString();
+        }
+
+        private void HorizontalSensitivityAiming_TrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            HorizontalSensitivityAiming_Value.Text = HorizontalSensitivityAiming_TrackBar.Value.ToString();
+        }
+
+        private void VerticalSensitivityAiming_TrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            VerticalSensitivityAiming_Value.Text = VerticalSensitivityAiming_TrackBar.Value.ToString();
+        }
+
+        private void DefaultCameraHeight_TrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            DefaultCameraHeight_Value.Text = ((double)DefaultCameraHeight_TrackBar.Value / 10).ToString();
+        }
+
+        private void Reset_Keyboard_Controls()
+        {
+            HorizontalSensitivity_TrackBar.Value = Settings.ControlsKeyboard.horizontal_sensitivity + 1;
+            VerticalSensitivity_TrackBar.Value = Settings.ControlsKeyboard.vertical_sensitivity + 1;
+            HorizontalSensitivityAiming_TrackBar.Value = Settings.ControlsKeyboard.horizontal_sensitivity_aiming + 1;
+            VerticalSensitivityAiming_TrackBar.Value = Settings.ControlsKeyboard.vertical_sensitivity_aiming + 1;
+            AutomaticViewHeight_Checkbox.Checked = Settings.ControlsKeyboard.automatic_view_height;
+            SmartCombatCamera_Checkbox.Checked = Settings.ControlsKeyboard.smart_combat_camera;
+            DefaultCameraHeight_TrackBar.Value =(int)Math.Round(Settings.ControlsKeyboard.default_camera_height * 10);
+            AutomaticBoatCameraAngleCorrection_Box.SelectedIndex = Settings.ControlsKeyboard.automatic_boat_camera_angle_correction;
+        }
+
+        private void ApplyKeyboardControlsButton_Click(object sender, EventArgs e)
+        {
+            Settings.ControlsKeyboard.horizontal_sensitivity = HorizontalSensitivity_TrackBar.Value - 1;
+            Settings.ControlsKeyboard.vertical_sensitivity = VerticalSensitivity_TrackBar.Value - 1;
+            Settings.ControlsKeyboard.horizontal_sensitivity_aiming = HorizontalSensitivityAiming_TrackBar.Value - 1;
+            Settings.ControlsKeyboard.vertical_sensitivity_aiming = VerticalSensitivityAiming_TrackBar.Value - 1;
+            Settings.ControlsKeyboard.automatic_view_height = AutomaticViewHeight_Checkbox.Checked;
+            Settings.ControlsKeyboard.smart_combat_camera = SmartCombatCamera_Checkbox.Checked;
+            Settings.ControlsKeyboard.default_camera_height = (double)DefaultCameraHeight_TrackBar.Value / 10;
+            Settings.ControlsKeyboard.automatic_boat_camera_angle_correction = AutomaticBoatCameraAngleCorrection_Box.SelectedIndex;
+            Settings.Apply();
+            Settings.ToReg();
+            Status_Label.Text = "Saved config to registry.";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
+        }
+        // End of keyboard control functions
     }
 }
