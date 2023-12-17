@@ -18,6 +18,7 @@ namespace GenshinConfigurator
         public LanguageSettings Language;
         public Keybindings Keybindings;
         public ControlsKeyboardSettings ControlsKeyboard;
+        public ControlsMiscSettings ControlsMisc;
         MainJSON data;
         public bool controlsLoaded, graphicsLoaded, graphicsValid, inputLoaded;
         public SettingsContainer()
@@ -50,6 +51,7 @@ namespace GenshinConfigurator
             this.Keybindings = new Keybindings(data);
             this.Resolution = new ResolutionSettings();
             this.ControlsKeyboard = new ControlsKeyboardSettings(data);
+            this.ControlsMisc = new ControlsMiscSettings(data);
         }
 
         public void ToReg()
@@ -70,6 +72,7 @@ namespace GenshinConfigurator
             this.data = Graphics.Apply(data);
             this.data = Language.Apply(data);
             this.data = ControlsKeyboard.Apply(data);
+            this.data = ControlsMisc.Apply(data);
             Resolution.Apply();
         }
 
@@ -82,6 +85,7 @@ namespace GenshinConfigurator
                 Audio = Audio.ToConfig(),
                 Language = Language.ToConfig(),
                 ControlsKeyboard = ControlsKeyboard.ToConfig(),
+                ControlsMisc = ControlsMisc.ToConfig(),
             };
             string result = JsonConvert.SerializeObject(file);
             StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8);
@@ -115,6 +119,10 @@ namespace GenshinConfigurator
             if (config.ControlsKeyboard != null)
             {
                 ControlsKeyboard.FromConfig(config.ControlsKeyboard);
+            }
+            if (config.ControlsMisc != null)
+            {
+                ControlsMisc.FromConfig(config.ControlsMisc);
             }
             Apply();
         }
@@ -451,43 +459,37 @@ namespace GenshinConfigurator
         }
     }
 
-    internal class ControlsKeyboardSettings
+    internal class ControlsMiscSettings
     {
-        public int vertical_sensitivity;
-        public int horizontal_sensitivity;
-        public int vertical_sensitivity_aiming;
-        public int horizontal_sensitivity_aiming;
         public bool automatic_view_height;
         public bool smart_combat_camera;
         public double default_camera_height;
         public int automatic_boat_camera_angle_correction;
 
-        public ControlsKeyboardSettings(MainJSON data)
+        public ControlsMiscSettings(MainJSON data)
         {
             Load(data);
         }
 
-        public ControlsKeyboardSettings(ControlsKeyboardConfig config)
+        public ControlsMiscSettings(ControlsMiscConfig config)
         {
             FromConfig(config);
         }
 
         public void Load(MainJSON data)
         {
-            this.vertical_sensitivity = data.inputData.mouseSenseIndexY;
-            this.horizontal_sensitivity = data.inputData.mouseSenseIndex;
-            this.vertical_sensitivity_aiming = data.inputData.mouseFocusSenseIndexY;
-            this.horizontal_sensitivity_aiming = data.inputData.mouseFocusSenseIndex;
             this.automatic_view_height = data.enableCameraSlope;
             this.smart_combat_camera = data.enableCameraCombatLock;
-            this.default_camera_height = Math.Round(data.inputData.cameraDistanceRatio * 1.5 + 4.5,1);
+            this.default_camera_height = Math.Round(data.inputData.cameraDistanceRatio * 1.5 + 4.5, 1);
             if (data.inputData.skiffCameraAutoFix && data.inputData.skiffCameraAutoFixInCombat)
             {
                 this.automatic_boat_camera_angle_correction = 1;
-            } else if (data.inputData.skiffCameraAutoFix)
+            }
+            else if (data.inputData.skiffCameraAutoFix)
             {
                 this.automatic_boat_camera_angle_correction = 2;
-            } else
+            }
+            else
             {
                 this.automatic_boat_camera_angle_correction = 0;
             }
@@ -495,10 +497,6 @@ namespace GenshinConfigurator
 
         public MainJSON Apply(MainJSON data)
         {
-            data.inputData.mouseSenseIndexY = this.vertical_sensitivity;
-            data.inputData.mouseSenseIndex = this.horizontal_sensitivity;
-            data.inputData.mouseFocusSenseIndexY = this.vertical_sensitivity_aiming;
-            data.inputData.mouseFocusSenseIndex = this.horizontal_sensitivity_aiming;
             data.enableCameraSlope = this.automatic_view_height;
             data.enableCameraCombatLock = this.smart_combat_camera;
             data.inputData.cameraDistanceRatio = (this.default_camera_height - 4.5) / 1.5;
@@ -520,16 +518,67 @@ namespace GenshinConfigurator
             return data;
         }
 
+        public void FromConfig(ControlsMiscConfig config)
+        {
+            if (config.AutomaticViewHeight != null) this.automatic_view_height = (bool)config.AutomaticViewHeight;
+            if (config.SmartCombatCamera != null) this.smart_combat_camera = (bool)config.SmartCombatCamera;
+            if (config.DefaultCameraHeight != null) this.default_camera_height = (double)config.DefaultCameraHeight;
+            if (config.AutomaticBoatCameraAngleCorrection != null) this.automatic_boat_camera_angle_correction = (int)config.AutomaticBoatCameraAngleCorrection;
+        }
+
+        public ControlsMiscConfig ToConfig()
+        {
+            ControlsMiscConfig config = new ControlsMiscConfig
+            {
+                AutomaticViewHeight = this.automatic_view_height,
+                SmartCombatCamera = this.smart_combat_camera,
+                DefaultCameraHeight = this.default_camera_height,
+                AutomaticBoatCameraAngleCorrection = this.automatic_boat_camera_angle_correction,
+            };
+            return config;
+        }
+    }
+
+    internal class ControlsKeyboardSettings
+    {
+        public int vertical_sensitivity;
+        public int horizontal_sensitivity;
+        public int vertical_sensitivity_aiming;
+        public int horizontal_sensitivity_aiming;
+
+        public ControlsKeyboardSettings(MainJSON data)
+        {
+            Load(data);
+        }
+
+        public ControlsKeyboardSettings(ControlsKeyboardConfig config)
+        {
+            FromConfig(config);
+        }
+
+        public void Load(MainJSON data)
+        {
+            this.vertical_sensitivity = data.inputData.mouseSenseIndexY;
+            this.horizontal_sensitivity = data.inputData.mouseSenseIndex;
+            this.vertical_sensitivity_aiming = data.inputData.mouseFocusSenseIndexY;
+            this.horizontal_sensitivity_aiming = data.inputData.mouseFocusSenseIndex;
+        }
+
+        public MainJSON Apply(MainJSON data)
+        {
+            data.inputData.mouseSenseIndexY = this.vertical_sensitivity;
+            data.inputData.mouseSenseIndex = this.horizontal_sensitivity;
+            data.inputData.mouseFocusSenseIndexY = this.vertical_sensitivity_aiming;
+            data.inputData.mouseFocusSenseIndex = this.horizontal_sensitivity_aiming;
+            return data;
+        }
+
         public void FromConfig(ControlsKeyboardConfig config)
         {
             if (config.VerticalSensitivity != null) this.vertical_sensitivity = (int)config.VerticalSensitivity;
             if (config.HorizontalSensitivity != null) this.horizontal_sensitivity = (int)config.HorizontalSensitivity;
             if (config.VerticalSensitivityAiming != null) this.vertical_sensitivity_aiming = (int)config.VerticalSensitivityAiming;
             if (config.HorizontalSensitivityAiming != null) this.horizontal_sensitivity_aiming = (int)config.HorizontalSensitivityAiming;
-            if (config.AutomaticViewHeight != null) this.automatic_view_height = (bool)config.AutomaticViewHeight;
-            if (config.SmartCombatCamera != null) this.smart_combat_camera = (bool)config.SmartCombatCamera;
-            if (config.DefaultCameraHeight != null) this.default_camera_height = (double)config.DefaultCameraHeight;
-            if (config.AutomaticBoatCameraAngleCorrection != null) this.automatic_boat_camera_angle_correction = (int)config.AutomaticBoatCameraAngleCorrection;
         }
 
         public ControlsKeyboardConfig ToConfig()
@@ -540,10 +589,6 @@ namespace GenshinConfigurator
                 HorizontalSensitivity = this.horizontal_sensitivity,
                 VerticalSensitivityAiming = this.vertical_sensitivity_aiming,
                 HorizontalSensitivityAiming = this.horizontal_sensitivity_aiming,
-                AutomaticViewHeight = this.automatic_view_height,
-                SmartCombatCamera = this.smart_combat_camera,
-                DefaultCameraHeight = this.default_camera_height,
-                AutomaticBoatCameraAngleCorrection = this.automatic_boat_camera_angle_correction,
             };
             return config;
         }

@@ -109,25 +109,18 @@
             this.gamepadButtonTemplate = new System.Windows.Forms.ComboBox();
             this.tabControlsKeyboard = new System.Windows.Forms.TabPage();
             this.ApplyKeyboardControlsButton = new System.Windows.Forms.Button();
-            this.AutomaticBoatCameraAngleCorrection_Box = new System.Windows.Forms.ComboBox();
-            this.AutomaticBoatCameraAngleCorrection_Label = new System.Windows.Forms.Label();
-            this.DefaultCameraHeight_Value = new System.Windows.Forms.Label();
-            this.DefaultCameraHeight_Label = new System.Windows.Forms.Label();
-            this.VerticalSensitivity_Label = new System.Windows.Forms.Label();
-            this.VerticalSensitivity_Value = new System.Windows.Forms.Label();
-            this.SmartCombatCamera_Checkbox = new System.Windows.Forms.CheckBox();
-            this.HorizontalSensitivity_Label = new System.Windows.Forms.Label();
-            this.AutomaticViewHeight_Checkbox = new System.Windows.Forms.CheckBox();
-            this.HorizontalSensitivity_Value = new System.Windows.Forms.Label();
-            this.VerticalSensitivityAiming_Value = new System.Windows.Forms.Label();
-            this.VerticalSensitivityAiming_Label = new System.Windows.Forms.Label();
-            this.HorizontalSensitivityAiming_Label = new System.Windows.Forms.Label();
-            this.HorizontalSensitivityAiming_Value = new System.Windows.Forms.Label();
-            this.HorizontalSensitivity_TrackBar = new System.Windows.Forms.TrackBar();
-            this.VerticalSensitivity_TrackBar = new System.Windows.Forms.TrackBar();
-            this.HorizontalSensitivityAiming_TrackBar = new System.Windows.Forms.TrackBar();
-            this.VerticalSensitivityAiming_TrackBar = new System.Windows.Forms.TrackBar();
-            this.DefaultCameraHeight_TrackBar = new System.Windows.Forms.TrackBar();
+            this.KeyboardVerticalSensitivity_Label = new System.Windows.Forms.Label();
+            this.KeyboardVerticalSensitivity_Value = new System.Windows.Forms.Label();
+            this.KeyboardHorizontalSensitivity_Label = new System.Windows.Forms.Label();
+            this.KeyboardHorizontalSensitivity_Value = new System.Windows.Forms.Label();
+            this.KeyboardVerticalSensitivityAiming_Value = new System.Windows.Forms.Label();
+            this.KeyboardVerticalSensitivityAiming_Label = new System.Windows.Forms.Label();
+            this.KeyboardHorizontalSensitivityAiming_Label = new System.Windows.Forms.Label();
+            this.KeyboardHorizontalSensitivityAiming_Value = new System.Windows.Forms.Label();
+            this.KeyboardHorizontalSensitivity_TrackBar = new System.Windows.Forms.TrackBar();
+            this.KeyboardVerticalSensitivity_TrackBar = new System.Windows.Forms.TrackBar();
+            this.KeyboardHorizontalSensitivityAiming_TrackBar = new System.Windows.Forms.TrackBar();
+            this.KeyboardVerticalSensitivityAiming_TrackBar = new System.Windows.Forms.TrackBar();
             this.tabControlsGamepad = new System.Windows.Forms.TabPage();
             this.tabAudio = new System.Windows.Forms.TabPage();
             this.comboBoxAudioFormat = new System.Windows.Forms.ComboBox();
@@ -163,6 +156,30 @@
             this.ControlsKeyboardResetButton = new System.Windows.Forms.Button();
             this.AudioResetButton = new System.Windows.Forms.Button();
             this.LanguageResetButton = new System.Windows.Forms.Button();
+            this.GamepadVerticalSensitivity_Label = new System.Windows.Forms.Label();
+            this.GamepadVerticalSensitivity_Value = new System.Windows.Forms.Label();
+            this.GamepadHorizontalSensitivity_Label = new System.Windows.Forms.Label();
+            this.GamepadHorizontalSensitivity_Value = new System.Windows.Forms.Label();
+            this.GamepadVerticalSensitivityAiming_Value = new System.Windows.Forms.Label();
+            this.GamepadVerticalSensitivityAiming_Label = new System.Windows.Forms.Label();
+            this.GamepadHorizontalSensitivityAiming_Label = new System.Windows.Forms.Label();
+            this.GamepadHorizontalSensitivityAiming_Value = new System.Windows.Forms.Label();
+            this.GamepadHorizontalSensitivity_TrackBar = new System.Windows.Forms.TrackBar();
+            this.GamepadVerticalSensitivity_TrackBar = new System.Windows.Forms.TrackBar();
+            this.GamepadHorizontalSensitivityAiming_TrackBar = new System.Windows.Forms.TrackBar();
+            this.GamepadVerticalSensitivityAiming_TrackBar = new System.Windows.Forms.TrackBar();
+            this.ResetGamepadControls_Button = new System.Windows.Forms.Button();
+            this.ApplyGamepadControls_Button = new System.Windows.Forms.Button();
+            this.tabControlsMisc = new System.Windows.Forms.TabPage();
+            this.MiscAutomaticBoatCameraAngleCorrection_Box = new System.Windows.Forms.ComboBox();
+            this.MiscAutomaticBoatCameraAngleCorrection_Label = new System.Windows.Forms.Label();
+            this.MiscDefaultCameraHeight_Value = new System.Windows.Forms.Label();
+            this.MiscDefaultCameraHeight_Label = new System.Windows.Forms.Label();
+            this.MiscSmartCombatCamera_Checkbox = new System.Windows.Forms.CheckBox();
+            this.MiscAutomaticViewHeight_Checkbox = new System.Windows.Forms.CheckBox();
+            this.MiscDefaultCameraHeight_TrackBar = new System.Windows.Forms.TrackBar();
+            this.MiscResetButton = new System.Windows.Forms.Button();
+            this.MiscApplyButton = new System.Windows.Forms.Button();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
@@ -174,11 +191,11 @@
             this.splitContainerControls.Panel2.SuspendLayout();
             this.splitContainerControls.SuspendLayout();
             this.tabControlsKeyboard.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.HorizontalSensitivity_TrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.VerticalSensitivity_TrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HorizontalSensitivityAiming_TrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.VerticalSensitivityAiming_TrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DefaultCameraHeight_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KeyboardHorizontalSensitivity_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KeyboardVerticalSensitivity_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KeyboardHorizontalSensitivityAiming_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KeyboardVerticalSensitivityAiming_TrackBar)).BeginInit();
+            this.tabControlsGamepad.SuspendLayout();
             this.tabAudio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVoiceVolume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSFXVolume)).BeginInit();
@@ -187,6 +204,12 @@
             this.tabLanguage.SuspendLayout();
             this.tabLog.SuspendLayout();
             this.tabRawConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GamepadHorizontalSensitivity_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GamepadVerticalSensitivity_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GamepadHorizontalSensitivityAiming_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GamepadVerticalSensitivityAiming_TrackBar)).BeginInit();
+            this.tabControlsMisc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MiscDefaultCameraHeight_TrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // TopBar
@@ -312,6 +335,7 @@
             this.settingsTabs.Controls.Add(this.tabKeybindings);
             this.settingsTabs.Controls.Add(this.tabControlsKeyboard);
             this.settingsTabs.Controls.Add(this.tabControlsGamepad);
+            this.settingsTabs.Controls.Add(this.tabControlsMisc);
             this.settingsTabs.Controls.Add(this.tabAudio);
             this.settingsTabs.Controls.Add(this.tabLanguage);
             this.settingsTabs.Controls.Add(this.tabLog);
@@ -1074,25 +1098,18 @@
             this.tabControlsKeyboard.BackColor = System.Drawing.SystemColors.Control;
             this.tabControlsKeyboard.Controls.Add(this.ControlsKeyboardResetButton);
             this.tabControlsKeyboard.Controls.Add(this.ApplyKeyboardControlsButton);
-            this.tabControlsKeyboard.Controls.Add(this.AutomaticBoatCameraAngleCorrection_Box);
-            this.tabControlsKeyboard.Controls.Add(this.AutomaticBoatCameraAngleCorrection_Label);
-            this.tabControlsKeyboard.Controls.Add(this.DefaultCameraHeight_Value);
-            this.tabControlsKeyboard.Controls.Add(this.DefaultCameraHeight_Label);
-            this.tabControlsKeyboard.Controls.Add(this.VerticalSensitivity_Label);
-            this.tabControlsKeyboard.Controls.Add(this.VerticalSensitivity_Value);
-            this.tabControlsKeyboard.Controls.Add(this.SmartCombatCamera_Checkbox);
-            this.tabControlsKeyboard.Controls.Add(this.HorizontalSensitivity_Label);
-            this.tabControlsKeyboard.Controls.Add(this.AutomaticViewHeight_Checkbox);
-            this.tabControlsKeyboard.Controls.Add(this.HorizontalSensitivity_Value);
-            this.tabControlsKeyboard.Controls.Add(this.VerticalSensitivityAiming_Value);
-            this.tabControlsKeyboard.Controls.Add(this.VerticalSensitivityAiming_Label);
-            this.tabControlsKeyboard.Controls.Add(this.HorizontalSensitivityAiming_Label);
-            this.tabControlsKeyboard.Controls.Add(this.HorizontalSensitivityAiming_Value);
-            this.tabControlsKeyboard.Controls.Add(this.HorizontalSensitivity_TrackBar);
-            this.tabControlsKeyboard.Controls.Add(this.VerticalSensitivity_TrackBar);
-            this.tabControlsKeyboard.Controls.Add(this.HorizontalSensitivityAiming_TrackBar);
-            this.tabControlsKeyboard.Controls.Add(this.VerticalSensitivityAiming_TrackBar);
-            this.tabControlsKeyboard.Controls.Add(this.DefaultCameraHeight_TrackBar);
+            this.tabControlsKeyboard.Controls.Add(this.KeyboardVerticalSensitivity_Label);
+            this.tabControlsKeyboard.Controls.Add(this.KeyboardVerticalSensitivity_Value);
+            this.tabControlsKeyboard.Controls.Add(this.KeyboardHorizontalSensitivity_Label);
+            this.tabControlsKeyboard.Controls.Add(this.KeyboardHorizontalSensitivity_Value);
+            this.tabControlsKeyboard.Controls.Add(this.KeyboardVerticalSensitivityAiming_Value);
+            this.tabControlsKeyboard.Controls.Add(this.KeyboardVerticalSensitivityAiming_Label);
+            this.tabControlsKeyboard.Controls.Add(this.KeyboardHorizontalSensitivityAiming_Label);
+            this.tabControlsKeyboard.Controls.Add(this.KeyboardHorizontalSensitivityAiming_Value);
+            this.tabControlsKeyboard.Controls.Add(this.KeyboardHorizontalSensitivity_TrackBar);
+            this.tabControlsKeyboard.Controls.Add(this.KeyboardVerticalSensitivity_TrackBar);
+            this.tabControlsKeyboard.Controls.Add(this.KeyboardHorizontalSensitivityAiming_TrackBar);
+            this.tabControlsKeyboard.Controls.Add(this.KeyboardVerticalSensitivityAiming_TrackBar);
             this.tabControlsKeyboard.Location = new System.Drawing.Point(4, 25);
             this.tabControlsKeyboard.Name = "tabControlsKeyboard";
             this.tabControlsKeyboard.Size = new System.Drawing.Size(721, 391);
@@ -1102,7 +1119,7 @@
             // ApplyKeyboardControlsButton
             // 
             this.ApplyKeyboardControlsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ApplyKeyboardControlsButton.Location = new System.Drawing.Point(612, 359);
+            this.ApplyKeyboardControlsButton.Location = new System.Drawing.Point(612, 353);
             this.ApplyKeyboardControlsButton.Margin = new System.Windows.Forms.Padding(4);
             this.ApplyKeyboardControlsButton.Name = "ApplyKeyboardControlsButton";
             this.ApplyKeyboardControlsButton.Size = new System.Drawing.Size(100, 28);
@@ -1111,213 +1128,152 @@
             this.ApplyKeyboardControlsButton.UseVisualStyleBackColor = true;
             this.ApplyKeyboardControlsButton.Click += new System.EventHandler(this.ApplyKeyboardControlsButton_Click);
             // 
-            // AutomaticBoatCameraAngleCorrection_Box
+            // KeyboardVerticalSensitivity_Label
             // 
-            this.AutomaticBoatCameraAngleCorrection_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AutomaticBoatCameraAngleCorrection_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.AutomaticBoatCameraAngleCorrection_Box.FormattingEnabled = true;
-            this.AutomaticBoatCameraAngleCorrection_Box.Items.AddRange(new object[] {
-            "No",
-            "Yes",
-            "Not in combat"});
-            this.AutomaticBoatCameraAngleCorrection_Box.Location = new System.Drawing.Point(592, 328);
-            this.AutomaticBoatCameraAngleCorrection_Box.Name = "AutomaticBoatCameraAngleCorrection_Box";
-            this.AutomaticBoatCameraAngleCorrection_Box.Size = new System.Drawing.Size(121, 24);
-            this.AutomaticBoatCameraAngleCorrection_Box.TabIndex = 19;
+            this.KeyboardVerticalSensitivity_Label.AutoSize = true;
+            this.KeyboardVerticalSensitivity_Label.Location = new System.Drawing.Point(5, 59);
+            this.KeyboardVerticalSensitivity_Label.Name = "KeyboardVerticalSensitivity_Label";
+            this.KeyboardVerticalSensitivity_Label.Size = new System.Drawing.Size(115, 16);
+            this.KeyboardVerticalSensitivity_Label.TabIndex = 1;
+            this.KeyboardVerticalSensitivity_Label.Text = "Vertical Sensitivity";
             // 
-            // AutomaticBoatCameraAngleCorrection_Label
+            // KeyboardVerticalSensitivity_Value
             // 
-            this.AutomaticBoatCameraAngleCorrection_Label.AutoSize = true;
-            this.AutomaticBoatCameraAngleCorrection_Label.Location = new System.Drawing.Point(5, 331);
-            this.AutomaticBoatCameraAngleCorrection_Label.Name = "AutomaticBoatCameraAngleCorrection_Label";
-            this.AutomaticBoatCameraAngleCorrection_Label.Size = new System.Drawing.Size(250, 16);
-            this.AutomaticBoatCameraAngleCorrection_Label.TabIndex = 18;
-            this.AutomaticBoatCameraAngleCorrection_Label.Text = "Automatic Boat Camera Angle Correction";
+            this.KeyboardVerticalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.KeyboardVerticalSensitivity_Value.AutoSize = true;
+            this.KeyboardVerticalSensitivity_Value.Location = new System.Drawing.Point(686, 59);
+            this.KeyboardVerticalSensitivity_Value.Name = "KeyboardVerticalSensitivity_Value";
+            this.KeyboardVerticalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
+            this.KeyboardVerticalSensitivity_Value.TabIndex = 2;
+            this.KeyboardVerticalSensitivity_Value.Text = "-1";
             // 
-            // DefaultCameraHeight_Value
+            // KeyboardHorizontalSensitivity_Label
             // 
-            this.DefaultCameraHeight_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.DefaultCameraHeight_Value.AutoSize = true;
-            this.DefaultCameraHeight_Value.Location = new System.Drawing.Point(686, 277);
-            this.DefaultCameraHeight_Value.Name = "DefaultCameraHeight_Value";
-            this.DefaultCameraHeight_Value.Size = new System.Drawing.Size(18, 16);
-            this.DefaultCameraHeight_Value.TabIndex = 17;
-            this.DefaultCameraHeight_Value.Text = "-1";
+            this.KeyboardHorizontalSensitivity_Label.AutoSize = true;
+            this.KeyboardHorizontalSensitivity_Label.Location = new System.Drawing.Point(5, 6);
+            this.KeyboardHorizontalSensitivity_Label.Name = "KeyboardHorizontalSensitivity_Label";
+            this.KeyboardHorizontalSensitivity_Label.Size = new System.Drawing.Size(130, 16);
+            this.KeyboardHorizontalSensitivity_Label.TabIndex = 4;
+            this.KeyboardHorizontalSensitivity_Label.Text = "Horizontal Sensitivity";
             // 
-            // DefaultCameraHeight_Label
+            // KeyboardHorizontalSensitivity_Value
             // 
-            this.DefaultCameraHeight_Label.AutoSize = true;
-            this.DefaultCameraHeight_Label.Location = new System.Drawing.Point(5, 277);
-            this.DefaultCameraHeight_Label.Name = "DefaultCameraHeight_Label";
-            this.DefaultCameraHeight_Label.Size = new System.Drawing.Size(142, 16);
-            this.DefaultCameraHeight_Label.TabIndex = 16;
-            this.DefaultCameraHeight_Label.Text = "Default Camera Height";
+            this.KeyboardHorizontalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.KeyboardHorizontalSensitivity_Value.AutoSize = true;
+            this.KeyboardHorizontalSensitivity_Value.Location = new System.Drawing.Point(686, 6);
+            this.KeyboardHorizontalSensitivity_Value.Name = "KeyboardHorizontalSensitivity_Value";
+            this.KeyboardHorizontalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
+            this.KeyboardHorizontalSensitivity_Value.TabIndex = 5;
+            this.KeyboardHorizontalSensitivity_Value.Text = "-1";
             // 
-            // VerticalSensitivity_Label
+            // KeyboardVerticalSensitivityAiming_Value
             // 
-            this.VerticalSensitivity_Label.AutoSize = true;
-            this.VerticalSensitivity_Label.Location = new System.Drawing.Point(5, 67);
-            this.VerticalSensitivity_Label.Name = "VerticalSensitivity_Label";
-            this.VerticalSensitivity_Label.Size = new System.Drawing.Size(115, 16);
-            this.VerticalSensitivity_Label.TabIndex = 1;
-            this.VerticalSensitivity_Label.Text = "Vertical Sensitivity";
+            this.KeyboardVerticalSensitivityAiming_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.KeyboardVerticalSensitivityAiming_Value.AutoSize = true;
+            this.KeyboardVerticalSensitivityAiming_Value.Location = new System.Drawing.Point(686, 165);
+            this.KeyboardVerticalSensitivityAiming_Value.Name = "KeyboardVerticalSensitivityAiming_Value";
+            this.KeyboardVerticalSensitivityAiming_Value.Size = new System.Drawing.Size(18, 16);
+            this.KeyboardVerticalSensitivityAiming_Value.TabIndex = 11;
+            this.KeyboardVerticalSensitivityAiming_Value.Text = "-1";
             // 
-            // VerticalSensitivity_Value
+            // KeyboardVerticalSensitivityAiming_Label
             // 
-            this.VerticalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.VerticalSensitivity_Value.AutoSize = true;
-            this.VerticalSensitivity_Value.Location = new System.Drawing.Point(686, 67);
-            this.VerticalSensitivity_Value.Name = "VerticalSensitivity_Value";
-            this.VerticalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
-            this.VerticalSensitivity_Value.TabIndex = 2;
-            this.VerticalSensitivity_Value.Text = "-1";
+            this.KeyboardVerticalSensitivityAiming_Label.AutoSize = true;
+            this.KeyboardVerticalSensitivityAiming_Label.Location = new System.Drawing.Point(5, 165);
+            this.KeyboardVerticalSensitivityAiming_Label.Name = "KeyboardVerticalSensitivityAiming_Label";
+            this.KeyboardVerticalSensitivityAiming_Label.Size = new System.Drawing.Size(167, 16);
+            this.KeyboardVerticalSensitivityAiming_Label.TabIndex = 10;
+            this.KeyboardVerticalSensitivityAiming_Label.Text = "Vertical Sensitivity (Aiming)";
             // 
-            // SmartCombatCamera_Checkbox
+            // KeyboardHorizontalSensitivityAiming_Label
             // 
-            this.SmartCombatCamera_Checkbox.AutoSize = true;
-            this.SmartCombatCamera_Checkbox.Location = new System.Drawing.Point(11, 254);
-            this.SmartCombatCamera_Checkbox.Name = "SmartCombatCamera_Checkbox";
-            this.SmartCombatCamera_Checkbox.Size = new System.Drawing.Size(152, 20);
-            this.SmartCombatCamera_Checkbox.TabIndex = 14;
-            this.SmartCombatCamera_Checkbox.Text = "Smart Battle Camera";
-            this.SmartCombatCamera_Checkbox.UseVisualStyleBackColor = true;
+            this.KeyboardHorizontalSensitivityAiming_Label.AutoSize = true;
+            this.KeyboardHorizontalSensitivityAiming_Label.Location = new System.Drawing.Point(5, 112);
+            this.KeyboardHorizontalSensitivityAiming_Label.Name = "KeyboardHorizontalSensitivityAiming_Label";
+            this.KeyboardHorizontalSensitivityAiming_Label.Size = new System.Drawing.Size(182, 16);
+            this.KeyboardHorizontalSensitivityAiming_Label.TabIndex = 7;
+            this.KeyboardHorizontalSensitivityAiming_Label.Text = "Horizontal Sensitivity (Aiming)";
             // 
-            // HorizontalSensitivity_Label
+            // KeyboardHorizontalSensitivityAiming_Value
             // 
-            this.HorizontalSensitivity_Label.AutoSize = true;
-            this.HorizontalSensitivity_Label.Location = new System.Drawing.Point(5, 14);
-            this.HorizontalSensitivity_Label.Name = "HorizontalSensitivity_Label";
-            this.HorizontalSensitivity_Label.Size = new System.Drawing.Size(130, 16);
-            this.HorizontalSensitivity_Label.TabIndex = 4;
-            this.HorizontalSensitivity_Label.Text = "Horizontal Sensitivity";
+            this.KeyboardHorizontalSensitivityAiming_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.KeyboardHorizontalSensitivityAiming_Value.AutoSize = true;
+            this.KeyboardHorizontalSensitivityAiming_Value.Location = new System.Drawing.Point(686, 112);
+            this.KeyboardHorizontalSensitivityAiming_Value.Name = "KeyboardHorizontalSensitivityAiming_Value";
+            this.KeyboardHorizontalSensitivityAiming_Value.Size = new System.Drawing.Size(18, 16);
+            this.KeyboardHorizontalSensitivityAiming_Value.TabIndex = 8;
+            this.KeyboardHorizontalSensitivityAiming_Value.Text = "-1";
             // 
-            // AutomaticViewHeight_Checkbox
+            // KeyboardHorizontalSensitivity_TrackBar
             // 
-            this.AutomaticViewHeight_Checkbox.AutoSize = true;
-            this.AutomaticViewHeight_Checkbox.Location = new System.Drawing.Point(11, 228);
-            this.AutomaticViewHeight_Checkbox.Name = "AutomaticViewHeight_Checkbox";
-            this.AutomaticViewHeight_Checkbox.Size = new System.Drawing.Size(162, 20);
-            this.AutomaticViewHeight_Checkbox.TabIndex = 13;
-            this.AutomaticViewHeight_Checkbox.Text = "Automatic View Height";
-            this.AutomaticViewHeight_Checkbox.UseVisualStyleBackColor = true;
-            // 
-            // HorizontalSensitivity_Value
-            // 
-            this.HorizontalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.HorizontalSensitivity_Value.AutoSize = true;
-            this.HorizontalSensitivity_Value.Location = new System.Drawing.Point(686, 14);
-            this.HorizontalSensitivity_Value.Name = "HorizontalSensitivity_Value";
-            this.HorizontalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
-            this.HorizontalSensitivity_Value.TabIndex = 5;
-            this.HorizontalSensitivity_Value.Text = "-1";
-            // 
-            // VerticalSensitivityAiming_Value
-            // 
-            this.VerticalSensitivityAiming_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.VerticalSensitivityAiming_Value.AutoSize = true;
-            this.VerticalSensitivityAiming_Value.Location = new System.Drawing.Point(686, 173);
-            this.VerticalSensitivityAiming_Value.Name = "VerticalSensitivityAiming_Value";
-            this.VerticalSensitivityAiming_Value.Size = new System.Drawing.Size(18, 16);
-            this.VerticalSensitivityAiming_Value.TabIndex = 11;
-            this.VerticalSensitivityAiming_Value.Text = "-1";
-            // 
-            // VerticalSensitivityAiming_Label
-            // 
-            this.VerticalSensitivityAiming_Label.AutoSize = true;
-            this.VerticalSensitivityAiming_Label.Location = new System.Drawing.Point(5, 173);
-            this.VerticalSensitivityAiming_Label.Name = "VerticalSensitivityAiming_Label";
-            this.VerticalSensitivityAiming_Label.Size = new System.Drawing.Size(167, 16);
-            this.VerticalSensitivityAiming_Label.TabIndex = 10;
-            this.VerticalSensitivityAiming_Label.Text = "Vertical Sensitivity (Aiming)";
-            // 
-            // HorizontalSensitivityAiming_Label
-            // 
-            this.HorizontalSensitivityAiming_Label.AutoSize = true;
-            this.HorizontalSensitivityAiming_Label.Location = new System.Drawing.Point(5, 120);
-            this.HorizontalSensitivityAiming_Label.Name = "HorizontalSensitivityAiming_Label";
-            this.HorizontalSensitivityAiming_Label.Size = new System.Drawing.Size(182, 16);
-            this.HorizontalSensitivityAiming_Label.TabIndex = 7;
-            this.HorizontalSensitivityAiming_Label.Text = "Horizontal Sensitivity (Aiming)";
-            // 
-            // HorizontalSensitivityAiming_Value
-            // 
-            this.HorizontalSensitivityAiming_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.HorizontalSensitivityAiming_Value.AutoSize = true;
-            this.HorizontalSensitivityAiming_Value.Location = new System.Drawing.Point(686, 120);
-            this.HorizontalSensitivityAiming_Value.Name = "HorizontalSensitivityAiming_Value";
-            this.HorizontalSensitivityAiming_Value.Size = new System.Drawing.Size(18, 16);
-            this.HorizontalSensitivityAiming_Value.TabIndex = 8;
-            this.HorizontalSensitivityAiming_Value.Text = "-1";
-            // 
-            // HorizontalSensitivity_TrackBar
-            // 
-            this.HorizontalSensitivity_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.KeyboardHorizontalSensitivity_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.HorizontalSensitivity_TrackBar.Location = new System.Drawing.Point(3, 33);
-            this.HorizontalSensitivity_TrackBar.Maximum = 5;
-            this.HorizontalSensitivity_TrackBar.Minimum = 1;
-            this.HorizontalSensitivity_TrackBar.Name = "HorizontalSensitivity_TrackBar";
-            this.HorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(710, 56);
-            this.HorizontalSensitivity_TrackBar.TabIndex = 0;
-            this.HorizontalSensitivity_TrackBar.Value = 1;
-            this.HorizontalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.HorizontalSensitivity_TrackBar_ValueChanged);
+            this.KeyboardHorizontalSensitivity_TrackBar.Location = new System.Drawing.Point(3, 25);
+            this.KeyboardHorizontalSensitivity_TrackBar.Maximum = 5;
+            this.KeyboardHorizontalSensitivity_TrackBar.Minimum = 1;
+            this.KeyboardHorizontalSensitivity_TrackBar.Name = "KeyboardHorizontalSensitivity_TrackBar";
+            this.KeyboardHorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.KeyboardHorizontalSensitivity_TrackBar.TabIndex = 0;
+            this.KeyboardHorizontalSensitivity_TrackBar.Value = 1;
+            this.KeyboardHorizontalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.HorizontalSensitivity_TrackBar_ValueChanged);
             // 
-            // VerticalSensitivity_TrackBar
+            // KeyboardVerticalSensitivity_TrackBar
             // 
-            this.VerticalSensitivity_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.KeyboardVerticalSensitivity_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.VerticalSensitivity_TrackBar.Location = new System.Drawing.Point(3, 86);
-            this.VerticalSensitivity_TrackBar.Maximum = 5;
-            this.VerticalSensitivity_TrackBar.Minimum = 1;
-            this.VerticalSensitivity_TrackBar.Name = "VerticalSensitivity_TrackBar";
-            this.VerticalSensitivity_TrackBar.Size = new System.Drawing.Size(710, 56);
-            this.VerticalSensitivity_TrackBar.TabIndex = 1;
-            this.VerticalSensitivity_TrackBar.Value = 1;
-            this.VerticalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.VerticalSensitivity_TrackBar_ValueChanged);
+            this.KeyboardVerticalSensitivity_TrackBar.Location = new System.Drawing.Point(3, 78);
+            this.KeyboardVerticalSensitivity_TrackBar.Maximum = 5;
+            this.KeyboardVerticalSensitivity_TrackBar.Minimum = 1;
+            this.KeyboardVerticalSensitivity_TrackBar.Name = "KeyboardVerticalSensitivity_TrackBar";
+            this.KeyboardVerticalSensitivity_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.KeyboardVerticalSensitivity_TrackBar.TabIndex = 1;
+            this.KeyboardVerticalSensitivity_TrackBar.Value = 1;
+            this.KeyboardVerticalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.VerticalSensitivity_TrackBar_ValueChanged);
             // 
-            // HorizontalSensitivityAiming_TrackBar
+            // KeyboardHorizontalSensitivityAiming_TrackBar
             // 
-            this.HorizontalSensitivityAiming_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.KeyboardHorizontalSensitivityAiming_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.HorizontalSensitivityAiming_TrackBar.Location = new System.Drawing.Point(3, 139);
-            this.HorizontalSensitivityAiming_TrackBar.Maximum = 5;
-            this.HorizontalSensitivityAiming_TrackBar.Minimum = 1;
-            this.HorizontalSensitivityAiming_TrackBar.Name = "HorizontalSensitivityAiming_TrackBar";
-            this.HorizontalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(710, 56);
-            this.HorizontalSensitivityAiming_TrackBar.TabIndex = 6;
-            this.HorizontalSensitivityAiming_TrackBar.Value = 1;
-            this.HorizontalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.HorizontalSensitivityAiming_TrackBar_ValueChanged);
+            this.KeyboardHorizontalSensitivityAiming_TrackBar.Location = new System.Drawing.Point(3, 131);
+            this.KeyboardHorizontalSensitivityAiming_TrackBar.Maximum = 5;
+            this.KeyboardHorizontalSensitivityAiming_TrackBar.Minimum = 1;
+            this.KeyboardHorizontalSensitivityAiming_TrackBar.Name = "KeyboardHorizontalSensitivityAiming_TrackBar";
+            this.KeyboardHorizontalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.KeyboardHorizontalSensitivityAiming_TrackBar.TabIndex = 6;
+            this.KeyboardHorizontalSensitivityAiming_TrackBar.Value = 1;
+            this.KeyboardHorizontalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.HorizontalSensitivityAiming_TrackBar_ValueChanged);
             // 
-            // VerticalSensitivityAiming_TrackBar
+            // KeyboardVerticalSensitivityAiming_TrackBar
             // 
-            this.VerticalSensitivityAiming_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.KeyboardVerticalSensitivityAiming_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.VerticalSensitivityAiming_TrackBar.Location = new System.Drawing.Point(3, 192);
-            this.VerticalSensitivityAiming_TrackBar.Maximum = 5;
-            this.VerticalSensitivityAiming_TrackBar.Minimum = 1;
-            this.VerticalSensitivityAiming_TrackBar.Name = "VerticalSensitivityAiming_TrackBar";
-            this.VerticalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(710, 56);
-            this.VerticalSensitivityAiming_TrackBar.TabIndex = 9;
-            this.VerticalSensitivityAiming_TrackBar.Value = 1;
-            this.VerticalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.VerticalSensitivityAiming_TrackBar_ValueChanged);
-            // 
-            // DefaultCameraHeight_TrackBar
-            // 
-            this.DefaultCameraHeight_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DefaultCameraHeight_TrackBar.Location = new System.Drawing.Point(3, 296);
-            this.DefaultCameraHeight_TrackBar.Maximum = 60;
-            this.DefaultCameraHeight_TrackBar.Minimum = 45;
-            this.DefaultCameraHeight_TrackBar.Name = "DefaultCameraHeight_TrackBar";
-            this.DefaultCameraHeight_TrackBar.Size = new System.Drawing.Size(710, 56);
-            this.DefaultCameraHeight_TrackBar.TabIndex = 15;
-            this.DefaultCameraHeight_TrackBar.Value = 45;
-            this.DefaultCameraHeight_TrackBar.ValueChanged += new System.EventHandler(this.DefaultCameraHeight_TrackBar_ValueChanged);
+            this.KeyboardVerticalSensitivityAiming_TrackBar.Location = new System.Drawing.Point(3, 184);
+            this.KeyboardVerticalSensitivityAiming_TrackBar.Maximum = 5;
+            this.KeyboardVerticalSensitivityAiming_TrackBar.Minimum = 1;
+            this.KeyboardVerticalSensitivityAiming_TrackBar.Name = "KeyboardVerticalSensitivityAiming_TrackBar";
+            this.KeyboardVerticalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.KeyboardVerticalSensitivityAiming_TrackBar.TabIndex = 9;
+            this.KeyboardVerticalSensitivityAiming_TrackBar.Value = 1;
+            this.KeyboardVerticalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.VerticalSensitivityAiming_TrackBar_ValueChanged);
             // 
             // tabControlsGamepad
             // 
             this.tabControlsGamepad.AutoScroll = true;
             this.tabControlsGamepad.BackColor = System.Drawing.SystemColors.Control;
+            this.tabControlsGamepad.Controls.Add(this.ResetGamepadControls_Button);
+            this.tabControlsGamepad.Controls.Add(this.ApplyGamepadControls_Button);
+            this.tabControlsGamepad.Controls.Add(this.GamepadVerticalSensitivity_Label);
+            this.tabControlsGamepad.Controls.Add(this.GamepadVerticalSensitivity_Value);
+            this.tabControlsGamepad.Controls.Add(this.GamepadHorizontalSensitivity_Label);
+            this.tabControlsGamepad.Controls.Add(this.GamepadHorizontalSensitivity_Value);
+            this.tabControlsGamepad.Controls.Add(this.GamepadVerticalSensitivityAiming_Value);
+            this.tabControlsGamepad.Controls.Add(this.GamepadVerticalSensitivityAiming_Label);
+            this.tabControlsGamepad.Controls.Add(this.GamepadHorizontalSensitivityAiming_Label);
+            this.tabControlsGamepad.Controls.Add(this.GamepadHorizontalSensitivityAiming_Value);
+            this.tabControlsGamepad.Controls.Add(this.GamepadHorizontalSensitivity_TrackBar);
+            this.tabControlsGamepad.Controls.Add(this.GamepadVerticalSensitivity_TrackBar);
+            this.tabControlsGamepad.Controls.Add(this.GamepadHorizontalSensitivityAiming_TrackBar);
+            this.tabControlsGamepad.Controls.Add(this.GamepadVerticalSensitivityAiming_TrackBar);
             this.tabControlsGamepad.Location = new System.Drawing.Point(4, 25);
             this.tabControlsGamepad.Name = "tabControlsGamepad";
             this.tabControlsGamepad.Size = new System.Drawing.Size(721, 391);
@@ -1706,7 +1662,7 @@
             // 
             // ControlsKeyboardResetButton
             // 
-            this.ControlsKeyboardResetButton.Location = new System.Drawing.Point(504, 359);
+            this.ControlsKeyboardResetButton.Location = new System.Drawing.Point(504, 353);
             this.ControlsKeyboardResetButton.Margin = new System.Windows.Forms.Padding(4);
             this.ControlsKeyboardResetButton.Name = "ControlsKeyboardResetButton";
             this.ControlsKeyboardResetButton.Size = new System.Drawing.Size(100, 28);
@@ -1736,6 +1692,269 @@
             this.LanguageResetButton.Text = "Reset";
             this.LanguageResetButton.UseVisualStyleBackColor = true;
             this.LanguageResetButton.Click += new System.EventHandler(this.Reset_Button_Click);
+            // 
+            // GamepadVerticalSensitivity_Label
+            // 
+            this.GamepadVerticalSensitivity_Label.AutoSize = true;
+            this.GamepadVerticalSensitivity_Label.Location = new System.Drawing.Point(5, 59);
+            this.GamepadVerticalSensitivity_Label.Name = "GamepadVerticalSensitivity_Label";
+            this.GamepadVerticalSensitivity_Label.Size = new System.Drawing.Size(115, 16);
+            this.GamepadVerticalSensitivity_Label.TabIndex = 22;
+            this.GamepadVerticalSensitivity_Label.Text = "Vertical Sensitivity";
+            // 
+            // GamepadVerticalSensitivity_Value
+            // 
+            this.GamepadVerticalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadVerticalSensitivity_Value.AutoSize = true;
+            this.GamepadVerticalSensitivity_Value.Location = new System.Drawing.Point(686, 59);
+            this.GamepadVerticalSensitivity_Value.Name = "GamepadVerticalSensitivity_Value";
+            this.GamepadVerticalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
+            this.GamepadVerticalSensitivity_Value.TabIndex = 23;
+            this.GamepadVerticalSensitivity_Value.Text = "-1";
+            // 
+            // GamepadHorizontalSensitivity_Label
+            // 
+            this.GamepadHorizontalSensitivity_Label.AutoSize = true;
+            this.GamepadHorizontalSensitivity_Label.Location = new System.Drawing.Point(5, 6);
+            this.GamepadHorizontalSensitivity_Label.Name = "GamepadHorizontalSensitivity_Label";
+            this.GamepadHorizontalSensitivity_Label.Size = new System.Drawing.Size(130, 16);
+            this.GamepadHorizontalSensitivity_Label.TabIndex = 24;
+            this.GamepadHorizontalSensitivity_Label.Text = "Horizontal Sensitivity";
+            // 
+            // GamepadHorizontalSensitivity_Value
+            // 
+            this.GamepadHorizontalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadHorizontalSensitivity_Value.AutoSize = true;
+            this.GamepadHorizontalSensitivity_Value.Location = new System.Drawing.Point(686, 6);
+            this.GamepadHorizontalSensitivity_Value.Name = "GamepadHorizontalSensitivity_Value";
+            this.GamepadHorizontalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
+            this.GamepadHorizontalSensitivity_Value.TabIndex = 25;
+            this.GamepadHorizontalSensitivity_Value.Text = "-1";
+            // 
+            // GamepadVerticalSensitivityAiming_Value
+            // 
+            this.GamepadVerticalSensitivityAiming_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadVerticalSensitivityAiming_Value.AutoSize = true;
+            this.GamepadVerticalSensitivityAiming_Value.Location = new System.Drawing.Point(686, 165);
+            this.GamepadVerticalSensitivityAiming_Value.Name = "GamepadVerticalSensitivityAiming_Value";
+            this.GamepadVerticalSensitivityAiming_Value.Size = new System.Drawing.Size(18, 16);
+            this.GamepadVerticalSensitivityAiming_Value.TabIndex = 31;
+            this.GamepadVerticalSensitivityAiming_Value.Text = "-1";
+            // 
+            // GamepadVerticalSensitivityAiming_Label
+            // 
+            this.GamepadVerticalSensitivityAiming_Label.AutoSize = true;
+            this.GamepadVerticalSensitivityAiming_Label.Location = new System.Drawing.Point(5, 165);
+            this.GamepadVerticalSensitivityAiming_Label.Name = "GamepadVerticalSensitivityAiming_Label";
+            this.GamepadVerticalSensitivityAiming_Label.Size = new System.Drawing.Size(167, 16);
+            this.GamepadVerticalSensitivityAiming_Label.TabIndex = 30;
+            this.GamepadVerticalSensitivityAiming_Label.Text = "Vertical Sensitivity (Aiming)";
+            // 
+            // GamepadHorizontalSensitivityAiming_Label
+            // 
+            this.GamepadHorizontalSensitivityAiming_Label.AutoSize = true;
+            this.GamepadHorizontalSensitivityAiming_Label.Location = new System.Drawing.Point(5, 112);
+            this.GamepadHorizontalSensitivityAiming_Label.Name = "GamepadHorizontalSensitivityAiming_Label";
+            this.GamepadHorizontalSensitivityAiming_Label.Size = new System.Drawing.Size(182, 16);
+            this.GamepadHorizontalSensitivityAiming_Label.TabIndex = 27;
+            this.GamepadHorizontalSensitivityAiming_Label.Text = "Horizontal Sensitivity (Aiming)";
+            // 
+            // GamepadHorizontalSensitivityAiming_Value
+            // 
+            this.GamepadHorizontalSensitivityAiming_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadHorizontalSensitivityAiming_Value.AutoSize = true;
+            this.GamepadHorizontalSensitivityAiming_Value.Location = new System.Drawing.Point(686, 112);
+            this.GamepadHorizontalSensitivityAiming_Value.Name = "GamepadHorizontalSensitivityAiming_Value";
+            this.GamepadHorizontalSensitivityAiming_Value.Size = new System.Drawing.Size(18, 16);
+            this.GamepadHorizontalSensitivityAiming_Value.TabIndex = 28;
+            this.GamepadHorizontalSensitivityAiming_Value.Text = "-1";
+            // 
+            // GamepadHorizontalSensitivity_TrackBar
+            // 
+            this.GamepadHorizontalSensitivity_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadHorizontalSensitivity_TrackBar.Location = new System.Drawing.Point(3, 25);
+            this.GamepadHorizontalSensitivity_TrackBar.Maximum = 5;
+            this.GamepadHorizontalSensitivity_TrackBar.Minimum = 1;
+            this.GamepadHorizontalSensitivity_TrackBar.Name = "GamepadHorizontalSensitivity_TrackBar";
+            this.GamepadHorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.GamepadHorizontalSensitivity_TrackBar.TabIndex = 20;
+            this.GamepadHorizontalSensitivity_TrackBar.Value = 1;
+            // 
+            // GamepadVerticalSensitivity_TrackBar
+            // 
+            this.GamepadVerticalSensitivity_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadVerticalSensitivity_TrackBar.Location = new System.Drawing.Point(3, 78);
+            this.GamepadVerticalSensitivity_TrackBar.Maximum = 5;
+            this.GamepadVerticalSensitivity_TrackBar.Minimum = 1;
+            this.GamepadVerticalSensitivity_TrackBar.Name = "GamepadVerticalSensitivity_TrackBar";
+            this.GamepadVerticalSensitivity_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.GamepadVerticalSensitivity_TrackBar.TabIndex = 21;
+            this.GamepadVerticalSensitivity_TrackBar.Value = 1;
+            // 
+            // GamepadHorizontalSensitivityAiming_TrackBar
+            // 
+            this.GamepadHorizontalSensitivityAiming_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadHorizontalSensitivityAiming_TrackBar.Location = new System.Drawing.Point(3, 131);
+            this.GamepadHorizontalSensitivityAiming_TrackBar.Maximum = 5;
+            this.GamepadHorizontalSensitivityAiming_TrackBar.Minimum = 1;
+            this.GamepadHorizontalSensitivityAiming_TrackBar.Name = "GamepadHorizontalSensitivityAiming_TrackBar";
+            this.GamepadHorizontalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.GamepadHorizontalSensitivityAiming_TrackBar.TabIndex = 26;
+            this.GamepadHorizontalSensitivityAiming_TrackBar.Value = 1;
+            // 
+            // GamepadVerticalSensitivityAiming_TrackBar
+            // 
+            this.GamepadVerticalSensitivityAiming_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadVerticalSensitivityAiming_TrackBar.Location = new System.Drawing.Point(3, 184);
+            this.GamepadVerticalSensitivityAiming_TrackBar.Maximum = 5;
+            this.GamepadVerticalSensitivityAiming_TrackBar.Minimum = 1;
+            this.GamepadVerticalSensitivityAiming_TrackBar.Name = "GamepadVerticalSensitivityAiming_TrackBar";
+            this.GamepadVerticalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.GamepadVerticalSensitivityAiming_TrackBar.TabIndex = 29;
+            this.GamepadVerticalSensitivityAiming_TrackBar.Value = 1;
+            // 
+            // ResetGamepadControls_Button
+            // 
+            this.ResetGamepadControls_Button.Location = new System.Drawing.Point(502, 355);
+            this.ResetGamepadControls_Button.Margin = new System.Windows.Forms.Padding(4);
+            this.ResetGamepadControls_Button.Name = "ResetGamepadControls_Button";
+            this.ResetGamepadControls_Button.Size = new System.Drawing.Size(100, 28);
+            this.ResetGamepadControls_Button.TabIndex = 74;
+            this.ResetGamepadControls_Button.Text = "Reset";
+            this.ResetGamepadControls_Button.UseVisualStyleBackColor = true;
+            this.ResetGamepadControls_Button.Click += new System.EventHandler(this.Reset_Button_Click);
+            // 
+            // ApplyGamepadControls_Button
+            // 
+            this.ApplyGamepadControls_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ApplyGamepadControls_Button.Location = new System.Drawing.Point(610, 355);
+            this.ApplyGamepadControls_Button.Margin = new System.Windows.Forms.Padding(4);
+            this.ApplyGamepadControls_Button.Name = "ApplyGamepadControls_Button";
+            this.ApplyGamepadControls_Button.Size = new System.Drawing.Size(100, 28);
+            this.ApplyGamepadControls_Button.TabIndex = 73;
+            this.ApplyGamepadControls_Button.Text = "Apply";
+            this.ApplyGamepadControls_Button.UseVisualStyleBackColor = true;
+            this.ApplyGamepadControls_Button.Click += new System.EventHandler(this.ApplyGamepadControls_Button_Click);
+            // 
+            // tabControlsMisc
+            // 
+            this.tabControlsMisc.BackColor = System.Drawing.SystemColors.Control;
+            this.tabControlsMisc.Controls.Add(this.MiscResetButton);
+            this.tabControlsMisc.Controls.Add(this.MiscApplyButton);
+            this.tabControlsMisc.Controls.Add(this.MiscAutomaticBoatCameraAngleCorrection_Box);
+            this.tabControlsMisc.Controls.Add(this.MiscAutomaticBoatCameraAngleCorrection_Label);
+            this.tabControlsMisc.Controls.Add(this.MiscDefaultCameraHeight_Value);
+            this.tabControlsMisc.Controls.Add(this.MiscDefaultCameraHeight_Label);
+            this.tabControlsMisc.Controls.Add(this.MiscSmartCombatCamera_Checkbox);
+            this.tabControlsMisc.Controls.Add(this.MiscAutomaticViewHeight_Checkbox);
+            this.tabControlsMisc.Controls.Add(this.MiscDefaultCameraHeight_TrackBar);
+            this.tabControlsMisc.Location = new System.Drawing.Point(4, 25);
+            this.tabControlsMisc.Name = "tabControlsMisc";
+            this.tabControlsMisc.Size = new System.Drawing.Size(721, 391);
+            this.tabControlsMisc.TabIndex = 9;
+            this.tabControlsMisc.Text = "Controls (Misc)";
+            // 
+            // MiscAutomaticBoatCameraAngleCorrection_Box
+            // 
+            this.MiscAutomaticBoatCameraAngleCorrection_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MiscAutomaticBoatCameraAngleCorrection_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MiscAutomaticBoatCameraAngleCorrection_Box.FormattingEnabled = true;
+            this.MiscAutomaticBoatCameraAngleCorrection_Box.Items.AddRange(new object[] {
+            "No",
+            "Yes",
+            "Not in combat"});
+            this.MiscAutomaticBoatCameraAngleCorrection_Box.Location = new System.Drawing.Point(592, 111);
+            this.MiscAutomaticBoatCameraAngleCorrection_Box.Name = "MiscAutomaticBoatCameraAngleCorrection_Box";
+            this.MiscAutomaticBoatCameraAngleCorrection_Box.Size = new System.Drawing.Size(121, 24);
+            this.MiscAutomaticBoatCameraAngleCorrection_Box.TabIndex = 26;
+            // 
+            // MiscAutomaticBoatCameraAngleCorrection_Label
+            // 
+            this.MiscAutomaticBoatCameraAngleCorrection_Label.AutoSize = true;
+            this.MiscAutomaticBoatCameraAngleCorrection_Label.Location = new System.Drawing.Point(5, 114);
+            this.MiscAutomaticBoatCameraAngleCorrection_Label.Name = "MiscAutomaticBoatCameraAngleCorrection_Label";
+            this.MiscAutomaticBoatCameraAngleCorrection_Label.Size = new System.Drawing.Size(250, 16);
+            this.MiscAutomaticBoatCameraAngleCorrection_Label.TabIndex = 25;
+            this.MiscAutomaticBoatCameraAngleCorrection_Label.Text = "Automatic Boat Camera Angle Correction";
+            // 
+            // MiscDefaultCameraHeight_Value
+            // 
+            this.MiscDefaultCameraHeight_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MiscDefaultCameraHeight_Value.AutoSize = true;
+            this.MiscDefaultCameraHeight_Value.Location = new System.Drawing.Point(686, 60);
+            this.MiscDefaultCameraHeight_Value.Name = "MiscDefaultCameraHeight_Value";
+            this.MiscDefaultCameraHeight_Value.Size = new System.Drawing.Size(18, 16);
+            this.MiscDefaultCameraHeight_Value.TabIndex = 24;
+            this.MiscDefaultCameraHeight_Value.Text = "-1";
+            // 
+            // MiscDefaultCameraHeight_Label
+            // 
+            this.MiscDefaultCameraHeight_Label.AutoSize = true;
+            this.MiscDefaultCameraHeight_Label.Location = new System.Drawing.Point(5, 60);
+            this.MiscDefaultCameraHeight_Label.Name = "MiscDefaultCameraHeight_Label";
+            this.MiscDefaultCameraHeight_Label.Size = new System.Drawing.Size(142, 16);
+            this.MiscDefaultCameraHeight_Label.TabIndex = 23;
+            this.MiscDefaultCameraHeight_Label.Text = "Default Camera Height";
+            // 
+            // MiscSmartCombatCamera_Checkbox
+            // 
+            this.MiscSmartCombatCamera_Checkbox.AutoSize = true;
+            this.MiscSmartCombatCamera_Checkbox.Location = new System.Drawing.Point(11, 37);
+            this.MiscSmartCombatCamera_Checkbox.Name = "MiscSmartCombatCamera_Checkbox";
+            this.MiscSmartCombatCamera_Checkbox.Size = new System.Drawing.Size(152, 20);
+            this.MiscSmartCombatCamera_Checkbox.TabIndex = 21;
+            this.MiscSmartCombatCamera_Checkbox.Text = "Smart Battle Camera";
+            this.MiscSmartCombatCamera_Checkbox.UseVisualStyleBackColor = true;
+            // 
+            // MiscAutomaticViewHeight_Checkbox
+            // 
+            this.MiscAutomaticViewHeight_Checkbox.AutoSize = true;
+            this.MiscAutomaticViewHeight_Checkbox.Location = new System.Drawing.Point(11, 11);
+            this.MiscAutomaticViewHeight_Checkbox.Name = "MiscAutomaticViewHeight_Checkbox";
+            this.MiscAutomaticViewHeight_Checkbox.Size = new System.Drawing.Size(162, 20);
+            this.MiscAutomaticViewHeight_Checkbox.TabIndex = 20;
+            this.MiscAutomaticViewHeight_Checkbox.Text = "Automatic View Height";
+            this.MiscAutomaticViewHeight_Checkbox.UseVisualStyleBackColor = true;
+            // 
+            // MiscDefaultCameraHeight_TrackBar
+            // 
+            this.MiscDefaultCameraHeight_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MiscDefaultCameraHeight_TrackBar.Location = new System.Drawing.Point(3, 79);
+            this.MiscDefaultCameraHeight_TrackBar.Maximum = 60;
+            this.MiscDefaultCameraHeight_TrackBar.Minimum = 45;
+            this.MiscDefaultCameraHeight_TrackBar.Name = "MiscDefaultCameraHeight_TrackBar";
+            this.MiscDefaultCameraHeight_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.MiscDefaultCameraHeight_TrackBar.TabIndex = 22;
+            this.MiscDefaultCameraHeight_TrackBar.Value = 45;
+            this.MiscDefaultCameraHeight_TrackBar.ValueChanged += new System.EventHandler(this.DefaultCameraHeight_TrackBar_ValueChanged);
+            // 
+            // MiscResetButton
+            // 
+            this.MiscResetButton.Location = new System.Drawing.Point(505, 359);
+            this.MiscResetButton.Margin = new System.Windows.Forms.Padding(4);
+            this.MiscResetButton.Name = "MiscResetButton";
+            this.MiscResetButton.Size = new System.Drawing.Size(100, 28);
+            this.MiscResetButton.TabIndex = 76;
+            this.MiscResetButton.Text = "Reset";
+            this.MiscResetButton.UseVisualStyleBackColor = true;
+            this.MiscResetButton.Click += new System.EventHandler(this.Reset_Button_Click);
+            // 
+            // MiscApplyButton
+            // 
+            this.MiscApplyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.MiscApplyButton.Location = new System.Drawing.Point(613, 359);
+            this.MiscApplyButton.Margin = new System.Windows.Forms.Padding(4);
+            this.MiscApplyButton.Name = "MiscApplyButton";
+            this.MiscApplyButton.Size = new System.Drawing.Size(100, 28);
+            this.MiscApplyButton.TabIndex = 75;
+            this.MiscApplyButton.Text = "Apply";
+            this.MiscApplyButton.UseVisualStyleBackColor = true;
+            this.MiscApplyButton.Click += new System.EventHandler(this.ApplyMiscControlsButton_Click);
             // 
             // MainWin
             // 
@@ -1770,11 +1989,12 @@
             this.splitContainerControls.ResumeLayout(false);
             this.tabControlsKeyboard.ResumeLayout(false);
             this.tabControlsKeyboard.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.HorizontalSensitivity_TrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.VerticalSensitivity_TrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HorizontalSensitivityAiming_TrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.VerticalSensitivityAiming_TrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DefaultCameraHeight_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KeyboardHorizontalSensitivity_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KeyboardVerticalSensitivity_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KeyboardHorizontalSensitivityAiming_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KeyboardVerticalSensitivityAiming_TrackBar)).EndInit();
+            this.tabControlsGamepad.ResumeLayout(false);
+            this.tabControlsGamepad.PerformLayout();
             this.tabAudio.ResumeLayout(false);
             this.tabAudio.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVoiceVolume)).EndInit();
@@ -1787,6 +2007,13 @@
             this.tabLog.PerformLayout();
             this.tabRawConfig.ResumeLayout(false);
             this.tabRawConfig.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GamepadHorizontalSensitivity_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GamepadVerticalSensitivity_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GamepadHorizontalSensitivityAiming_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GamepadVerticalSensitivityAiming_TrackBar)).EndInit();
+            this.tabControlsMisc.ResumeLayout(false);
+            this.tabControlsMisc.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MiscDefaultCameraHeight_TrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1903,29 +2130,46 @@
         private System.Windows.Forms.Label noControlsConfiguredLabel;
         private System.Windows.Forms.TabPage tabControlsKeyboard;
         private System.Windows.Forms.TabPage tabControlsGamepad;
-        private System.Windows.Forms.ComboBox AutomaticBoatCameraAngleCorrection_Box;
-        private System.Windows.Forms.Label AutomaticBoatCameraAngleCorrection_Label;
-        private System.Windows.Forms.Label DefaultCameraHeight_Value;
-        private System.Windows.Forms.Label DefaultCameraHeight_Label;
-        private System.Windows.Forms.Label VerticalSensitivity_Label;
-        private System.Windows.Forms.Label VerticalSensitivity_Value;
-        private System.Windows.Forms.CheckBox SmartCombatCamera_Checkbox;
-        private System.Windows.Forms.Label HorizontalSensitivity_Label;
-        private System.Windows.Forms.CheckBox AutomaticViewHeight_Checkbox;
-        private System.Windows.Forms.Label HorizontalSensitivity_Value;
-        private System.Windows.Forms.Label VerticalSensitivityAiming_Value;
-        private System.Windows.Forms.Label VerticalSensitivityAiming_Label;
-        private System.Windows.Forms.Label HorizontalSensitivityAiming_Label;
-        private System.Windows.Forms.Label HorizontalSensitivityAiming_Value;
-        private System.Windows.Forms.TrackBar HorizontalSensitivity_TrackBar;
-        private System.Windows.Forms.TrackBar VerticalSensitivity_TrackBar;
-        private System.Windows.Forms.TrackBar HorizontalSensitivityAiming_TrackBar;
-        private System.Windows.Forms.TrackBar VerticalSensitivityAiming_TrackBar;
-        private System.Windows.Forms.TrackBar DefaultCameraHeight_TrackBar;
+        private System.Windows.Forms.Label KeyboardVerticalSensitivity_Label;
+        private System.Windows.Forms.Label KeyboardVerticalSensitivity_Value;
+        private System.Windows.Forms.Label KeyboardHorizontalSensitivity_Label;
+        private System.Windows.Forms.Label KeyboardHorizontalSensitivity_Value;
+        private System.Windows.Forms.Label KeyboardVerticalSensitivityAiming_Value;
+        private System.Windows.Forms.Label KeyboardVerticalSensitivityAiming_Label;
+        private System.Windows.Forms.Label KeyboardHorizontalSensitivityAiming_Label;
+        private System.Windows.Forms.Label KeyboardHorizontalSensitivityAiming_Value;
+        private System.Windows.Forms.TrackBar KeyboardHorizontalSensitivity_TrackBar;
+        private System.Windows.Forms.TrackBar KeyboardVerticalSensitivity_TrackBar;
+        private System.Windows.Forms.TrackBar KeyboardHorizontalSensitivityAiming_TrackBar;
+        private System.Windows.Forms.TrackBar KeyboardVerticalSensitivityAiming_TrackBar;
         private System.Windows.Forms.Button ApplyKeyboardControlsButton;
         private System.Windows.Forms.Button ControlsKeyboardResetButton;
         private System.Windows.Forms.Button AudioResetButton;
         private System.Windows.Forms.Button LanguageResetButton;
+        private System.Windows.Forms.Label GamepadVerticalSensitivity_Label;
+        private System.Windows.Forms.Label GamepadVerticalSensitivity_Value;
+        private System.Windows.Forms.Label GamepadHorizontalSensitivity_Label;
+        private System.Windows.Forms.Label GamepadHorizontalSensitivity_Value;
+        private System.Windows.Forms.Label GamepadVerticalSensitivityAiming_Value;
+        private System.Windows.Forms.Label GamepadVerticalSensitivityAiming_Label;
+        private System.Windows.Forms.Label GamepadHorizontalSensitivityAiming_Label;
+        private System.Windows.Forms.Label GamepadHorizontalSensitivityAiming_Value;
+        private System.Windows.Forms.TrackBar GamepadHorizontalSensitivity_TrackBar;
+        private System.Windows.Forms.TrackBar GamepadVerticalSensitivity_TrackBar;
+        private System.Windows.Forms.TrackBar GamepadHorizontalSensitivityAiming_TrackBar;
+        private System.Windows.Forms.TrackBar GamepadVerticalSensitivityAiming_TrackBar;
+        private System.Windows.Forms.Button ResetGamepadControls_Button;
+        private System.Windows.Forms.Button ApplyGamepadControls_Button;
+        private System.Windows.Forms.TabPage tabControlsMisc;
+        private System.Windows.Forms.ComboBox MiscAutomaticBoatCameraAngleCorrection_Box;
+        private System.Windows.Forms.Label MiscAutomaticBoatCameraAngleCorrection_Label;
+        private System.Windows.Forms.Label MiscDefaultCameraHeight_Value;
+        private System.Windows.Forms.Label MiscDefaultCameraHeight_Label;
+        private System.Windows.Forms.CheckBox MiscSmartCombatCamera_Checkbox;
+        private System.Windows.Forms.CheckBox MiscAutomaticViewHeight_Checkbox;
+        private System.Windows.Forms.TrackBar MiscDefaultCameraHeight_TrackBar;
+        private System.Windows.Forms.Button MiscResetButton;
+        private System.Windows.Forms.Button MiscApplyButton;
     }
 }
 

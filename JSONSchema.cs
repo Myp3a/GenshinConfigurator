@@ -334,6 +334,14 @@ namespace GenshinConfigurator
             public int? HorizontalSensitivity { get; set; }
             public int? VerticalSensitivityAiming { get; set; }
             public int? HorizontalSensitivityAiming { get; set; }
+        }
+
+        public class ControlsGamepadConfig
+        {
+
+        }
+        public class ControlsMiscConfig
+        {
             public bool? AutomaticViewHeight { get; set; }
             public bool? SmartCombatCamera { get; set; }
             public double? DefaultCameraHeight { get; set; }
@@ -346,6 +354,8 @@ namespace GenshinConfigurator
             public AudioConfig Audio { get; set; }
             public LanguageConfig Language { get; set; }
             public ControlsKeyboardConfig ControlsKeyboard { get; set; }
+            public ControlsGamepadConfig ControlsGamepad { get; set; }
+            public ControlsMiscConfig ControlsMisc { get; set; }
         }
     }
 }
