@@ -1215,7 +1215,7 @@
             this.KeyboardHorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(710, 56);
             this.KeyboardHorizontalSensitivity_TrackBar.TabIndex = 0;
             this.KeyboardHorizontalSensitivity_TrackBar.Value = 1;
-            this.KeyboardHorizontalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.HorizontalSensitivity_TrackBar_ValueChanged);
+            this.KeyboardHorizontalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.KeyboardHorizontalSensitivity_TrackBar_ValueChanged);
             // 
             // KeyboardVerticalSensitivity_TrackBar
             // 
@@ -1228,7 +1228,7 @@
             this.KeyboardVerticalSensitivity_TrackBar.Size = new System.Drawing.Size(710, 56);
             this.KeyboardVerticalSensitivity_TrackBar.TabIndex = 1;
             this.KeyboardVerticalSensitivity_TrackBar.Value = 1;
-            this.KeyboardVerticalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.VerticalSensitivity_TrackBar_ValueChanged);
+            this.KeyboardVerticalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.KeyboardVerticalSensitivity_TrackBar_ValueChanged);
             // 
             // KeyboardHorizontalSensitivityAiming_TrackBar
             // 
@@ -1241,7 +1241,7 @@
             this.KeyboardHorizontalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(710, 56);
             this.KeyboardHorizontalSensitivityAiming_TrackBar.TabIndex = 6;
             this.KeyboardHorizontalSensitivityAiming_TrackBar.Value = 1;
-            this.KeyboardHorizontalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.HorizontalSensitivityAiming_TrackBar_ValueChanged);
+            this.KeyboardHorizontalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.KeyboardHorizontalSensitivityAiming_TrackBar_ValueChanged);
             // 
             // KeyboardVerticalSensitivityAiming_TrackBar
             // 
@@ -1254,7 +1254,7 @@
             this.KeyboardVerticalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(710, 56);
             this.KeyboardVerticalSensitivityAiming_TrackBar.TabIndex = 9;
             this.KeyboardVerticalSensitivityAiming_TrackBar.Value = 1;
-            this.KeyboardVerticalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.VerticalSensitivityAiming_TrackBar_ValueChanged);
+            this.KeyboardVerticalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.KeyboardVerticalSensitivityAiming_TrackBar_ValueChanged);
             // 
             // tabControlsGamepad
             // 
@@ -1780,6 +1780,7 @@
             this.GamepadHorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(710, 56);
             this.GamepadHorizontalSensitivity_TrackBar.TabIndex = 20;
             this.GamepadHorizontalSensitivity_TrackBar.Value = 1;
+            this.GamepadHorizontalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.GamepadHorizontalSensitivity_TrackBar_ValueChanged);
             // 
             // GamepadVerticalSensitivity_TrackBar
             // 
@@ -1792,6 +1793,7 @@
             this.GamepadVerticalSensitivity_TrackBar.Size = new System.Drawing.Size(710, 56);
             this.GamepadVerticalSensitivity_TrackBar.TabIndex = 21;
             this.GamepadVerticalSensitivity_TrackBar.Value = 1;
+            this.GamepadVerticalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.GamepadVerticalSensitivity_TrackBar_ValueChanged);
             // 
             // GamepadHorizontalSensitivityAiming_TrackBar
             // 
@@ -1804,6 +1806,7 @@
             this.GamepadHorizontalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(710, 56);
             this.GamepadHorizontalSensitivityAiming_TrackBar.TabIndex = 26;
             this.GamepadHorizontalSensitivityAiming_TrackBar.Value = 1;
+            this.GamepadHorizontalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.GamepadHorizontalSensitivityAiming_TrackBar_ValueChanged);
             // 
             // GamepadVerticalSensitivityAiming_TrackBar
             // 
@@ -1816,6 +1819,7 @@
             this.GamepadVerticalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(710, 56);
             this.GamepadVerticalSensitivityAiming_TrackBar.TabIndex = 29;
             this.GamepadVerticalSensitivityAiming_TrackBar.Value = 1;
+            this.GamepadVerticalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.GamepadVerticalSensitivityAiming_TrackBar_ValueChanged);
             // 
             // ResetGamepadControls_Button
             // 

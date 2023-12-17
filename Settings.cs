@@ -18,6 +18,7 @@ namespace GenshinConfigurator
         public LanguageSettings Language;
         public Keybindings Keybindings;
         public ControlsKeyboardSettings ControlsKeyboard;
+        public ControlsGamepadSettings ControlsGamepad;
         public ControlsMiscSettings ControlsMisc;
         MainJSON data;
         public bool controlsLoaded, graphicsLoaded, graphicsValid, inputLoaded;
@@ -51,6 +52,7 @@ namespace GenshinConfigurator
             this.Keybindings = new Keybindings(data);
             this.Resolution = new ResolutionSettings();
             this.ControlsKeyboard = new ControlsKeyboardSettings(data);
+            this.ControlsGamepad = new ControlsGamepadSettings(data);
             this.ControlsMisc = new ControlsMiscSettings(data);
         }
 
@@ -72,6 +74,7 @@ namespace GenshinConfigurator
             this.data = Graphics.Apply(data);
             this.data = Language.Apply(data);
             this.data = ControlsKeyboard.Apply(data);
+            this.data = ControlsGamepad.Apply(data);
             this.data = ControlsMisc.Apply(data);
             Resolution.Apply();
         }
@@ -85,6 +88,7 @@ namespace GenshinConfigurator
                 Audio = Audio.ToConfig(),
                 Language = Language.ToConfig(),
                 ControlsKeyboard = ControlsKeyboard.ToConfig(),
+                ControlsGamepad = ControlsGamepad.ToConfig(),
                 ControlsMisc = ControlsMisc.ToConfig(),
             };
             string result = JsonConvert.SerializeObject(file);
@@ -119,6 +123,10 @@ namespace GenshinConfigurator
             if (config.ControlsKeyboard != null)
             {
                 ControlsKeyboard.FromConfig(config.ControlsKeyboard);
+            }
+            if (config.ControlsGamepad != null)
+            {
+                ControlsGamepad.FromConfig(config.ControlsGamepad);
             }
             if (config.ControlsMisc != null)
             {
@@ -584,6 +592,61 @@ namespace GenshinConfigurator
         public ControlsKeyboardConfig ToConfig()
         {
             ControlsKeyboardConfig config = new ControlsKeyboardConfig
+            {
+                VerticalSensitivity = this.vertical_sensitivity,
+                HorizontalSensitivity = this.horizontal_sensitivity,
+                VerticalSensitivityAiming = this.vertical_sensitivity_aiming,
+                HorizontalSensitivityAiming = this.horizontal_sensitivity_aiming,
+            };
+            return config;
+        }
+    }
+
+    internal class ControlsGamepadSettings
+    {
+        public int vertical_sensitivity;
+        public int horizontal_sensitivity;
+        public int vertical_sensitivity_aiming;
+        public int horizontal_sensitivity_aiming;
+
+        public ControlsGamepadSettings(MainJSON data)
+        {
+            Load(data);
+        }
+
+        public ControlsGamepadSettings(ControlsGamepadConfig config)
+        {
+            FromConfig(config);
+        }
+
+        public void Load(MainJSON data)
+        {
+            this.vertical_sensitivity = data.inputData.joypadSenseIndexY;
+            this.horizontal_sensitivity = data.inputData.joypadSenseIndex;
+            this.vertical_sensitivity_aiming = data.inputData.joypadFocusSenseIndexY;
+            this.horizontal_sensitivity_aiming = data.inputData.joypadFocusSenseIndex;
+        }
+
+        public MainJSON Apply(MainJSON data)
+        {
+            data.inputData.joypadSenseIndexY = this.vertical_sensitivity;
+            data.inputData.joypadSenseIndex = this.horizontal_sensitivity;
+            data.inputData.joypadFocusSenseIndexY = this.vertical_sensitivity_aiming;
+            data.inputData.joypadFocusSenseIndex = this.horizontal_sensitivity_aiming;
+            return data;
+        }
+
+        public void FromConfig(ControlsGamepadConfig config)
+        {
+            if (config.VerticalSensitivity != null) this.vertical_sensitivity = (int)config.VerticalSensitivity;
+            if (config.HorizontalSensitivity != null) this.horizontal_sensitivity = (int)config.HorizontalSensitivity;
+            if (config.VerticalSensitivityAiming != null) this.vertical_sensitivity_aiming = (int)config.VerticalSensitivityAiming;
+            if (config.HorizontalSensitivityAiming != null) this.horizontal_sensitivity_aiming = (int)config.HorizontalSensitivityAiming;
+        }
+
+        public ControlsGamepadConfig ToConfig()
+        {
+            ControlsGamepadConfig config = new ControlsGamepadConfig
             {
                 VerticalSensitivity = this.vertical_sensitivity,
                 HorizontalSensitivity = this.horizontal_sensitivity,

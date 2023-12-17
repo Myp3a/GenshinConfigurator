@@ -182,6 +182,7 @@ namespace GenshinConfigurator
             Reset_Audio();
             Reset_Language();
             Reset_Keyboard_Controls();
+            Reset_Gamepad_Controls();
             Reset_Misc_Controls();
             if (Settings.graphicsValid)
             {
@@ -1206,22 +1207,22 @@ namespace GenshinConfigurator
         // End of raw config functions
 
         // Keyboard controls functions
-        private void HorizontalSensitivity_TrackBar_ValueChanged(object sender, EventArgs e)
+        private void KeyboardHorizontalSensitivity_TrackBar_ValueChanged(object sender, EventArgs e)
         {
             KeyboardHorizontalSensitivity_Value.Text = KeyboardHorizontalSensitivity_TrackBar.Value.ToString();
         }
 
-        private void VerticalSensitivity_TrackBar_ValueChanged(object sender, EventArgs e)
+        private void KeyboardVerticalSensitivity_TrackBar_ValueChanged(object sender, EventArgs e)
         {
             KeyboardVerticalSensitivity_Value.Text = KeyboardVerticalSensitivity_TrackBar.Value.ToString();
         }
 
-        private void HorizontalSensitivityAiming_TrackBar_ValueChanged(object sender, EventArgs e)
+        private void KeyboardHorizontalSensitivityAiming_TrackBar_ValueChanged(object sender, EventArgs e)
         {
             KeyboardHorizontalSensitivityAiming_Value.Text = KeyboardHorizontalSensitivityAiming_TrackBar.Value.ToString();
         }
 
-        private void VerticalSensitivityAiming_TrackBar_ValueChanged(object sender, EventArgs e)
+        private void KeyboardVerticalSensitivityAiming_TrackBar_ValueChanged(object sender, EventArgs e)
         {
             KeyboardVerticalSensitivityAiming_Value.Text = KeyboardVerticalSensitivityAiming_TrackBar.Value.ToString();
         }
@@ -1249,9 +1250,44 @@ namespace GenshinConfigurator
         // End of keyboard control functions
 
         // Gamepad controls functions
+        private void GamepadHorizontalSensitivity_TrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            GamepadHorizontalSensitivity_Value.Text = GamepadHorizontalSensitivity_TrackBar.Value.ToString();
+        }
+
+        private void GamepadVerticalSensitivity_TrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            GamepadVerticalSensitivity_Value.Text = GamepadVerticalSensitivity_TrackBar.Value.ToString();
+        }
+
+        private void GamepadHorizontalSensitivityAiming_TrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            GamepadHorizontalSensitivityAiming_Value.Text = GamepadHorizontalSensitivityAiming_TrackBar.Value.ToString();
+        }
+
+        private void GamepadVerticalSensitivityAiming_TrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            GamepadVerticalSensitivityAiming_Value.Text = GamepadVerticalSensitivityAiming_TrackBar.Value.ToString();
+        }
+
+        private void Reset_Gamepad_Controls()
+        {
+            GamepadHorizontalSensitivity_TrackBar.Value = Settings.ControlsGamepad.horizontal_sensitivity + 1;
+            GamepadVerticalSensitivity_TrackBar.Value = Settings.ControlsGamepad.vertical_sensitivity + 1;
+            GamepadHorizontalSensitivityAiming_TrackBar.Value = Settings.ControlsGamepad.horizontal_sensitivity_aiming + 1;
+            GamepadVerticalSensitivityAiming_TrackBar.Value = Settings.ControlsGamepad.vertical_sensitivity_aiming + 1;
+        }
         private void ApplyGamepadControls_Button_Click(object sender, EventArgs e)
         {
-
+            Settings.ControlsGamepad.horizontal_sensitivity = GamepadHorizontalSensitivity_TrackBar.Value - 1;
+            Settings.ControlsGamepad.vertical_sensitivity = GamepadVerticalSensitivity_TrackBar.Value - 1;
+            Settings.ControlsGamepad.horizontal_sensitivity_aiming = GamepadHorizontalSensitivityAiming_TrackBar.Value - 1;
+            Settings.ControlsGamepad.vertical_sensitivity_aiming = GamepadVerticalSensitivityAiming_TrackBar.Value - 1;
+            Settings.Apply();
+            Settings.ToReg();
+            Status_Label.Text = "Saved config to registry.";
+            Status_Reset_Timer.Enabled = false;
+            Status_Reset_Timer.Enabled = true;
         }
         // End of gamepad controls functions
 

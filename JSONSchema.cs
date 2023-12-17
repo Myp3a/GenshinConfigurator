@@ -338,7 +338,10 @@ namespace GenshinConfigurator
 
         public class ControlsGamepadConfig
         {
-
+            public int? VerticalSensitivity { get; set; }
+            public int? HorizontalSensitivity { get; set; }
+            public int? VerticalSensitivityAiming { get; set; }
+            public int? HorizontalSensitivityAiming { get; set; }
         }
         public class ControlsMiscConfig
         {
