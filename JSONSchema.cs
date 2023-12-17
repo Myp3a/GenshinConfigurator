@@ -112,7 +112,7 @@ namespace GenshinConfigurator
                                 ds4c.LoadFromString(xml_string);
                                 controllers.Add(ds4c);
                             }
-                            else if (xml_doc.Root.Attribute("hardwareName").Value == "Wireless Controller" && xml_doc.Descendants(ns + "hardwareGuid").First().Value == "00000000-0000-0000-0000-000000000000")
+                            else if (xml_doc.Root.Attribute("hardwareName") != null && xml_doc.Root.Attribute("hardwareName").Value == "Wireless Controller" && xml_doc.Descendants(ns + "hardwareGuid").First().Value == "00000000-0000-0000-0000-000000000000")
                             {
                                 DualSenseController dsc = new DualSenseController();
                                 dsc.LoadFromString(xml_string);
@@ -184,11 +184,18 @@ namespace GenshinConfigurator
             public bool usingNewVibrationSetting { get; set; }
             public bool motionBlur { get; set; }
             public bool gyroAiming { get; set; }
+            public int gyroHorMoveSpeedIndex { get; set; }
+            public int gyroVerMoveSpeedIndex { get; set; }
+            public bool gyroHorReverse { get; set; }
+            public bool gyrVerReverse { get; set; }
+            public int gyroRotateType { get; set; }
+            public bool gyroExcludeRightStickVerInput { get; set; }
             public bool firstHDRSetting { get; set; }
             public double maxLuminosity { get; set; }
             public double uiPaperWhite { get; set; }
             public double scenePaperWhite { get; set; }
             public double gammaValue { get; set; }
+            public bool enableHDR { get; set; }
             public List<string> _overrideControllerMapKeyList { get; set; }
 
             [JsonProperty(PropertyName = "_overrideControllerMapValueList")]
@@ -201,10 +208,14 @@ namespace GenshinConfigurator
             public bool rewiredEnableEDS { get; set; }
             public bool disableRewiredDelayInit { get; set; }
             public bool disableRewiredInitProtection { get; set; }
+            public List<string> conflictKeyBindingElementId { get; set; }
+            public List<string> conflictKeyBindingActionId { get; set; }
             public int lastSeenPreDownloadTime { get; set; }
+            public string lastSeenSettingResourceTabScriptVersion { get; set; }
             public bool enableEffectAssembleInEditor { get; set; }
             public bool forceDisableQuestResourceManagement { get; set; }
             public bool needReportQuestResourceDeleteStatusFiles { get; set; }
+            public bool disableTeamPageBackgroundSwitch { get; set; }
             public bool mtrCached { get; set; }
             public bool mtrIsOpen { get; set; }
             public int mtrMaxTTL { get; set; }
@@ -231,6 +242,7 @@ namespace GenshinConfigurator
             public List<object> urlCheckBanReasons { get; set; }
             public bool mtrUseOldWinVersion { get; set; }
             public string greyTestDeviceUniqueId { get; set; }
+            public bool muteAudioOnAppMinimized { get; set; }
         }
 
         public class ResolutionConfig
