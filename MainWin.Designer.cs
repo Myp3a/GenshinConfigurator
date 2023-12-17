@@ -123,6 +123,26 @@
             this.KeyboardHorizontalSensitivityAiming_TrackBar = new System.Windows.Forms.TrackBar();
             this.KeyboardVerticalSensitivityAiming_TrackBar = new System.Windows.Forms.TrackBar();
             this.tabControlsGamepad = new System.Windows.Forms.TabPage();
+            this.GamepadVibrationLevel_Value = new System.Windows.Forms.Label();
+            this.GamepadGradedVibration_Box = new System.Windows.Forms.ComboBox();
+            this.GamepadVibrationLevel_Label = new System.Windows.Forms.Label();
+            this.GamepadGradedVibration_Label = new System.Windows.Forms.Label();
+            this.GamepadGyroInvertVerticalAxis_Checkbox = new System.Windows.Forms.CheckBox();
+            this.GamepadGyroInvertHorizontalAxis_Checkbox = new System.Windows.Forms.CheckBox();
+            this.GamepadGyroDisableVerticalStick_Checkbox = new System.Windows.Forms.CheckBox();
+            this.GamepadGyroVerticalSensitivity_Label = new System.Windows.Forms.Label();
+            this.GamepadGyroVerticalSensitivity_Value = new System.Windows.Forms.Label();
+            this.GamepadGyroHorizontalSensitivity_Label = new System.Windows.Forms.Label();
+            this.GamepadGyroHorizontalSensitivity_Value = new System.Windows.Forms.Label();
+            this.GamepadGyroHorizontalSensitivity_TrackBar = new System.Windows.Forms.TrackBar();
+            this.GamepadGyroVerticalSensitivity_TrackBar = new System.Windows.Forms.TrackBar();
+            this.GamepadGyroAxis_Box = new System.Windows.Forms.ComboBox();
+            this.GamepadGyroAxis_Label = new System.Windows.Forms.Label();
+            this.GamepadGyroAiming_Checkbox = new System.Windows.Forms.CheckBox();
+            this.GamepadInvertVerticalAxisAiming_Checkbox = new System.Windows.Forms.CheckBox();
+            this.GamepadInvertHorizontalAxisAiming_Checkbox = new System.Windows.Forms.CheckBox();
+            this.GamepadInvertVerticalAxis_Checkbox = new System.Windows.Forms.CheckBox();
+            this.GamepadInvertHorizontalAxis_Checkbox = new System.Windows.Forms.CheckBox();
             this.ResetGamepadControls_Button = new System.Windows.Forms.Button();
             this.ApplyGamepadControls_Button = new System.Windows.Forms.Button();
             this.GamepadVerticalSensitivity_Label = new System.Windows.Forms.Label();
@@ -137,6 +157,7 @@
             this.GamepadVerticalSensitivity_TrackBar = new System.Windows.Forms.TrackBar();
             this.GamepadHorizontalSensitivityAiming_TrackBar = new System.Windows.Forms.TrackBar();
             this.GamepadVerticalSensitivityAiming_TrackBar = new System.Windows.Forms.TrackBar();
+            this.GamepadVibrationLevel_TrackBar = new System.Windows.Forms.TrackBar();
             this.tabControlsMisc = new System.Windows.Forms.TabPage();
             this.MiscResetButton = new System.Windows.Forms.Button();
             this.MiscApplyButton = new System.Windows.Forms.Button();
@@ -180,27 +201,6 @@
             this.textBox_Config_Raw = new System.Windows.Forms.TextBox();
             this.Load_Button_Raw = new System.Windows.Forms.Button();
             this.Save_Button_Raw = new System.Windows.Forms.Button();
-            this.GamepadInvertHorizontalAxis_Checkbox = new System.Windows.Forms.CheckBox();
-            this.GamepadInvertVerticalAxis_Checkbox = new System.Windows.Forms.CheckBox();
-            this.GamepadInvertHorizontalAxisAiming_Checkbox = new System.Windows.Forms.CheckBox();
-            this.GamepadInvertVerticalAxisAiming_Checkbox = new System.Windows.Forms.CheckBox();
-            this.GamepadGyroAiming_Checkbox = new System.Windows.Forms.CheckBox();
-            this.GamepadGyroAxis_Label = new System.Windows.Forms.Label();
-            this.GamepadGyroAxis_Box = new System.Windows.Forms.ComboBox();
-            this.GamepadGyroVerticalSensitivity_Label = new System.Windows.Forms.Label();
-            this.GamepadGyroVerticalSensitivity_Value = new System.Windows.Forms.Label();
-            this.GamepadGyroHorizontalSensitivity_Label = new System.Windows.Forms.Label();
-            this.GamepadGyroHorizontalSensitivity_Value = new System.Windows.Forms.Label();
-            this.GamepadGyroHorizontalSensitivity_TrackBar = new System.Windows.Forms.TrackBar();
-            this.GamepadGyroVerticalSensitivity_TrackBar = new System.Windows.Forms.TrackBar();
-            this.GamepadGyroDisableVerticalStick_Checkbox = new System.Windows.Forms.CheckBox();
-            this.GamepadGyroInvertHorizontalAxis_Checkbox = new System.Windows.Forms.CheckBox();
-            this.GamepadGyroInvertVerticalAxis_Checkbox = new System.Windows.Forms.CheckBox();
-            this.GamepadGradedVibration_Label = new System.Windows.Forms.Label();
-            this.GamepadVibrationLevel_Label = new System.Windows.Forms.Label();
-            this.GamepadGradedVibration_Box = new System.Windows.Forms.ComboBox();
-            this.GamepadVibrationLevel_Value = new System.Windows.Forms.Label();
-            this.GamepadVibrationLevel_TrackBar = new System.Windows.Forms.TrackBar();
             this.TopBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.settingsTabs.SuspendLayout();
@@ -217,10 +217,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.KeyboardHorizontalSensitivityAiming_TrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.KeyboardVerticalSensitivityAiming_TrackBar)).BeginInit();
             this.tabControlsGamepad.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GamepadGyroHorizontalSensitivity_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GamepadGyroVerticalSensitivity_TrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GamepadHorizontalSensitivity_TrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GamepadVerticalSensitivity_TrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GamepadHorizontalSensitivityAiming_TrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GamepadVerticalSensitivityAiming_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GamepadVibrationLevel_TrackBar)).BeginInit();
             this.tabControlsMisc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MiscDefaultCameraHeight_TrackBar)).BeginInit();
             this.tabAudio.SuspendLayout();
@@ -231,9 +234,6 @@
             this.tabLanguage.SuspendLayout();
             this.tabLog.SuspendLayout();
             this.tabRawConfig.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GamepadGyroHorizontalSensitivity_TrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GamepadGyroVerticalSensitivity_TrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GamepadVibrationLevel_TrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // TopBar
@@ -425,7 +425,7 @@
             this.tabGraphics.Margin = new System.Windows.Forms.Padding(4);
             this.tabGraphics.Name = "tabGraphics";
             this.tabGraphics.Padding = new System.Windows.Forms.Padding(4);
-            this.tabGraphics.Size = new System.Drawing.Size(721, 391);
+            this.tabGraphics.Size = new System.Drawing.Size(799, 391);
             this.tabGraphics.TabIndex = 0;
             this.tabGraphics.Text = "Graphics";
             // 
@@ -878,7 +878,7 @@
             this.tabKeybindings.Margin = new System.Windows.Forms.Padding(4);
             this.tabKeybindings.Name = "tabKeybindings";
             this.tabKeybindings.Padding = new System.Windows.Forms.Padding(4);
-            this.tabKeybindings.Size = new System.Drawing.Size(742, 391);
+            this.tabKeybindings.Size = new System.Drawing.Size(799, 391);
             this.tabKeybindings.TabIndex = 3;
             this.tabKeybindings.Text = "Keybindings";
             // 
@@ -915,7 +915,7 @@
             this.splitContainerControls.Panel2.Controls.Add(this.checkBoxCtrlTemplate);
             this.splitContainerControls.Panel2.Controls.Add(this.gamepadButtonTemplate);
             this.splitContainerControls.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.Paint_BG);
-            this.splitContainerControls.Size = new System.Drawing.Size(734, 383);
+            this.splitContainerControls.Size = new System.Drawing.Size(791, 383);
             this.splitContainerControls.SplitterDistance = 36;
             this.splitContainerControls.SplitterWidth = 5;
             this.splitContainerControls.TabIndex = 8;
@@ -923,7 +923,7 @@
             // applyControlsButton
             // 
             this.applyControlsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.applyControlsButton.Location = new System.Drawing.Point(625, 6);
+            this.applyControlsButton.Location = new System.Drawing.Point(682, 6);
             this.applyControlsButton.Margin = new System.Windows.Forms.Padding(4);
             this.applyControlsButton.Name = "applyControlsButton";
             this.applyControlsButton.Size = new System.Drawing.Size(100, 28);
@@ -947,7 +947,7 @@
             this.devicesList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devicesList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.devicesList.FormattingEnabled = true;
-            this.devicesList.Location = new System.Drawing.Point(236, 7);
+            this.devicesList.Location = new System.Drawing.Point(293, 7);
             this.devicesList.Margin = new System.Windows.Forms.Padding(4);
             this.devicesList.Name = "devicesList";
             this.devicesList.Size = new System.Drawing.Size(380, 24);
@@ -982,7 +982,7 @@
             // 
             this.buttonKeybindRemoveTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonKeybindRemoveTemplate.Enabled = false;
-            this.buttonKeybindRemoveTemplate.Location = new System.Drawing.Point(515, 5);
+            this.buttonKeybindRemoveTemplate.Location = new System.Drawing.Point(572, 5);
             this.buttonKeybindRemoveTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.buttonKeybindRemoveTemplate.Name = "buttonKeybindRemoveTemplate";
             this.buttonKeybindRemoveTemplate.Size = new System.Drawing.Size(31, 28);
@@ -995,7 +995,7 @@
             // 
             this.buttonKeybindingAddTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonKeybindingAddTemplate.Enabled = false;
-            this.buttonKeybindingAddTemplate.Location = new System.Drawing.Point(803, 5);
+            this.buttonKeybindingAddTemplate.Location = new System.Drawing.Point(860, 5);
             this.buttonKeybindingAddTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.buttonKeybindingAddTemplate.Name = "buttonKeybindingAddTemplate";
             this.buttonKeybindingAddTemplate.Size = new System.Drawing.Size(100, 28);
@@ -1008,7 +1008,7 @@
             // 
             this.gamepadAxisInvertTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.gamepadAxisInvertTemplate.AutoSize = true;
-            this.gamepadAxisInvertTemplate.Location = new System.Drawing.Point(673, 7);
+            this.gamepadAxisInvertTemplate.Location = new System.Drawing.Point(730, 7);
             this.gamepadAxisInvertTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.gamepadAxisInvertTemplate.Name = "gamepadAxisInvertTemplate";
             this.gamepadAxisInvertTemplate.Size = new System.Drawing.Size(61, 20);
@@ -1023,7 +1023,7 @@
             this.gamepadAxisTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gamepadAxisTemplate.Enabled = false;
             this.gamepadAxisTemplate.FormattingEnabled = true;
-            this.gamepadAxisTemplate.Location = new System.Drawing.Point(742, 6);
+            this.gamepadAxisTemplate.Location = new System.Drawing.Point(799, 6);
             this.gamepadAxisTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.gamepadAxisTemplate.Name = "gamepadAxisTemplate";
             this.gamepadAxisTemplate.Size = new System.Drawing.Size(160, 24);
@@ -1034,7 +1034,7 @@
             // 
             this.inputButtonTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.inputButtonTemplate.Enabled = false;
-            this.inputButtonTemplate.Location = new System.Drawing.Point(554, 6);
+            this.inputButtonTemplate.Location = new System.Drawing.Point(611, 6);
             this.inputButtonTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.inputButtonTemplate.Name = "inputButtonTemplate";
             this.inputButtonTemplate.Size = new System.Drawing.Size(156, 22);
@@ -1055,7 +1055,7 @@
             // buttonKeyTemplate
             // 
             this.buttonKeyTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonKeyTemplate.Location = new System.Drawing.Point(554, 4);
+            this.buttonKeyTemplate.Location = new System.Drawing.Point(611, 4);
             this.buttonKeyTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.buttonKeyTemplate.Name = "buttonKeyTemplate";
             this.buttonKeyTemplate.Size = new System.Drawing.Size(157, 28);
@@ -1068,7 +1068,7 @@
             // 
             this.checkBoxAltTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxAltTemplate.AutoSize = true;
-            this.checkBoxAltTemplate.Location = new System.Drawing.Point(860, 7);
+            this.checkBoxAltTemplate.Location = new System.Drawing.Point(917, 7);
             this.checkBoxAltTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxAltTemplate.Name = "checkBoxAltTemplate";
             this.checkBoxAltTemplate.Size = new System.Drawing.Size(44, 20);
@@ -1081,7 +1081,7 @@
             // 
             this.checkBoxShiftTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxShiftTemplate.AutoSize = true;
-            this.checkBoxShiftTemplate.Location = new System.Drawing.Point(791, 7);
+            this.checkBoxShiftTemplate.Location = new System.Drawing.Point(848, 7);
             this.checkBoxShiftTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxShiftTemplate.Name = "checkBoxShiftTemplate";
             this.checkBoxShiftTemplate.Size = new System.Drawing.Size(54, 20);
@@ -1094,7 +1094,7 @@
             // 
             this.checkBoxCtrlTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxCtrlTemplate.AutoSize = true;
-            this.checkBoxCtrlTemplate.Location = new System.Drawing.Point(726, 7);
+            this.checkBoxCtrlTemplate.Location = new System.Drawing.Point(783, 7);
             this.checkBoxCtrlTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxCtrlTemplate.Name = "checkBoxCtrlTemplate";
             this.checkBoxCtrlTemplate.Size = new System.Drawing.Size(48, 20);
@@ -1109,7 +1109,7 @@
             this.gamepadButtonTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gamepadButtonTemplate.Enabled = false;
             this.gamepadButtonTemplate.FormattingEnabled = true;
-            this.gamepadButtonTemplate.Location = new System.Drawing.Point(742, 6);
+            this.gamepadButtonTemplate.Location = new System.Drawing.Point(799, 6);
             this.gamepadButtonTemplate.Margin = new System.Windows.Forms.Padding(4);
             this.gamepadButtonTemplate.Name = "gamepadButtonTemplate";
             this.gamepadButtonTemplate.Size = new System.Drawing.Size(160, 24);
@@ -1120,6 +1120,7 @@
             // 
             this.tabControlsKeyboard.AutoScroll = true;
             this.tabControlsKeyboard.BackColor = System.Drawing.SystemColors.Control;
+            this.tabControlsKeyboard.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabControlsKeyboard.Controls.Add(this.ControlsKeyboardResetButton);
             this.tabControlsKeyboard.Controls.Add(this.ApplyKeyboardControlsButton);
             this.tabControlsKeyboard.Controls.Add(this.KeyboardVerticalSensitivity_Label);
@@ -1136,14 +1137,14 @@
             this.tabControlsKeyboard.Controls.Add(this.KeyboardVerticalSensitivityAiming_TrackBar);
             this.tabControlsKeyboard.Location = new System.Drawing.Point(4, 25);
             this.tabControlsKeyboard.Name = "tabControlsKeyboard";
-            this.tabControlsKeyboard.Size = new System.Drawing.Size(742, 391);
+            this.tabControlsKeyboard.Size = new System.Drawing.Size(799, 391);
             this.tabControlsKeyboard.TabIndex = 7;
             this.tabControlsKeyboard.Text = "Controls (Keyboard)";
             // 
             // ControlsKeyboardResetButton
             // 
             this.ControlsKeyboardResetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ControlsKeyboardResetButton.Location = new System.Drawing.Point(504, 357);
+            this.ControlsKeyboardResetButton.Location = new System.Drawing.Point(502, 355);
             this.ControlsKeyboardResetButton.Margin = new System.Windows.Forms.Padding(4);
             this.ControlsKeyboardResetButton.Name = "ControlsKeyboardResetButton";
             this.ControlsKeyboardResetButton.Size = new System.Drawing.Size(100, 28);
@@ -1155,7 +1156,7 @@
             // ApplyKeyboardControlsButton
             // 
             this.ApplyKeyboardControlsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ApplyKeyboardControlsButton.Location = new System.Drawing.Point(612, 357);
+            this.ApplyKeyboardControlsButton.Location = new System.Drawing.Point(610, 355);
             this.ApplyKeyboardControlsButton.Margin = new System.Windows.Forms.Padding(4);
             this.ApplyKeyboardControlsButton.Name = "ApplyKeyboardControlsButton";
             this.ApplyKeyboardControlsButton.Size = new System.Drawing.Size(100, 28);
@@ -1177,7 +1178,7 @@
             // 
             this.KeyboardVerticalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.KeyboardVerticalSensitivity_Value.AutoSize = true;
-            this.KeyboardVerticalSensitivity_Value.Location = new System.Drawing.Point(686, 59);
+            this.KeyboardVerticalSensitivity_Value.Location = new System.Drawing.Point(684, 59);
             this.KeyboardVerticalSensitivity_Value.Name = "KeyboardVerticalSensitivity_Value";
             this.KeyboardVerticalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
             this.KeyboardVerticalSensitivity_Value.TabIndex = 2;
@@ -1196,7 +1197,7 @@
             // 
             this.KeyboardHorizontalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.KeyboardHorizontalSensitivity_Value.AutoSize = true;
-            this.KeyboardHorizontalSensitivity_Value.Location = new System.Drawing.Point(686, 6);
+            this.KeyboardHorizontalSensitivity_Value.Location = new System.Drawing.Point(684, 6);
             this.KeyboardHorizontalSensitivity_Value.Name = "KeyboardHorizontalSensitivity_Value";
             this.KeyboardHorizontalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
             this.KeyboardHorizontalSensitivity_Value.TabIndex = 5;
@@ -1206,7 +1207,7 @@
             // 
             this.KeyboardVerticalSensitivityAiming_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.KeyboardVerticalSensitivityAiming_Value.AutoSize = true;
-            this.KeyboardVerticalSensitivityAiming_Value.Location = new System.Drawing.Point(686, 165);
+            this.KeyboardVerticalSensitivityAiming_Value.Location = new System.Drawing.Point(684, 165);
             this.KeyboardVerticalSensitivityAiming_Value.Name = "KeyboardVerticalSensitivityAiming_Value";
             this.KeyboardVerticalSensitivityAiming_Value.Size = new System.Drawing.Size(18, 16);
             this.KeyboardVerticalSensitivityAiming_Value.TabIndex = 11;
@@ -1234,7 +1235,7 @@
             // 
             this.KeyboardHorizontalSensitivityAiming_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.KeyboardHorizontalSensitivityAiming_Value.AutoSize = true;
-            this.KeyboardHorizontalSensitivityAiming_Value.Location = new System.Drawing.Point(686, 112);
+            this.KeyboardHorizontalSensitivityAiming_Value.Location = new System.Drawing.Point(684, 112);
             this.KeyboardHorizontalSensitivityAiming_Value.Name = "KeyboardHorizontalSensitivityAiming_Value";
             this.KeyboardHorizontalSensitivityAiming_Value.Size = new System.Drawing.Size(18, 16);
             this.KeyboardHorizontalSensitivityAiming_Value.TabIndex = 8;
@@ -1248,7 +1249,7 @@
             this.KeyboardHorizontalSensitivity_TrackBar.Maximum = 5;
             this.KeyboardHorizontalSensitivity_TrackBar.Minimum = 1;
             this.KeyboardHorizontalSensitivity_TrackBar.Name = "KeyboardHorizontalSensitivity_TrackBar";
-            this.KeyboardHorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.KeyboardHorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(708, 56);
             this.KeyboardHorizontalSensitivity_TrackBar.TabIndex = 0;
             this.KeyboardHorizontalSensitivity_TrackBar.Value = 1;
             this.KeyboardHorizontalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.KeyboardHorizontalSensitivity_TrackBar_ValueChanged);
@@ -1261,7 +1262,7 @@
             this.KeyboardVerticalSensitivity_TrackBar.Maximum = 5;
             this.KeyboardVerticalSensitivity_TrackBar.Minimum = 1;
             this.KeyboardVerticalSensitivity_TrackBar.Name = "KeyboardVerticalSensitivity_TrackBar";
-            this.KeyboardVerticalSensitivity_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.KeyboardVerticalSensitivity_TrackBar.Size = new System.Drawing.Size(708, 56);
             this.KeyboardVerticalSensitivity_TrackBar.TabIndex = 1;
             this.KeyboardVerticalSensitivity_TrackBar.Value = 1;
             this.KeyboardVerticalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.KeyboardVerticalSensitivity_TrackBar_ValueChanged);
@@ -1274,7 +1275,7 @@
             this.KeyboardHorizontalSensitivityAiming_TrackBar.Maximum = 5;
             this.KeyboardHorizontalSensitivityAiming_TrackBar.Minimum = 1;
             this.KeyboardHorizontalSensitivityAiming_TrackBar.Name = "KeyboardHorizontalSensitivityAiming_TrackBar";
-            this.KeyboardHorizontalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.KeyboardHorizontalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(708, 56);
             this.KeyboardHorizontalSensitivityAiming_TrackBar.TabIndex = 6;
             this.KeyboardHorizontalSensitivityAiming_TrackBar.Value = 1;
             this.KeyboardHorizontalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.KeyboardHorizontalSensitivityAiming_TrackBar_ValueChanged);
@@ -1287,7 +1288,7 @@
             this.KeyboardVerticalSensitivityAiming_TrackBar.Maximum = 5;
             this.KeyboardVerticalSensitivityAiming_TrackBar.Minimum = 1;
             this.KeyboardVerticalSensitivityAiming_TrackBar.Name = "KeyboardVerticalSensitivityAiming_TrackBar";
-            this.KeyboardVerticalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(710, 56);
+            this.KeyboardVerticalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(708, 56);
             this.KeyboardVerticalSensitivityAiming_TrackBar.TabIndex = 9;
             this.KeyboardVerticalSensitivityAiming_TrackBar.Value = 1;
             this.KeyboardVerticalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.KeyboardVerticalSensitivityAiming_TrackBar_ValueChanged);
@@ -1296,6 +1297,7 @@
             // 
             this.tabControlsGamepad.AutoScroll = true;
             this.tabControlsGamepad.BackColor = System.Drawing.SystemColors.Control;
+            this.tabControlsGamepad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabControlsGamepad.Controls.Add(this.GamepadVibrationLevel_Value);
             this.tabControlsGamepad.Controls.Add(this.GamepadGradedVibration_Box);
             this.tabControlsGamepad.Controls.Add(this.GamepadVibrationLevel_Label);
@@ -1337,10 +1339,219 @@
             this.tabControlsGamepad.TabIndex = 8;
             this.tabControlsGamepad.Text = "Controls (Gamepad)";
             // 
+            // GamepadVibrationLevel_Value
+            // 
+            this.GamepadVibrationLevel_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadVibrationLevel_Value.AutoSize = true;
+            this.GamepadVibrationLevel_Value.Location = new System.Drawing.Point(720, 556);
+            this.GamepadVibrationLevel_Value.Name = "GamepadVibrationLevel_Value";
+            this.GamepadVibrationLevel_Value.Size = new System.Drawing.Size(18, 16);
+            this.GamepadVibrationLevel_Value.TabIndex = 94;
+            this.GamepadVibrationLevel_Value.Text = "-1";
+            // 
+            // GamepadGradedVibration_Box
+            // 
+            this.GamepadGradedVibration_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadGradedVibration_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GamepadGradedVibration_Box.FormattingEnabled = true;
+            this.GamepadGradedVibration_Box.Items.AddRange(new object[] {
+            "On",
+            "Partially On",
+            "Off"});
+            this.GamepadGradedVibration_Box.Location = new System.Drawing.Point(617, 528);
+            this.GamepadGradedVibration_Box.Name = "GamepadGradedVibration_Box";
+            this.GamepadGradedVibration_Box.Size = new System.Drawing.Size(121, 24);
+            this.GamepadGradedVibration_Box.TabIndex = 93;
+            // 
+            // GamepadVibrationLevel_Label
+            // 
+            this.GamepadVibrationLevel_Label.AutoSize = true;
+            this.GamepadVibrationLevel_Label.Location = new System.Drawing.Point(8, 556);
+            this.GamepadVibrationLevel_Label.Name = "GamepadVibrationLevel_Label";
+            this.GamepadVibrationLevel_Label.Size = new System.Drawing.Size(96, 16);
+            this.GamepadVibrationLevel_Label.TabIndex = 92;
+            this.GamepadVibrationLevel_Label.Text = "Vibration Level";
+            // 
+            // GamepadGradedVibration_Label
+            // 
+            this.GamepadGradedVibration_Label.AutoSize = true;
+            this.GamepadGradedVibration_Label.Location = new System.Drawing.Point(8, 526);
+            this.GamepadGradedVibration_Label.Name = "GamepadGradedVibration_Label";
+            this.GamepadGradedVibration_Label.Size = new System.Drawing.Size(109, 16);
+            this.GamepadGradedVibration_Label.TabIndex = 91;
+            this.GamepadGradedVibration_Label.Text = "Graded Vibration";
+            // 
+            // GamepadGyroInvertVerticalAxis_Checkbox
+            // 
+            this.GamepadGyroInvertVerticalAxis_Checkbox.AutoSize = true;
+            this.GamepadGyroInvertVerticalAxis_Checkbox.Location = new System.Drawing.Point(11, 494);
+            this.GamepadGyroInvertVerticalAxis_Checkbox.Name = "GamepadGyroInvertVerticalAxis_Checkbox";
+            this.GamepadGyroInvertVerticalAxis_Checkbox.Size = new System.Drawing.Size(207, 20);
+            this.GamepadGyroInvertVerticalAxis_Checkbox.TabIndex = 90;
+            this.GamepadGyroInvertVerticalAxis_Checkbox.Text = "Gyroscope Invert Vertical Axis";
+            this.GamepadGyroInvertVerticalAxis_Checkbox.UseVisualStyleBackColor = true;
+            // 
+            // GamepadGyroInvertHorizontalAxis_Checkbox
+            // 
+            this.GamepadGyroInvertHorizontalAxis_Checkbox.AutoSize = true;
+            this.GamepadGyroInvertHorizontalAxis_Checkbox.Location = new System.Drawing.Point(11, 468);
+            this.GamepadGyroInvertHorizontalAxis_Checkbox.Name = "GamepadGyroInvertHorizontalAxis_Checkbox";
+            this.GamepadGyroInvertHorizontalAxis_Checkbox.Size = new System.Drawing.Size(222, 20);
+            this.GamepadGyroInvertHorizontalAxis_Checkbox.TabIndex = 89;
+            this.GamepadGyroInvertHorizontalAxis_Checkbox.Text = "Gyroscope Invert Horizontal Axis";
+            this.GamepadGyroInvertHorizontalAxis_Checkbox.UseVisualStyleBackColor = true;
+            // 
+            // GamepadGyroDisableVerticalStick_Checkbox
+            // 
+            this.GamepadGyroDisableVerticalStick_Checkbox.AutoSize = true;
+            this.GamepadGyroDisableVerticalStick_Checkbox.Location = new System.Drawing.Point(11, 442);
+            this.GamepadGyroDisableVerticalStick_Checkbox.Name = "GamepadGyroDisableVerticalStick_Checkbox";
+            this.GamepadGyroDisableVerticalStick_Checkbox.Size = new System.Drawing.Size(337, 20);
+            this.GamepadGyroDisableVerticalStick_Checkbox.TabIndex = 88;
+            this.GamepadGyroDisableVerticalStick_Checkbox.Text = "Disable Right Stick Vertical Movement While Aiming";
+            this.GamepadGyroDisableVerticalStick_Checkbox.UseVisualStyleBackColor = true;
+            // 
+            // GamepadGyroVerticalSensitivity_Label
+            // 
+            this.GamepadGyroVerticalSensitivity_Label.AutoSize = true;
+            this.GamepadGyroVerticalSensitivity_Label.Location = new System.Drawing.Point(5, 387);
+            this.GamepadGyroVerticalSensitivity_Label.Name = "GamepadGyroVerticalSensitivity_Label";
+            this.GamepadGyroVerticalSensitivity_Label.Size = new System.Drawing.Size(185, 16);
+            this.GamepadGyroVerticalSensitivity_Label.TabIndex = 84;
+            this.GamepadGyroVerticalSensitivity_Label.Text = "Gyroscope Vertical Sensitivity";
+            // 
+            // GamepadGyroVerticalSensitivity_Value
+            // 
+            this.GamepadGyroVerticalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadGyroVerticalSensitivity_Value.AutoSize = true;
+            this.GamepadGyroVerticalSensitivity_Value.Location = new System.Drawing.Point(720, 387);
+            this.GamepadGyroVerticalSensitivity_Value.Name = "GamepadGyroVerticalSensitivity_Value";
+            this.GamepadGyroVerticalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
+            this.GamepadGyroVerticalSensitivity_Value.TabIndex = 85;
+            this.GamepadGyroVerticalSensitivity_Value.Text = "-1";
+            // 
+            // GamepadGyroHorizontalSensitivity_Label
+            // 
+            this.GamepadGyroHorizontalSensitivity_Label.AutoSize = true;
+            this.GamepadGyroHorizontalSensitivity_Label.Location = new System.Drawing.Point(5, 334);
+            this.GamepadGyroHorizontalSensitivity_Label.Name = "GamepadGyroHorizontalSensitivity_Label";
+            this.GamepadGyroHorizontalSensitivity_Label.Size = new System.Drawing.Size(200, 16);
+            this.GamepadGyroHorizontalSensitivity_Label.TabIndex = 86;
+            this.GamepadGyroHorizontalSensitivity_Label.Text = "Gyroscope Horizontal Sensitivity";
+            // 
+            // GamepadGyroHorizontalSensitivity_Value
+            // 
+            this.GamepadGyroHorizontalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadGyroHorizontalSensitivity_Value.AutoSize = true;
+            this.GamepadGyroHorizontalSensitivity_Value.Location = new System.Drawing.Point(720, 334);
+            this.GamepadGyroHorizontalSensitivity_Value.Name = "GamepadGyroHorizontalSensitivity_Value";
+            this.GamepadGyroHorizontalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
+            this.GamepadGyroHorizontalSensitivity_Value.TabIndex = 87;
+            this.GamepadGyroHorizontalSensitivity_Value.Text = "-1";
+            // 
+            // GamepadGyroHorizontalSensitivity_TrackBar
+            // 
+            this.GamepadGyroHorizontalSensitivity_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadGyroHorizontalSensitivity_TrackBar.Location = new System.Drawing.Point(3, 353);
+            this.GamepadGyroHorizontalSensitivity_TrackBar.Maximum = 5;
+            this.GamepadGyroHorizontalSensitivity_TrackBar.Minimum = 1;
+            this.GamepadGyroHorizontalSensitivity_TrackBar.Name = "GamepadGyroHorizontalSensitivity_TrackBar";
+            this.GamepadGyroHorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(744, 56);
+            this.GamepadGyroHorizontalSensitivity_TrackBar.TabIndex = 82;
+            this.GamepadGyroHorizontalSensitivity_TrackBar.Value = 1;
+            this.GamepadGyroHorizontalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.GamepadGyroHorizontalSensitivity_TrackBar_ValueChanged);
+            // 
+            // GamepadGyroVerticalSensitivity_TrackBar
+            // 
+            this.GamepadGyroVerticalSensitivity_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadGyroVerticalSensitivity_TrackBar.Location = new System.Drawing.Point(3, 406);
+            this.GamepadGyroVerticalSensitivity_TrackBar.Maximum = 5;
+            this.GamepadGyroVerticalSensitivity_TrackBar.Minimum = 1;
+            this.GamepadGyroVerticalSensitivity_TrackBar.Name = "GamepadGyroVerticalSensitivity_TrackBar";
+            this.GamepadGyroVerticalSensitivity_TrackBar.Size = new System.Drawing.Size(744, 56);
+            this.GamepadGyroVerticalSensitivity_TrackBar.TabIndex = 83;
+            this.GamepadGyroVerticalSensitivity_TrackBar.Value = 1;
+            this.GamepadGyroVerticalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.GamepadGyroVerticalSensitivity_TrackBar_ValueChanged);
+            // 
+            // GamepadGyroAxis_Box
+            // 
+            this.GamepadGyroAxis_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadGyroAxis_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GamepadGyroAxis_Box.FormattingEnabled = true;
+            this.GamepadGyroAxis_Box.Items.AddRange(new object[] {
+            "Yaw",
+            "Roll",
+            "Mixed"});
+            this.GamepadGyroAxis_Box.Location = new System.Drawing.Point(617, 307);
+            this.GamepadGyroAxis_Box.Name = "GamepadGyroAxis_Box";
+            this.GamepadGyroAxis_Box.Size = new System.Drawing.Size(121, 24);
+            this.GamepadGyroAxis_Box.TabIndex = 81;
+            // 
+            // GamepadGyroAxis_Label
+            // 
+            this.GamepadGyroAxis_Label.AutoSize = true;
+            this.GamepadGyroAxis_Label.Location = new System.Drawing.Point(8, 305);
+            this.GamepadGyroAxis_Label.Name = "GamepadGyroAxis_Label";
+            this.GamepadGyroAxis_Label.Size = new System.Drawing.Size(102, 16);
+            this.GamepadGyroAxis_Label.TabIndex = 80;
+            this.GamepadGyroAxis_Label.Text = "Gyroscope Axis";
+            // 
+            // GamepadGyroAiming_Checkbox
+            // 
+            this.GamepadGyroAiming_Checkbox.AutoSize = true;
+            this.GamepadGyroAiming_Checkbox.Location = new System.Drawing.Point(11, 276);
+            this.GamepadGyroAiming_Checkbox.Name = "GamepadGyroAiming_Checkbox";
+            this.GamepadGyroAiming_Checkbox.Size = new System.Drawing.Size(140, 20);
+            this.GamepadGyroAiming_Checkbox.TabIndex = 79;
+            this.GamepadGyroAiming_Checkbox.Text = "Gyroscope Aiming";
+            this.GamepadGyroAiming_Checkbox.UseVisualStyleBackColor = true;
+            // 
+            // GamepadInvertVerticalAxisAiming_Checkbox
+            // 
+            this.GamepadInvertVerticalAxisAiming_Checkbox.AutoSize = true;
+            this.GamepadInvertVerticalAxisAiming_Checkbox.Location = new System.Drawing.Point(196, 250);
+            this.GamepadInvertVerticalAxisAiming_Checkbox.Name = "GamepadInvertVerticalAxisAiming_Checkbox";
+            this.GamepadInvertVerticalAxisAiming_Checkbox.Size = new System.Drawing.Size(111, 20);
+            this.GamepadInvertVerticalAxisAiming_Checkbox.TabIndex = 78;
+            this.GamepadInvertVerticalAxisAiming_Checkbox.Text = "...while aiming";
+            this.GamepadInvertVerticalAxisAiming_Checkbox.UseVisualStyleBackColor = true;
+            // 
+            // GamepadInvertHorizontalAxisAiming_Checkbox
+            // 
+            this.GamepadInvertHorizontalAxisAiming_Checkbox.AutoSize = true;
+            this.GamepadInvertHorizontalAxisAiming_Checkbox.Location = new System.Drawing.Point(196, 224);
+            this.GamepadInvertHorizontalAxisAiming_Checkbox.Name = "GamepadInvertHorizontalAxisAiming_Checkbox";
+            this.GamepadInvertHorizontalAxisAiming_Checkbox.Size = new System.Drawing.Size(111, 20);
+            this.GamepadInvertHorizontalAxisAiming_Checkbox.TabIndex = 77;
+            this.GamepadInvertHorizontalAxisAiming_Checkbox.Text = "...while aiming";
+            this.GamepadInvertHorizontalAxisAiming_Checkbox.UseVisualStyleBackColor = true;
+            // 
+            // GamepadInvertVerticalAxis_Checkbox
+            // 
+            this.GamepadInvertVerticalAxis_Checkbox.AutoSize = true;
+            this.GamepadInvertVerticalAxis_Checkbox.Location = new System.Drawing.Point(11, 250);
+            this.GamepadInvertVerticalAxis_Checkbox.Name = "GamepadInvertVerticalAxis_Checkbox";
+            this.GamepadInvertVerticalAxis_Checkbox.Size = new System.Drawing.Size(137, 20);
+            this.GamepadInvertVerticalAxis_Checkbox.TabIndex = 76;
+            this.GamepadInvertVerticalAxis_Checkbox.Text = "Invert Vertical Axis";
+            this.GamepadInvertVerticalAxis_Checkbox.UseVisualStyleBackColor = true;
+            // 
+            // GamepadInvertHorizontalAxis_Checkbox
+            // 
+            this.GamepadInvertHorizontalAxis_Checkbox.AutoSize = true;
+            this.GamepadInvertHorizontalAxis_Checkbox.Location = new System.Drawing.Point(11, 224);
+            this.GamepadInvertHorizontalAxis_Checkbox.Name = "GamepadInvertHorizontalAxis_Checkbox";
+            this.GamepadInvertHorizontalAxis_Checkbox.Size = new System.Drawing.Size(152, 20);
+            this.GamepadInvertHorizontalAxis_Checkbox.TabIndex = 75;
+            this.GamepadInvertHorizontalAxis_Checkbox.Text = "Invert Horizontal Axis";
+            this.GamepadInvertHorizontalAxis_Checkbox.UseVisualStyleBackColor = true;
+            // 
             // ResetGamepadControls_Button
             // 
             this.ResetGamepadControls_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ResetGamepadControls_Button.Location = new System.Drawing.Point(559, 591);
+            this.ResetGamepadControls_Button.Location = new System.Drawing.Point(536, 831);
             this.ResetGamepadControls_Button.Margin = new System.Windows.Forms.Padding(4);
             this.ResetGamepadControls_Button.Name = "ResetGamepadControls_Button";
             this.ResetGamepadControls_Button.Size = new System.Drawing.Size(100, 28);
@@ -1352,7 +1563,7 @@
             // ApplyGamepadControls_Button
             // 
             this.ApplyGamepadControls_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ApplyGamepadControls_Button.Location = new System.Drawing.Point(667, 591);
+            this.ApplyGamepadControls_Button.Location = new System.Drawing.Point(644, 831);
             this.ApplyGamepadControls_Button.Margin = new System.Windows.Forms.Padding(4);
             this.ApplyGamepadControls_Button.Name = "ApplyGamepadControls_Button";
             this.ApplyGamepadControls_Button.Size = new System.Drawing.Size(100, 28);
@@ -1374,7 +1585,7 @@
             // 
             this.GamepadVerticalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GamepadVerticalSensitivity_Value.AutoSize = true;
-            this.GamepadVerticalSensitivity_Value.Location = new System.Drawing.Point(743, 59);
+            this.GamepadVerticalSensitivity_Value.Location = new System.Drawing.Point(720, 59);
             this.GamepadVerticalSensitivity_Value.Name = "GamepadVerticalSensitivity_Value";
             this.GamepadVerticalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
             this.GamepadVerticalSensitivity_Value.TabIndex = 23;
@@ -1393,7 +1604,7 @@
             // 
             this.GamepadHorizontalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GamepadHorizontalSensitivity_Value.AutoSize = true;
-            this.GamepadHorizontalSensitivity_Value.Location = new System.Drawing.Point(743, 6);
+            this.GamepadHorizontalSensitivity_Value.Location = new System.Drawing.Point(720, 6);
             this.GamepadHorizontalSensitivity_Value.Name = "GamepadHorizontalSensitivity_Value";
             this.GamepadHorizontalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
             this.GamepadHorizontalSensitivity_Value.TabIndex = 25;
@@ -1403,7 +1614,7 @@
             // 
             this.GamepadVerticalSensitivityAiming_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GamepadVerticalSensitivityAiming_Value.AutoSize = true;
-            this.GamepadVerticalSensitivityAiming_Value.Location = new System.Drawing.Point(743, 165);
+            this.GamepadVerticalSensitivityAiming_Value.Location = new System.Drawing.Point(720, 165);
             this.GamepadVerticalSensitivityAiming_Value.Name = "GamepadVerticalSensitivityAiming_Value";
             this.GamepadVerticalSensitivityAiming_Value.Size = new System.Drawing.Size(18, 16);
             this.GamepadVerticalSensitivityAiming_Value.TabIndex = 31;
@@ -1431,7 +1642,7 @@
             // 
             this.GamepadHorizontalSensitivityAiming_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GamepadHorizontalSensitivityAiming_Value.AutoSize = true;
-            this.GamepadHorizontalSensitivityAiming_Value.Location = new System.Drawing.Point(743, 112);
+            this.GamepadHorizontalSensitivityAiming_Value.Location = new System.Drawing.Point(720, 112);
             this.GamepadHorizontalSensitivityAiming_Value.Name = "GamepadHorizontalSensitivityAiming_Value";
             this.GamepadHorizontalSensitivityAiming_Value.Size = new System.Drawing.Size(18, 16);
             this.GamepadHorizontalSensitivityAiming_Value.TabIndex = 28;
@@ -1445,7 +1656,7 @@
             this.GamepadHorizontalSensitivity_TrackBar.Maximum = 5;
             this.GamepadHorizontalSensitivity_TrackBar.Minimum = 1;
             this.GamepadHorizontalSensitivity_TrackBar.Name = "GamepadHorizontalSensitivity_TrackBar";
-            this.GamepadHorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(767, 56);
+            this.GamepadHorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(744, 56);
             this.GamepadHorizontalSensitivity_TrackBar.TabIndex = 20;
             this.GamepadHorizontalSensitivity_TrackBar.Value = 1;
             this.GamepadHorizontalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.GamepadHorizontalSensitivity_TrackBar_ValueChanged);
@@ -1458,7 +1669,7 @@
             this.GamepadVerticalSensitivity_TrackBar.Maximum = 5;
             this.GamepadVerticalSensitivity_TrackBar.Minimum = 1;
             this.GamepadVerticalSensitivity_TrackBar.Name = "GamepadVerticalSensitivity_TrackBar";
-            this.GamepadVerticalSensitivity_TrackBar.Size = new System.Drawing.Size(767, 56);
+            this.GamepadVerticalSensitivity_TrackBar.Size = new System.Drawing.Size(744, 56);
             this.GamepadVerticalSensitivity_TrackBar.TabIndex = 21;
             this.GamepadVerticalSensitivity_TrackBar.Value = 1;
             this.GamepadVerticalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.GamepadVerticalSensitivity_TrackBar_ValueChanged);
@@ -1471,7 +1682,7 @@
             this.GamepadHorizontalSensitivityAiming_TrackBar.Maximum = 5;
             this.GamepadHorizontalSensitivityAiming_TrackBar.Minimum = 1;
             this.GamepadHorizontalSensitivityAiming_TrackBar.Name = "GamepadHorizontalSensitivityAiming_TrackBar";
-            this.GamepadHorizontalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(767, 56);
+            this.GamepadHorizontalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(744, 56);
             this.GamepadHorizontalSensitivityAiming_TrackBar.TabIndex = 26;
             this.GamepadHorizontalSensitivityAiming_TrackBar.Value = 1;
             this.GamepadHorizontalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.GamepadHorizontalSensitivityAiming_TrackBar_ValueChanged);
@@ -1484,14 +1695,28 @@
             this.GamepadVerticalSensitivityAiming_TrackBar.Maximum = 5;
             this.GamepadVerticalSensitivityAiming_TrackBar.Minimum = 1;
             this.GamepadVerticalSensitivityAiming_TrackBar.Name = "GamepadVerticalSensitivityAiming_TrackBar";
-            this.GamepadVerticalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(767, 56);
+            this.GamepadVerticalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(744, 56);
             this.GamepadVerticalSensitivityAiming_TrackBar.TabIndex = 29;
             this.GamepadVerticalSensitivityAiming_TrackBar.Value = 1;
             this.GamepadVerticalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.GamepadVerticalSensitivityAiming_TrackBar_ValueChanged);
             // 
+            // GamepadVibrationLevel_TrackBar
+            // 
+            this.GamepadVibrationLevel_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamepadVibrationLevel_TrackBar.Location = new System.Drawing.Point(6, 575);
+            this.GamepadVibrationLevel_TrackBar.Maximum = 5;
+            this.GamepadVibrationLevel_TrackBar.Minimum = 1;
+            this.GamepadVibrationLevel_TrackBar.Name = "GamepadVibrationLevel_TrackBar";
+            this.GamepadVibrationLevel_TrackBar.Size = new System.Drawing.Size(732, 56);
+            this.GamepadVibrationLevel_TrackBar.TabIndex = 95;
+            this.GamepadVibrationLevel_TrackBar.Value = 1;
+            this.GamepadVibrationLevel_TrackBar.ValueChanged += new System.EventHandler(this.GamepadVibrationLevel_TrackBar_ValueChanged);
+            // 
             // tabControlsMisc
             // 
             this.tabControlsMisc.BackColor = System.Drawing.SystemColors.Control;
+            this.tabControlsMisc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabControlsMisc.Controls.Add(this.MiscResetButton);
             this.tabControlsMisc.Controls.Add(this.MiscApplyButton);
             this.tabControlsMisc.Controls.Add(this.MiscAutomaticBoatCameraAngleCorrection_Box);
@@ -1503,14 +1728,14 @@
             this.tabControlsMisc.Controls.Add(this.MiscDefaultCameraHeight_TrackBar);
             this.tabControlsMisc.Location = new System.Drawing.Point(4, 25);
             this.tabControlsMisc.Name = "tabControlsMisc";
-            this.tabControlsMisc.Size = new System.Drawing.Size(799, 680);
+            this.tabControlsMisc.Size = new System.Drawing.Size(799, 391);
             this.tabControlsMisc.TabIndex = 9;
             this.tabControlsMisc.Text = "Controls (Misc)";
             // 
             // MiscResetButton
             // 
             this.MiscResetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.MiscResetButton.Location = new System.Drawing.Point(562, 928);
+            this.MiscResetButton.Location = new System.Drawing.Point(560, 926);
             this.MiscResetButton.Margin = new System.Windows.Forms.Padding(4);
             this.MiscResetButton.Name = "MiscResetButton";
             this.MiscResetButton.Size = new System.Drawing.Size(100, 28);
@@ -1522,7 +1747,7 @@
             // MiscApplyButton
             // 
             this.MiscApplyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.MiscApplyButton.Location = new System.Drawing.Point(670, 928);
+            this.MiscApplyButton.Location = new System.Drawing.Point(668, 926);
             this.MiscApplyButton.Margin = new System.Windows.Forms.Padding(4);
             this.MiscApplyButton.Name = "MiscApplyButton";
             this.MiscApplyButton.Size = new System.Drawing.Size(100, 28);
@@ -1540,7 +1765,7 @@
             "No",
             "Yes",
             "Not in combat"});
-            this.MiscAutomaticBoatCameraAngleCorrection_Box.Location = new System.Drawing.Point(649, 111);
+            this.MiscAutomaticBoatCameraAngleCorrection_Box.Location = new System.Drawing.Point(647, 111);
             this.MiscAutomaticBoatCameraAngleCorrection_Box.Name = "MiscAutomaticBoatCameraAngleCorrection_Box";
             this.MiscAutomaticBoatCameraAngleCorrection_Box.Size = new System.Drawing.Size(121, 24);
             this.MiscAutomaticBoatCameraAngleCorrection_Box.TabIndex = 26;
@@ -1558,7 +1783,7 @@
             // 
             this.MiscDefaultCameraHeight_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.MiscDefaultCameraHeight_Value.AutoSize = true;
-            this.MiscDefaultCameraHeight_Value.Location = new System.Drawing.Point(743, 60);
+            this.MiscDefaultCameraHeight_Value.Location = new System.Drawing.Point(741, 60);
             this.MiscDefaultCameraHeight_Value.Name = "MiscDefaultCameraHeight_Value";
             this.MiscDefaultCameraHeight_Value.Size = new System.Drawing.Size(18, 16);
             this.MiscDefaultCameraHeight_Value.TabIndex = 24;
@@ -1601,7 +1826,7 @@
             this.MiscDefaultCameraHeight_TrackBar.Maximum = 60;
             this.MiscDefaultCameraHeight_TrackBar.Minimum = 45;
             this.MiscDefaultCameraHeight_TrackBar.Name = "MiscDefaultCameraHeight_TrackBar";
-            this.MiscDefaultCameraHeight_TrackBar.Size = new System.Drawing.Size(767, 56);
+            this.MiscDefaultCameraHeight_TrackBar.Size = new System.Drawing.Size(765, 56);
             this.MiscDefaultCameraHeight_TrackBar.TabIndex = 22;
             this.MiscDefaultCameraHeight_TrackBar.Value = 45;
             this.MiscDefaultCameraHeight_TrackBar.ValueChanged += new System.EventHandler(this.DefaultCameraHeight_TrackBar_ValueChanged);
@@ -1632,7 +1857,7 @@
             this.tabAudio.Location = new System.Drawing.Point(4, 25);
             this.tabAudio.Margin = new System.Windows.Forms.Padding(4);
             this.tabAudio.Name = "tabAudio";
-            this.tabAudio.Size = new System.Drawing.Size(742, 391);
+            this.tabAudio.Size = new System.Drawing.Size(799, 391);
             this.tabAudio.TabIndex = 4;
             this.tabAudio.Text = "Audio";
             // 
@@ -1849,7 +2074,7 @@
             this.tabLanguage.Location = new System.Drawing.Point(4, 25);
             this.tabLanguage.Margin = new System.Windows.Forms.Padding(4);
             this.tabLanguage.Name = "tabLanguage";
-            this.tabLanguage.Size = new System.Drawing.Size(742, 391);
+            this.tabLanguage.Size = new System.Drawing.Size(799, 391);
             this.tabLanguage.TabIndex = 6;
             this.tabLanguage.Text = "Language";
             // 
@@ -1927,7 +2152,7 @@
             this.tabLog.Margin = new System.Windows.Forms.Padding(4);
             this.tabLog.Name = "tabLog";
             this.tabLog.Padding = new System.Windows.Forms.Padding(4);
-            this.tabLog.Size = new System.Drawing.Size(742, 391);
+            this.tabLog.Size = new System.Drawing.Size(799, 391);
             this.tabLog.TabIndex = 2;
             this.tabLog.Text = "Launch Log";
             // 
@@ -1968,7 +2193,7 @@
             this.tabRawConfig.Margin = new System.Windows.Forms.Padding(4);
             this.tabRawConfig.Name = "tabRawConfig";
             this.tabRawConfig.Padding = new System.Windows.Forms.Padding(4);
-            this.tabRawConfig.Size = new System.Drawing.Size(742, 391);
+            this.tabRawConfig.Size = new System.Drawing.Size(799, 391);
             this.tabRawConfig.TabIndex = 1;
             this.tabRawConfig.Text = "Raw Config";
             // 
@@ -2010,228 +2235,6 @@
             this.Save_Button_Raw.UseVisualStyleBackColor = true;
             this.Save_Button_Raw.Click += new System.EventHandler(this.Save_Button_Raw_Click);
             // 
-            // GamepadInvertHorizontalAxis_Checkbox
-            // 
-            this.GamepadInvertHorizontalAxis_Checkbox.AutoSize = true;
-            this.GamepadInvertHorizontalAxis_Checkbox.Location = new System.Drawing.Point(11, 224);
-            this.GamepadInvertHorizontalAxis_Checkbox.Name = "GamepadInvertHorizontalAxis_Checkbox";
-            this.GamepadInvertHorizontalAxis_Checkbox.Size = new System.Drawing.Size(152, 20);
-            this.GamepadInvertHorizontalAxis_Checkbox.TabIndex = 75;
-            this.GamepadInvertHorizontalAxis_Checkbox.Text = "Invert Horizontal Axis";
-            this.GamepadInvertHorizontalAxis_Checkbox.UseVisualStyleBackColor = true;
-            // 
-            // GamepadInvertVerticalAxis_Checkbox
-            // 
-            this.GamepadInvertVerticalAxis_Checkbox.AutoSize = true;
-            this.GamepadInvertVerticalAxis_Checkbox.Location = new System.Drawing.Point(11, 250);
-            this.GamepadInvertVerticalAxis_Checkbox.Name = "GamepadInvertVerticalAxis_Checkbox";
-            this.GamepadInvertVerticalAxis_Checkbox.Size = new System.Drawing.Size(137, 20);
-            this.GamepadInvertVerticalAxis_Checkbox.TabIndex = 76;
-            this.GamepadInvertVerticalAxis_Checkbox.Text = "Invert Vertical Axis";
-            this.GamepadInvertVerticalAxis_Checkbox.UseVisualStyleBackColor = true;
-            // 
-            // GamepadInvertHorizontalAxisAiming_Checkbox
-            // 
-            this.GamepadInvertHorizontalAxisAiming_Checkbox.AutoSize = true;
-            this.GamepadInvertHorizontalAxisAiming_Checkbox.Location = new System.Drawing.Point(196, 224);
-            this.GamepadInvertHorizontalAxisAiming_Checkbox.Name = "GamepadInvertHorizontalAxisAiming_Checkbox";
-            this.GamepadInvertHorizontalAxisAiming_Checkbox.Size = new System.Drawing.Size(111, 20);
-            this.GamepadInvertHorizontalAxisAiming_Checkbox.TabIndex = 77;
-            this.GamepadInvertHorizontalAxisAiming_Checkbox.Text = "...while aiming";
-            this.GamepadInvertHorizontalAxisAiming_Checkbox.UseVisualStyleBackColor = true;
-            // 
-            // GamepadInvertVerticalAxisAiming_Checkbox
-            // 
-            this.GamepadInvertVerticalAxisAiming_Checkbox.AutoSize = true;
-            this.GamepadInvertVerticalAxisAiming_Checkbox.Location = new System.Drawing.Point(196, 250);
-            this.GamepadInvertVerticalAxisAiming_Checkbox.Name = "GamepadInvertVerticalAxisAiming_Checkbox";
-            this.GamepadInvertVerticalAxisAiming_Checkbox.Size = new System.Drawing.Size(111, 20);
-            this.GamepadInvertVerticalAxisAiming_Checkbox.TabIndex = 78;
-            this.GamepadInvertVerticalAxisAiming_Checkbox.Text = "...while aiming";
-            this.GamepadInvertVerticalAxisAiming_Checkbox.UseVisualStyleBackColor = true;
-            // 
-            // GamepadGyroAiming_Checkbox
-            // 
-            this.GamepadGyroAiming_Checkbox.AutoSize = true;
-            this.GamepadGyroAiming_Checkbox.Location = new System.Drawing.Point(11, 276);
-            this.GamepadGyroAiming_Checkbox.Name = "GamepadGyroAiming_Checkbox";
-            this.GamepadGyroAiming_Checkbox.Size = new System.Drawing.Size(140, 20);
-            this.GamepadGyroAiming_Checkbox.TabIndex = 79;
-            this.GamepadGyroAiming_Checkbox.Text = "Gyroscope Aiming";
-            this.GamepadGyroAiming_Checkbox.UseVisualStyleBackColor = true;
-            // 
-            // GamepadGyroAxis_Label
-            // 
-            this.GamepadGyroAxis_Label.AutoSize = true;
-            this.GamepadGyroAxis_Label.Location = new System.Drawing.Point(8, 305);
-            this.GamepadGyroAxis_Label.Name = "GamepadGyroAxis_Label";
-            this.GamepadGyroAxis_Label.Size = new System.Drawing.Size(102, 16);
-            this.GamepadGyroAxis_Label.TabIndex = 80;
-            this.GamepadGyroAxis_Label.Text = "Gyroscope Axis";
-            // 
-            // GamepadGyroAxis_Box
-            // 
-            this.GamepadGyroAxis_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.GamepadGyroAxis_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.GamepadGyroAxis_Box.FormattingEnabled = true;
-            this.GamepadGyroAxis_Box.Items.AddRange(new object[] {
-            "Yaw",
-            "Roll",
-            "Mixed"});
-            this.GamepadGyroAxis_Box.Location = new System.Drawing.Point(640, 307);
-            this.GamepadGyroAxis_Box.Name = "GamepadGyroAxis_Box";
-            this.GamepadGyroAxis_Box.Size = new System.Drawing.Size(121, 24);
-            this.GamepadGyroAxis_Box.TabIndex = 81;
-            // 
-            // GamepadGyroVerticalSensitivity_Label
-            // 
-            this.GamepadGyroVerticalSensitivity_Label.AutoSize = true;
-            this.GamepadGyroVerticalSensitivity_Label.Location = new System.Drawing.Point(5, 387);
-            this.GamepadGyroVerticalSensitivity_Label.Name = "GamepadGyroVerticalSensitivity_Label";
-            this.GamepadGyroVerticalSensitivity_Label.Size = new System.Drawing.Size(185, 16);
-            this.GamepadGyroVerticalSensitivity_Label.TabIndex = 84;
-            this.GamepadGyroVerticalSensitivity_Label.Text = "Gyroscope Vertical Sensitivity";
-            // 
-            // GamepadGyroVerticalSensitivity_Value
-            // 
-            this.GamepadGyroVerticalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.GamepadGyroVerticalSensitivity_Value.AutoSize = true;
-            this.GamepadGyroVerticalSensitivity_Value.Location = new System.Drawing.Point(743, 387);
-            this.GamepadGyroVerticalSensitivity_Value.Name = "GamepadGyroVerticalSensitivity_Value";
-            this.GamepadGyroVerticalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
-            this.GamepadGyroVerticalSensitivity_Value.TabIndex = 85;
-            this.GamepadGyroVerticalSensitivity_Value.Text = "-1";
-            // 
-            // GamepadGyroHorizontalSensitivity_Label
-            // 
-            this.GamepadGyroHorizontalSensitivity_Label.AutoSize = true;
-            this.GamepadGyroHorizontalSensitivity_Label.Location = new System.Drawing.Point(5, 334);
-            this.GamepadGyroHorizontalSensitivity_Label.Name = "GamepadGyroHorizontalSensitivity_Label";
-            this.GamepadGyroHorizontalSensitivity_Label.Size = new System.Drawing.Size(200, 16);
-            this.GamepadGyroHorizontalSensitivity_Label.TabIndex = 86;
-            this.GamepadGyroHorizontalSensitivity_Label.Text = "Gyroscope Horizontal Sensitivity";
-            // 
-            // GamepadGyroHorizontalSensitivity_Value
-            // 
-            this.GamepadGyroHorizontalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.GamepadGyroHorizontalSensitivity_Value.AutoSize = true;
-            this.GamepadGyroHorizontalSensitivity_Value.Location = new System.Drawing.Point(743, 334);
-            this.GamepadGyroHorizontalSensitivity_Value.Name = "GamepadGyroHorizontalSensitivity_Value";
-            this.GamepadGyroHorizontalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
-            this.GamepadGyroHorizontalSensitivity_Value.TabIndex = 87;
-            this.GamepadGyroHorizontalSensitivity_Value.Text = "-1";
-            // 
-            // GamepadGyroHorizontalSensitivity_TrackBar
-            // 
-            this.GamepadGyroHorizontalSensitivity_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GamepadGyroHorizontalSensitivity_TrackBar.Location = new System.Drawing.Point(3, 353);
-            this.GamepadGyroHorizontalSensitivity_TrackBar.Maximum = 5;
-            this.GamepadGyroHorizontalSensitivity_TrackBar.Minimum = 1;
-            this.GamepadGyroHorizontalSensitivity_TrackBar.Name = "GamepadGyroHorizontalSensitivity_TrackBar";
-            this.GamepadGyroHorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(767, 56);
-            this.GamepadGyroHorizontalSensitivity_TrackBar.TabIndex = 82;
-            this.GamepadGyroHorizontalSensitivity_TrackBar.Value = 1;
-            this.GamepadGyroHorizontalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.GamepadGyroHorizontalSensitivity_TrackBar_ValueChanged);
-            // 
-            // GamepadGyroVerticalSensitivity_TrackBar
-            // 
-            this.GamepadGyroVerticalSensitivity_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GamepadGyroVerticalSensitivity_TrackBar.Location = new System.Drawing.Point(3, 406);
-            this.GamepadGyroVerticalSensitivity_TrackBar.Maximum = 5;
-            this.GamepadGyroVerticalSensitivity_TrackBar.Minimum = 1;
-            this.GamepadGyroVerticalSensitivity_TrackBar.Name = "GamepadGyroVerticalSensitivity_TrackBar";
-            this.GamepadGyroVerticalSensitivity_TrackBar.Size = new System.Drawing.Size(767, 56);
-            this.GamepadGyroVerticalSensitivity_TrackBar.TabIndex = 83;
-            this.GamepadGyroVerticalSensitivity_TrackBar.Value = 1;
-            this.GamepadGyroVerticalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.GamepadGyroVerticalSensitivity_TrackBar_ValueChanged);
-            // 
-            // GamepadGyroDisableVerticalStick_Checkbox
-            // 
-            this.GamepadGyroDisableVerticalStick_Checkbox.AutoSize = true;
-            this.GamepadGyroDisableVerticalStick_Checkbox.Location = new System.Drawing.Point(11, 442);
-            this.GamepadGyroDisableVerticalStick_Checkbox.Name = "GamepadGyroDisableVerticalStick_Checkbox";
-            this.GamepadGyroDisableVerticalStick_Checkbox.Size = new System.Drawing.Size(337, 20);
-            this.GamepadGyroDisableVerticalStick_Checkbox.TabIndex = 88;
-            this.GamepadGyroDisableVerticalStick_Checkbox.Text = "Disable Right Stick Vertical Movement While Aiming";
-            this.GamepadGyroDisableVerticalStick_Checkbox.UseVisualStyleBackColor = true;
-            // 
-            // GamepadGyroInvertHorizontalAxis_Checkbox
-            // 
-            this.GamepadGyroInvertHorizontalAxis_Checkbox.AutoSize = true;
-            this.GamepadGyroInvertHorizontalAxis_Checkbox.Location = new System.Drawing.Point(11, 468);
-            this.GamepadGyroInvertHorizontalAxis_Checkbox.Name = "GamepadGyroInvertHorizontalAxis_Checkbox";
-            this.GamepadGyroInvertHorizontalAxis_Checkbox.Size = new System.Drawing.Size(222, 20);
-            this.GamepadGyroInvertHorizontalAxis_Checkbox.TabIndex = 89;
-            this.GamepadGyroInvertHorizontalAxis_Checkbox.Text = "Gyroscope Invert Horizontal Axis";
-            this.GamepadGyroInvertHorizontalAxis_Checkbox.UseVisualStyleBackColor = true;
-            // 
-            // GamepadGyroInvertVerticalAxis_Checkbox
-            // 
-            this.GamepadGyroInvertVerticalAxis_Checkbox.AutoSize = true;
-            this.GamepadGyroInvertVerticalAxis_Checkbox.Location = new System.Drawing.Point(11, 494);
-            this.GamepadGyroInvertVerticalAxis_Checkbox.Name = "GamepadGyroInvertVerticalAxis_Checkbox";
-            this.GamepadGyroInvertVerticalAxis_Checkbox.Size = new System.Drawing.Size(207, 20);
-            this.GamepadGyroInvertVerticalAxis_Checkbox.TabIndex = 90;
-            this.GamepadGyroInvertVerticalAxis_Checkbox.Text = "Gyroscope Invert Vertical Axis";
-            this.GamepadGyroInvertVerticalAxis_Checkbox.UseVisualStyleBackColor = true;
-            // 
-            // GamepadGradedVibration_Label
-            // 
-            this.GamepadGradedVibration_Label.AutoSize = true;
-            this.GamepadGradedVibration_Label.Location = new System.Drawing.Point(8, 526);
-            this.GamepadGradedVibration_Label.Name = "GamepadGradedVibration_Label";
-            this.GamepadGradedVibration_Label.Size = new System.Drawing.Size(109, 16);
-            this.GamepadGradedVibration_Label.TabIndex = 91;
-            this.GamepadGradedVibration_Label.Text = "Graded Vibration";
-            // 
-            // GamepadVibrationLevel_Label
-            // 
-            this.GamepadVibrationLevel_Label.AutoSize = true;
-            this.GamepadVibrationLevel_Label.Location = new System.Drawing.Point(8, 556);
-            this.GamepadVibrationLevel_Label.Name = "GamepadVibrationLevel_Label";
-            this.GamepadVibrationLevel_Label.Size = new System.Drawing.Size(96, 16);
-            this.GamepadVibrationLevel_Label.TabIndex = 92;
-            this.GamepadVibrationLevel_Label.Text = "Vibration Level";
-            // 
-            // GamepadGradedVibration_Box
-            // 
-            this.GamepadGradedVibration_Box.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.GamepadGradedVibration_Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.GamepadGradedVibration_Box.FormattingEnabled = true;
-            this.GamepadGradedVibration_Box.Items.AddRange(new object[] {
-            "On",
-            "Partially On",
-            "Off"});
-            this.GamepadGradedVibration_Box.Location = new System.Drawing.Point(640, 528);
-            this.GamepadGradedVibration_Box.Name = "GamepadGradedVibration_Box";
-            this.GamepadGradedVibration_Box.Size = new System.Drawing.Size(121, 24);
-            this.GamepadGradedVibration_Box.TabIndex = 93;
-            // 
-            // GamepadVibrationLevel_Value
-            // 
-            this.GamepadVibrationLevel_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.GamepadVibrationLevel_Value.AutoSize = true;
-            this.GamepadVibrationLevel_Value.Location = new System.Drawing.Point(743, 556);
-            this.GamepadVibrationLevel_Value.Name = "GamepadVibrationLevel_Value";
-            this.GamepadVibrationLevel_Value.Size = new System.Drawing.Size(18, 16);
-            this.GamepadVibrationLevel_Value.TabIndex = 94;
-            this.GamepadVibrationLevel_Value.Text = "-1";
-            // 
-            // GamepadVibrationLevel_TrackBar
-            // 
-            this.GamepadVibrationLevel_TrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GamepadVibrationLevel_TrackBar.Location = new System.Drawing.Point(6, 575);
-            this.GamepadVibrationLevel_TrackBar.Maximum = 5;
-            this.GamepadVibrationLevel_TrackBar.Minimum = 1;
-            this.GamepadVibrationLevel_TrackBar.Name = "GamepadVibrationLevel_TrackBar";
-            this.GamepadVibrationLevel_TrackBar.Size = new System.Drawing.Size(755, 56);
-            this.GamepadVibrationLevel_TrackBar.TabIndex = 95;
-            this.GamepadVibrationLevel_TrackBar.Value = 1;
-            this.GamepadVibrationLevel_TrackBar.ValueChanged += new System.EventHandler(this.GamepadVibrationLevel_TrackBar_ValueChanged);
-            // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2271,10 +2274,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.KeyboardVerticalSensitivityAiming_TrackBar)).EndInit();
             this.tabControlsGamepad.ResumeLayout(false);
             this.tabControlsGamepad.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GamepadGyroHorizontalSensitivity_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GamepadGyroVerticalSensitivity_TrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GamepadHorizontalSensitivity_TrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GamepadVerticalSensitivity_TrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GamepadHorizontalSensitivityAiming_TrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GamepadVerticalSensitivityAiming_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GamepadVibrationLevel_TrackBar)).EndInit();
             this.tabControlsMisc.ResumeLayout(false);
             this.tabControlsMisc.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MiscDefaultCameraHeight_TrackBar)).EndInit();
@@ -2290,9 +2296,6 @@
             this.tabLog.PerformLayout();
             this.tabRawConfig.ResumeLayout(false);
             this.tabRawConfig.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GamepadGyroHorizontalSensitivity_TrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GamepadGyroVerticalSensitivity_TrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GamepadVibrationLevel_TrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
