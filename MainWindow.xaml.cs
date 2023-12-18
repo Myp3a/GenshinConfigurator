@@ -35,24 +35,30 @@ namespace GenshinConfiguratorWPF
             Settings = new SettingsContainer();
             Settings.Populate();
             Resolution = Settings.Resolution;
-            ShowStatusText("Loaded config from registry.");
             InitializeComponent();
+            ShowStatusText("Loaded config from registry.");
             this.DataContext = this;
         }
 
-        public void SettingsApply()
+        public void SettingsApply(object sender, RoutedEventArgs e)
         {
             Settings.Apply();
+            Settings.ToReg();
+            ShowStatusText("Saved config to registry.");
         }
 
-        public void SettingsReset()
+        public void SettingsReset(object sender, RoutedEventArgs e)
         {
-
+            Settings.Populate();
+            this.DataContext = null;
+            this.DataContext = this;
+            ShowStatusText("Reloaded config from registry.");
         }
 
         public void ShowStatusText(string text)
         {
             StatusText = text;
+            StatusLabel.GetBindingExpression(Label.ContentProperty).UpdateTarget();
             StatusTextTimer.Stop();
             StatusTextTimer.Start();
         }

@@ -169,8 +169,8 @@
             <TabItem Header="Launch Log">Tab</TabItem>
             <TabItem Header="Raw Config">Tab</TabItem>
         </TabControl>
-        <Button x:Name="GraphicsApplyButton" Grid.Column="1" Content="Apply" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Width="50" Height="25" Grid.Row="1"/>
-        <Button x:Name="GraphicsResetButton" Grid.Column="1" Content="Reset" HorizontalAlignment="Right" Margin="0,0,70,0" VerticalAlignment="Center" Width="50" Height="25" Grid.Row="1"/>
+        <Button x:Name="GraphicsApplyButton" Grid.Column="1" Content="Apply" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Width="50" Height="25" Grid.Row="1" Click="SettingsApply"/>
+        <Button x:Name="GraphicsResetButton" Grid.Column="1" Content="Reset" HorizontalAlignment="Right" Margin="0,0,70,0" VerticalAlignment="Center" Width="50" Height="25" Grid.Row="1" Click="SettingsReset"/>
         <Label x:Name="StatusLabel" Content="{Binding StatusText, Mode=OneWay}" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
 
     </Grid>
