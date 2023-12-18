@@ -922,7 +922,6 @@
             // 
             // applyControlsButton
             // 
-            this.applyControlsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.applyControlsButton.Location = new System.Drawing.Point(682, 6);
             this.applyControlsButton.Margin = new System.Windows.Forms.Padding(4);
             this.applyControlsButton.Name = "applyControlsButton";
@@ -944,7 +943,6 @@
             // 
             // devicesList
             // 
-            this.devicesList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devicesList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.devicesList.FormattingEnabled = true;
             this.devicesList.Location = new System.Drawing.Point(293, 7);
@@ -1343,7 +1341,7 @@
             // 
             this.GamepadVibrationLevel_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GamepadVibrationLevel_Value.AutoSize = true;
-            this.GamepadVibrationLevel_Value.Location = new System.Drawing.Point(720, 556);
+            this.GamepadVibrationLevel_Value.Location = new System.Drawing.Point(699, 556);
             this.GamepadVibrationLevel_Value.Name = "GamepadVibrationLevel_Value";
             this.GamepadVibrationLevel_Value.Size = new System.Drawing.Size(18, 16);
             this.GamepadVibrationLevel_Value.TabIndex = 94;
@@ -1358,7 +1356,7 @@
             "On",
             "Partially On",
             "Off"});
-            this.GamepadGradedVibration_Box.Location = new System.Drawing.Point(617, 528);
+            this.GamepadGradedVibration_Box.Location = new System.Drawing.Point(596, 528);
             this.GamepadGradedVibration_Box.Name = "GamepadGradedVibration_Box";
             this.GamepadGradedVibration_Box.Size = new System.Drawing.Size(121, 24);
             this.GamepadGradedVibration_Box.TabIndex = 93;
@@ -1424,7 +1422,7 @@
             // 
             this.GamepadGyroVerticalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GamepadGyroVerticalSensitivity_Value.AutoSize = true;
-            this.GamepadGyroVerticalSensitivity_Value.Location = new System.Drawing.Point(720, 387);
+            this.GamepadGyroVerticalSensitivity_Value.Location = new System.Drawing.Point(699, 387);
             this.GamepadGyroVerticalSensitivity_Value.Name = "GamepadGyroVerticalSensitivity_Value";
             this.GamepadGyroVerticalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
             this.GamepadGyroVerticalSensitivity_Value.TabIndex = 85;
@@ -1443,7 +1441,7 @@
             // 
             this.GamepadGyroHorizontalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GamepadGyroHorizontalSensitivity_Value.AutoSize = true;
-            this.GamepadGyroHorizontalSensitivity_Value.Location = new System.Drawing.Point(720, 334);
+            this.GamepadGyroHorizontalSensitivity_Value.Location = new System.Drawing.Point(699, 334);
             this.GamepadGyroHorizontalSensitivity_Value.Name = "GamepadGyroHorizontalSensitivity_Value";
             this.GamepadGyroHorizontalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
             this.GamepadGyroHorizontalSensitivity_Value.TabIndex = 87;
@@ -1457,7 +1455,7 @@
             this.GamepadGyroHorizontalSensitivity_TrackBar.Maximum = 5;
             this.GamepadGyroHorizontalSensitivity_TrackBar.Minimum = 1;
             this.GamepadGyroHorizontalSensitivity_TrackBar.Name = "GamepadGyroHorizontalSensitivity_TrackBar";
-            this.GamepadGyroHorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(744, 56);
+            this.GamepadGyroHorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(723, 56);
             this.GamepadGyroHorizontalSensitivity_TrackBar.TabIndex = 82;
             this.GamepadGyroHorizontalSensitivity_TrackBar.Value = 1;
             this.GamepadGyroHorizontalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.GamepadGyroHorizontalSensitivity_TrackBar_ValueChanged);
@@ -1470,7 +1468,7 @@
             this.GamepadGyroVerticalSensitivity_TrackBar.Maximum = 5;
             this.GamepadGyroVerticalSensitivity_TrackBar.Minimum = 1;
             this.GamepadGyroVerticalSensitivity_TrackBar.Name = "GamepadGyroVerticalSensitivity_TrackBar";
-            this.GamepadGyroVerticalSensitivity_TrackBar.Size = new System.Drawing.Size(744, 56);
+            this.GamepadGyroVerticalSensitivity_TrackBar.Size = new System.Drawing.Size(723, 56);
             this.GamepadGyroVerticalSensitivity_TrackBar.TabIndex = 83;
             this.GamepadGyroVerticalSensitivity_TrackBar.Value = 1;
             this.GamepadGyroVerticalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.GamepadGyroVerticalSensitivity_TrackBar_ValueChanged);
@@ -1484,7 +1482,7 @@
             "Yaw",
             "Roll",
             "Mixed"});
-            this.GamepadGyroAxis_Box.Location = new System.Drawing.Point(617, 307);
+            this.GamepadGyroAxis_Box.Location = new System.Drawing.Point(596, 307);
             this.GamepadGyroAxis_Box.Name = "GamepadGyroAxis_Box";
             this.GamepadGyroAxis_Box.Size = new System.Drawing.Size(121, 24);
             this.GamepadGyroAxis_Box.TabIndex = 81;
@@ -1551,7 +1549,7 @@
             // ResetGamepadControls_Button
             // 
             this.ResetGamepadControls_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ResetGamepadControls_Button.Location = new System.Drawing.Point(536, 831);
+            this.ResetGamepadControls_Button.Location = new System.Drawing.Point(515, 1073);
             this.ResetGamepadControls_Button.Margin = new System.Windows.Forms.Padding(4);
             this.ResetGamepadControls_Button.Name = "ResetGamepadControls_Button";
             this.ResetGamepadControls_Button.Size = new System.Drawing.Size(100, 28);
@@ -1563,7 +1561,7 @@
             // ApplyGamepadControls_Button
             // 
             this.ApplyGamepadControls_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ApplyGamepadControls_Button.Location = new System.Drawing.Point(644, 831);
+            this.ApplyGamepadControls_Button.Location = new System.Drawing.Point(623, 1073);
             this.ApplyGamepadControls_Button.Margin = new System.Windows.Forms.Padding(4);
             this.ApplyGamepadControls_Button.Name = "ApplyGamepadControls_Button";
             this.ApplyGamepadControls_Button.Size = new System.Drawing.Size(100, 28);
@@ -1585,7 +1583,7 @@
             // 
             this.GamepadVerticalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GamepadVerticalSensitivity_Value.AutoSize = true;
-            this.GamepadVerticalSensitivity_Value.Location = new System.Drawing.Point(720, 59);
+            this.GamepadVerticalSensitivity_Value.Location = new System.Drawing.Point(699, 59);
             this.GamepadVerticalSensitivity_Value.Name = "GamepadVerticalSensitivity_Value";
             this.GamepadVerticalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
             this.GamepadVerticalSensitivity_Value.TabIndex = 23;
@@ -1604,7 +1602,7 @@
             // 
             this.GamepadHorizontalSensitivity_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GamepadHorizontalSensitivity_Value.AutoSize = true;
-            this.GamepadHorizontalSensitivity_Value.Location = new System.Drawing.Point(720, 6);
+            this.GamepadHorizontalSensitivity_Value.Location = new System.Drawing.Point(699, 6);
             this.GamepadHorizontalSensitivity_Value.Name = "GamepadHorizontalSensitivity_Value";
             this.GamepadHorizontalSensitivity_Value.Size = new System.Drawing.Size(18, 16);
             this.GamepadHorizontalSensitivity_Value.TabIndex = 25;
@@ -1614,7 +1612,7 @@
             // 
             this.GamepadVerticalSensitivityAiming_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GamepadVerticalSensitivityAiming_Value.AutoSize = true;
-            this.GamepadVerticalSensitivityAiming_Value.Location = new System.Drawing.Point(720, 165);
+            this.GamepadVerticalSensitivityAiming_Value.Location = new System.Drawing.Point(699, 165);
             this.GamepadVerticalSensitivityAiming_Value.Name = "GamepadVerticalSensitivityAiming_Value";
             this.GamepadVerticalSensitivityAiming_Value.Size = new System.Drawing.Size(18, 16);
             this.GamepadVerticalSensitivityAiming_Value.TabIndex = 31;
@@ -1642,7 +1640,7 @@
             // 
             this.GamepadHorizontalSensitivityAiming_Value.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GamepadHorizontalSensitivityAiming_Value.AutoSize = true;
-            this.GamepadHorizontalSensitivityAiming_Value.Location = new System.Drawing.Point(720, 112);
+            this.GamepadHorizontalSensitivityAiming_Value.Location = new System.Drawing.Point(699, 112);
             this.GamepadHorizontalSensitivityAiming_Value.Name = "GamepadHorizontalSensitivityAiming_Value";
             this.GamepadHorizontalSensitivityAiming_Value.Size = new System.Drawing.Size(18, 16);
             this.GamepadHorizontalSensitivityAiming_Value.TabIndex = 28;
@@ -1656,7 +1654,7 @@
             this.GamepadHorizontalSensitivity_TrackBar.Maximum = 5;
             this.GamepadHorizontalSensitivity_TrackBar.Minimum = 1;
             this.GamepadHorizontalSensitivity_TrackBar.Name = "GamepadHorizontalSensitivity_TrackBar";
-            this.GamepadHorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(744, 56);
+            this.GamepadHorizontalSensitivity_TrackBar.Size = new System.Drawing.Size(723, 56);
             this.GamepadHorizontalSensitivity_TrackBar.TabIndex = 20;
             this.GamepadHorizontalSensitivity_TrackBar.Value = 1;
             this.GamepadHorizontalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.GamepadHorizontalSensitivity_TrackBar_ValueChanged);
@@ -1669,7 +1667,7 @@
             this.GamepadVerticalSensitivity_TrackBar.Maximum = 5;
             this.GamepadVerticalSensitivity_TrackBar.Minimum = 1;
             this.GamepadVerticalSensitivity_TrackBar.Name = "GamepadVerticalSensitivity_TrackBar";
-            this.GamepadVerticalSensitivity_TrackBar.Size = new System.Drawing.Size(744, 56);
+            this.GamepadVerticalSensitivity_TrackBar.Size = new System.Drawing.Size(723, 56);
             this.GamepadVerticalSensitivity_TrackBar.TabIndex = 21;
             this.GamepadVerticalSensitivity_TrackBar.Value = 1;
             this.GamepadVerticalSensitivity_TrackBar.ValueChanged += new System.EventHandler(this.GamepadVerticalSensitivity_TrackBar_ValueChanged);
@@ -1682,7 +1680,7 @@
             this.GamepadHorizontalSensitivityAiming_TrackBar.Maximum = 5;
             this.GamepadHorizontalSensitivityAiming_TrackBar.Minimum = 1;
             this.GamepadHorizontalSensitivityAiming_TrackBar.Name = "GamepadHorizontalSensitivityAiming_TrackBar";
-            this.GamepadHorizontalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(744, 56);
+            this.GamepadHorizontalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(723, 56);
             this.GamepadHorizontalSensitivityAiming_TrackBar.TabIndex = 26;
             this.GamepadHorizontalSensitivityAiming_TrackBar.Value = 1;
             this.GamepadHorizontalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.GamepadHorizontalSensitivityAiming_TrackBar_ValueChanged);
@@ -1695,7 +1693,7 @@
             this.GamepadVerticalSensitivityAiming_TrackBar.Maximum = 5;
             this.GamepadVerticalSensitivityAiming_TrackBar.Minimum = 1;
             this.GamepadVerticalSensitivityAiming_TrackBar.Name = "GamepadVerticalSensitivityAiming_TrackBar";
-            this.GamepadVerticalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(744, 56);
+            this.GamepadVerticalSensitivityAiming_TrackBar.Size = new System.Drawing.Size(723, 56);
             this.GamepadVerticalSensitivityAiming_TrackBar.TabIndex = 29;
             this.GamepadVerticalSensitivityAiming_TrackBar.Value = 1;
             this.GamepadVerticalSensitivityAiming_TrackBar.ValueChanged += new System.EventHandler(this.GamepadVerticalSensitivityAiming_TrackBar_ValueChanged);
@@ -1708,7 +1706,7 @@
             this.GamepadVibrationLevel_TrackBar.Maximum = 5;
             this.GamepadVibrationLevel_TrackBar.Minimum = 1;
             this.GamepadVibrationLevel_TrackBar.Name = "GamepadVibrationLevel_TrackBar";
-            this.GamepadVibrationLevel_TrackBar.Size = new System.Drawing.Size(732, 56);
+            this.GamepadVibrationLevel_TrackBar.Size = new System.Drawing.Size(711, 56);
             this.GamepadVibrationLevel_TrackBar.TabIndex = 95;
             this.GamepadVibrationLevel_TrackBar.Value = 1;
             this.GamepadVibrationLevel_TrackBar.ValueChanged += new System.EventHandler(this.GamepadVibrationLevel_TrackBar_ValueChanged);

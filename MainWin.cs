@@ -513,7 +513,7 @@ namespace GenshinConfigurator
                     Left = inputButtonTemplate.Left,
                     Top = inputButtonTemplate.Top + height * mlt,
                     Text = Keycodes.keynames[bind.elementIdentifierId],
-                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Left,
                     Tag = bind,
                     TextAlign = HorizontalAlignment.Center,
                     TabStop = false
@@ -534,7 +534,7 @@ namespace GenshinConfigurator
                     Top = checkBoxCtrlTemplate.Top + height * mlt - 3, // CheckBox size is different to inputBox size
                     Text = "Ctrl",
                     Width = checkBoxCtrlTemplate.Width,
-                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Left,
                     Tag = bind,
                     BackColor = Color.Transparent,
                     TabStop = false
@@ -548,7 +548,7 @@ namespace GenshinConfigurator
                     Top = checkBoxShiftTemplate.Top + height * mlt - 3,
                     Text = "Shift",
                     Width = checkBoxShiftTemplate.Width,
-                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Left,
                     Tag = bind,
                     BackColor = Color.Transparent,
                     TabStop = false
@@ -562,7 +562,7 @@ namespace GenshinConfigurator
                     Top = checkBoxAltTemplate.Top + height * mlt - 3,
                     Text = "Alt",
                     Width = checkBoxAltTemplate.Width,
-                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Left,
                     Tag = bind,
                     BackColor = Color.Transparent,
                     TabStop = false
@@ -590,7 +590,7 @@ namespace GenshinConfigurator
                     Left = gamepadButtonTemplate.Left,
                     Top = gamepadButtonTemplate.Top + height * mlt,
                     Tag = bind,
-                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Left,
                     DropDownStyle = ComboBoxStyle.DropDownList
                 };
                 newbutton.Items.AddRange(bindings);
@@ -605,7 +605,7 @@ namespace GenshinConfigurator
                     Left = gamepadAxisTemplate.Left,
                     Top = gamepadAxisTemplate.Top + height * mult,
                     Tag = bind,
-                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Left,
                     DropDownStyle = ComboBoxStyle.DropDownList
                 };
                 newbutton.Items.AddRange(bindings);
@@ -622,7 +622,7 @@ namespace GenshinConfigurator
                     Left = gamepadAxisInvertTemplate.Left,
                     Tag = bind,
                     Text = "Invert",
-                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Left,
                     BackColor = Color.Transparent
                 };
                 newinvert.CheckedChanged += Invert_Gamepad_Axis;
@@ -636,7 +636,7 @@ namespace GenshinConfigurator
                     Left = buttonKeybindRemoveTemplate.Left,
                     Top = buttonKeybindRemoveTemplate.Top + height * mlt,
                     Width = buttonKeybindRemoveTemplate.Width,
-                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Left,
                     Tag = bind,
                     TabStop = false
                 };
@@ -661,7 +661,7 @@ namespace GenshinConfigurator
                     Left = buttonKeybindingAddTemplate.Left,
                     Top = buttonKeybindingAddTemplate.Top + height * mult,
                     Width = buttonKeybindingAddTemplate.Width,
-                    Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                    Anchor = AnchorStyles.Top | AnchorStyles.Left,
                     Tag = newkeybindlist,
                     TabStop = false
                 };
