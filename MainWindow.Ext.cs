@@ -230,5 +230,31 @@ namespace GenshinConfigurator
         #region Input
         public List<Controller> InputControllers => Settings.Keybindings.controllers.controllers;
         #endregion
+
+        #region Controls (Keyboard)
+        public int ControlsKeyboardHorizontalSensitivity
+        {
+            get => Settings.ControlsKeyboard.horizontal_sensitivity + 1;
+            set => Settings.ControlsKeyboard.horizontal_sensitivity = value - 1;
+        }
+
+        public int ControlsKeyboardVerticalSensitivity
+        {
+            get => Settings.ControlsKeyboard.vertical_sensitivity + 1;
+            set => Settings.ControlsKeyboard.vertical_sensitivity = value - 1;
+        }
+
+        public int ControlsKeyboardHorizontalSensitivityAiming
+        {
+            get => Settings.ControlsKeyboard.horizontal_sensitivity_aiming + 1;
+            set => Settings.ControlsKeyboard.horizontal_sensitivity_aiming = value - 1;
+        }
+
+        public int ControlsKeyboardVerticalSensitivityAiming
+        {
+            get => Settings.ControlsKeyboard.vertical_sensitivity_aiming + 1;
+            set => Settings.ControlsKeyboard.vertical_sensitivity_aiming = value - 1;
+        }
+        #endregion
     }
 }

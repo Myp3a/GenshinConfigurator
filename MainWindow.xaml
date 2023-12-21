@@ -178,7 +178,71 @@
                     </ScrollViewer>
                 </Grid>
             </TabItem>
-            <TabItem Header="Controls (Keyboard)">Tab</TabItem>
+            <TabItem Header="Controls (Keyboard)">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Horizontal Sensitivity" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=ControlsKeyboardHorizontalSensitivitySlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="ControlsKeyboardHorizontalSensitivitySlider" Value="{Binding ControlsKeyboardHorizontalSensitivity, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Vertical Sensitivity" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=ControlsKeyboardVerticalSensitivitySlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="ControlsKeyboardVerticalSensitivitySlider" Value="{Binding ControlsKeyboardVerticalSensitivity, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Horizontal Sensitivity (Aiming)" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=ControlsKeyboardHorizontalSensitivityAimingSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="ControlsKeyboardHorizontalSensitivityAimingSlider" Value="{Binding ControlsKeyboardHorizontalSensitivityAiming, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Horizontal Sensitivity" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=ControlsKeyboardVerticalSensitivityAimingSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="ControlsKeyboardVerticalSensitivityAimingSlider" Value="{Binding ControlsKeyboardVerticalSensitivityAiming, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
             <TabItem Header="Controls (Gamepad)">Tab</TabItem>
             <TabItem Header="Controls (Misc)">Tab</TabItem>
             <TabItem Header="Audio">Tab</TabItem>
