@@ -191,6 +191,21 @@ namespace GenshinConfigurator
             ((sender as CheckBox).Tag as GamepadAxis).invert = (bool)(sender as CheckBox).IsChecked;
         }
 
+        private void InputCheckCtrl(object sender, EventArgs e)
+        {
+            ((sender as CheckBox).Tag as KeyboardKeybind).ctrl = (bool)(sender as CheckBox).IsChecked;
+        }
+
+        private void InputCheckAlt(object sender, EventArgs e)
+        {
+            ((sender as CheckBox).Tag as KeyboardKeybind).alt = (bool)(sender as CheckBox).IsChecked;
+        }
+
+        private void InputCheckShift(object sender, EventArgs e)
+        {
+            ((sender as CheckBox).Tag as KeyboardKeybind).shift = (bool)(sender as CheckBox).IsChecked;
+        }
+
         private void InputControllerChange(object sender, SelectionChangedEventArgs e)
         {
             bool devmode = false;
@@ -220,19 +235,47 @@ namespace GenshinConfigurator
                     container.Children.Add(l);
                     if (c is KeyboardController)
                     {
+                        KeyboardKeybind k = (kb as KeyboardKeybind);
+                        StackPanel p = new StackPanel();
+                        p.Orientation = Orientation.Horizontal;
+                        CheckBox ctrl = new CheckBox();
+                        ctrl.Content = "Ctrl";
+                        ctrl.IsChecked = k.ctrl;
+                        ctrl.Checked += new RoutedEventHandler(InputCheckCtrl);
+                        ctrl.Tag = kb;
+                        ctrl.VerticalAlignment = VerticalAlignment.Center;
+                        ctrl.Padding = new Thickness(0, 0, 10, 0);
+                        CheckBox alt = new CheckBox();
+                        alt.Content = "Alt";
+                        alt.IsChecked = k.alt;
+                        alt.Checked += new RoutedEventHandler(InputCheckAlt);
+                        alt.Tag = kb;
+                        alt.VerticalAlignment = VerticalAlignment.Center;
+                        alt.Padding = new Thickness(0, 0, 10, 0);
+                        CheckBox shift = new CheckBox();
+                        shift.Content = "Shift";
+                        shift.IsChecked = k.shift;
+                        shift.Checked += new RoutedEventHandler(InputCheckShift);
+                        shift.Tag = kb;
+                        shift.VerticalAlignment = VerticalAlignment.Center;
+                        shift.Padding = new Thickness(0, 0, 10, 0);
                         TextBox tb = new TextBox();
                         tb.MaxHeight = 25;
                         tb.Width = 120;
                         tb.Text = Keycodes.keynames[kb.elementIdentifierId];
-                        tb.HorizontalAlignment = HorizontalAlignment.Right;
-                        Grid.SetColumn(tb, 1);
-                        Grid.SetRow(tb, 0);
                         tb.Tag = kb;
                         tb.KeyDown += new KeyEventHandler(InputPreventInput);
                         tb.PreviewKeyDown += new KeyEventHandler(InputEditKeyboardKey);
                         tb.GotFocus += new RoutedEventHandler(InputKeyboardToggleEdit);
                         tb.LostFocus += new RoutedEventHandler(InputKeyboardToggleEdit);
-                        container.Children.Add(tb);
+                        p.Children.Add(ctrl);
+                        p.Children.Add(alt);
+                        p.Children.Add(shift);
+                        p.Children.Add(tb);
+                        p.HorizontalAlignment = HorizontalAlignment.Right;
+                        Grid.SetColumn(p, 1);
+                        Grid.SetRow(p, 0);
+                        container.Children.Add(p);
                     } else
                     {
                         ComboBox cb = new();
