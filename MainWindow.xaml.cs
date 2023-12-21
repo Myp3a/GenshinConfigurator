@@ -160,7 +160,31 @@ namespace GenshinConfigurator
         #endregion
 
         #region Input
+        private void InputPreventInput(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;
+        }
 
+        private void InputEditKeyboardKey(object sender, KeyEventArgs e)
+        {
+            if (Keycodes.keyboard.ContainsKey(e.Key)) //Valid key
+            {
+                ((sender as TextBox).Tag as KeyboardKeybind).elementIdentifierId = Keycodes.keyboard[e.Key];
+            }
+            InputDeviceComboBox.Focus();
+        }
+
+        private void InputKeyboardToggleEdit(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb.IsFocused)
+            {
+                tb.Text = "Press desired key...";
+            } else
+            {
+                tb.Text = Keycodes.keynames[(tb.Tag as KeyboardKeybind).elementIdentifierId];
+            }
+        }
         private void InputControllerChange(object sender, SelectionChangedEventArgs e)
         {
             bool devmode = false;
@@ -198,6 +222,10 @@ namespace GenshinConfigurator
                         Grid.SetColumn(tb, 1);
                         Grid.SetRow(tb, 0);
                         tb.Tag = kb;
+                        tb.KeyDown += new KeyEventHandler(InputPreventInput);
+                        tb.PreviewKeyDown += new KeyEventHandler(InputEditKeyboardKey);
+                        tb.GotFocus += new RoutedEventHandler(InputKeyboardToggleEdit);
+                        tb.LostFocus += new RoutedEventHandler(InputKeyboardToggleEdit);
                         container.Children.Add(tb);
                     } else
                     {
