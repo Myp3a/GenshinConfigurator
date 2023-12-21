@@ -269,6 +269,7 @@ namespace GenshinConfigurator
             public bool forceDisableQuestResourceManagement { get; set; }
             public bool needReportQuestResourceDeleteStatusFiles { get; set; }
             public bool disableTeamPageBackgroundSwitch { get; set; }
+            public bool disableHttpDns { get; set; }
             public bool mtrCached { get; set; }
             public bool mtrIsOpen { get; set; }
             public int mtrMaxTTL { get; set; }
