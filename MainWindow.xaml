@@ -38,7 +38,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" x:Name="GraphicsPresetLabel" Content="Preset" VerticalAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Preset" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="0" Grid.Column="1" x:Name="GraphicsPresetComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsPreset, Mode=TwoWay}">
                         <ComboBoxItem>Lowest</ComboBoxItem>
                         <ComboBoxItem>Low</ComboBoxItem>
@@ -46,18 +46,18 @@
                         <ComboBoxItem>High</ComboBoxItem>
                         <ComboBoxItem>Custom</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="1" Grid.Column="0" x:Name="GraphicsFPSLabel" Content="FPS" VerticalAlignment="Center"/>
+                    <Label Grid.Row="1" Grid.Column="0" Content="FPS" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="1" Grid.Column="1" x:Name="GraphicsFPSComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsFPSIndex, Mode=TwoWay}">
                         <ComboBoxItem>30</ComboBoxItem>
                         <ComboBoxItem>60</ComboBoxItem>
                         <ComboBoxItem>45</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="2" Grid.Column="0" x:Name="GraphicsVSyncLabel" Content="VSync" VerticalAlignment="Center"/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="VSync" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="2" Grid.Column="1" x:Name="GraphicsVSyncComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsVSync, Mode=TwoWay}">
                         <ComboBoxItem>Off</ComboBoxItem>
                         <ComboBoxItem>On</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="3" Grid.Column="0" x:Name="GraphicsRenderResolutionLabel" Content="Render Resolution" VerticalAlignment="Center"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Render Resolution" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="3" Grid.Column="1" x:Name="GraphicsRenderResolutionComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsRenderResolution, Mode=TwoWay}">
                         <ComboBoxItem>0.6x</ComboBoxItem>
                         <ComboBoxItem>0.8x</ComboBoxItem>
@@ -68,28 +68,28 @@
                         <ComboBoxItem>1.4x</ComboBoxItem>
                         <ComboBoxItem>1.5x</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="4" Grid.Column="0" x:Name="GraphicsShadowQualityLabel" Content="Shadow Quality" VerticalAlignment="Center"/>
+                    <Label Grid.Row="4" Grid.Column="0" Content="Shadow Quality" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="4" Grid.Column="1" x:Name="GraphicsShadowQualityComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsShadowQuality, Mode=TwoWay}">
                         <ComboBoxItem>Lowest</ComboBoxItem>
                         <ComboBoxItem>Low</ComboBoxItem>
                         <ComboBoxItem>Medium</ComboBoxItem>
                         <ComboBoxItem>High</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="5" Grid.Column="0" x:Name="GraphicsVisualEffectsLabel" Content="Visual Effects" VerticalAlignment="Center"/>
+                    <Label Grid.Row="5" Grid.Column="0" Content="Visual Effects" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="5" Grid.Column="1" x:Name="GraphicsVisualEffectsComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsVisualEffects, Mode=TwoWay}">
                         <ComboBoxItem>Lowest</ComboBoxItem>
                         <ComboBoxItem>Low</ComboBoxItem>
                         <ComboBoxItem>Medium</ComboBoxItem>
                         <ComboBoxItem>High</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="6" Grid.Column="0" x:Name="GraphicsSFXQualityLabel" Content="SFX Quality" VerticalAlignment="Center"/>
+                    <Label Grid.Row="6" Grid.Column="0" Content="SFX Quality" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="6" Grid.Column="1" x:Name="GraphicsSFXQualityComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsSFXQuality, Mode=TwoWay}">
                         <ComboBoxItem>Lowest</ComboBoxItem>
                         <ComboBoxItem>Low</ComboBoxItem>
                         <ComboBoxItem>Medium</ComboBoxItem>
                         <ComboBoxItem>High</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="7" Grid.Column="0" x:Name="GraphicsEnvironmentDetailLabel" Content="Environment Detail" VerticalAlignment="Center"/>
+                    <Label Grid.Row="7" Grid.Column="0" Content="Environment Detail" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="7" Grid.Column="1" x:Name="GraphicsEnvironmentDetailComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsEnvironmentDetail, Mode=TwoWay}">
                         <ComboBoxItem>Lowest</ComboBoxItem>
                         <ComboBoxItem>Low</ComboBoxItem>
@@ -97,52 +97,52 @@
                         <ComboBoxItem>High</ComboBoxItem>
                         <ComboBoxItem>Highest</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="8" Grid.Column="0" x:Name="GraphicsAntialiasingLabel" Content="Antialiasing" VerticalAlignment="Center"/>
+                    <Label Grid.Row="8" Grid.Column="0" Content="Antialiasing" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="8" Grid.Column="1" x:Name="GraphicsAntialiasingComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsAntialiasing, Mode=TwoWay}">
                         <ComboBoxItem>Off</ComboBoxItem>
                         <ComboBoxItem>FSR 2</ComboBoxItem>
                         <ComboBoxItem>SMAA</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="1" Grid.Column="2" x:Name="GraphicsVolumetricFogLabel" Content="Volumetric Fog" VerticalAlignment="Center"/>
+                    <Label Grid.Row="1" Grid.Column="2" Content="Volumetric Fog" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="1" Grid.Column="3" x:Name="GraphicsVolumetricFogComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsVolumetricFog, Mode=TwoWay}">
                         <ComboBoxItem>Off</ComboBoxItem>
                         <ComboBoxItem>On</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="2" Grid.Column="2" x:Name="GraphicsReflectionsLabel" Content="Reflections" VerticalAlignment="Center"/>
+                    <Label Grid.Row="2" Grid.Column="2" Content="Reflections" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="2" Grid.Column="3" x:Name="GraphicsReflectionsComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsReflections, Mode=TwoWay}">
                         <ComboBoxItem>Off</ComboBoxItem>
                         <ComboBoxItem>On</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="3" Grid.Column="2" x:Name="GraphicsMotionBlurLabel" Content="Motion Blur" VerticalAlignment="Center"/>
+                    <Label Grid.Row="3" Grid.Column="2" Content="Motion Blur" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="3" Grid.Column="3" x:Name="GraphicsMotionBlurComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsMotionBlur, Mode=TwoWay}">
                         <ComboBoxItem>Off</ComboBoxItem>
                         <ComboBoxItem>Low</ComboBoxItem>
                         <ComboBoxItem>High</ComboBoxItem>
                         <ComboBoxItem>Extreme</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="4" Grid.Column="2" x:Name="GraphicsBloomLabel" Content="Bloom" VerticalAlignment="Center"/>
+                    <Label Grid.Row="4" Grid.Column="2" Content="Bloom" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="4" Grid.Column="3" x:Name="GraphicsBloomComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsBloom, Mode=TwoWay}">
                         <ComboBoxItem>Off</ComboBoxItem>
                         <ComboBoxItem>On</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="5" Grid.Column="2" x:Name="GraphicsCrowdDensityLabel" Content="Crowd Density" VerticalAlignment="Center"/>
+                    <Label Grid.Row="5" Grid.Column="2" Content="Crowd Density" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="5" Grid.Column="3" x:Name="GraphicsCrowdDensityComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsCrowdDensity, Mode=TwoWay}">
                         <ComboBoxItem>Low</ComboBoxItem>
                         <ComboBoxItem>High</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="6" Grid.Column="2" x:Name="GraphicsSubsurfaceScatteringLabel" Content="Subsurface Scattering" VerticalAlignment="Center"/>
+                    <Label Grid.Row="6" Grid.Column="2" Content="Subsurface Scattering" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="6" Grid.Column="3" x:Name="GraphicsSubsurfaceScatteringComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsSubsurfaceScattering, Mode=TwoWay}">
                         <ComboBoxItem>Off</ComboBoxItem>
                         <ComboBoxItem>Medium</ComboBoxItem>
                         <ComboBoxItem>High</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="7" Grid.Column="2" x:Name="GraphicsTeammateEffectsLabel" Content="Teammate Effects" VerticalAlignment="Center"/>
+                    <Label Grid.Row="7" Grid.Column="2" Content="Teammate Effects" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="7" Grid.Column="3" x:Name="GraphicsTeammateEffectsComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsTeammateEffects, Mode=TwoWay}">
                         <ComboBoxItem>Off</ComboBoxItem>
                         <ComboBoxItem>Partially On</ComboBoxItem>
                         <ComboBoxItem>On</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="8" Grid.Column="2" x:Name="GraphicsAnisotropicFilteringLabel" Content="Anisotropic Filtering" VerticalAlignment="Center"/>
+                    <Label Grid.Row="8" Grid.Column="2" Content="Anisotropic Filtering" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="8" Grid.Column="3" x:Name="GraphicsAnisotropicFilteringComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsAnisotropicFiltering, Mode=TwoWay}">
                         <ComboBoxItem>1x</ComboBoxItem>
                         <ComboBoxItem>2x</ComboBoxItem>
@@ -150,14 +150,14 @@
                         <ComboBoxItem>8x</ComboBoxItem>
                         <ComboBoxItem>16x</ComboBoxItem>
                     </ComboBox>
-                    <Label Grid.Row="9" Grid.Column="0" x:Name="GraphicsResoutionLabel" Content="Resolution" VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="10" Grid.Column="0" x:Name="GraphicsResolutionWidthTextBox" HorizontalAlignment="Left" Text="{Binding ResolutionWidth, Mode=TwoWay}" VerticalAlignment="Center" Margin="10,0,0,0" Width="40"/>
-                    <Label Grid.Row="10" Grid.Column="0" x:Name="GraphicsResoutionXLabel" Content="x" Margin="50,0,0,0" VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="10" Grid.Column="0" x:Name="GraphicsResolutionHeightTextBox" HorizontalAlignment="Left" Text="{Binding ResolutionHeight, Mode=TwoWay}" VerticalAlignment="Center" Margin="70,0,0,0" Width="40"/>
-                    <CheckBox x:Name="GraphicsResolutionFullscreenCheckBox" Grid.Column="1" Content="Fullscreen" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="10" VerticalAlignment="Center" IsChecked="{Binding ResolutionFullscreen, Mode=TwoWay}"/>
-                    <Label Grid.Row="9" Grid.Column="2" x:Name="GraphicsGammaLabel" Content="Gamma" VerticalAlignment="Center"/>
+                    <Label Grid.Row="9" Grid.Column="0" Content="Resolution" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="10" Grid.Column="0" HorizontalAlignment="Left" Text="{Binding ResolutionWidth, Mode=TwoWay}" VerticalAlignment="Center" Margin="10,0,0,0" Width="40"/>
+                    <Label Grid.Row="10" Grid.Column="0" Content="x" Margin="50,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="10" Grid.Column="0" HorizontalAlignment="Left" Text="{Binding ResolutionHeight, Mode=TwoWay}" VerticalAlignment="Center" Margin="70,0,0,0" Width="40"/>
+                    <CheckBox Grid.Column="1" Content="Fullscreen" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="10" VerticalAlignment="Center" IsChecked="{Binding ResolutionFullscreen, Mode=TwoWay}"/>
+                    <Label Grid.Row="9" Grid.Column="2" Content="Gamma" VerticalAlignment="Center"/>
                     <Slider x:Name="GraphicsGammaSlider" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="9" VerticalAlignment="Center" Width="120" FlowDirection="RightToLeft" Minimum="1.4" Maximum="3" TickFrequency="0.1" Value="{Binding GraphicsGamma, Mode=TwoWay}"/>
-                    <Label x:Name="GraphicsGammaValueLabel" Grid.Column="3" Content="{Binding ElementName=GraphicsGammaSlider, Path=Value}" ContentStringFormat="{}{0:f1}" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="9" VerticalAlignment="Center"/>
+                    <Label Grid.Column="3" Content="{Binding ElementName=GraphicsGammaSlider, Path=Value}" ContentStringFormat="{}{0:f1}" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="9" VerticalAlignment="Center"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Keybindings">
@@ -169,7 +169,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="InputDeviceLabel" Grid.Column="0" Content="Input device" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="0" VerticalAlignment="Center"/>
+                    <Label Grid.Column="0" Content="Input device" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="0" VerticalAlignment="Center"/>
                     <ComboBox x:Name="InputDeviceComboBox" Width="300" MaxHeight="25" HorizontalAlignment="Right" Margin="0,0,10,0" ItemsSource="{Binding InputControllers}" DisplayMemberPath="FriendlyName" SelectionChanged="InputControllerChange"/>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Row="0" Grid.Column="0"/>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" Grid.Column="0"/>
