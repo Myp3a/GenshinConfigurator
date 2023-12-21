@@ -9,10 +9,36 @@ namespace GenshinConfiguratorWPF
 {
     public partial class MainWindow
     {
+        #region Graphics
         public int GraphicsPreset
         {
             get { if (Settings.Graphics.current_preset == -1) return 4; else return Settings.Graphics.current_preset; }
-            set { if (value == 4) Settings.Graphics.current_preset = -1; else Settings.Graphics.current_preset = value; } // reset presets
+            set
+            {
+                switch (value)
+                {
+                    case 0:
+                        Settings.Graphics.current_preset = value;
+                        GraphicsLowestSettings();
+                        break;
+                    case 1:
+                        Settings.Graphics.current_preset = value;
+                        GraphicsLowSettings();
+                        break;
+                    case 2:
+                        Settings.Graphics.current_preset = value;
+                        GraphicsMediumSettings();
+                        break;
+                    case 3:
+                        Settings.Graphics.current_preset = value;
+                        GraphicsHighSettings();
+                        break;
+                    case 4:
+                        Settings.Graphics.current_preset = -1;
+                        break;
+                }
+                RefreshBoxes();
+            }
         }
 
         public int GraphicsFPSIndex
@@ -179,7 +205,9 @@ namespace GenshinConfiguratorWPF
             get => Settings.Graphics.gamma;
             set => Settings.Graphics.gamma = value;
         }
+        #endregion
 
+        #region Resolution
         public int ResolutionWidth
         {
             get => Settings.Resolution.Get(ResolutionData.Width);
@@ -197,5 +225,6 @@ namespace GenshinConfiguratorWPF
             get => Convert.ToBoolean(Settings.Resolution.Get(ResolutionData.Fullscreen));
             set => Settings.Resolution.Change(ResolutionData.Fullscreen, Convert.ToInt32(value));
         }
+        #endregion
     }
 }
