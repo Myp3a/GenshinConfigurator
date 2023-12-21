@@ -185,6 +185,12 @@ namespace GenshinConfigurator
                 tb.Text = Keycodes.keynames[(tb.Tag as KeyboardKeybind).elementIdentifierId];
             }
         }
+
+        private void InputCheckAxisInvert(object sender, EventArgs e)
+        {
+            ((sender as CheckBox).Tag as GamepadAxis).invert = (bool)(sender as CheckBox).IsChecked;
+        }
+
         private void InputControllerChange(object sender, SelectionChangedEventArgs e)
         {
             bool devmode = false;
@@ -265,17 +271,28 @@ namespace GenshinConfigurator
                     Grid.SetColumn(l, 0);
                     Grid.SetRow(l, 0);
                     container.Children.Add(l);
+                    StackPanel p = new StackPanel();
+                    p.Orientation = Orientation.Horizontal;
+                    CheckBox inv = new CheckBox();
+                    inv.Content = "Invert";
+                    inv.IsChecked = ax.invert;
+                    inv.Checked += new RoutedEventHandler(InputCheckAxisInvert);
+                    inv.Tag = ax;
+                    inv.VerticalAlignment = VerticalAlignment.Center;
+                    inv.Padding = new Thickness(0, 0, 10, 0);
                     ComboBox cb = new();
                     cb.MaxHeight = 25;
                     cb.Width = 120;
                     cb.ItemsSource = Keycodes.gamepad_axes;
                     cb.SelectedIndex = ax.elementIdentifierId;
-                    cb.HorizontalAlignment = HorizontalAlignment.Right;
                     cb.SelectionChanged += new SelectionChangedEventHandler(InputEditGamepadAxis);
-                    Grid.SetColumn(cb, 1);
-                    Grid.SetRow(cb, 0);
                     cb.Tag = ax;
-                    container.Children.Add(cb);
+                    p.HorizontalAlignment = HorizontalAlignment.Right;
+                    Grid.SetColumn(p, 1);
+                    Grid.SetRow(p, 0);
+                    p.Children.Add(inv);
+                    p.Children.Add(cb);
+                    container.Children.Add(p);
                     InputContainer.Children.Add(container);
                 }
             }
