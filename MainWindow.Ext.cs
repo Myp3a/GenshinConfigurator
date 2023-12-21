@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static GenshinConfigurator.Enums;
 
-namespace GenshinConfiguratorWPF
+namespace GenshinConfigurator
 {
     public partial class MainWindow
     {
@@ -225,6 +225,10 @@ namespace GenshinConfiguratorWPF
             get => Convert.ToBoolean(Settings.Resolution.Get(ResolutionData.Fullscreen));
             set => Settings.Resolution.Change(ResolutionData.Fullscreen, Convert.ToInt32(value));
         }
+        #endregion
+
+        #region Input
+        public List<Controller> InputControllers => Settings.Keybindings.controllers.controllers;
         #endregion
     }
 }

@@ -5,6 +5,7 @@ namespace GenshinConfigurator
 {
     internal class Keycodes
     {
+        public static int AXIS_COUNT = 4;
         public static List<string> gamepad_axes = new List<string>
         {
             "Left Stick X",

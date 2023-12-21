@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace GenshinConfigurator
 {
-    internal class Keybind
+    public class Keybind
     {
         public int actionId;
         // 1 for action 54, 0 otherwise - let's assume that it's 0 most of the time
@@ -23,7 +23,7 @@ namespace GenshinConfigurator
         }
     }
 
-    internal class GamepadAxis : Keybind
+    public class GamepadAxis : Keybind
     {
 
         // 1 for action 54, 0 otherwise - let's assume that it's 0 most of the time
@@ -84,7 +84,7 @@ namespace GenshinConfigurator
         }
     }
 
-    internal class GamepadKeybind : Keybind
+    public class GamepadKeybind : Keybind
     {
         public GamepadKeybind()
         {
@@ -138,7 +138,7 @@ namespace GenshinConfigurator
         }
     }
 
-    internal class KeyboardKeybind : Keybind
+    public class KeyboardKeybind : Keybind
     {
         public bool shift = false, ctrl = false, alt = false;
 
@@ -220,7 +220,7 @@ namespace GenshinConfigurator
         }
     }
 
-    internal abstract class Controller
+    public abstract class Controller
     {
         public int sourceMapId;
         public int categoryId;
@@ -231,6 +231,8 @@ namespace GenshinConfigurator
         public bool enabled;
         public abstract List<Keybind> keybinds { get; set; }
         public abstract List<Keybind> axes { get; set; }
+
+        public abstract string FriendlyName { get; }
 
         public abstract void LoadFromString(string xmlstring);
         public abstract void AddBind(int actionId);
@@ -272,6 +274,7 @@ namespace GenshinConfigurator
     {
         public override List<Keybind> keybinds { get; set; }
         public override List<Keybind> axes { get; set; }
+        public override string FriendlyName => $"Unknown Controller ({sourceMapId})";
         public UnknownController()
         {
             keybinds = new List<Keybind>();
@@ -362,6 +365,7 @@ namespace GenshinConfigurator
     {
         public override List<Keybind> keybinds { get; set; }
         public override List<Keybind> axes { get; set; }
+        public override string FriendlyName => $"Mouse ({sourceMapId})";
 
         public MouseController()
         {
@@ -469,6 +473,7 @@ namespace GenshinConfigurator
     {
         public override List<Keybind> keybinds { get; set; }
         public override List<Keybind> axes { get; set; }
+        public override string FriendlyName => $"XInput Gamepad ({sourceMapId})";
 
         public XBoxController()
         {
@@ -604,6 +609,7 @@ namespace GenshinConfigurator
     {
         public override List<Keybind> keybinds { get; set; }
         public override List<Keybind> axes { get; set; }
+        public override string FriendlyName => $"DualShock 4 Gamepad ({sourceMapId})";
 
         public DS4Controller()
         {
@@ -740,6 +746,7 @@ namespace GenshinConfigurator
     {
         public override List<Keybind> keybinds { get; set; }
         public override List<Keybind> axes { get; set; }
+        public override string FriendlyName => $"DualSense Gamepad ({sourceMapId})";
 
         public DualSenseController()
         {
@@ -915,6 +922,7 @@ namespace GenshinConfigurator
     {
         public override List<Keybind> keybinds { get; set; }
         public override List<Keybind> axes { get; set; }
+        public override string FriendlyName => $"Keyboard ({sourceMapId})";
         public KeyboardController()
         {
             keybinds = new List<Keybind>();
@@ -995,7 +1003,7 @@ namespace GenshinConfigurator
     }
     internal class Controllers
     {
-        List<Controller> controllers;
+        public List<Controller> controllers { get; private set; }
 
         public Controllers()
         {
