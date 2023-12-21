@@ -243,7 +243,71 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Controls (Gamepad)">Tab</TabItem>
+            <TabItem Header="Controls (Gamepad)">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Horizontal Sensitivity" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=ControlsGamepadHorizontalSensitivitySlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="ControlsGamepadHorizontalSensitivitySlider" Value="{Binding ControlsGamepadHorizontalSensitivity, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Vertical Sensitivity" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=ControlsGamepadVerticalSensitivitySlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="ControlsGamepadVerticalSensitivitySlider" Value="{Binding ControlsGamepadVerticalSensitivity, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Horizontal Sensitivity (Aiming)" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=ControlsGamepadHorizontalSensitivityAimingSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="ControlsGamepadHorizontalSensitivityAimingSlider" Value="{Binding ControlsGamepadHorizontalSensitivityAiming, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Horizontal Sensitivity" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=ControlsGamepadVerticalSensitivityAimingSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="ControlsGamepadVerticalSensitivityAimingSlider" Value="{Binding ControlsGamepadVerticalSensitivityAiming, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
             <TabItem Header="Controls (Misc)">Tab</TabItem>
             <TabItem Header="Audio">Tab</TabItem>
             <TabItem Header="Language">Tab</TabItem>

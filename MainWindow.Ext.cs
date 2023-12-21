@@ -256,5 +256,31 @@ namespace GenshinConfigurator
             set => Settings.ControlsKeyboard.vertical_sensitivity_aiming = value - 1;
         }
         #endregion
+
+        #region Controls (Gamepad)
+        public int ControlsGamepadHorizontalSensitivity
+        {
+            get => Settings.ControlsGamepad.horizontal_sensitivity + 1;
+            set => Settings.ControlsGamepad.horizontal_sensitivity = value - 1;
+        }
+
+        public int ControlsGamepadVerticalSensitivity
+        {
+            get => Settings.ControlsGamepad.vertical_sensitivity + 1;
+            set => Settings.ControlsGamepad.vertical_sensitivity = value - 1;
+        }
+
+        public int ControlsGamepadHorizontalSensitivityAiming
+        {
+            get => Settings.ControlsGamepad.horizontal_sensitivity_aiming + 1;
+            set => Settings.ControlsGamepad.horizontal_sensitivity_aiming = value - 1;
+        }
+
+        public int ControlsGamepadVerticalSensitivityAiming
+        {
+            get => Settings.ControlsGamepad.vertical_sensitivity_aiming + 1;
+            set => Settings.ControlsGamepad.vertical_sensitivity_aiming = value - 1;
+        }
+        #endregion
     }
 }
