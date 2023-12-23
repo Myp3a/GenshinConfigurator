@@ -21,6 +21,8 @@ A configuration tool for Genshin Impact. It allows user to modify game settings 
  - Raw config editor
 
 ## Installation
+> Requires .NET 8.0. If you don't have it, you will be prompted for installation.  
+
 Download the [latest release](https://github.com/Myp3a/GenshinConfigurator/releases/latest) and run it!
 
 If you have any questions about app usage, you may consider visiting the [wiki](https://github.com/Myp3a/GenshinConfigurator/wiki).
