@@ -565,7 +565,9 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Launch Log">Tab</TabItem>
+            <TabItem Header="Launch Log">
+                <TextBox Text="{Binding LogText, Mode=OneWay}" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
+            </TabItem>
             <TabItem Header="Raw Config">Tab</TabItem>
         </TabControl>
         <Button x:Name="GraphicsApplyButton" Grid.Column="1" Content="Apply" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Width="50" Height="25" Grid.Row="1" Click="SettingsApply"/>

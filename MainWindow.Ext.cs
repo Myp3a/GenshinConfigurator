@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -438,5 +439,17 @@ namespace GenshinConfigurator
             set => Settings.Language.voice_lang = (VoiceLanguage)value;
         }
         #endregion
+
+        public string LogText
+        {
+            get {
+                try
+                {
+                    return File.ReadAllText(Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName + @"\LocalLow\miHoYo\Genshin Impact\output_log.txt");
+                } catch {
+                    return"Log file is currently used by Genshin.";
+                }
+            }
+        }
     }
 }
