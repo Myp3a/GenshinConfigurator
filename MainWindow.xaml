@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GenshinConfigurator"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="450" MinWidth="500" Width="800" Height="500"
-        ResizeMode="CanResize">
+        MinHeight="450" MinWidth="500" Width="800" Height="500"
+        ResizeMode="CanResize" Title="Genshin Configurator">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

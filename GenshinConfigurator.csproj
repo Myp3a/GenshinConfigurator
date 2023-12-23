@@ -6,7 +6,14 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>pmngear.ico</ApplicationIcon>
+    <AssemblyVersion>4.3.1.0</AssemblyVersion>
+    <FileVersion>4.3.1.0</FileVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="pmngear.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
