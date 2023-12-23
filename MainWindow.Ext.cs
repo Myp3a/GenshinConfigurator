@@ -424,5 +424,19 @@ namespace GenshinConfigurator
             set => Settings.Audio.output_format = value;
         }
         #endregion
+
+        #region Language
+        public int LanguageText
+        {
+            get => (int)Settings.Language.text_lang - 1;
+            set => Settings.Language.text_lang = (TextLanguage)(value + 1);
+        }
+
+        public int LanguageVoice
+        {
+            get => (int)Settings.Language.voice_lang;
+            set => Settings.Language.voice_lang = (VoiceLanguage)value;
+        }
+        #endregion
     }
 }

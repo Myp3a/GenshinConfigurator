@@ -522,7 +522,49 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Language">Tab</TabItem>
+            <TabItem Header="Language">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Text Language" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <ComboBox Grid.Column="1" Width="120" MaxHeight="25" HorizontalAlignment="Right" SelectedIndex="{Binding LanguageText, Mode=TwoWay}">
+                            <ComboBoxItem Content="English"/>
+                            <ComboBoxItem Content="Simplified Chinese"/>
+                            <ComboBoxItem Content="Traditional Chinese"/>
+                            <ComboBoxItem Content="French"/>
+                            <ComboBoxItem Content="German"/>
+                            <ComboBoxItem Content="Spanish"/>
+                            <ComboBoxItem Content="Portugese"/>
+                            <ComboBoxItem Content="Russian"/>
+                            <ComboBoxItem Content="Japanese"/>
+                            <ComboBoxItem Content="Korean"/>
+                            <ComboBoxItem Content="Thai"/>
+                            <ComboBoxItem Content="Vietnamese"/>
+                            <ComboBoxItem Content="Indonesian"/>
+                        </ComboBox>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Voice Language" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <ComboBox Grid.Column="1" Width="120" MaxHeight="25" HorizontalAlignment="Right" SelectedIndex="{Binding LanguageVoice, Mode=TwoWay}">
+                            <ComboBoxItem Content="Chinese"/>
+                            <ComboBoxItem Content="English"/>
+                            <ComboBoxItem Content="Japanese"/>
+                            <ComboBoxItem Content="Korean"/>
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+            </TabItem>
             <TabItem Header="Launch Log">Tab</TabItem>
             <TabItem Header="Raw Config">Tab</TabItem>
         </TabControl>
