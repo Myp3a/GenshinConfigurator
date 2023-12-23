@@ -16,7 +16,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TabControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+        <TabControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Graphics">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -568,10 +568,22 @@
             <TabItem Header="Launch Log">
                 <TextBox Text="{Binding LogText, Mode=OneWay}" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
             </TabItem>
-            <TabItem Header="Raw Config">Tab</TabItem>
+            <TabItem x:Name="RawConfigTab" Header="Raw Config">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="RawConfigTextBox" Grid.Row="0" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <Button Content="Load" Click="RawConfigLoad" Margin="0,0,10,0" VerticalAlignment="Center" Width="50" Height="25"/>
+                        <Button Content="Save" Click="RawConfigSave" Margin="0,0,10,0" VerticalAlignment="Center" Width="50" Height="25"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
         </TabControl>
-        <Button x:Name="GraphicsApplyButton" Grid.Column="1" Content="Apply" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Width="50" Height="25" Grid.Row="1" Click="SettingsApply"/>
-        <Button x:Name="GraphicsResetButton" Grid.Column="1" Content="Reset" HorizontalAlignment="Right" Margin="0,0,70,0" VerticalAlignment="Center" Width="50" Height="25" Grid.Row="1" Click="SettingsReset"/>
+        <Button x:Name="ApplyButton" Grid.Column="1" Content="Apply" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Width="50" Height="25" Grid.Row="1" Click="SettingsApply"/>
+        <Button x:Name="ResetButton" Grid.Column="1" Content="Reset" HorizontalAlignment="Right" Margin="0,0,70,0" VerticalAlignment="Center" Width="50" Height="25" Grid.Row="1" Click="SettingsReset"/>
         <Label x:Name="StatusLabel" Content="{Binding StatusText, Mode=OneWay}" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
 
     </Grid>

@@ -351,5 +351,34 @@ namespace GenshinConfigurator
             ((sender as ComboBox).Tag as GamepadKeybind).elementIdentifierId = (sender as ComboBox).SelectedIndex + Keycodes.AXIS_COUNT;
         }
         #endregion
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((sender as TabControl).SelectedItem == RawConfigTab)
+            {
+                ApplyButton.IsEnabled = false;
+                ResetButton.IsEnabled = false;
+            } else
+            {
+                ApplyButton.IsEnabled = true;
+                ResetButton.IsEnabled = true;
+            }
+        }
+
+        private void RawConfigLoad(object sender, RoutedEventArgs e)
+        {
+            RawConfigTextBox.Text = Settings.Raw();
+            SettingsReset(null, null);
+            ShowStatusText("Loaded raw config from registry.");
+        }
+
+        private void RawConfigSave(object sender, RoutedEventArgs e)
+        {
+            Settings.Parse(RawConfigTextBox.Text);
+            Settings.Apply();
+            Settings.ToReg();
+            SettingsReset(null, null);
+            ShowStatusText("Saved raw config to registry.");
+        }
     }
 }
