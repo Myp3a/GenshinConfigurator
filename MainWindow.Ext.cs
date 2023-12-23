@@ -386,5 +386,43 @@ namespace GenshinConfigurator
             set => Settings.ControlsMisc.automatic_boat_camera_angle_correction = value;
         }
         #endregion
+
+        #region Audio
+        public int AudioMain
+        {
+            get => Settings.Audio.main_volume;
+            set => Settings.Audio.main_volume = value;
+        }
+
+        public int AudioMusic
+        {
+            get => Settings.Audio.music_volume;
+            set => Settings.Audio.music_volume = value;
+        }
+
+        public int AudioSFX
+        {
+            get => Settings.Audio.sfx_volume;
+            set => Settings.Audio.sfx_volume = value;
+        }
+
+        public int AudioVoice
+        {
+            get => Settings.Audio.voice_volume;
+            set => Settings.Audio.voice_volume = value;
+        }
+
+        public int AudioDynamicRange
+        {
+            get => Settings.Audio.dynamic_range;
+            set => Settings.Audio.dynamic_range = value;
+        }
+
+        public int AudioOutputFormat
+        {
+            get => Settings.Audio.output_format;
+            set => Settings.Audio.output_format = value;
+        }
+        #endregion
     }
 }
