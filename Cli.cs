@@ -184,9 +184,9 @@ namespace GenshinConfigurator
                             if (((fullscreen != 0) && (fullscreen != 1)) || (width < 1) || (height < 1)) {
                                 Console.WriteLine("Wrong resolution format. Not applying.");
                             }
-                            Resolution.Change((int)ResolutionData.Width, width);
-                            Resolution.Change((int)ResolutionData.Height, height);
-                            Resolution.Change((int)ResolutionData.Fullscreen, fullscreen);
+                            Resolution.Change(ResolutionData.Width, width);
+                            Resolution.Change(ResolutionData.Height, height);
+                            Resolution.Change(ResolutionData.Fullscreen, fullscreen);
                         } 
                         catch
                         {

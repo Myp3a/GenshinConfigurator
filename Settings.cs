@@ -83,7 +83,7 @@ namespace GenshinConfigurator
         {
             ConfigFile file = new ConfigFile
             {
-                Resolution = new ResolutionConfig { Fullscreen = Convert.ToBoolean(Resolution.Get((int)ResolutionData.Fullscreen)), Width = Resolution.Get((int)ResolutionData.Width), Height = Resolution.Get((int)ResolutionData.Height) },
+                Resolution = new ResolutionConfig { Fullscreen = Convert.ToBoolean(Resolution.Get(ResolutionData.Fullscreen)), Width = Resolution.Get(ResolutionData.Width), Height = Resolution.Get(ResolutionData.Height) },
                 Graphics = Graphics.ToConfig(),
                 Audio = Audio.ToConfig(),
                 Language = Language.ToConfig(),
@@ -116,9 +116,9 @@ namespace GenshinConfigurator
             }
             if (config.Resolution != null)
             {
-                Resolution.Change((int)ResolutionData.Width, config.Resolution.Width);
-                Resolution.Change((int)ResolutionData.Height, config.Resolution.Height);
-                Resolution.Change((int)ResolutionData.Fullscreen, Convert.ToInt32(config.Resolution.Fullscreen));
+                Resolution.Change(ResolutionData.Width, config.Resolution.Width);
+                Resolution.Change(ResolutionData.Height, config.Resolution.Height);
+                Resolution.Change(ResolutionData.Fullscreen, Convert.ToInt32(config.Resolution.Fullscreen));
             }
             if (config.ControlsKeyboard != null)
             {
@@ -792,17 +792,17 @@ namespace GenshinConfigurator
             Read();
         }
 
-        public int Get(int setting_num)
+        public int Get(ResolutionData setting_num)
         {
             switch (setting_num)
             {
-                case (int)ResolutionData.Width:
+                case ResolutionData.Width:
                     return width;
 
-                case (int)ResolutionData.Height:
+                case ResolutionData.Height:
                     return height;
 
-                case (int)ResolutionData.Fullscreen:
+                case ResolutionData.Fullscreen:
                     return fullscreen;
 
                 default:
@@ -810,19 +810,19 @@ namespace GenshinConfigurator
             }
         }
 
-        public void Change(int setting_num, int value)
+        public void Change(ResolutionData setting_num, int value)
         {
             switch (setting_num)
             {
-                case (int)ResolutionData.Width:
+                case ResolutionData.Width:
                     width = value;
                     break;
 
-                case (int)ResolutionData.Height:
+                case ResolutionData.Height:
                     height = value;
                     break;
 
-                case (int)ResolutionData.Fullscreen:
+                case ResolutionData.Fullscreen:
                     fullscreen = value;
                     break;
             }

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace GenshinConfigurator
 {
     internal class Keycodes
     {
+        public static int AXIS_COUNT = 4;
         public static List<string> gamepad_axes = new List<string>
         {
             "Left Stick X",
@@ -15,7 +16,7 @@ namespace GenshinConfigurator
             "RT"
         };
 
-        public static List<string> xbox_gamepad_keys = new List<string>
+        public static List<string> xbox_gamepad_Key = new List<string>
         {
             "LT",
             "RT",
@@ -38,7 +39,7 @@ namespace GenshinConfigurator
             "Guide"
         };
 
-        public static List<string> dualshock4_gamepad_keys = new List<string>
+        public static List<string> dualshock4_gamepad_Key = new List<string>
         {
             "L2",
             "R2",
@@ -62,7 +63,7 @@ namespace GenshinConfigurator
             "Right Stick"
         };
 
-        public static List<string> dualsense_gamepad_keys = new List<string>
+        public static List<string> dualsense_gamepad_Key = new List<string>
         {
             "LT",
             "RT",
@@ -95,7 +96,7 @@ namespace GenshinConfigurator
             "Mouse Wheel"
         };
 
-        public static List<string> mouse_keys = new List<string>
+        public static List<string> mouse_Key = new List<string>
         {
             // 3 - 9
             "Left Mouse Button",
@@ -355,136 +356,136 @@ namespace GenshinConfigurator
             { 127, "Help" },
             { 128, "Print" }
         };
-        public static Dictionary<Keys, int> keyboard = new Dictionary<Keys, int>
+        public static Dictionary<Key, int> keyboard = new Dictionary<Key, int>
         {
-            { Keys.None, 0 },
-            { Keys.Back, 55 },
-            { Keys.Tab, 56 },
-            { Keys.Clear, 57 },
-            { Keys.Enter, 58 },
-            { Keys.Pause, 59 },
-            { Keys.Escape, 60 },
-            { Keys.Space, 54 },
+            { Key.None, 0 },
+            { Key.Back, 55 },
+            { Key.Tab, 56 },
+            { Key.Clear, 57 },
+            { Key.Enter, 58 },
+            { Key.Pause, 59 },
+            { Key.Escape, 60 },
+            { Key.Space, 54 },
             // !   // Better to be mapped via 0-9 + Shift
             // "
             // #
             // $
-            { Keys.OemQuotes, 66 },
+            { Key.OemQuotes, 66 },
             // (
             // )
             // *
-            { Keys.Oemplus, 78 },
-            { Keys.Oemcomma, 71 },
-            { Keys.OemMinus, 72 },
-            { Keys.OemPeriod, 73 },
-            { Keys.OemQuestion, 74 },
-            { Keys.D0, 27 },
-            { Keys.D1, 28 },
-            { Keys.D2, 29 },
-            { Keys.D3, 30 },
-            { Keys.D4, 31 },
-            { Keys.D5, 32 },
-            { Keys.D6, 33 },
-            { Keys.D7, 34 },
-            { Keys.D8, 35 },
-            { Keys.D9, 36 },
+            { Key.OemPlus, 78 },
+            { Key.OemComma, 71 },
+            { Key.OemMinus, 72 },
+            { Key.OemPeriod, 73 },
+            { Key.OemQuestion, 74 },
+            { Key.D0, 27 },
+            { Key.D1, 28 },
+            { Key.D2, 29 },
+            { Key.D3, 30 },
+            { Key.D4, 31 },
+            { Key.D5, 32 },
+            { Key.D6, 33 },
+            { Key.D7, 34 },
+            { Key.D8, 35 },
+            { Key.D9, 36 },
             // :
-            { Keys.OemSemicolon, 76 },
+            { Key.OemSemicolon, 76 },
             // <
             // =
             // >
             // ?
             // @
-            { Keys.OemOpenBrackets, 82 },
-            { Keys.OemBackslash, 83 },
-            { Keys.OemCloseBrackets, 84 },
+            { Key.OemOpenBrackets, 82 },
+            { Key.OemBackslash, 83 },
+            { Key.OemCloseBrackets, 84 },
             // ^
             // _
-            { Keys.Oemtilde, 87 },
-            { Keys.A, 1 },
-            { Keys.B, 2 },
-            { Keys.C, 3 },
-            { Keys.D, 4 },
-            { Keys.E, 5 },
-            { Keys.F, 6 },
-            { Keys.G, 7 },
-            { Keys.H, 8 },
-            { Keys.I, 9 },
-            { Keys.J, 10 },
-            { Keys.K, 11 },
-            { Keys.L, 12 },
-            { Keys.M, 13 },
-            { Keys.N, 14 },
-            { Keys.O, 15 },
-            { Keys.P, 16 },
-            { Keys.Q, 17 },
-            { Keys.R, 18 },
-            { Keys.S, 19 },
-            { Keys.T, 20 },
-            { Keys.U, 21 },
-            { Keys.V, 22 },
-            { Keys.W, 23 },
-            { Keys.X, 24 },
-            { Keys.Y, 25 },
-            { Keys.Z, 26 },
-            { Keys.Delete, 88 },
-            { Keys.NumPad0, 37 },
-            { Keys.NumPad1, 38 },
-            { Keys.NumPad2, 39 },
-            { Keys.NumPad3, 40 },
-            { Keys.NumPad4, 41 },
-            { Keys.NumPad5, 42 },
-            { Keys.NumPad6, 43 },
-            { Keys.NumPad7, 44 },
-            { Keys.NumPad8, 45 },
-            { Keys.NumPad9, 46 },
-            { Keys.Decimal, 47 },
-            { Keys.Divide, 48 },
-            { Keys.Multiply, 49 },
-            { Keys.Subtract, 50 },
-            { Keys.Add, 51 },
-            //{ Keys.NumpadEnter, 271 }, // No such key, hard to distinguish
-            //{ Keys.NumpadEqual, 272 }, // Unavailable for some reason
-            { Keys.Up, 89 },
-            { Keys.Down, 90 },
-            { Keys.Right, 91 },
-            { Keys.Left, 92 },
-            { Keys.Insert, 93 },
-            { Keys.Home, 94 },
-            { Keys.End, 95 },
-            { Keys.PageUp, 96 },
-            { Keys.PageDown, 97 },
-            { Keys.F1, 98 },
-            { Keys.F2, 99 },
-            { Keys.F3, 100 },
-            { Keys.F4, 101 },
-            { Keys.F5, 102 },
-            { Keys.F6, 103 },
-            { Keys.F7, 104 },
-            { Keys.F8, 105 },
-            { Keys.F9, 106 },
-            { Keys.F10, 107 },
-            { Keys.F11, 108 },
-            { Keys.F12, 109 },
-            { Keys.F13, 110 },
-            { Keys.F14, 111 },
-            { Keys.F15, 112 },
-            { Keys.NumLock, 113 },
-            { Keys.CapsLock, 114 },
-            { Keys.Scroll, 115 },
-            { Keys.RShiftKey, 116 },
-            { Keys.LShiftKey, 117 },
-            { Keys.RControlKey, 118 },
-            { Keys.LControlKey, 119 },
-            { Keys.RMenu, 120 },
-            { Keys.LMenu, 121 },
+            { Key.OemTilde, 87 },
+            { Key.A, 1 },
+            { Key.B, 2 },
+            { Key.C, 3 },
+            { Key.D, 4 },
+            { Key.E, 5 },
+            { Key.F, 6 },
+            { Key.G, 7 },
+            { Key.H, 8 },
+            { Key.I, 9 },
+            { Key.J, 10 },
+            { Key.K, 11 },
+            { Key.L, 12 },
+            { Key.M, 13 },
+            { Key.N, 14 },
+            { Key.O, 15 },
+            { Key.P, 16 },
+            { Key.Q, 17 },
+            { Key.R, 18 },
+            { Key.S, 19 },
+            { Key.T, 20 },
+            { Key.U, 21 },
+            { Key.V, 22 },
+            { Key.W, 23 },
+            { Key.X, 24 },
+            { Key.Y, 25 },
+            { Key.Z, 26 },
+            { Key.Delete, 88 },
+            { Key.NumPad0, 37 },
+            { Key.NumPad1, 38 },
+            { Key.NumPad2, 39 },
+            { Key.NumPad3, 40 },
+            { Key.NumPad4, 41 },
+            { Key.NumPad5, 42 },
+            { Key.NumPad6, 43 },
+            { Key.NumPad7, 44 },
+            { Key.NumPad8, 45 },
+            { Key.NumPad9, 46 },
+            { Key.Decimal, 47 },
+            { Key.Divide, 48 },
+            { Key.Multiply, 49 },
+            { Key.Subtract, 50 },
+            { Key.Add, 51 },
+            //{ Key.NumpadEnter, 271 }, // No such key, hard to distinguish
+            //{ Key.NumpadEqual, 272 }, // Unavailable for some reason
+            { Key.Up, 89 },
+            { Key.Down, 90 },
+            { Key.Right, 91 },
+            { Key.Left, 92 },
+            { Key.Insert, 93 },
+            { Key.Home, 94 },
+            { Key.End, 95 },
+            { Key.PageUp, 96 },
+            { Key.PageDown, 97 },
+            { Key.F1, 98 },
+            { Key.F2, 99 },
+            { Key.F3, 100 },
+            { Key.F4, 101 },
+            { Key.F5, 102 },
+            { Key.F6, 103 },
+            { Key.F7, 104 },
+            { Key.F8, 105 },
+            { Key.F9, 106 },
+            { Key.F10, 107 },
+            { Key.F11, 108 },
+            { Key.F12, 109 },
+            { Key.F13, 110 },
+            { Key.F14, 111 },
+            { Key.F15, 112 },
+            { Key.NumLock, 113 },
+            { Key.CapsLock, 114 },
+            { Key.Scroll, 115 },
+            { Key.RightShift, 116 },
+            { Key.LeftShift, 117 },
+            { Key.RightCtrl, 118 },
+            { Key.LeftCtrl, 119 },
+            { Key.RightAlt, 120 },
+            { Key.LeftAlt, 121 },
             // RCommand
             // LCommand
-            { Keys.LWin, 124 },
-            { Keys.RWin, 125 },
+            { Key.LWin, 124 },
+            { Key.RWin, 125 },
             // Alt Gr
-            { Keys.Help, 127 },
-            { Keys.Print, 128 },
+            { Key.Help, 127 },
+            { Key.Print, 128 },
             // SysRq
             // Break
             // Menu

@@ -1,29 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.0.31717.71
+VisualStudioVersion = 17.7.33711.374
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenshinConfigurator", "GenshinConfigurator.csproj", "{9B30C01F-DC4E-4EA9-8437-8B3264F57FE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenshinConfigurator", "GenshinConfigurator.csproj", "{2BC57F98-B4F1-4113-AF26-57034739A44F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
-		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9B30C01F-DC4E-4EA9-8437-8B3264F57FE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B30C01F-DC4E-4EA9-8437-8B3264F57FE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B30C01F-DC4E-4EA9-8437-8B3264F57FE5}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{9B30C01F-DC4E-4EA9-8437-8B3264F57FE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B30C01F-DC4E-4EA9-8437-8B3264F57FE5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B30C01F-DC4E-4EA9-8437-8B3264F57FE5}.Release|x64.ActiveCfg = Release|Any CPU
+		{2BC57F98-B4F1-4113-AF26-57034739A44F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BC57F98-B4F1-4113-AF26-57034739A44F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BC57F98-B4F1-4113-AF26-57034739A44F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BC57F98-B4F1-4113-AF26-57034739A44F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6210BA8F-1902-4B89-A31B-A443B0A6ADE3}
+		SolutionGuid = {F9625033-3F1C-477E-8D35-1813E53910EA}
 	EndGlobalSection
 EndGlobal

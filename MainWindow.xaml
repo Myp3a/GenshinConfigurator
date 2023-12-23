@@ -1,0 +1,591 @@
+﻿<Window x:Class="GenshinConfigurator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GenshinConfigurator"
+        mc:Ignorable="d"
+        MinHeight="450" MinWidth="500" Width="800" Height="500"
+        ResizeMode="CanResize" Title="Genshin Configurator">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TabControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" SelectionChanged="TabControl_SelectionChanged">
+            <TabItem Header="Graphics">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Preset" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="0" Grid.Column="1" x:Name="GraphicsPresetComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsPreset, Mode=TwoWay}">
+                        <ComboBoxItem>Lowest</ComboBoxItem>
+                        <ComboBoxItem>Low</ComboBoxItem>
+                        <ComboBoxItem>Medium</ComboBoxItem>
+                        <ComboBoxItem>High</ComboBoxItem>
+                        <ComboBoxItem>Custom</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="1" Grid.Column="0" Content="FPS" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="1" Grid.Column="1" x:Name="GraphicsFPSComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsFPSIndex, Mode=TwoWay}">
+                        <ComboBoxItem>30</ComboBoxItem>
+                        <ComboBoxItem>60</ComboBoxItem>
+                        <ComboBoxItem>45</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="2" Grid.Column="0" Content="VSync" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="2" Grid.Column="1" x:Name="GraphicsVSyncComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsVSync, Mode=TwoWay}">
+                        <ComboBoxItem>Off</ComboBoxItem>
+                        <ComboBoxItem>On</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Render Resolution" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="3" Grid.Column="1" x:Name="GraphicsRenderResolutionComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsRenderResolution, Mode=TwoWay}">
+                        <ComboBoxItem>0.6x</ComboBoxItem>
+                        <ComboBoxItem>0.8x</ComboBoxItem>
+                        <ComboBoxItem>1.0x</ComboBoxItem>
+                        <ComboBoxItem>1.1x</ComboBoxItem>
+                        <ComboBoxItem>1.2x</ComboBoxItem>
+                        <ComboBoxItem>1.3x</ComboBoxItem>
+                        <ComboBoxItem>1.4x</ComboBoxItem>
+                        <ComboBoxItem>1.5x</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="4" Grid.Column="0" Content="Shadow Quality" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="4" Grid.Column="1" x:Name="GraphicsShadowQualityComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsShadowQuality, Mode=TwoWay}">
+                        <ComboBoxItem>Lowest</ComboBoxItem>
+                        <ComboBoxItem>Low</ComboBoxItem>
+                        <ComboBoxItem>Medium</ComboBoxItem>
+                        <ComboBoxItem>High</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="5" Grid.Column="0" Content="Visual Effects" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="5" Grid.Column="1" x:Name="GraphicsVisualEffectsComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsVisualEffects, Mode=TwoWay}">
+                        <ComboBoxItem>Lowest</ComboBoxItem>
+                        <ComboBoxItem>Low</ComboBoxItem>
+                        <ComboBoxItem>Medium</ComboBoxItem>
+                        <ComboBoxItem>High</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="6" Grid.Column="0" Content="SFX Quality" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="6" Grid.Column="1" x:Name="GraphicsSFXQualityComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsSFXQuality, Mode=TwoWay}">
+                        <ComboBoxItem>Lowest</ComboBoxItem>
+                        <ComboBoxItem>Low</ComboBoxItem>
+                        <ComboBoxItem>Medium</ComboBoxItem>
+                        <ComboBoxItem>High</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="7" Grid.Column="0" Content="Environment Detail" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="7" Grid.Column="1" x:Name="GraphicsEnvironmentDetailComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsEnvironmentDetail, Mode=TwoWay}">
+                        <ComboBoxItem>Lowest</ComboBoxItem>
+                        <ComboBoxItem>Low</ComboBoxItem>
+                        <ComboBoxItem>Medium</ComboBoxItem>
+                        <ComboBoxItem>High</ComboBoxItem>
+                        <ComboBoxItem>Highest</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="8" Grid.Column="0" Content="Antialiasing" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="8" Grid.Column="1" x:Name="GraphicsAntialiasingComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsAntialiasing, Mode=TwoWay}">
+                        <ComboBoxItem>Off</ComboBoxItem>
+                        <ComboBoxItem>FSR 2</ComboBoxItem>
+                        <ComboBoxItem>SMAA</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="1" Grid.Column="2" Content="Volumetric Fog" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="1" Grid.Column="3" x:Name="GraphicsVolumetricFogComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsVolumetricFog, Mode=TwoWay}">
+                        <ComboBoxItem>Off</ComboBoxItem>
+                        <ComboBoxItem>On</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="2" Grid.Column="2" Content="Reflections" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="2" Grid.Column="3" x:Name="GraphicsReflectionsComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsReflections, Mode=TwoWay}">
+                        <ComboBoxItem>Off</ComboBoxItem>
+                        <ComboBoxItem>On</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="3" Grid.Column="2" Content="Motion Blur" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="3" Grid.Column="3" x:Name="GraphicsMotionBlurComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsMotionBlur, Mode=TwoWay}">
+                        <ComboBoxItem>Off</ComboBoxItem>
+                        <ComboBoxItem>Low</ComboBoxItem>
+                        <ComboBoxItem>High</ComboBoxItem>
+                        <ComboBoxItem>Extreme</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="4" Grid.Column="2" Content="Bloom" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="4" Grid.Column="3" x:Name="GraphicsBloomComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsBloom, Mode=TwoWay}">
+                        <ComboBoxItem>Off</ComboBoxItem>
+                        <ComboBoxItem>On</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="5" Grid.Column="2" Content="Crowd Density" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="5" Grid.Column="3" x:Name="GraphicsCrowdDensityComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsCrowdDensity, Mode=TwoWay}">
+                        <ComboBoxItem>Low</ComboBoxItem>
+                        <ComboBoxItem>High</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="6" Grid.Column="2" Content="Subsurface Scattering" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="6" Grid.Column="3" x:Name="GraphicsSubsurfaceScatteringComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsSubsurfaceScattering, Mode=TwoWay}">
+                        <ComboBoxItem>Off</ComboBoxItem>
+                        <ComboBoxItem>Medium</ComboBoxItem>
+                        <ComboBoxItem>High</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="7" Grid.Column="2" Content="Teammate Effects" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="7" Grid.Column="3" x:Name="GraphicsTeammateEffectsComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsTeammateEffects, Mode=TwoWay}">
+                        <ComboBoxItem>Off</ComboBoxItem>
+                        <ComboBoxItem>Partially On</ComboBoxItem>
+                        <ComboBoxItem>On</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="8" Grid.Column="2" Content="Anisotropic Filtering" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="8" Grid.Column="3" x:Name="GraphicsAnisotropicFilteringComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsAnisotropicFiltering, Mode=TwoWay}">
+                        <ComboBoxItem>1x</ComboBoxItem>
+                        <ComboBoxItem>2x</ComboBoxItem>
+                        <ComboBoxItem>4x</ComboBoxItem>
+                        <ComboBoxItem>8x</ComboBoxItem>
+                        <ComboBoxItem>16x</ComboBoxItem>
+                    </ComboBox>
+                    <Label Grid.Row="9" Grid.Column="0" Content="Resolution" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="10" Grid.Column="0" HorizontalAlignment="Left" Text="{Binding ResolutionWidth, Mode=TwoWay}" VerticalAlignment="Center" Margin="10,0,0,0" Width="40"/>
+                    <Label Grid.Row="10" Grid.Column="0" Content="x" Margin="50,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="10" Grid.Column="0" HorizontalAlignment="Left" Text="{Binding ResolutionHeight, Mode=TwoWay}" VerticalAlignment="Center" Margin="70,0,0,0" Width="40"/>
+                    <CheckBox Grid.Column="1" Content="Fullscreen" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="10" VerticalAlignment="Center" IsChecked="{Binding ResolutionFullscreen, Mode=TwoWay}"/>
+                    <Label Grid.Row="9" Grid.Column="2" Content="Gamma" VerticalAlignment="Center"/>
+                    <Slider x:Name="GraphicsGammaSlider" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="9" VerticalAlignment="Center" Width="120" FlowDirection="RightToLeft" Minimum="1.4" Maximum="3" TickFrequency="0.1" Value="{Binding GraphicsGamma, Mode=TwoWay}"/>
+                    <Label Grid.Column="3" Content="{Binding ElementName=GraphicsGammaSlider, Path=Value}" ContentStringFormat="{}{0:f1}" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="9" VerticalAlignment="Center"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Keybindings">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Input device" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="0" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="InputDeviceComboBox" Width="300" MaxHeight="25" HorizontalAlignment="Right" Margin="0,0,10,0" ItemsSource="{Binding InputControllers}" DisplayMemberPath="FriendlyName" SelectionChanged="InputControllerChange"/>
+                    <Border BorderBrush="Black" BorderThickness="1" Grid.Row="0" Grid.Column="0"/>
+                    <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" Grid.Column="0"/>
+                    <ScrollViewer Grid.Row="1">
+                        <StackPanel x:Name="InputContainer"></StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Controls (Keyboard)">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Horizontal Sensitivity" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=ControlsKeyboardHorizontalSensitivitySlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="ControlsKeyboardHorizontalSensitivitySlider" Value="{Binding ControlsKeyboardHorizontalSensitivity, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Vertical Sensitivity" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=ControlsKeyboardVerticalSensitivitySlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="ControlsKeyboardVerticalSensitivitySlider" Value="{Binding ControlsKeyboardVerticalSensitivity, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Horizontal Sensitivity (Aiming)" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=ControlsKeyboardHorizontalSensitivityAimingSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="ControlsKeyboardHorizontalSensitivityAimingSlider" Value="{Binding ControlsKeyboardHorizontalSensitivityAiming, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Horizontal Sensitivity" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=ControlsKeyboardVerticalSensitivityAimingSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="ControlsKeyboardVerticalSensitivityAimingSlider" Value="{Binding ControlsKeyboardVerticalSensitivityAiming, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Controls (Gamepad)">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Horizontal Sensitivity" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding ElementName=ControlsGamepadHorizontalSensitivitySlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <Slider x:Name="ControlsGamepadHorizontalSensitivitySlider" Value="{Binding ControlsGamepadHorizontalSensitivity, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Vertical Sensitivity" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding ElementName=ControlsGamepadVerticalSensitivitySlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <Slider x:Name="ControlsGamepadVerticalSensitivitySlider" Value="{Binding ControlsGamepadVerticalSensitivity, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Horizontal Sensitivity (Aiming)" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding ElementName=ControlsGamepadHorizontalSensitivityAimingSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <Slider x:Name="ControlsGamepadHorizontalSensitivityAimingSlider" Value="{Binding ControlsGamepadHorizontalSensitivityAiming, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                        </Grid>
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Horizontal Sensitivity" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding ElementName=ControlsGamepadVerticalSensitivityAimingSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <Slider x:Name="ControlsGamepadVerticalSensitivityAimingSlider" Value="{Binding ControlsGamepadVerticalSensitivityAiming, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                        </Grid>
+                        <StackPanel Grid.Row="4" Orientation="Horizontal">
+                            <CheckBox Content="Invert Horizontal Axis" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding ControlsGamepadInvertHorizontalAxis, Mode=TwoWay}"/>
+                            <CheckBox Content="...while aiming" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding ControlsGamepadInvertHorizontalAxisAiming, Mode=TwoWay}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="5" Orientation="Horizontal">
+                            <CheckBox Content="Invert Vertical Axis" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding ControlsGamepadInvertVerticalAxis, Mode=TwoWay}"/>
+                            <CheckBox Content="...while aiming" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding ControlsGamepadInvertVerticalAxisAiming, Mode=TwoWay}"/>
+                        </StackPanel>
+                        <CheckBox Grid.Row="6" Content="Gyroscope Aiming" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding ControlsGamepadGyroAiming, Mode=TwoWay}"/>
+                        <Grid Grid.Row="7">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Gyroscope Axis" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <ComboBox Grid.Column="1" Width="120" MaxHeight="25" HorizontalAlignment="Right" SelectedIndex="{Binding ControlsGamepadGyroAxis, Mode=TwoWay}">
+                                <ComboBoxItem Content="Yaw"/>
+                                <ComboBoxItem Content="Roll"/>
+                                <ComboBoxItem Content="Both"/>
+                            </ComboBox>
+                        </Grid>
+                        <Grid Grid.Row="8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Gyroscope Horizontal Sensitivity" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding ElementName=ControlsGamepadGyroHorizontalSensitivitySlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <Slider x:Name="ControlsGamepadGyroHorizontalSensitivitySlider" Value="{Binding ControlsGamepadGyroHorizontalSensitivity, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                        </Grid>
+                        <Grid Grid.Row="9">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Gyroscope Vertical Sensitivity" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding ElementName=ControlsGamepadGyroVerticalSensitivitySlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <Slider x:Name="ControlsGamepadGyroVerticalSensitivitySlider" Value="{Binding ControlsGamepadGyroVerticalSensitivity, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                        </Grid>
+                        <CheckBox Grid.Row="10" Content="Disable Right Stick Vertical Input While Aiming" Margin="10,0,0,0" VerticalAlignment="Center" IsChecked="{Binding ControlsGamepadGyroDisableRightStickVerticalInput, Mode=TwoWay}"/>
+                        <CheckBox Grid.Row="11" Content="Invert Horizontal Gyroscope Axis" Margin="10,0,0,0" VerticalAlignment="Center" IsChecked="{Binding ControlsGamepadGyroInvertHorizontalAxis, Mode=TwoWay}"/>
+                        <CheckBox Grid.Row="12" Content="Invert Vertical Gyroscope Axis" Margin="10,0,0,0" VerticalAlignment="Center" IsChecked="{Binding ControlsGamepadGyroInvertVerticalAxis, Mode=TwoWay}"/>
+                        <Grid Grid.Row="13">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Graded Vibration" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <ComboBox Grid.Column="1" Width="120" MaxHeight="25" HorizontalAlignment="Right" SelectedIndex="{Binding ControlsGamepadGradedVibration, Mode=TwoWay}">
+                                <ComboBoxItem Content="On"/>
+                                <ComboBoxItem Content="Partial"/>
+                                <ComboBoxItem Content="Off"/>
+                            </ComboBox>
+                        </Grid>
+                        <Grid Grid.Row="14">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Vibration Level" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding ElementName=ControlsGamepadVibrationPowerSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <Slider x:Name="ControlsGamepadVibrationPowerSlider" Value="{Binding ControlsGamepadVibrationPower, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="1" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Controls (Misc)">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <CheckBox Grid.Row="0" Content="Automatic View Height" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding ControlsMiscAutomaticViewHeight, Mode=TwoWay}"/>
+                    <CheckBox Grid.Row="1" Content="Smart Combat Camera" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding ControlsMiscSmartCombatCamera, Mode=TwoWay}"/>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Default Camera Height" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=ControlsMiscCameraHeightSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="ControlsMiscCameraHeightSlider" Value="{Binding ControlsMiscCameraHeight, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="4.5" Maximum="6" TickFrequency="0.1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Automatic Boat Camera Angle Correction" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <ComboBox Grid.Column="1" Width="120" MaxHeight="25" HorizontalAlignment="Right" SelectedIndex="{Binding ControlsMiscBoatCameraAngleCorrection, Mode=TwoWay}">
+                            <ComboBoxItem Content="No"/>
+                            <ComboBoxItem Content="Yes"/>
+                            <ComboBoxItem Content="Not in combat"/>
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Audio">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Main Volume" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=AudioMainSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="AudioMainSlider" Value="{Binding AudioMain, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Music Volume" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=AudioMusicSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="AudioMusicSlider" Value="{Binding AudioMusic, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="SFX Volume" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=AudioSFXSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="AudioSFXSlider" Value="{Binding AudioSFX, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Voice Volume" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=AudioVoiceSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="AudioVoiceSlider" Value="{Binding AudioVoice, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Dynamic Range" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <ComboBox Grid.Column="1" Width="120" MaxHeight="25" HorizontalAlignment="Right" SelectedIndex="{Binding AudioDynamicRange, Mode=TwoWay}">
+                            <ComboBoxItem Content="Full"/>
+                            <ComboBoxItem Content="Limited"/>
+                        </ComboBox>
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Output Format" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <ComboBox Grid.Column="1" Width="120" MaxHeight="25" HorizontalAlignment="Right" SelectedIndex="{Binding AudioOutputFormat, Mode=TwoWay}">
+                            <ComboBoxItem Content="Stereo"/>
+                            <ComboBoxItem Content="Surround"/>
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Language">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Text Language" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <ComboBox Grid.Column="1" Width="120" MaxHeight="25" HorizontalAlignment="Right" SelectedIndex="{Binding LanguageText, Mode=TwoWay}">
+                            <ComboBoxItem Content="English"/>
+                            <ComboBoxItem Content="Simplified Chinese"/>
+                            <ComboBoxItem Content="Traditional Chinese"/>
+                            <ComboBoxItem Content="French"/>
+                            <ComboBoxItem Content="German"/>
+                            <ComboBoxItem Content="Spanish"/>
+                            <ComboBoxItem Content="Portugese"/>
+                            <ComboBoxItem Content="Russian"/>
+                            <ComboBoxItem Content="Japanese"/>
+                            <ComboBoxItem Content="Korean"/>
+                            <ComboBoxItem Content="Thai"/>
+                            <ComboBoxItem Content="Vietnamese"/>
+                            <ComboBoxItem Content="Indonesian"/>
+                        </ComboBox>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Voice Language" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <ComboBox Grid.Column="1" Width="120" MaxHeight="25" HorizontalAlignment="Right" SelectedIndex="{Binding LanguageVoice, Mode=TwoWay}">
+                            <ComboBoxItem Content="Chinese"/>
+                            <ComboBoxItem Content="English"/>
+                            <ComboBoxItem Content="Japanese"/>
+                            <ComboBoxItem Content="Korean"/>
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Launch Log">
+                <TextBox Text="{Binding LogText, Mode=OneWay}" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
+            </TabItem>
+            <TabItem x:Name="RawConfigTab" Header="Raw Config">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="RawConfigTextBox" Grid.Row="0" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <Button Content="Load" Click="RawConfigLoad" Margin="0,0,10,0" VerticalAlignment="Center" Width="50" Height="25"/>
+                        <Button Content="Save" Click="RawConfigSave" Margin="0,0,10,0" VerticalAlignment="Center" Width="50" Height="25"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="ApplyButton" Grid.Column="1" Content="Apply" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Width="50" Height="25" Grid.Row="1" Click="SettingsApply"/>
+        <Button x:Name="ResetButton" Grid.Column="1" Content="Reset" HorizontalAlignment="Right" Margin="0,0,70,0" VerticalAlignment="Center" Width="50" Height="25" Grid.Row="1" Click="SettingsReset"/>
+        <Label x:Name="StatusLabel" Content="{Binding StatusText, Mode=OneWay}" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
+
+    </Grid>
+
+</Window>
