@@ -281,6 +281,84 @@ namespace GenshinConfigurator
             get => Settings.ControlsGamepad.vertical_sensitivity_aiming + 1;
             set => Settings.ControlsGamepad.vertical_sensitivity_aiming = value - 1;
         }
+
+        public bool ControlsGamepadInvertHorizontalAxis
+        {
+            get => Settings.ControlsGamepad.invert_horizontal_axis;
+            set => Settings.ControlsGamepad.invert_horizontal_axis = value;
+        }
+
+        public bool ControlsGamepadInvertVerticalAxis
+        {
+            get => Settings.ControlsGamepad.invert_vertical_axis;
+            set => Settings.ControlsGamepad.invert_vertical_axis = value;
+        }
+
+        public bool ControlsGamepadInvertHorizontalAxisAiming
+        {
+            get => Settings.ControlsGamepad.invert_horizontal_axis_aiming;
+            set => Settings.ControlsGamepad.invert_horizontal_axis_aiming = value;
+        }
+
+        public bool ControlsGamepadInvertVerticalAxisAiming
+        {
+            get => Settings.ControlsGamepad.invert_vertical_axis_aiming;
+            set => Settings.ControlsGamepad.invert_vertical_axis_aiming = value;
+        }
+
+        public bool ControlsGamepadGyroAiming
+        {
+            get => Settings.ControlsGamepad.gyro_aiming;
+            set => Settings.ControlsGamepad.gyro_aiming = value;
+        }
+
+        public int ControlsGamepadGyroAxis
+        {
+            get => Settings.ControlsGamepad.gyro_axis;
+            set => Settings.ControlsGamepad.gyro_axis = value;
+        }
+
+        public int ControlsGamepadGyroHorizontalSensitivity
+        {
+            get => Settings.ControlsGamepad.gyro_horizontal_sensitivity + 1;
+            set => Settings.ControlsGamepad.gyro_horizontal_sensitivity = value - 1;
+        }
+
+        public int ControlsGamepadGyroVerticalSensitivity
+        {
+            get => Settings.ControlsGamepad.gyro_vertical_sensitivity + 1;
+            set => Settings.ControlsGamepad.gyro_vertical_sensitivity = value - 1;
+        }
+
+        public bool ControlsGamepadGyroDisableRightStickVerticalInput
+        {
+            get => Settings.ControlsGamepad.disable_right_stick_vertical_axis;
+            set => Settings.ControlsGamepad.disable_right_stick_vertical_axis = value;
+        }
+
+        public bool ControlsGamepadGyroInvertHorizontalAxis
+        {
+            get => Settings.ControlsGamepad.gyro_invert_horizontal_axis;
+            set => Settings.ControlsGamepad.gyro_invert_horizontal_axis = value;
+        }
+
+        public bool ControlsGamepadGyroInvertVerticalAxis
+        {
+            get => Settings.ControlsGamepad.gyro_invert_vertical_axis;
+            set => Settings.ControlsGamepad.gyro_invert_vertical_axis = value;
+        }
+
+        public int ControlsGamepadGradedVibration
+        {
+            get => Settings.ControlsGamepad.graded_vibration;
+            set => Settings.ControlsGamepad.graded_vibration = value;
+        }
+
+        public int ControlsGamepadVibrationPower
+        {
+            get => Settings.ControlsGamepad.vibration_power;
+            set => Settings.ControlsGamepad.vibration_power = value;
+        }
         #endregion
     }
 }
