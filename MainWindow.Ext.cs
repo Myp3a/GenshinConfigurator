@@ -360,5 +360,31 @@ namespace GenshinConfigurator
             set => Settings.ControlsGamepad.vibration_power = value;
         }
         #endregion
+
+        #region Controls (Misc)
+        public bool ControlsMiscAutomaticViewHeight
+        {
+            get => Settings.ControlsMisc.automatic_view_height;
+            set => Settings.ControlsMisc.automatic_view_height = value;
+        }
+
+        public bool ControlsMiscSmartCombatCamera
+        {
+            get => Settings.ControlsMisc.smart_combat_camera;
+            set => Settings.ControlsMisc.smart_combat_camera = value;
+        }
+
+        public double ControlsMiscCameraHeight
+        {
+            get => Settings.ControlsMisc.default_camera_height;
+            set => Settings.ControlsMisc.default_camera_height = value;
+        }
+
+        public int ControlsMiscBoatCameraAngleCorrection
+        {
+            get => Settings.ControlsMisc.automatic_boat_camera_angle_correction;
+            set => Settings.ControlsMisc.automatic_boat_camera_angle_correction = value;
+        }
+        #endregion
     }
 }

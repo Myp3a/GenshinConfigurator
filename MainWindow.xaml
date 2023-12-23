@@ -332,7 +332,7 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="Gyroscope Axis" VerticalAlignment="Center"/>
+                            <Label Content="Gyroscope Axis" VerticalAlignment="Center" Margin="10,0,0,0"/>
                             <ComboBox Grid.Column="1" Width="120" MaxHeight="25" HorizontalAlignment="Right" SelectedIndex="{Binding ControlsGamepadGyroAxis, Mode=TwoWay}">
                                 <ComboBoxItem Content="Yaw"/>
                                 <ComboBoxItem Content="Roll"/>
@@ -373,7 +373,7 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="Graded Vibration" VerticalAlignment="Center"/>
+                            <Label Content="Graded Vibration" VerticalAlignment="Center" Margin="10,0,0,0"/>
                             <ComboBox Grid.Column="1" Width="120" MaxHeight="25" HorizontalAlignment="Right" SelectedIndex="{Binding ControlsGamepadGradedVibration, Mode=TwoWay}">
                                 <ComboBoxItem Content="On"/>
                                 <ComboBoxItem Content="Partial"/>
@@ -396,7 +396,43 @@
                     </Grid>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="Controls (Misc)">Tab</TabItem>
+            <TabItem Header="Controls (Misc)">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <CheckBox Grid.Row="0" Content="Automatic View Height" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding ControlsMiscAutomaticViewHeight, Mode=TwoWay}"/>
+                    <CheckBox Grid.Row="1" Content="Smart Combat Camera" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding ControlsMiscSmartCombatCamera, Mode=TwoWay}"/>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Default Camera Height" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <Label Grid.Column="1" Content="{Binding ElementName=ControlsMiscCameraHeightSlider, Path=Value}" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                        <Slider x:Name="ControlsMiscCameraHeightSlider" Value="{Binding ControlsMiscCameraHeight, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Minimum="4.5" Maximum="6" TickFrequency="0.1" IsSnapToTickEnabled="True"/>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Automatic Boat Camera Angle Correction" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <ComboBox Grid.Column="1" Width="120" MaxHeight="25" HorizontalAlignment="Right" SelectedIndex="{Binding ControlsMiscBoatCameraAngleCorrection, Mode=TwoWay}">
+                            <ComboBoxItem Content="No"/>
+                            <ComboBoxItem Content="Yes"/>
+                            <ComboBoxItem Content="Not in combat"/>
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+            </TabItem>
             <TabItem Header="Audio">Tab</TabItem>
             <TabItem Header="Language">Tab</TabItem>
             <TabItem Header="Launch Log">Tab</TabItem>
