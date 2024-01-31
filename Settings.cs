@@ -370,6 +370,9 @@ namespace GenshinConfigurator
                 case SettingsType.AnisotropicFiltering:
                     val_enum = typeof(AnisotropicFiltering);
                     break;
+                case SettingsType.DynamicCharacterResolution:
+                    val_enum = typeof(DynamicCharacterResolution);
+                    break;
             }
             if (val_enum == null) return false;
             return Enum.GetValues(val_enum).Cast<int>().ToArray().Contains(val) && val > 0;

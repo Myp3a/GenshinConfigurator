@@ -201,6 +201,16 @@ namespace GenshinConfigurator
             }
         }
 
+        public int GraphicsDynamicCharacterResolution
+        {
+            get => Settings.Graphics.Get(SettingsType.DynamicCharacterResolution) - 1;
+            set
+            {
+                Settings.Graphics.Change(SettingsType.DynamicCharacterResolution, value + 1);
+                GraphicsPresetComboBox.SelectedIndex = 4;
+            }
+        }
+
         public double GraphicsGamma
         {
             get => Settings.Graphics.gamma;

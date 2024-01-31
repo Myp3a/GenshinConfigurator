@@ -150,14 +150,19 @@
                         <ComboBoxItem>8x</ComboBoxItem>
                         <ComboBoxItem>16x</ComboBoxItem>
                     </ComboBox>
+                    <Label Grid.Row="9" Grid.Column="2" Content="Dynamic Character Resolution" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="9" Grid.Column="3" x:Name="GraphicsDynamicCharacterResolutionComboBox" Width="120" MaxHeight="25" SelectedIndex="{Binding GraphicsDynamicCharacterResolution, Mode=TwoWay}">
+                        <ComboBoxItem>Off</ComboBoxItem>
+                        <ComboBoxItem>On</ComboBoxItem>
+                    </ComboBox>
                     <Label Grid.Row="9" Grid.Column="0" Content="Resolution" VerticalAlignment="Center"/>
                     <TextBox Grid.Row="10" Grid.Column="0" HorizontalAlignment="Left" Text="{Binding ResolutionWidth, Mode=TwoWay}" VerticalAlignment="Center" Margin="10,0,0,0" Width="40"/>
                     <Label Grid.Row="10" Grid.Column="0" Content="x" Margin="50,0,0,0" VerticalAlignment="Center"/>
                     <TextBox Grid.Row="10" Grid.Column="0" HorizontalAlignment="Left" Text="{Binding ResolutionHeight, Mode=TwoWay}" VerticalAlignment="Center" Margin="70,0,0,0" Width="40"/>
                     <CheckBox Grid.Column="1" Content="Fullscreen" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="10" VerticalAlignment="Center" IsChecked="{Binding ResolutionFullscreen, Mode=TwoWay}"/>
-                    <Label Grid.Row="9" Grid.Column="2" Content="Gamma" VerticalAlignment="Center"/>
-                    <Slider x:Name="GraphicsGammaSlider" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="9" VerticalAlignment="Center" Width="120" FlowDirection="RightToLeft" Minimum="1.4" Maximum="3" TickFrequency="0.1" Value="{Binding GraphicsGamma, Mode=TwoWay}"/>
-                    <Label Grid.Column="3" Content="{Binding ElementName=GraphicsGammaSlider, Path=Value}" ContentStringFormat="{}{0:f1}" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="9" VerticalAlignment="Center"/>
+                    <Label Grid.Row="10" Grid.Column="2" Content="Gamma" VerticalAlignment="Center"/>
+                    <Slider x:Name="GraphicsGammaSlider" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" Width="120" FlowDirection="RightToLeft" Minimum="1.4" Maximum="3" TickFrequency="0.1" Value="{Binding GraphicsGamma, Mode=TwoWay}"/>
+                    <Label Grid.Column="3" Content="{Binding ElementName=GraphicsGammaSlider, Path=Value}" ContentStringFormat="{}{0:f1}" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="10" VerticalAlignment="Center"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Keybindings">

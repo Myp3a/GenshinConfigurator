@@ -53,7 +53,8 @@
             Empty,
             SubsurfaceScattering,
             TeammateEffects,
-            AnisotropicFiltering
+            AnisotropicFiltering,
+            DynamicCharacterResolution = 21
         }
 
         public enum OverallQuality
@@ -199,6 +200,13 @@
             x4,
             x8,
             x16
+        }
+
+        public enum DynamicCharacterResolution
+        {
+            None,
+            Off,
+            On
         }
     }
 }
